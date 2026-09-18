@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="icon" type="image/svg+xml" href="assets/app-icon-violet.svg">
+<link rel="apple-touch-icon" href="assets/app-icon-violet.svg">
+<meta name="theme-color" content="#07070C">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#07070C;color:#E9E9EF;font-family:'Hanken Grotesk','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#A78BFA;text-decoration:none}
+a:hover{color:#C4B5FD}
+input,button{font-family:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #7C3AED;outline-offset:2px}
+::selection{background:rgba(124,58,237,.35)}
+@keyframes nxUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes nxFade{from{opacity:0}to{opacity:1}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:28px;padding:clamp(20px,5vw,64px) clamp(16px,4vw,48px) 72px;background:radial-gradient(120% 90% at 50% -20%, rgba(124,58,237,.16), rgba(7,7,12,0) 60%)">
+
+  <div style="width:100%;max-width:620px;display:flex;align-items:center;justify-content:space-between;gap:16px;animation:nxFade .5s ease both">
+    <span style="font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#7A7B8C">Nexyra Consulting — Digital Card</span>
+    <sc-if value="{{ isOwner }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+      <button type="button" onClick="{{ pickInk }}" style="{{ inkStyle }}" style-hover="border-color:rgba(167,139,250,.6);color:#fff">
+        <span style="width:12px;height:12px;background:#0B0B12;border:1px solid rgba(255,255,255,.35);flex:none"></span>
+        <span style="white-space:nowrap">Ink</span>
+      </button>
+      <button type="button" onClick="{{ pickWhite }}" style="{{ whiteStyle }}" style-hover="border-color:rgba(167,139,250,.6);color:#fff">
+        <span style="width:12px;height:12px;background:#FFFFFF;flex:none"></span>
+        <span style="white-space:nowrap">White</span>
+      </button>
+    </div>
+    </sc-if>
+    <button type="button" onClick="{{ toggleFlip }}" style="display:flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(255,255,255,.14);color:#C9CAD6;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;cursor:pointer;transition:border-color .2s ease,color .2s ease" style-hover="border-color:rgba(167,139,250,.6);color:#fff">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex:none"><path d="M3 12a9 9 0 0 1 15.5-6.2M21 12a9 9 0 0 1-15.5 6.2"></path><path d="M18 3v4h-4M6 21v-4h4"></path></svg>
+      <span style="white-space:nowrap">{{ flipLabel }}</span>
+    </button>
+  </div>
+
+  <div style="width:100%;max-width:620px;container-type:inline-size;perspective:1600px;animation:nxUp .6s cubic-bezier(.22,.61,.36,1) both">
+    <div style="{{ innerStyle }}">
+    <sc-if value="{{ isInk }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;inset:0;transform-style:preserve-3d">
+
+      <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:linear-gradient(155deg,#12111C 0%,#0A0A10 48%,#0B0B12 100%);border:1px solid rgba(255,255,255,.09);box-shadow:0 30px 70px -30px rgba(0,0,0,.9),0 0 0 1px rgba(124,58,237,.05);padding:7cqw;display:flex;flex-direction:column;justify-content:space-between">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%)"></div>
+        <div style="position:absolute;right:-14cqw;top:-16cqw;width:44cqw;height:44cqw;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.30),rgba(124,58,237,0) 68%);pointer-events:none"></div>
+
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:4cqw;position:relative">
+          <img src="{{ logoSrc }}" alt="Nexyra Consulting" style="{{ logoStyle }}">
+          <div style="display:flex;align-items:center;gap:2cqw">
+            <sc-for list="{{ socials }}" as="s" hint-placeholder-count="1">
+              <a href="{{ s.href }}" target="_blank" rel="noopener" title="{{ s.title }}" style="display:flex;align-items:center;justify-content:center;width:7cqw;height:7cqw;border:1px solid rgba(255,255,255,.16);color:#C4B5FD;transition:background .2s ease,border-color .2s ease,color .2s ease" style-hover="background:rgba(124,58,237,.18);border-color:rgba(167,139,250,.65);color:#fff">
+                <svg width="60%" height="60%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ s.icon }}"></path></svg>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:5cqw;position:relative">
+          <div style="min-width:0">
+            <sc-if value="{{ hasName }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:7.4cqw;font-weight:600;letter-spacing:-.02em;line-height:1.05;color:#FFFFFF;text-wrap:balance">{{ fullName }}</div>
+            </sc-if>
+            <sc-if value="{{ hasTitle }}" hint-placeholder-val="{{ true }}">
+              <div style="margin-top:1.8cqw;font-size:2.8cqw;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A78BFA">{{ jobTitle }}</div>
+            </sc-if>
+            <sc-if value="{{ hasCompany }}" hint-placeholder-val="{{ true }}">
+              <div style="margin-top:1cqw;font-size:2.7cqw;font-weight:400;letter-spacing:.08em;color:#83848F">{{ company }}</div>
+            </sc-if>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:1.7cqw;text-align:right">
+            <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+              <a href="{{ r.href }}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:1.8cqw;font-size:2.7cqw;letter-spacing:.02em;color:#D3D4DE;transition:color .2s ease" style-hover="color:#FFFFFF">
+                <span style="max-width:44cqw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.value }}</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:3.4cqw;height:3.4cqw"><path d="{{ r.icon }}"></path></svg>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);overflow:hidden;background:linear-gradient(155deg,#0A0A10 0%,#12111C 100%);border:1px solid rgba(255,255,255,.09);box-shadow:0 30px 70px -30px rgba(0,0,0,.9);padding:7cqw;display:flex;align-items:center;justify-content:space-between;gap:6cqw">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3B82F6 0%,#7C3AED 61%,#A78BFA 100%)"></div>
+        <div style="display:flex;flex-direction:column;gap:3cqw;min-width:0">
+          <img src="{{ backLogoSrc }}" alt="Nexyra" style="height:17cqw;width:auto;max-width:40cqw;object-fit:contain;object-position:left center;display:block">
+          <sc-if value="{{ hasTagline }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:3cqw;font-weight:300;line-height:1.5;color:#9A9BA8;max-width:46cqw;text-wrap:pretty">{{ tagline }}</div>
+          </sc-if>
+          <sc-if value="{{ hasWebsite }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:2.6cqw;letter-spacing:.16em;text-transform:uppercase;color:#A78BFA">{{ website }}</div>
+          </sc-if>
+        </div>
+        <sc-if value="{{ showBackQr }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:1.6cqw;flex:none">
+            <div style="width:24cqw;height:24cqw;background:#FFFFFF;padding:1.4cqw;display:flex;align-items:center;justify-content:center">{{ qrBack }}</div>
+            <span style="font-size:2cqw;letter-spacing:.18em;text-transform:uppercase;color:#9A9BA8">Scan to save</span>
+          </div>
+        </sc-if>
+      </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isWhite }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;transform-style:preserve-3d">
+
+      <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:#FFFFFF;border:1px solid rgba(11,11,18,.12);box-shadow:0 30px 70px -34px rgba(0,0,0,.8);padding:7cqw;display:flex;flex-direction:column;justify-content:space-between">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%)"></div>
+
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:4cqw;position:relative">
+          <img src="{{ logoSrcLight }}" alt="Nexyra Consulting" style="height:8.4cqw;width:auto;display:block">
+          <div style="display:flex;align-items:center;gap:2cqw">
+            <sc-for list="{{ socials }}" as="s" hint-placeholder-count="1">
+              <a href="{{ s.href }}" target="_blank" rel="noopener" title="{{ s.title }}" style="display:flex;align-items:center;justify-content:center;width:7cqw;height:7cqw;border:1px solid rgba(11,11,18,.18);color:#7C3AED;transition:background .2s ease,border-color .2s ease,color .2s ease" style-hover="background:rgba(124,58,237,.1);border-color:#7C3AED;color:#5B21B6">
+                <svg width="60%" height="60%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ s.icon }}"></path></svg>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:5cqw;position:relative">
+          <div style="min-width:0">
+            <sc-if value="{{ hasName }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:7.4cqw;font-weight:600;letter-spacing:-.02em;line-height:1.05;color:#0B0B12;text-wrap:balance">{{ fullName }}</div>
+            </sc-if>
+            <sc-if value="{{ hasTitle }}" hint-placeholder-val="{{ true }}">
+              <div style="margin-top:1.8cqw;font-size:2.8cqw;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#6D28D9">{{ jobTitle }}</div>
+            </sc-if>
+            <sc-if value="{{ hasCompany }}" hint-placeholder-val="{{ true }}">
+              <div style="margin-top:1cqw;font-size:2.7cqw;font-weight:400;letter-spacing:.08em;color:#6B6C78">{{ company }}</div>
+            </sc-if>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:1.7cqw;text-align:right">
+            <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+              <a href="{{ r.href }}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:1.8cqw;font-size:2.7cqw;letter-spacing:.02em;color:#3A3B45;transition:color .2s ease" style-hover="color:#0B0B12">
+                <span style="max-width:44cqw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.value }}</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:3.4cqw;height:3.4cqw"><path d="{{ r.icon }}"></path></svg>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);overflow:hidden;background:#FFFFFF;border:1px solid rgba(11,11,18,.12);box-shadow:0 30px 70px -34px rgba(0,0,0,.8);padding:7cqw;display:flex;align-items:center;justify-content:space-between;gap:6cqw">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3B82F6 0%,#7C3AED 61%,#A78BFA 100%)"></div>
+        <div style="display:flex;flex-direction:column;gap:3cqw;min-width:0">
+          <img src="{{ backLogoSrcLight }}" alt="Nexyra" style="height:17cqw;width:auto;max-width:40cqw;object-fit:contain;object-position:left center;display:block">
+          <sc-if value="{{ hasTagline }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:3cqw;font-weight:400;line-height:1.5;color:#54555F;max-width:46cqw;text-wrap:pretty">{{ tagline }}</div>
+          </sc-if>
+          <sc-if value="{{ hasWebsite }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:2.6cqw;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6D28D9">{{ website }}</div>
+          </sc-if>
+        </div>
+        <sc-if value="{{ showBackQr }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:1.6cqw;flex:none">
+            <div style="width:24cqw;height:24cqw;background:#FFFFFF;border:1px solid rgba(11,11,18,.12);padding:1.4cqw;display:flex;align-items:center;justify-content:center">{{ qrBack }}</div>
+            <span style="font-size:2cqw;letter-spacing:.18em;text-transform:uppercase;color:#5F606B">Scan to save</span>
+          </div>
+        </sc-if>
+      </div>
+      </div>
+    </sc-if>
+    </div>
+  </div>
+
+  <sc-if value="{{ isOwner }}" hint-placeholder-val="{{ true }}">
+  <div style="width:100%;max-width:620px;display:flex;flex-wrap:wrap;gap:10px;animation:nxFade .7s ease both">
+    <button type="button" onClick="{{ openShare }}" style="flex:1 1 220px;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 22px;border:0;cursor:pointer;color:#fff;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(90deg,#7C3AED,#3B82F6);transition:filter .2s ease,transform .2s ease" style-hover="filter:brightness(1.12)" style-active="transform:translateY(1px)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L8 8m4-4 4 4M5 14v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5"></path></svg>
+      <span>Share business card</span>
+    </button>
+    <button type="button" onClick="{{ openEditor }}" style="flex:0 1 auto;display:flex;align-items:center;gap:10px;padding:16px 20px;background:transparent;border:1px solid rgba(255,255,255,.16);color:#D3D4DE;font-size:13px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:border-color .2s ease,color .2s ease" style-hover="border-color:rgba(167,139,250,.6);color:#fff">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L20 8l-4-4L4 16v4Z"></path></svg>
+      <span>Edit details</span>
+    </button>
+    <button type="button" onClick="{{ saveContact }}" style="flex:0 1 auto;display:flex;align-items:center;gap:10px;padding:16px 20px;background:transparent;border:1px solid rgba(255,255,255,.16);color:#D3D4DE;font-size:13px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:border-color .2s ease,color .2s ease" style-hover="border-color:rgba(167,139,250,.6);color:#fff">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 20v-1.5A3.5 3.5 0 0 0 11.5 15h-5A3.5 3.5 0 0 0 3 18.5V20M9 11.5A3.75 3.75 0 1 0 9 4a3.75 3.75 0 0 0 0 7.5M18 8v6m3-3h-6"></path></svg>
+      <span>Save contact</span>
+    </button>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isOwner }}" hint-placeholder-val="{{ true }}">
+  <div onClick="{{ closeAll }}" style="{{ overlayStyle }}"></div>
+  </sc-if>
+
+  <sc-if value="{{ previewing }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px;background:#7C3AED;color:#fff;font-size:11px;letter-spacing:.18em;text-transform:uppercase">
+      <span>Recipient view — view only</span>
+      <button type="button" onClick="{{ exitPreview }}" style="background:transparent;border:1px solid rgba(255,255,255,.55);color:#fff;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;cursor:pointer;transition:background .2s ease" style-hover="background:rgba(255,255,255,.16)">Exit preview</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isOwner }}" hint-placeholder-val="{{ true }}">
+  <aside style="{{ drawerStyle }}">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 24px;border-bottom:1px solid rgba(255,255,255,.1)">
+      <span style="font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#fff">Card details</span>
+      <button type="button" onClick="{{ closeAll }}" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;background:transparent;border:1px solid rgba(255,255,255,.14);color:#C9CAD6;cursor:pointer;transition:border-color .2s ease,color .2s ease" style-hover="border-color:rgba(167,139,250,.6);color:#fff">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"></path></svg>
+      </button>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:22px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#7A7B8C">Logo</span>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <sc-for list="{{ logoOptions }}" as="l" hint-placeholder-count="9">
+            <button type="button" onClick="{{ l.pick }}" title="{{ l.label }}" style="{{ l.btnStyle }}" style-hover="border-color:rgba(167,139,250,.55)">
+              <img src="{{ l.src }}" alt="{{ l.label }}" style="{{ l.imgStyle }}">
+            </button>
+          </sc-for>
+        </div>
+        <span style="font-size:11px;color:#6F707E">{{ logoNote }}</span>
+      </div>
+
+      <div style="height:1px;background:rgba(255,255,255,.1)"></div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <sc-for list="{{ fields }}" as="f" hint-placeholder-count="9">
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7B8C">{{ f.label }}</span>
+            <input type="text" value="{{ f.value }}" onChange="{{ f.onInput }}" placeholder="{{ f.placeholder }}" style="width:100%;padding:12px 14px;background:#101017;border:1px solid rgba(255,255,255,.12);color:#F2F2F6;font-size:14px;transition:border-color .2s ease" style-focus="border-color:#7C3AED">
+          </label>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <button type="button" onClick="{{ resetFields }}" style="background:transparent;border:0;color:#8A8B99;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;padding:4px 0" style-hover="color:#A78BFA">Reset to defaults</button>
+        <button type="button" onClick="{{ startPreview }}" style="background:transparent;border:1px solid rgba(255,255,255,.16);color:#D3D4DE;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;padding:10px 14px;transition:border-color .2s ease,color .2s ease" style-hover="border-color:rgba(167,139,250,.6);color:#fff">Preview as recipient</button>
+      </div>
+    </div>
+  </aside>
+  </sc-if>
+
+  <sc-if value="{{ isOwner }}" hint-placeholder-val="{{ true }}">
+  <div style="{{ sheetStyle }}">
+    <div style="width:min(520px,100%);background:#0B0B12;border:1px solid rgba(255,255,255,.1);border-bottom:0;padding:26px 26px 30px;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <span style="font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#fff">Share business card</span>
+        <button type="button" onClick="{{ closeAll }}" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;background:transparent;border:1px solid rgba(255,255,255,.14);color:#C9CAD6;cursor:pointer;transition:border-color .2s ease,color .2s ease" style-hover="border-color:rgba(167,139,250,.6);color:#fff">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"></path></svg>
+        </button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:10px">
+        <sc-for list="{{ shareTargets }}" as="t" hint-placeholder-count="5">
+          <button type="button" onClick="{{ t.action }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:16px 14px;background:#101017;border:1px solid rgba(255,255,255,.1);color:#D3D4DE;font-size:12px;letter-spacing:.06em;cursor:pointer;transition:border-color .2s ease,transform .2s ease,color .2s ease" style-hover="border-color:rgba(167,139,250,.55);color:#fff;transform:translateY(-2px)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ t.icon }}"></path></svg>
+            <span>{{ t.label }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ shortReady }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;background:#101017;border:1px solid rgba(124,58,237,.4)">
+          <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+            <span style="font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#A78BFA">Share link</span>
+            <span style="font-size:13px;line-height:1.45;color:#F2F2F6;word-break:break-all;max-height:56px;overflow:hidden">{{ shortLink }}</span>
+          </div>
+          <button type="button" onClick="{{ copyShort }}" style="flex:none;background:transparent;border:1px solid rgba(255,255,255,.18);color:#D3D4DE;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:10px 13px;cursor:pointer;transition:border-color .2s ease,color .2s ease" style-hover="border-color:rgba(167,139,250,.6);color:#fff">Copy</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ qrOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:18px;padding:18px;background:#101017;border:1px solid rgba(255,255,255,.1)">
+          <div style="width:120px;height:120px;flex:none;background:#fff;padding:8px;display:flex;align-items:center;justify-content:center">{{ qrShare }}</div>
+          <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#A78BFA">Scan to open</span>
+            <span style="font-size:13px;color:#9A9BA8;word-break:break-all">{{ shareUrl }}</span>
+          </div>
+        </div>
+      </sc-if>
+
+      <span style="font-size:12px;color:#9A9BA8">{{ shareStatus }}</span>
+    </div>
+  </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;cardTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ink&quot;,&quot;white&quot;],&quot;default&quot;:&quot;ink&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Card&quot;},&quot;defaultLogo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;lockup-on-dark&quot;,&quot;lockup-gradient&quot;,&quot;lockup-mono-white&quot;,&quot;lockup-on-light&quot;,&quot;lockup-mono-black&quot;,&quot;monogram-on-dark&quot;,&quot;monogram-gradient&quot;,&quot;monogram-mono-white&quot;,&quot;monogram-on-light&quot;],&quot;default&quot;:&quot;lockup-on-dark&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Card&quot;},&quot;showQr&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Card&quot;},&quot;shareUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Sharing&quot;}}">
+const LOGOS = [
+  {id:'lockup-on-dark', label:'Lockup — on dark (recommended)', src:'assets/logos/lockup-on-dark.svg', dark:true, mono:false},
+  {id:'lockup-gradient', label:'Lockup — gradient', src:'assets/logos/lockup-gradient.svg', dark:true, mono:false},
+  {id:'lockup-mono-white', label:'Lockup — mono white', src:'assets/logos/lockup-mono-white.svg', dark:true, mono:true},
+  {id:'lockup-on-light', label:'Lockup — on light', src:'assets/logos/lockup-on-light.svg', dark:false, mono:false},
+  {id:'lockup-mono-black', label:'Lockup — mono black', src:'assets/logos/lockup-mono-black.svg', dark:false, mono:true},
+  {id:'monogram-on-dark', label:'Monogram — on dark', src:'assets/logos/monogram-on-dark.svg', dark:true, mono:false},
+  {id:'monogram-gradient', label:'Monogram — gradient', src:'assets/logos/monogram-gradient.svg', dark:true, mono:false},
+  {id:'monogram-mono-white', label:'Monogram — mono white', src:'assets/logos/monogram-mono-white.svg', dark:true, mono:true},
+  {id:'monogram-on-light', label:'Monogram — on light', src:'assets/logos/monogram-on-light.svg', dark:false, mono:false}
+];
+
+const ICON = {
+  phone:'M6.6 2.6h2.6l1.4 4.2-2.1 1.3a12.2 12.2 0 0 0 5.4 5.4l1.3-2.1 4.2 1.4v2.6a2.4 2.4 0 0 1-2.6 2.4A16.6 16.6 0 0 1 4.2 5.2 2.4 2.4 0 0 1 6.6 2.6Z',
+  mail:'M2.8 5.8h18.4v12.4H2.8zM2.8 6.4 12 13l9.2-6.6',
+  globe:'M12 2.6a9.4 9.4 0 1 0 0 18.8 9.4 9.4 0 0 0 0-18.8M2.6 12h18.8M12 2.6c3 3.3 3 12.5 0 18.8M12 2.6c-3 3.3-3 12.5 0 18.8',
+  pin:'M12 21.4s6.8-6.2 6.8-11.2a6.8 6.8 0 1 0-13.6 0c0 5 6.8 11.2 6.8 11.2ZM12 12.4a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2',
+  linkedin:'M4.6 9.4h3.1v11H4.6zM6.2 3.6a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8M11.1 20.4v-11h3v1.6c.7-1.2 2-1.9 3.5-1.9 2.6 0 4.4 1.7 4.4 4.9v6.4h-3.1v-5.9c0-1.6-.8-2.6-2.2-2.6-1.5 0-2.5 1-2.5 2.6v5.9z',
+  whatsapp:'M12 2.8a9.2 9.2 0 0 0-7.9 13.9L2.8 21.2l4.6-1.2A9.2 9.2 0 1 0 12 2.8ZM8.6 7.9l1.1-.1.9 2.2-1.1.8a6.4 6.4 0 0 0 3 3l.8-1.2 2.2.9v1.2c0 .7-.6 1.2-1.3 1.1A8.7 8.7 0 0 1 7.5 9.2c0-.7.4-1.2 1.1-1.3Z',
+  link:'M9.5 13.5a4 4 0 0 0 5.7 0l3-3a4 4 0 1 0-5.7-5.7l-1 1M14.5 10.5a4 4 0 0 0-5.7 0l-3 3a4 4 0 1 0 5.7 5.7l1-1',
+  qr:'M3.5 3.5h6v6h-6zM14.5 3.5h6v6h-6zM3.5 14.5h6v6h-6zM14.5 14.5h2.5v2.5h-2.5zM20.5 14.5v6h-6',
+  share:'M12 16V4m0 0L8 8m4-4 4 4M5 14v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5'
+};
+
+const DEFAULTS = {
+  fullName:'Juri Saikia Pal',
+  jobTitle:'Director',
+  company:'Nexyra Consulting Ltd.',
+  phone:'+44 7415 171157',
+  email:'hello@nexyraconsulting.co.uk',
+  website:'nexyraconsulting.co.uk',
+  address:'',
+  linkedin:'https://www.linkedin.com/company/nexyra-consulting',
+  whatsapp:'',
+  cardUrl:'',
+  tagline:'Clarity, structure and momentum for growing businesses.'
+};
+
+const FIELD_DEFS = [
+  {key:'fullName', label:'Full name', placeholder:'Juri Saikia Pal'},
+  {key:'jobTitle', label:'Job title', placeholder:'Director'},
+  {key:'company', label:'Company', placeholder:'Nexyra Consulting Ltd.'},
+  {key:'phone', label:'Phone', placeholder:'+44 7415 171157'},
+  {key:'email', label:'Email', placeholder:'hello@nexyraconsulting.co.uk'},
+  {key:'website', label:'Website', placeholder:'nexyraconsulting.co.uk'},
+  {key:'address', label:'Address', placeholder:'London, United Kingdom'},
+  {key:'linkedin', label:'LinkedIn URL', placeholder:'https://www.linkedin.com/company/…'},
+  {key:'whatsapp', label:'WhatsApp number', placeholder:'+44 7415 171157'},
+  {key:'tagline', label:'Tagline (card back)', placeholder:'One short line'},
+  {key:'cardUrl', label:'Published card URL (used for sharing + QR)', placeholder:'https://card.nexyraconsulting.co.uk'}
+];
+
+const STORE = 'nexyra-card-v1';
+const PACK_KEYS = ['fullName','jobTitle','company','phone','email','website','address','linkedin','whatsapp','tagline','cardUrl'];
+
+const swatch = (on) => ({
+  display: 'flex', alignItems: 'center', gap: '8px', padding: '9px 12px', cursor: 'pointer',
+  fontSize: '12px', letterSpacing: '.1em', textTransform: 'uppercase',
+  transition: 'border-color .2s ease, color .2s ease, background .2s ease',
+  border: '1px solid ' + (on ? '#7C3AED' : 'rgba(255,255,255,.14)'),
+  background: on ? 'rgba(124,58,237,.16)' : 'transparent',
+  color: on ? '#FFFFFF' : '#8A8B99'
+});
+
+// light-face equivalents — a white-text lockup can never sit on the white card
+const LIGHT_EQUIV = {
+  'lockup-on-dark': 'lockup-on-light',
+  'lockup-gradient': 'lockup-on-light',
+  'lockup-mono-white': 'lockup-mono-black',
+  'lockup-on-light': 'lockup-on-light',
+  'lockup-mono-black': 'lockup-mono-black',
+  'monogram-on-dark': 'monogram-on-light',
+  'monogram-gradient': 'monogram-gradient',
+  'monogram-mono-white': 'monogram-on-light',
+  'monogram-on-light': 'monogram-on-light'
+};
+
+class Component extends DCLogic {
+  state = {
+    data: Object.assign({}, DEFAULTS),
+    logo: null,
+    theme: null,
+    flipped: false,
+    editing: false,
+    sharing: false,
+    qrOpen: false,
+    qrReady: false,
+    viewer: false,
+    status: ''
+  };
+
+  componentDidMount() {
+    const shared = this.readSharedPayload();
+    if (shared) {
+      const apply = (s) => this.setState({
+        viewer: true,
+        data: Object.assign({}, DEFAULTS, s.data || {}),
+        logo: s.logo || null,
+        theme: s.theme || null
+      });
+      if (shared.pendingInflate) {
+        this.setState({viewer: true});
+        this.inflate(shared.pendingInflate).then(apply).catch(() => {});
+      } else apply(shared);
+      this.waitForQr(0);
+      return;
+    }
+    try {
+      const raw = localStorage.getItem(STORE);
+      if (raw) {
+        const saved = JSON.parse(raw);
+        this.setState({
+          data: Object.assign({}, DEFAULTS, saved.data || {}),
+          logo: saved.logo || null,
+          theme: saved.theme || null
+        });
+      }
+    } catch (e) {}
+    this.waitForQr(0);
+    this._key = (e) => { if (e.key === 'Escape') this.setState({editing:false, sharing:false}); };
+    window.addEventListener('keydown', this._key);
+    setTimeout(() => this.ensureLink(), 400);
+  }
+
+  componentWillUnmount() { window.removeEventListener('keydown', this._key); }
+
+  // --- compact self-contained link encoding (no external service) ---
+  b64url(bytes) {
+    let s = '';
+    for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
+    return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  unb64url(str) {
+    const s = atob(str.replace(/-/g, '+').replace(/_/g, '/'));
+    const out = new Uint8Array(s.length);
+    for (let i = 0; i < s.length; i++) out[i] = s.charCodeAt(i);
+    return out;
+  }
+
+  // fields packed positionally and unit-separated — no JSON keys to carry
+  packFields() {
+    const d = this.state.data;
+    const li = LOGOS.map(l => l.id).indexOf(this.state.logo || '');
+    const parts = PACK_KEYS.map(k => {
+      let v = d[k] || '';
+      if (k === 'linkedin') v = v.replace(/^https?:\/\/(www\.)?linkedin\.com\//i, '~');
+      if (k === 'website') v = v.replace(/^https?:\/\//i, '');
+      if (k === 'cardUrl') v = v.replace(/^https:\/\//i, '');
+      return v;
+    });
+    parts.push(li >= 0 ? String(li) : '');
+    parts.push(this.state.theme === 'white' ? '1' : '');
+    while (parts.length && parts[parts.length - 1] === '') parts.pop();
+    return parts.join('\u001f');
+  }
+
+  unpackFields(str) {
+    const parts = str.split('\u001f');
+    const data = {};
+    PACK_KEYS.forEach((k, i) => {
+      let v = parts[i] || '';
+      if (v) {
+        if (k === 'linkedin') v = v.replace(/^~/, 'https://www.linkedin.com/');
+        if (k === 'cardUrl') v = 'https://' + v;
+      }
+      data[k] = v;
+    });
+    const li = parseInt(parts[PACK_KEYS.length] || '', 10);
+    return {
+      data: data,
+      logo: (li >= 0 && LOGOS[li]) ? LOGOS[li].id : null,
+      theme: parts[PACK_KEYS.length + 1] === '1' ? 'white' : 'ink'
+    };
+  }
+
+  // deflate in the browser, base64url the bytes; plain pack is the fallback
+  encodePayload() {
+    const packed = this.packFields();
+    const plain = 'p' + this.b64url(new TextEncoder().encode(packed));
+    if (typeof CompressionStream === 'undefined') return Promise.resolve(plain);
+    try {
+      const cs = new CompressionStream('deflate-raw');
+      const w = cs.writable.getWriter();
+      w.write(new TextEncoder().encode(packed));
+      w.close();
+      return new Response(cs.readable).arrayBuffer()
+        .then(buf => {
+          const z = 'z' + this.b64url(new Uint8Array(buf));
+          return z.length < plain.length ? z : plain;
+        })
+        .catch(() => plain);
+    } catch (e) { return Promise.resolve(plain); }
+  }
+
+  readSharedPayload() {
+    try {
+      const src = location.hash + '&' + location.search;
+      const compact = /[#&?]k=([A-Za-z0-9\-_]+)/.exec(src);
+      if (compact) {
+        const raw = compact[1];
+        const body = raw.slice(1);
+        if (raw[0] === 'p') return this.unpackFields(new TextDecoder().decode(this.unb64url(body)));
+        if (raw[0] === 'z') return {pendingInflate: body};
+      }
+      // links made before compact encoding
+      const legacy = /[#&?]c=([A-Za-z0-9\-_]+)/.exec(src);
+      if (legacy) return JSON.parse(decodeURIComponent(escape(atob(legacy[1].replace(/-/g, '+').replace(/_/g, '/')))));
+      return null;
+    } catch (e) { return null; }
+  }
+
+  inflate(body) {
+    const ds = new DecompressionStream('deflate-raw');
+    const w = ds.writable.getWriter();
+    w.write(this.unb64url(body));
+    w.close();
+    return new Response(ds.readable).text().then(t => this.unpackFields(t));
+  }
+
+  waitForQr(n) {
+    if (typeof window.qrcode === 'function') { this.setState({qrReady:true}); return; }
+    if (n > 40) return;
+    setTimeout(() => this.waitForQr(n + 1), 120);
+  }
+
+  setField(key, value) {
+    this.setState(s => {
+      const data = Object.assign({}, s.data, {[key]: value});
+      this.persist(data, s.logo, s.theme);
+      return {data: data};
+    });
+  }
+
+  theme() {
+    return this.state.theme || this.props.cardTheme || 'ink';
+  }
+
+  setTheme(t) {
+    this.setState(s => { this.persist(s.data, s.logo, t); return {theme: t}; });
+  }
+
+  currentLogo() {
+    const id = this.state.logo || this.props.defaultLogo || 'lockup-on-dark';
+    return LOGOS.filter(l => l.id === id)[0] || LOGOS[0];
+  }
+
+  baseUrl() {
+    const own = (this.state.data.cardUrl || '').trim();
+    if (own) return (/^https?:/.test(own) ? own : 'https://' + own).split('#')[0];
+    const p = (this.props.shareUrl || '').trim();
+    if (p) return p.split('#')[0];
+    try {
+      const here = location.href.split('#')[0].split('?')[0];
+      if (here) return here;
+    } catch (e) {}
+    return 'https://nexyraconsulting.co.uk';
+  }
+
+  isHosted() {
+    try { return location.protocol === 'http:' || location.protocol === 'https:'; } catch (e) { return false; }
+  }
+
+  // the whole view-only card travels in the link — nothing external involved
+  ensureLink() {
+    if (this.state.viewer) { try { return Promise.resolve(location.href); } catch (e) { return Promise.resolve(this.baseUrl()); } }
+    const sig = this.packFields() + '|' + this.baseUrl();
+    if (this.state.linkFor === sig && this.state.link) return Promise.resolve(this.state.link);
+    if (this._pendingFor === sig && this._pending) return this._pending;
+    this._pendingFor = sig;
+    this._pending = Promise.resolve(this.encodePayload()).then(p => {
+      const url = this.baseUrl() + (p ? '#k=' + p : '');
+      this._pending = null;
+      this.setState({link: url, linkFor: sig});
+      return url;
+    });
+    return this._pending;
+  }
+
+  shareUrl() {
+    if (this.state.viewer) { try { return location.href; } catch (e) { return this.baseUrl(); } }
+    const sig = this.packFields() + '|' + this.baseUrl();
+    return (this.state.linkFor === sig && this.state.link) ? this.state.link : this.baseUrl();
+  }
+
+  // resolve the link, then hand it to the opened target
+  withShare(build) {
+    const ready = this.state.link && this.state.linkFor === (this.packFields() + '|' + this.baseUrl());
+    if (ready) { build(this.state.link); return; }
+    let win = null;
+    try { win = window.open('', '_blank'); } catch (e) {}
+    this.ensureLink().then(url => {
+      const target = build(url, !!win);
+      if (win && target) { try { win.location.href = target; } catch (e) { win.close(); window.open(target, '_blank', 'noopener'); } }
+      else if (win) win.close();
+    });
+  }
+
+  persist(data, logo, theme) {
+    if (this.state.viewer) return;
+    try { localStorage.setItem(STORE, JSON.stringify({data: data, logo: logo, theme: theme})); } catch (e) {}
+  }
+
+  shareText(url) {
+    const d = this.state.data;
+    const bits = [d.fullName, d.jobTitle, d.company].filter(Boolean).join(' · ');
+    return (bits ? bits + ' — ' : '') + 'digital business card: ' + (url || this.shareUrl());
+  }
+
+  qrSvg(px) {
+    if (!this.state.qrReady) return null;
+    try {
+      const q = window.qrcode(0, 'M');
+      q.addData(this.shareUrl());
+      q.make();
+      const n = q.getModuleCount();
+      const cells = [];
+      for (let r = 0; r < n; r++) {
+        for (let c = 0; c < n; c++) {
+          if (q.isDark(r, c)) cells.push(React.createElement('rect', {key: r + '_' + c, x: c, y: r, width: 1.02, height: 1.02, fill: '#0B0B12'}));
+        }
+      }
+      return React.createElement('svg', {viewBox: '0 0 ' + n + ' ' + n, width: px, height: px, shapeRendering: 'crispEdges', style: {display: 'block'}}, cells);
+    } catch (e) { return null; }
+  }
+
+  vcard() {
+    const d = this.state.data;
+    const parts = (d.fullName || '').trim().split(/\s+/);
+    const last = parts.length > 1 ? parts[parts.length - 1] : '';
+    const first = parts.slice(0, Math.max(1, parts.length - 1)).join(' ');
+    const L = ['BEGIN:VCARD', 'VERSION:3.0', 'N:' + last + ';' + first + ';;;', 'FN:' + (d.fullName || '')];
+    if (d.company) L.push('ORG:' + d.company);
+    if (d.jobTitle) L.push('TITLE:' + d.jobTitle);
+    if (d.phone) L.push('TEL;TYPE=WORK,VOICE:' + d.phone);
+    if (d.email) L.push('EMAIL;TYPE=WORK:' + d.email);
+    if (d.website) L.push('URL:' + (/^https?:/.test(d.website) ? d.website : 'https://' + d.website));
+    if (d.address) L.push('ADR;TYPE=WORK:;;' + d.address.replace(/,\s*/g, ';'));
+    if (d.linkedin) L.push('X-SOCIALPROFILE;TYPE=linkedin:' + d.linkedin);
+    L.push('END:VCARD');
+    const blob = new Blob([L.join('\r\n')], {type: 'text/vcard;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = ((d.fullName || 'nexyra-contact').replace(/\s+/g, '-').toLowerCase()) + '.vcf';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  }
+
+  copyLink(url) {
+    const done = () => this.setState({status: 'Copied: ' + url});
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, () => this.setState({status: url}));
+    } else {
+      this.setState({status: url});
+    }
+  }
+
+  nativeShare(url) {
+    const d = this.state.data;
+    navigator.share({title: (d.fullName || 'Nexyra') + ' — Nexyra Consulting', text: this.shareText(url), url: url})
+      .then(() => this.setState({status: 'Shared.'}))
+      .catch(() => {});
+  }
+
+  renderVals() {
+    const d = this.state.data;
+    const logo = this.currentLogo();
+    const theme = this.theme();
+    const web = (d.website || '').trim();
+    const webHref = web ? (/^https?:/.test(web) ? web : 'https://' + web) : '';
+    const showQr = this.props.showQr !== false;
+
+    const rows = [];
+    if (d.phone) rows.push({value: d.phone, href: 'tel:' + d.phone.replace(/[^+\d]/g, ''), icon: ICON.phone});
+    if (d.email) rows.push({value: d.email, href: 'mailto:' + d.email, icon: ICON.mail});
+    if (web) rows.push({value: web.replace(/^https?:\/\//, ''), href: webHref, icon: ICON.globe});
+    if (d.address) rows.push({value: d.address, href: 'https://maps.google.com/?q=' + encodeURIComponent(d.address), icon: ICON.pin});
+
+    const socials = [];
+    if (d.linkedin) socials.push({title: 'LinkedIn', href: d.linkedin, icon: ICON.linkedin});
+    if (d.whatsapp) socials.push({title: 'WhatsApp', href: 'https://wa.me/' + d.whatsapp.replace(/[^\d]/g, ''), icon: ICON.whatsapp});
+
+    const fields = FIELD_DEFS.map(f => ({
+      label: f.label,
+      placeholder: f.placeholder,
+      value: d[f.key] || '',
+      onInput: (e) => this.setField(f.key, e.target.value)
+    }));
+
+    const logoOptions = LOGOS.map(l => ({
+      label: l.label,
+      src: l.src,
+      btnStyle: {
+        display: 'flex', alignItems: 'center', justifyContent: 'center', height: '54px', padding: '8px',
+        cursor: 'pointer', transition: 'border-color .2s ease, background .2s ease',
+        border: '1px solid ' + (l.id === logo.id ? '#7C3AED' : 'rgba(255,255,255,.12)'),
+        background: l.id === logo.id ? 'rgba(124,58,237,.14)' : '#101017'
+      },
+      imgStyle: Object.assign({maxWidth: '100%', maxHeight: '100%', display: 'block'}, l.dark ? {} : {background: '#F3F2F2', padding: '4px'}),
+      pick: () => this.setState(s => { this.persist(s.data, l.id, s.theme); return {logo: l.id}; })
+    }));
+
+    const targets = [];
+    targets.push({label: 'WhatsApp', icon: ICON.whatsapp, action: () => this.withShare((url, hasWin) => {
+      const t = 'https://wa.me/?text=' + encodeURIComponent(this.shareText(url));
+      if (!hasWin) window.open(t, '_blank', 'noopener');
+      return t;
+    })});
+    targets.push({label: 'Email', icon: ICON.mail, action: () => this.withShare((url) => {
+      window.location.href = 'mailto:?subject=' + encodeURIComponent((d.fullName || 'Nexyra Consulting') + ' — digital business card') + '&body=' + encodeURIComponent(this.shareText(url));
+      return null;
+    })});
+    targets.push({label: 'Copy link', icon: ICON.link, action: () => this.withShare((url) => { this.copyLink(url); return null; })});
+    targets.push({label: 'LinkedIn', icon: ICON.linkedin, action: () => this.withShare((url, hasWin) => {
+      const t = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+      if (!hasWin) window.open(t, '_blank', 'noopener');
+      return t;
+    })});
+    targets.push({label: this.state.qrOpen ? 'Hide QR' : 'QR code', icon: ICON.qr, action: () => { this.setState(s => ({qrOpen: !s.qrOpen, status: ''})); this.ensureLink(); }});
+    if (typeof navigator !== 'undefined' && navigator.share) targets.push({label: 'More…', icon: ICON.share, action: () => this.withShare((url) => { this.nativeShare(url); return null; })});
+
+    const open = this.state.editing || this.state.sharing;
+
+    return {
+      fullName: d.fullName, jobTitle: d.jobTitle, company: d.company, website: web.replace(/^https?:\/\//, ''), tagline: d.tagline,
+      hasName: !!d.fullName, hasTitle: !!d.jobTitle, hasCompany: !!d.company, hasWebsite: !!web, hasTagline: !!d.tagline,
+      rows: rows, socials: socials, fields: fields, logoOptions: logoOptions, shareTargets: targets,
+      logoSrc: logo.src,
+      backLogoSrc: logo.mono ? 'assets/logos/monogram-mono-white.svg' : 'assets/logos/monogram-gradient.svg',
+      logoStyle: Object.assign({height: '8.4cqw', width: 'auto', display: 'block'}, logo.dark ? {} : {background: '#F3F2F2', padding: '1.2cqw 1.6cqw', height: '10.8cqw', boxSizing: 'content-box'}),
+      logoSrcLight: (LOGOS.filter(l => l.id === (LIGHT_EQUIV[logo.id] || 'lockup-on-light'))[0] || LOGOS[3]).src,
+      backLogoSrcLight: 'assets/logos/monogram-gradient.svg',
+      isOwner: !this.state.viewer && !this.state.preview,
+      previewing: !!this.state.preview,
+      startPreview: () => this.setState({preview: true, editing: false, sharing: false}),
+      exitPreview: () => this.setState({preview: false}),
+      isInk: theme === 'ink',
+      isWhite: theme === 'white',
+      inkStyle: swatch(theme === 'ink'),
+      whiteStyle: swatch(theme === 'white'),
+      pickInk: () => this.setTheme('ink'),
+      pickWhite: () => this.setTheme('white'),
+      logoNote: logo.label,
+      showBackQr: showQr,
+      qrBack: showQr ? this.qrSvg('100%') : null,
+      qrShare: this.qrSvg('100%'),
+      qrOpen: this.state.qrOpen,
+      shareUrl: this.shareUrl(),
+      shortReady: !!this.state.link && !this.state.viewer,
+      shortLink: this.state.link || '',
+      copyShort: () => this.withShare((url) => { this.copyLink(url); return null; }),
+      shareStatus: this.state.status || ((!this.isHosted() && !(d.cardUrl || '').trim())
+        ? 'This file is not hosted yet — add your live address under “Published card URL” in Edit details so shared links open the card.'
+        : 'Recipients open a view-only card — they cannot edit or change it.'),
+      innerStyle: {
+        position: 'relative', width: '100%', aspectRatio: '1.586', transformStyle: 'preserve-3d',
+        transition: 'transform .85s cubic-bezier(.2,.8,.2,1)',
+        transform: this.state.flipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
+      },
+      flipLabel: this.state.flipped ? 'Front' : 'Flip card',
+      overlayStyle: {
+        position: 'fixed', inset: 0, background: 'rgba(5,5,9,.72)', backdropFilter: 'blur(3px)',
+        transition: 'opacity .3s ease',
+        opacity: open ? 1 : 0, zIndex: open ? 20 : -1, pointerEvents: open ? 'auto' : 'none'
+      },
+      drawerStyle: {
+        position: 'fixed', top: 0, right: 0, bottom: 0, width: 'min(420px,100%)', background: '#0B0B12',
+        borderLeft: '1px solid rgba(255,255,255,.1)', zIndex: 30, display: 'flex', flexDirection: 'column',
+        transition: 'transform .42s cubic-bezier(.22,.61,.36,1)', boxShadow: '-30px 0 60px -30px rgba(0,0,0,.9)',
+        transform: this.state.editing ? 'translateX(0)' : 'translateX(105%)'
+      },
+      sheetStyle: {
+        position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 31, display: 'flex', justifyContent: 'center',
+        padding: '0 clamp(0px,3vw,24px)',
+        transition: 'transform .42s cubic-bezier(.22,.61,.36,1), opacity .3s ease',
+        transform: this.state.sharing ? 'translateY(0)' : 'translateY(105%)',
+        opacity: this.state.sharing ? 1 : 0,
+        pointerEvents: this.state.sharing ? 'auto' : 'none'
+      },
+      toggleFlip: () => this.setState(s => ({flipped: !s.flipped})),
+      openEditor: () => this.setState({editing: true, sharing: false}),
+      openShare: () => { this.setState({sharing: true, editing: false, status: ''}); this.ensureLink(); },
+      closeAll: () => this.setState({editing: false, sharing: false}),
+      saveContact: () => this.vcard(),
+      resetFields: () => this.setState(s => { this.persist(Object.assign({}, DEFAULTS), s.logo); return {data: Object.assign({}, DEFAULTS)}; })
+    };
+  }
+}
+</script>
+</body>
+</html>
