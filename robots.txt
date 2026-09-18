@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nexyraconsulting.co.uk/sitemap.xml
