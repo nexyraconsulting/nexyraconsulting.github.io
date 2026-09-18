@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Nexyra Consulting — Social Template System</title>
+<meta name="description" content="Branded social post composer for Nexyra Consulting: Facebook, Instagram and LinkedIn templates with media cropping, PNG and MP4 export.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./js/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="./assets/brand/app-icon-violet.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;800&display=swap">
+<style>
+  html, body { margin: 0; padding: 0; background: #E7E5E9; }
+  body { font-family: 'Hanken Grotesk', system-ui, sans-serif; color: #121014; -webkit-font-smoothing: antialiased; }
+  html { --nx-accent: #7C3AED; --nx-ink: #5B21B6; --nx-soft: rgba(124,58,237,.1); }
+  a { color: var(--nx-ink); text-decoration: none; }
+  a:hover { color: var(--nx-accent); }
+  input, textarea, button, select { font-family: inherit; }
+  input[type=range] { accent-color: var(--nx-accent); }
+  *:focus-visible { outline: 2px solid var(--nx-ink); outline-offset: 2px; }
+  ::selection { background: var(--nx-soft); }
+  .nx-scroll::-webkit-scrollbar { width: 10px; }
+  .nx-scroll::-webkit-scrollbar-thumb { background: #C9C6CE; }
+</style>
+</helmet>
+
+<div style="display:grid; grid-template-columns:minmax(0,1fr) 392px; min-height:100vh; background:#E7E5E9; align-items:stretch">
+
+  <div style="display:flex; flex-direction:column; min-width:0; borderRight:2px solid #121014">
+
+    <div style="display:flex; align-items:center; gap:28px; padding:18px 28px; background:#FFFFFF; border-bottom:2px solid #121014; flex-wrap:wrap">
+      <div style="display:flex; align-items:center; gap:12px">
+        <img src="./assets/brand/lockup-horizontal-mono-black.svg" alt="Nexyra Consulting" style="height:30px; width:auto; display:block">
+      </div>
+      <div style="width:2px; align-self:stretch; background:#DCD9E0"></div>
+      <div style="font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:#6F6B75; font-weight:600">Social Template System</div>
+      <div style="flex:1"></div>
+      <div style="display:flex; flex-wrap:wrap; gap:2px; border:2px solid #121014; background:#121014; min-width:0; flex:1 1 100%">
+        <sc-for list="{{ platforms }}" as="p" hint-placeholder-count="6">
+          <button onClick="{{ p.select }}" style="appearance:none; border:0; background:{{ p.bg }}; color:{{ p.fg }}; padding:10px 12px; font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; display:flex; flex-direction:column; align-items:flex-start; gap:3px; flex:1 1 96px; min-width:0; white-space:nowrap" style-hover="{{ p.hover }}">
+            <span>{{ p.short }}</span>
+            <span style="font-size:9.5px; font-weight:400; letter-spacing:.08em; opacity:.72">{{ p.sub }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:16px; padding:32px 32px 40px; overflow:auto; min-height:0" class="nx-scroll">
+      <div style="display:flex; align-items:baseline; gap:16px; width:100%; max-width:940px">
+        <div style="font-size:22px; font-weight:600; letter-spacing:-.01em">{{ fmtLabel }}</div>
+        <div style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6F6B75; font-weight:500">{{ fmtSub }}</div>
+        <div style="flex:1; height:2px; background:#121014; opacity:.12"></div>
+        <div style="font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:{{ aInk }}; font-weight:600">{{ fmtOrigin }}</div>
+      </div>
+
+      <div style="width:100%; max-width:940px; display:flex; justify-content:center">
+        <div style="position:relative; background:#FFFFFF; box-shadow:0 18px 44px rgba(18,16,20,.18); max-width:100%">
+          <canvas ref="{{ canvasRef }}" onPointerDown="{{ onDown }}" onPointerMove="{{ onMove }}" onPointerUp="{{ onUp }}" onPointerLeave="{{ onUp }}" onWheel="{{ onWheel }}" onDragOver="{{ onDragOver }}" onDrop="{{ onDrop }}" style="display:block; height:58vh; width:auto; max-width:100%; touch-action:none; cursor:grab"></canvas>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; width:100%; max-width:940px">
+        <button onClick="{{ pickFile }}" style="appearance:none; border:2px solid #121014; background:{{ aCss }}; color:{{ aLabel }}; padding:12px 18px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; cursor:pointer" style-hover="{{ btnPrimaryHover }}">Upload media</button>
+        <button onClick="{{ resetMedia }}" style="appearance:none; border:2px solid #121014; background:#FFFFFF; color:#121014; padding:12px 18px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; cursor:pointer" style-hover="{{ btnGhostHover }}">Reset position</button>
+        <sc-if value="{{ isVideo }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ togglePlay }}" style="appearance:none; border:2px solid #121014; background:#FFFFFF; color:#121014; padding:12px 18px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; cursor:pointer" style-hover="{{ btnGhostHover }}">{{ playLabel }}</button>
+        </sc-if>
+        <button onClick="{{ exportPng }}" style="appearance:none; border:2px solid #121014; background:#FFFFFF; color:#121014; padding:12px 18px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; cursor:pointer" style-hover="{{ btnGhostHover }}">Download PNG @2x</button>
+        <sc-if value="{{ isVideo }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ exportVideo }}" style="appearance:none; border:2px solid #121014; background:#121014; color:#FFFFFF; padding:12px 18px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; cursor:pointer" style-hover="{{ btnInkHover }}">{{ recLabel }}</button>
+        </sc-if>
+      </div>
+
+      <div style="font-size:11.5px; color:#6F6B75; letter-spacing:.04em; text-align:center; max-width:620px; line-height:1.6">{{ hintLine }}</div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF; display:flex; flex-direction:column; min-height:0; max-height:100vh; overflow:auto; position:sticky; top:0" class="nx-scroll">
+
+    <div style="padding:20px 24px; border-bottom:2px solid #121014; display:flex; align-items:center; gap:10px">
+      <div style="width:14px; height:14px; background:{{ aCss }}"></div>
+      <div style="font-size:12px; font-weight:600; letter-spacing:.2em; text-transform:uppercase">Composer</div>
+    </div>
+
+    <div style="padding:22px 24px; border-bottom:2px solid #DCD9E0; display:flex; flex-direction:column; gap:14px">
+      <div style="font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:#6F6B75">Copy presets</div>
+      <div style="display:flex; flex-direction:column; gap:8px">
+        <sc-for list="{{ presets }}" as="pr" hint-placeholder-count="3">
+          <button onClick="{{ pr.apply }}" style="appearance:none; text-align:left; border:2px solid #DCD9E0; background:#FFFFFF; padding:11px 13px; cursor:pointer; display:flex; flex-direction:column; gap:4px" style-hover="{{ presetHover }}">
+            <span style="font-size:13.5px; font-weight:600; color:#121014; line-height:1.25">{{ pr.headline }}</span>
+            <span style="font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:{{ aInk }}; font-weight:600">{{ pr.eyebrow }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="padding:22px 24px; border-bottom:2px solid #DCD9E0; display:flex; flex-direction:column; gap:16px">
+      <div style="font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:#6F6B75">Text</div>
+
+      <label style="display:flex; flex-direction:column; gap:7px">
+        <span style="font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#121014">Eyebrow</span>
+        <input value="{{ eyebrow }}" onChange="{{ setEyebrow }}" style="border:2px solid #121014; background:#FFFFFF; padding:10px 12px; font-size:13px; color:#121014; width:100%; box-sizing:border-box">
+      </label>
+
+      <label style="display:flex; flex-direction:column; gap:7px">
+        <span style="font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#121014">Headline</span>
+        <textarea onChange="{{ setHeadline }}" value="{{ headline }}" rows="2" style="border:2px solid #121014; background:#FFFFFF; padding:10px 12px; font-size:15px; font-weight:600; color:#121014; width:100%; box-sizing:border-box; resize:vertical; line-height:1.25"></textarea>
+      </label>
+
+      <label style="display:flex; flex-direction:column; gap:7px">
+        <span style="font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#121014">Supporting text</span>
+        <textarea onChange="{{ setSupport }}" value="{{ support }}" rows="3" style="border:2px solid #121014; background:#FFFFFF; padding:10px 12px; font-size:13px; color:#121014; width:100%; box-sizing:border-box; resize:vertical; line-height:1.5"></textarea>
+      </label>
+
+      <div style="display:grid; grid-template-columns:1fr auto; gap:12px; align-items:end">
+        <label style="display:flex; flex-direction:column; gap:7px">
+          <span style="font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#121014">CTA</span>
+          <input value="{{ cta }}" onChange="{{ setCta }}" style="border:2px solid #121014; background:#FFFFFF; padding:10px 12px; font-size:13px; color:#121014; width:100%; box-sizing:border-box">
+        </label>
+        <button onClick="{{ toggleCta }}" style="appearance:none; border:2px solid #121014; background:{{ ctaToggleBg }}; color:{{ ctaToggleFg }}; padding:11px 13px; font-size:10.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; white-space:nowrap">{{ ctaToggleLabel }}</button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:9px">
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase">
+          <span>Text block · horizontal</span><span style="color:{{ aInk }}">{{ tx }}</span>
+        </div>
+        <input type="range" min="-1" max="1" step="0.02" value="{{ txRaw }}" onChange="{{ setTx }}" style="width:100%">
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase">
+          <span>Text block · vertical</span><span style="color:{{ aInk }}">{{ ty }}</span>
+        </div>
+        <input type="range" min="-1" max="1" step="0.02" value="{{ tyRaw }}" onChange="{{ setTy }}" style="width:100%">
+      </div>
+    </div>
+
+    <div style="padding:22px 24px; border-bottom:2px solid #DCD9E0; display:flex; flex-direction:column; gap:14px">
+      <div style="font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:#6F6B75">Accent</div>
+
+      <div style="display:flex; flex-direction:column; gap:8px">
+        <sc-for list="{{ accents }}" as="a" hint-placeholder-count="3">
+          <button onClick="{{ a.pick }}" style="appearance:none; text-align:left; border:2px solid {{ a.border }}; background:#FFFFFF; padding:0; cursor:pointer; display:flex; align-items:stretch; gap:0" style-hover="{{ accHover }}">
+            <span style="width:52px; flex:0 0 52px; background:{{ a.css }}"></span>
+            <span style="display:flex; flex-direction:column; gap:3px; padding:10px 12px; min-width:0">
+              <span style="font-size:12.5px; font-weight:600; color:#121014">{{ a.label }}</span>
+              <span style="font-size:10.5px; letter-spacing:.08em; color:#6F6B75">{{ a.note }}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px; border:2px solid {{ customBorder }}; padding:12px">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px">
+          <span style="font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#121014">Custom</span>
+          <span style="display:flex; gap:2px; background:#DCD9E0; padding:2px">
+            <button onClick="{{ setCustomSolid }}" style="appearance:none; border:0; background:{{ solidBg }}; color:{{ solidFg }}; padding:5px 10px; font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; cursor:pointer">Solid</button>
+            <button onClick="{{ setCustomGrad }}" style="appearance:none; border:0; background:{{ gradBg }}; color:{{ gradFg }}; padding:5px 10px; font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; cursor:pointer">Gradient</button>
+          </span>
+        </div>
+        <sc-if value="{{ customIsGrad }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; gap:10px; align-items:center">
+            <input type="color" value="{{ cG1 }}" onChange="{{ setG1 }}" style="width:52px; height:36px; border:2px solid #121014; background:#FFFFFF; padding:2px; cursor:pointer">
+            <span style="flex:1; height:36px; min-width:0; background:{{ customGradCss }}; border:2px solid #121014"></span>
+            <input type="color" value="{{ cG2 }}" onChange="{{ setG2 }}" style="width:52px; height:36px; border:2px solid #121014; background:#FFFFFF; padding:2px; cursor:pointer">
+          </div>
+        </sc-if>
+        <sc-if value="{{ customIsSolid }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; gap:10px; align-items:center">
+            <input type="color" value="{{ cSolid }}" onChange="{{ setSolid }}" style="width:52px; height:36px; border:2px solid #121014; background:#FFFFFF; padding:2px; cursor:pointer">
+            <span style="flex:1; height:36px; min-width:0; background:{{ cSolid }}; border:2px solid #121014"></span>
+            <span style="font-size:11px; font-weight:600; letter-spacing:.06em; color:#6F6B75; font-variant-numeric:tabular-nums">{{ cSolidLabel }}</span>
+          </div>
+        </sc-if>
+        <div style="font-size:10.5px; color:#6F6B75; line-height:1.5">Applies to the field, CTA, rules and eyebrow across all six templates. The logo, type and layout stay locked.</div>
+      </div>
+    </div>
+
+    <div style="padding:22px 24px; border-bottom:2px solid #DCD9E0; display:flex; flex-direction:column; gap:14px">
+      <div style="font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:#6F6B75">Media</div>
+      <div style="display:flex; flex-direction:column; gap:9px">
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase">
+          <span>Zoom</span><span style="color:{{ aInk }}">{{ zoomLabel }}</span>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center">
+          <button onClick="{{ zoomOut }}" style="appearance:none; border:2px solid #121014; background:#FFFFFF; color:#121014; width:34px; height:34px; font-size:16px; font-weight:600; line-height:1; cursor:pointer; flex:0 0 auto" style-hover="{{ btnGhostHover }}">−</button>
+          <input type="range" min="1" max="3" step="0.01" value="{{ zoom }}" onChange="{{ setZoom }}" style="flex:1; min-width:0">
+          <button onClick="{{ zoomIn }}" style="appearance:none; border:2px solid #121014; background:#FFFFFF; color:#121014; width:34px; height:34px; font-size:16px; font-weight:600; line-height:1; cursor:pointer; flex:0 0 auto" style-hover="{{ btnGhostHover }}">+</button>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:14px; align-items:center">
+        <div style="display:grid; grid-template-columns:repeat(3,34px); grid-template-rows:repeat(3,34px); gap:2px; background:#DCD9E0; padding:2px; flex:0 0 auto">
+          <div></div>
+          <button onClick="{{ nudgeUp }}" style="appearance:none; border:0; background:#FFFFFF; color:#121014; font-size:13px; cursor:pointer" style-hover="{{ btnGhostHover }}">↑</button>
+          <div></div>
+          <button onClick="{{ nudgeLeft }}" style="appearance:none; border:0; background:#FFFFFF; color:#121014; font-size:13px; cursor:pointer" style-hover="{{ btnGhostHover }}">←</button>
+          <button onClick="{{ centreMedia }}" style="appearance:none; border:0; background:#121014; color:#FFFFFF; font-size:10px; font-weight:600; cursor:pointer">◎</button>
+          <button onClick="{{ nudgeRight }}" style="appearance:none; border:0; background:#FFFFFF; color:#121014; font-size:13px; cursor:pointer" style-hover="{{ btnGhostHover }}">→</button>
+          <div></div>
+          <button onClick="{{ nudgeDown }}" style="appearance:none; border:0; background:#FFFFFF; color:#121014; font-size:13px; cursor:pointer" style-hover="{{ btnGhostHover }}">↓</button>
+          <div></div>
+        </div>
+        <div style="font-size:11px; color:#6F6B75; line-height:1.55">Drag the media directly on the canvas, scroll to zoom, or nudge 24px at a time. Focal point: <span style="color:#121014; font-weight:600">{{ focal }}</span></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+        <button onClick="{{ toggleGray }}" style="appearance:none; border:2px solid #121014; background:{{ grayBg }}; color:{{ grayFg }}; padding:11px; font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; cursor:pointer">Grayscale</button>
+        <button onClick="{{ toggleGuides }}" style="appearance:none; border:2px solid #121014; background:{{ guideBg }}; color:{{ guideFg }}; padding:11px; font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; cursor:pointer">Safe area</button>
+      </div>
+      <div style="font-size:11px; color:#6F6B75; line-height:1.55">{{ mediaInfo }}</div>
+    </div>
+
+    <div style="padding:22px 24px; border-bottom:2px solid #DCD9E0; display:flex; flex-direction:column; gap:12px; background:#FBFAFC">
+      <div style="font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:#6F6B75">Replicate across formats</div>
+      <div style="font-size:11.5px; color:#6F6B75; line-height:1.6">Headline, supporting text, CTA and the uploaded media are already shared by all six templates. This pushes the current <span style="color:#121014; font-weight:600">crop, zoom and text placement</span> across them too.</div>
+      <button onClick="{{ applyAll }}" style="appearance:none; border:2px solid #121014; background:{{ aCss }}; color:{{ aLabel }}; padding:12px 14px; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; cursor:pointer; text-align:left" style-hover="{{ btnPrimaryHover }}">{{ applyAllLabel }}</button>
+      <button onClick="{{ exportAll }}" style="appearance:none; border:2px solid #121014; background:#121014; color:#FFFFFF; padding:12px 14px; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; cursor:pointer; text-align:left" style-hover="{{ btnInkHover }}">Download all six PNGs @2x</button>
+    </div>
+
+    <div style="padding:22px 24px; display:flex; flex-direction:column; gap:14px">
+      <div style="display:flex; justify-content:space-between; align-items:center">
+        <div style="font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:#6F6B75">Caption</div>
+        <div style="font-size:10.5px; font-weight:600; letter-spacing:.08em; color:{{ capColor }}">{{ capCount }}</div>
+      </div>
+      <textarea onChange="{{ setCaption }}" value="{{ caption }}" rows="5" style="border:2px solid #121014; background:#FFFFFF; padding:10px 12px; font-size:13px; color:#121014; width:100%; box-sizing:border-box; resize:vertical; line-height:1.55"></textarea>
+      <div style="display:flex; flex-wrap:wrap; gap:7px">
+        <sc-for list="{{ tags }}" as="t" hint-placeholder-count="6">
+          <button onClick="{{ t.add }}" style="appearance:none; border:2px solid #DCD9E0; background:#FFFFFF; color:#6B21A8; padding:6px 10px; font-size:11.5px; font-weight:500; cursor:pointer" style-hover="{{ tagHover }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+      <button onClick="{{ copyCaption }}" style="appearance:none; border:2px solid #121014; background:#FFFFFF; color:#121014; padding:11px 14px; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; cursor:pointer" style-hover="{{ btnGhostHover }}">{{ copyLabel }}</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentPreset&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;signature&quot;,&quot;options&quot;:[&quot;signature&quot;,&quot;violet&quot;,&quot;blue&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;,&quot;label&quot;:&quot;Accent on open&quot;},&quot;defaultGrayscale&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Brand&quot;,&quot;label&quot;:&quot;Photography in black &amp; white by default&quot;},&quot;startFormat&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;ig&quot;,&quot;options&quot;:[&quot;ig&quot;,&quot;fb&quot;,&quot;li&quot;,&quot;story&quot;,&quot;lisq&quot;,&quot;fbsq&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Editor&quot;,&quot;label&quot;:&quot;Format on open&quot;}}">
+const INK = '#121014', PAPER = '#F7F6F8', WHT = '#FFFFFF';
+const N_PATH = 'M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z';
+const TAN = 0.49; // the N's cut angle — the one brand diagonal
+
+const FORMATS = {
+  ig:    { w:1080, h:1080, label:'Instagram Post',   sub:'1080 × 1080', layout:'split', origin:true,  cap:2200,
+           media:594, pad:64,  eb:20, ebls:6,  head:62, sup:25, cta:21, logo:300 },
+  fb:    { w:1200, h:630,  label:'Facebook Post',    sub:'1200 × 630',  layout:'field', origin:true,  cap:63206, dir:'h',
+           field:648, pad:60,  eb:18, ebls:5,  head:54, sup:21, cta:19, logo:250 },
+  li:    { w:1200, h:627,  label:'LinkedIn Post',    sub:'1200 × 627',  layout:'photo', origin:true,  cap:3000,
+           pad:60,  eb:18, ebls:5,  head:52, sup:21, cta:19, logo:250 },
+  story: { w:1080, h:1920, label:'Instagram Story',  sub:'1080 × 1920', layout:'split', from:'Instagram', cap:2200,
+           media:1200, pad:80, eb:24, ebls:7, head:82, sup:31, cta:24, logo:360, safe:[0,250,0,320] },
+  lisq:  { w:1200, h:1200, label:'LinkedIn Square',  sub:'1200 × 1200', layout:'photo', from:'LinkedIn', cap:3000,
+           pad:72,  eb:20, ebls:6, head:62, sup:24, cta:20, logo:280 },
+  fbsq:  { w:1080, h:1080, label:'Facebook Square',  sub:'1080 × 1080', layout:'field', from:'Facebook', cap:63206, dir:'v',
+           field:600, pad:64, eb:19, ebls:5, head:56, sup:22, cta:20, logo:260 }
+};
+const ORDER = ['ig','fb','li','story','lisq','fbsq'];
+const SHORT = { ig:'Instagram', fb:'Facebook', li:'LinkedIn', story:'IG Story', lisq:'LI Square', fbsq:'FB Square' };
+
+const PRESETS = [
+  { eyebrow:'Design & Technology', headline:"Designing What's Next", support:'Transforming ideas into digital products, experiences and technology solutions.', cta:'Start a conversation' },
+  { eyebrow:'How we work', headline:'Built around your people', support:'We sit with your team, learn the real constraints, and ship software that fits the way you actually work.', cta:'See our approach' },
+  { eyebrow:'Now hiring', headline:'Come build with us', support:"We're looking for engineers and designers who care about the details as much as the deadline.", cta:'View open roles' }
+];
+const ACCENTS = {
+  signature: { label:'Signature gradient', note:'135° · violet → blue', type:'grad',
+               stops:[[0,'#A78BFA'],[0.39,'#7C3AED'],[1,'#3B82F6']], key:'#7C3AED', ink:'#5B21B6',
+               css:'linear-gradient(135deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%)' },
+  violet:    { label:'Violet', note:'Primary · #7C3AED', type:'solid',
+               stops:[[0,'#7C3AED'],[1,'#4C1D95']], key:'#7C3AED', ink:'#5B21B6', css:'#7C3AED' },
+  blue:      { label:'Blue', note:'Secondary · #2563EB', type:'solid',
+               stops:[[0,'#2563EB'],[1,'#172554']], key:'#2563EB', ink:'#1E3A8A', css:'#2563EB' }
+};
+const ACC_ORDER = ['signature','violet','blue'];
+const rgbOf = (hex) => {
+  const h = String(hex).replace('#','');
+  const n = parseInt(h.length === 3 ? h.split('').map(c => c + c).join('') : h, 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+};
+const hexOf = (r, g, b) => '#' + [r, g, b].map(v => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('');
+const darken = (hex, k) => { const c = rgbOf(hex); return hexOf(c[0] * k, c[1] * k, c[2] * k); };
+const lum = (hex) => {
+  const s = rgbOf(hex).map(v => { const x = v / 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+  return 0.2126 * s[0] + 0.7152 * s[1] + 0.0722 * s[2];
+};
+const ratio = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+// darken any pick until small type clears 4.5:1 on a white panel
+const inkFor = (hex, bg) => {
+  const ground = bg || '#E7E5E9';
+  let k = 1, out = hex;
+  while (k > 0.04 && ratio(out, ground) < 4.5) { k -= 0.05; out = darken(hex, k); }
+  return ratio(out, ground) < 4.5 ? '#121014' : out;
+};
+// label colour for a fill: white must survive the lightest stop, ink the darkest
+const labelFor = (stops) => {
+  const cols = stops.map(s => s[1]);
+  const lightest = cols.reduce((a, c) => lum(c) > lum(a) ? c : a, cols[0]);
+  const darkest = cols.reduce((a, c) => lum(c) < lum(a) ? c : a, cols[0]);
+  return ratio('#FFFFFF', lightest) >= ratio('#121014', darkest) ? '#FFFFFF' : '#121014';
+};
+
+const PH = {
+  ig:    { id:'photo-1522071820081-009f0129c71c', credit:'Unsplash · team session' },
+  fb:    { id:'photo-1497366754035-f200968a6e72', credit:'Unsplash · studio interior' },
+  li:    { id:'photo-1600880292203-757bb62b4baf', credit:'Unsplash · client workshop' },
+  story: { id:'photo-1531482615713-2afd69097998', credit:'Unsplash · maker at work' },
+  lisq:  { id:'photo-1552664730-d307ca884978',    credit:'Unsplash · working session' },
+  fbsq:  { id:'photo-1519389950473-47ba0277781c', credit:'Unsplash · engineering floor' }
+};
+const phUrl = (k, w) => 'https://images.unsplash.com/' + PH[k].id + '?auto=format&fit=crop&w=' + w + '&q=80';
+
+const TAGS = ['#NexyraConsulting','#DesigningWhatsNext','#DigitalProducts','#ProductDesign','#TechConsulting','#Innovation','#UXDesign','#SoftwareEngineering'];
+
+class Component extends DCLogic {
+  state = {
+    platform: 'ig',
+    eyebrow: PRESETS[0].eyebrow, headline: PRESETS[0].headline, support: PRESETS[0].support,
+    cta: PRESETS[0].cta, showCta: true,
+    tx: 0, ty: 0, zoom: 1.08, ox: 0, oy: 0, xfs: {}, synced: false,
+    accMode: 'signature', cSolid: '#7C3AED', cG1: '#A78BFA', cG2: '#3B82F6', cIsGrad: false,
+    gray: false, guides: false,
+    hasMedia: false, isVideo: false, playing: false, mediaName: '',
+    caption: "Designing what's next — transforming ideas into digital products, experiences and technology solutions.\n\n#NexyraConsulting #DesigningWhatsNext",
+    recording: false, copied: false, fontsReady: false
+  };
+
+  canvasRef = React.createRef();
+  media = null; mediaW = 0; mediaH = 0; drag = null; raf = null;
+
+  componentDidMount() {
+    this.input = document.createElement('input');
+    this.input.type = 'file';
+    this.input.accept = 'image/jpeg,image/jpg,image/png,image/webp,video/mp4';
+    this.input.addEventListener('change', e => { const f = e.target.files && e.target.files[0]; if (f) this.loadFile(f); });
+    const init = {};
+    if (this.props.defaultGrayscale) init.gray = true;
+    if (this.props.accentPreset && ACCENTS[this.props.accentPreset]) init.accMode = this.props.accentPreset;
+    if (this.props.startFormat && FORMATS[this.props.startFormat]) init.platform = this.props.startFormat;
+    if (Object.keys(init).length) this.setState(init);
+    this.usingPh = true;
+    this.loadPlaceholder(init.platform || this.state.platform);
+    const go = () => { this.setState({ fontsReady: true }); this.paint(); };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
+    this.paint();
+    const cv = this.canvasRef.current;
+    if (cv) cv.addEventListener('wheel', (e) => {
+      if (!this.state.hasMedia) return;
+      e.preventDefault();
+      this.setState(st => { const z = Math.min(3, Math.max(1, st.zoom * (e.deltaY > 0 ? 0.95 : 1.05))); return Object.assign({ zoom: z }, this.clamp(st.ox, st.oy, z)); });
+    }, { passive: false });
+    this.loop = () => { if (this.state.isVideo && this.state.playing) this.paint(); this.raf = requestAnimationFrame(this.loop); };
+    this.raf = requestAnimationFrame(this.loop);
+  }
+  componentWillUnmount() { if (this.raf) cancelAnimationFrame(this.raf); }
+  componentDidUpdate() { this.paint(); }
+
+  fmt() { return FORMATS[this._ovr || this.state.platform]; }
+  acc() {
+    const s = this.state;
+    if (s.accMode !== 'custom') return ACCENTS[s.accMode];
+    if (s.cIsGrad) return { type:'grad', stops:[[0, s.cG1],[1, s.cG2]], key: s.cG1, ink: inkFor(s.cG1),
+                            css: 'linear-gradient(135deg,' + s.cG1 + ' 0%,' + s.cG2 + ' 100%)' };
+    return { type:'solid', stops:[[0, s.cSolid],[1, darken(s.cSolid, .5)]], key: s.cSolid, ink: inkFor(s.cSolid), css: s.cSolid };
+  }
+  aKey() { return this.acc().key; }
+  aInk() { const a = this.acc(); return ratio(a.ink, '#E7E5E9') >= 4.5 ? a.ink : inkFor(a.ink); }
+  aLabel() { return labelFor(this.acc().stops); }
+  // gradient accents run at 135° across the box; solids stay flat
+  aPaint(ctx, x0, y0, x1, y1, force) {
+    const a = this.acc();
+    if (a.type !== 'grad' && !force) return a.key;
+    const g = ctx.createLinearGradient(x0, y0, x1, y1);
+    a.stops.forEach(st => g.addColorStop(st[0], st[1]));
+    return g;
+  }
+  xf() {
+    const k = this._ovr || this.state.platform, s = this.state;
+    if (this._ovr && this._ovr !== s.platform) return Object.assign({ ox:0, oy:0, zoom:1, tx:0, ty:0 }, s.xfs[k] || {});
+    return { ox:s.ox, oy:s.oy, zoom:s.zoom, tx:s.tx, ty:s.ty };
+  }
+
+  /* ---------- media ---------- */
+  loadPlaceholder(key) {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      if (this.state.platform !== key || !this.usingPh) return;
+      this.media = img; this.mediaW = img.naturalWidth; this.mediaH = img.naturalHeight;
+      this.setState({ hasMedia: true, isVideo: false, playing: false, mediaName: PH[key].credit });
+    };
+    img.onerror = () => { if (this.usingPh) { this.media = null; this.setState({ hasMedia: false }); } };
+    img.src = phUrl(key, 1800);
+  }
+
+  loadFile(file) {
+    this.usingPh = false;
+    const url = URL.createObjectURL(file);
+    const isVid = /video|mp4/.test(file.type) || /\.mp4$/i.test(file.name);
+    if (isVid) {
+      const v = document.createElement('video');
+      v.src = url; v.loop = true; v.muted = true; v.playsInline = true; v.crossOrigin = 'anonymous';
+      v.addEventListener('loadeddata', () => {
+        this.media = v; this.mediaW = v.videoWidth; this.mediaH = v.videoHeight;
+        v.play().catch(() => {});
+        this.setState({ hasMedia: true, isVideo: true, playing: true, mediaName: file.name, zoom: 1.08, ox: 0, oy: 0 });
+      });
+    } else {
+      const img = new Image();
+      img.onload = () => {
+        this.media = img; this.mediaW = img.naturalWidth; this.mediaH = img.naturalHeight;
+        this.setState({ hasMedia: true, isVideo: false, playing: false, mediaName: file.name, zoom: 1.08, ox: 0, oy: 0 });
+      };
+      img.src = url;
+    }
+  }
+
+  /* ---------- geometry ---------- */
+  mctx() {
+    if (!this._mctx) this._mctx = document.createElement('canvas').getContext('2d');
+    return this._mctx;
+  }
+  logoH(f) { return f.logo * 0.26; }
+
+  // measure the block at its designed sizes — type never shrinks to fit
+  measure(f, maxW) {
+    const s = this.state, ctx = this.mctx();
+    ctx.letterSpacing = '0px';
+    const ebLines = s.eyebrow ? [String(s.eyebrow).toUpperCase()] : [];
+    ctx.font = "600 " + f.head + "px 'Hanken Grotesk', sans-serif";
+    const headLines = this.wrap(ctx, s.headline, maxW);
+    ctx.font = "400 " + f.sup + "px 'Hanken Grotesk', sans-serif";
+    const supLines = this.wrap(ctx, s.support, Math.min(maxW, f.sup * 30));
+    const ebH = ebLines.length ? f.eb * 3 : 0;
+    const gap1 = ebLines.length ? f.head * 0.42 : 0;
+    const headH = headLines.length * f.head * 1.06;
+    const gap2 = supLines.length ? f.sup * 1.1 : 0;
+    const supH = supLines.length * f.sup * 1.45;
+    const ctaH = s.showCta && s.cta ? f.cta * 3.1 : 0;
+    const gap3 = ctaH ? f.sup * 1.5 : 0;
+    return { ebLines, headLines, supLines, ebH, gap1, headH, gap2, supH, gap3, ctaH,
+             total: ebH + gap1 + headH + gap2 + supH + gap3 + ctaH };
+  }
+
+  // content-driven geometry: measure first, then allocate the bands
+  geo(f) {
+    const { w, h } = f, pad = f.pad, lh = this.logoH(f);
+    const norm = (t, fallback) => { if (!(t.maxY >= t.minY)) { t.minY = t.maxY = fallback; } return t; };
+
+    if (f.layout === 'split') {
+      const maxW = w - pad * 2;
+      const m = this.measure(f, maxW);
+      // the media band gives way so the content band can hold the type at full size
+      const mh = Math.max(Math.round(h * 0.32), Math.min(f.media, Math.round(h - m.total - pad * 2)));
+      const slack = (h - mh) - m.total;
+      const y = mh + (slack > pad * 2 ? pad : Math.max(pad * 0.45, slack / 2));
+      const cw = Math.round(w * 0.38);
+      return { media:{ x:0, y:0, w:w, h:mh }, cut:{ corner:'bl', w:cw, h:Math.round(cw * TAN) },
+               text: norm({ x:pad, y, maxW, m, minY:mh + pad * 0.4, maxY:h - m.total - pad * 0.4 }, y),
+               logo:{ x:pad, y:pad, on:'media', color:WHT } };
+    }
+
+    if (f.layout === 'field') {
+      if (f.dir === 'h') {
+        // the field widens before the block is allowed to crowd the logo
+        let fw = f.field, m = this.measure(f, fw - pad * 1.8);
+        let capTop = pad * 1.6, capBot = h - pad - lh - pad * 0.9;
+        const maxFw = Math.round(w * 0.74);
+        while (m.total > capBot - capTop && fw < maxFw) { fw = Math.min(maxFw, fw + 24); m = this.measure(f, fw - pad * 1.8); }
+        // still too tall: the lockup moves to the top of the field and the block takes the rest
+        const logoTop = m.total > capBot - capTop;
+        if (logoTop) { capTop = pad + lh + pad * 0.95; capBot = h - pad; }
+        const slack = (capBot - capTop) - m.total;
+        const y = capTop + (slack > 0 ? slack / 2 : 0);
+        const cw2 = Math.max(0, Math.round((w - fw) * 0.58));
+        return { field:{ x:0,y:0,w:fw,h:h }, media:{ x:fw, y:0, w:w-fw, h:h }, cut:{ corner:'tl', w:cw2, h:Math.round(cw2*TAN) },
+                 text: norm({ x:pad, y, maxW:fw - pad * 1.8, m, onField:true, minY:capTop, maxY:capBot - m.total }, y),
+                 logo:{ x:pad, y:logoTop ? pad : h - pad - lh, on:'field', color:WHT, atTop:logoTop } };
+      }
+      const maxW = w - pad * 2.4;
+      const m = this.measure(f, maxW);
+      // the violet field grows downward to hold the block; the media band takes what is left
+      const need = pad * 1.8 + m.total + pad * 1.1 + lh + pad;
+      const fh = Math.max(f.field, Math.min(Math.round(h * 0.78), Math.round(need)));
+      const logoTop = fh < need;
+      const capTop = logoTop ? pad + lh + pad * 0.95 : pad * 1.8;
+      const capBot = logoTop ? fh - pad * 0.9 : fh - lh - pad * 1.9;
+      const slack = (capBot - capTop) - m.total;
+      const y = capTop + (slack > 0 ? Math.min(slack / 2, pad) : 0);
+      const cwv = Math.round(w * 0.5);
+      return { field:{ x:0,y:0,w:w,h:fh }, media:{ x:0, y:fh, w:w, h:h-fh }, cut:{ corner:'tl', w:cwv, h:Math.round(cwv*TAN) },
+               text: norm({ x:pad, y, maxW, m, onField:true, minY:capTop, maxY:capBot - m.total }, y),
+               logo:{ x:pad, y:logoTop ? pad : fh - pad - lh, on:'field', color:WHT, atTop:logoTop } };
+    }
+
+    // photo: bottom-anchored over the scrim — widens, then climbs, never reaching the logo
+    let maxW = Math.round(w * 0.62), m = this.measure(f, maxW);
+    const floor = h - pad * 1.5, ceiling = pad + lh + pad * 0.9, maxWide = Math.round(w * 0.82);
+    while (m.total > floor - ceiling && maxW < maxWide) { maxW = Math.min(maxWide, maxW + 40); m = this.measure(f, maxW); }
+    const y = Math.max(ceiling, floor - m.total);
+    return { media:{ x:0,y:0,w:w,h:h }, scrim:{ top: Math.max(0, Math.min(h * 0.18, y - pad * 1.2)) },
+             text: norm({ x:pad, y, maxW, m, minY:ceiling, maxY:floor - m.total }, y),
+             logo:{ x:pad, y:pad, on:'media', color:WHT } };
+  }
+
+  /* ---------- primitives ---------- */
+  rectPath(b, cut) {
+    const p = new Path2D();
+    const cw = cut ? cut.w : 0, ch = cut ? cut.h : 0, c = cut ? cut.corner : null;
+    const x = b.x, y = b.y, w = b.w, h = b.h;
+    if (c === 'bl') { p.moveTo(x, y); p.lineTo(x+w, y); p.lineTo(x+w, y+h); p.lineTo(x+cw, y+h); p.lineTo(x, y+h-ch); }
+    else if (c === 'tl') { p.moveTo(x+cw, y); p.lineTo(x+w, y); p.lineTo(x+w, y+h); p.lineTo(x, y+h); p.lineTo(x, y+ch); }
+    else { p.rect(x, y, w, h); }
+    p.closePath(); return p;
+  }
+
+  drawMark(ctx, color) {
+    const path = new Path2D(N_PATH);
+    const clip = (pts) => { const p = new Path2D(); p.moveTo(pts[0][0], pts[0][1]); for (let i=1;i<pts.length;i++) p.lineTo(pts[i][0], pts[i][1]); p.closePath(); return p; };
+    ctx.fillStyle = color;
+    ctx.save(); ctx.clip(clip([[-40,120],[160,22],[160,-70],[-40,-70]])); ctx.fill(path); ctx.restore();
+    ctx.save(); ctx.clip(clip([[-40,130],[160,32],[160,230],[-40,230]])); ctx.fill(path); ctx.restore();
+    ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(-30,115); ctx.lineTo(-2,101); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(122,41); ctx.lineTo(150,27); ctx.stroke();
+  }
+
+  drawLockup(ctx, x, y, w, color) {
+    const s = w / 400;
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+    ctx.save(); ctx.translate(34, 20); ctx.scale(0.457, 0.457); this.drawMark(ctx, color); ctx.restore();
+    ctx.fillStyle = color; ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left';
+    ctx.font = "500 51px 'Hanken Grotesk', sans-serif"; ctx.letterSpacing = '5.33px';
+    ctx.fillText('NEXYRA', 138, 57.1);
+    ctx.font = "400 16.1px 'Hanken Grotesk', sans-serif"; ctx.letterSpacing = '9.67px';
+    ctx.fillText('CONSULTING', 140.7, 84);
+    ctx.letterSpacing = '0px'; ctx.restore();
+  }
+
+  wrap(ctx, text, maxW) {
+    const out = [];
+    String(text || '').split('\n').forEach(para => {
+      const words = para.split(/\s+/).filter(Boolean);
+      if (!words.length) { out.push(''); return; }
+      let cur = '';
+      for (const wd of words) {
+        const t = cur ? cur + ' ' + wd : wd;
+        if (ctx.measureText(t).width > maxW && cur) { out.push(cur); cur = wd; } else cur = t;
+      }
+      out.push(cur);
+    });
+    return out;
+  }
+
+  drawMedia(ctx, box, cut) {
+    ctx.save();
+    ctx.clip(this.rectPath(box, cut));
+    if (!this.media) {
+      ctx.fillStyle = '#DCD9E0'; ctx.fillRect(box.x, box.y, box.w, box.h);
+      ctx.strokeStyle = 'rgba(18,16,20,.16)'; ctx.lineWidth = 2;
+      for (let i = -box.h; i < box.w; i += 44) { ctx.beginPath(); ctx.moveTo(box.x+i, box.y+box.h); ctx.lineTo(box.x+i+box.h*(1/TAN)*0.49, box.y); ctx.stroke(); }
+      ctx.fillStyle = 'rgba(18,16,20,.5)';
+      ctx.font = "600 " + Math.round(Math.min(box.w,box.h)*0.045) + "px 'Hanken Grotesk', sans-serif";
+      ctx.letterSpacing = Math.round(Math.min(box.w,box.h)*0.012) + 'px';
+      ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+      ctx.fillText('IMAGE / VIDEO AREA', box.x + box.w/2, box.y + box.h/2);
+      ctx.letterSpacing = '0px'; ctx.textAlign = 'left';
+      ctx.restore(); return;
+    }
+    const t = this.xf();
+    const base = Math.max(box.w / this.mediaW, box.h / this.mediaH);
+    const sc = base * t.zoom;
+    const dw = this.mediaW * sc, dh = this.mediaH * sc;
+    if (this.state.gray) ctx.filter = 'grayscale(1) contrast(1.06)';
+    try { ctx.drawImage(this.media, box.x + box.w/2 - dw/2 + t.ox, box.y + box.h/2 - dh/2 + t.oy, dw, dh); } catch (e) {}
+    ctx.filter = 'none';
+    ctx.restore();
+  }
+
+  drawContent(ctx, f, g, onDark) {
+    const s = this.state, aInk = this.aInk();
+    // on paper the tick must read as small ink; on ink/photo grounds the raw accent is fine
+    const aKey = onDark ? this.aKey() : aInk;
+    const xfv = this.xf();
+    const t = g.text;
+    const x = t.x + xfv.tx * f.pad * 1.1;
+    const maxW = t.maxW;
+    const ink = onDark ? WHT : INK;
+    const ebCol = onDark ? 'rgba(255,255,255,.82)' : aInk;
+    const supCol = onDark ? 'rgba(255,255,255,.86)' : 'rgba(18,16,20,.72)';
+
+    ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left';
+    const m = t.m, ebLines = m.ebLines, headLines = m.headLines, supLines = m.supLines;
+    const ebH = m.ebH, gap1 = m.gap1, headH = m.headH, gap2 = m.gap2, supH = m.supH, gap3 = m.gap3, ctaH = m.ctaH;
+
+    // the nudge rides on top of the measured position, clamped so nothing can collide
+    let y = Math.max(t.minY, Math.min(t.maxY, t.y + xfv.ty * f.pad * 1.2));
+    y += ebH;
+
+    if (ebLines.length) {
+      ctx.fillStyle = ebCol; ctx.font = "600 " + f.eb + "px 'Hanken Grotesk', sans-serif"; ctx.letterSpacing = f.ebls + 'px';
+      ctx.fillText(ebLines[0], x, y); ctx.letterSpacing = '0px';
+      // brand tick, at the N's angle, on its own line above the eyebrow
+      const tl = f.eb * 2.6, ty2 = y - f.eb * 1.9;
+      ctx.strokeStyle = onDark ? 'rgba(255,255,255,.7)' : aKey; ctx.lineWidth = Math.max(2.5, f.eb * 0.18); ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(x, ty2 + tl * TAN * 0.5); ctx.lineTo(x + tl, ty2 - tl * TAN * 0.5); ctx.stroke();
+      y += gap1;
+    }
+
+    ctx.fillStyle = ink; ctx.font = "600 " + f.head + "px 'Hanken Grotesk', sans-serif";
+    headLines.forEach((ln, i) => ctx.fillText(ln, x, y + (i + 1) * f.head * 1.06 - f.head * 0.24));
+    y += headH + gap2;
+
+    if (supLines.length) {
+      ctx.fillStyle = supCol; ctx.font = "400 " + f.sup + "px 'Hanken Grotesk', sans-serif";
+      supLines.forEach((ln, i) => ctx.fillText(ln, x, y + (i + 1) * f.sup * 1.45 - f.sup * 0.42));
+      y += supH;
+    }
+
+    if (ctaH) {
+      y += gap3;
+      const padX = f.cta * 1.5, h = ctaH;
+      ctx.font = "600 " + f.cta + "px 'Hanken Grotesk', sans-serif"; ctx.letterSpacing = (f.cta * 0.09) + 'px';
+      const label = String(s.cta).toUpperCase();
+      const lw = ctx.measureText(label).width;
+      const arrow = f.cta * 1.6;
+      const bw = padX * 2 + lw + arrow;
+      const bg = t.onField ? WHT : this.aPaint(ctx, x, y, x + bw, y + h), fg = t.onField ? aInk : this.aLabel();
+      ctx.fillStyle = bg; ctx.fillRect(x, y, bw, h);
+      ctx.fillStyle = fg; ctx.textBaseline = 'middle';
+      ctx.fillText(label, x + padX, y + h / 2 + 1);
+      ctx.letterSpacing = '0px';
+      ctx.strokeStyle = fg; ctx.lineWidth = Math.max(2, f.cta * 0.11); ctx.lineCap = 'butt';
+      const ax = x + padX + lw + arrow * 0.45, ay = y + h / 2, al = arrow * 0.5;
+      ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(ax + al, ay); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(ax + al - al * 0.4, ay - al * 0.35); ctx.lineTo(ax + al, ay); ctx.lineTo(ax + al - al * 0.4, ay + al * 0.35); ctx.stroke();
+      ctx.textBaseline = 'alphabetic';
+    }
+  }
+
+  render2(ctx, scale, opts) {
+    const f = this.fmt(), g = this.geo(f);
+    ctx.save();
+    ctx.scale(scale, scale);
+    ctx.clearRect(0, 0, f.w, f.h);
+    if (f.layout === 'field') {
+      ctx.fillStyle = this.aPaint(ctx, 0, 0, f.w * 0.9, f.h, true);
+      ctx.fillRect(0, 0, f.w, f.h);
+    } else {
+      ctx.fillStyle = PAPER; ctx.fillRect(0, 0, f.w, f.h);
+    }
+
+    this.drawMedia(ctx, g.media, g.cut);
+
+    if (g.scrim) {
+      const st = g.scrim.top;
+      const gr = ctx.createLinearGradient(0, st, 0, f.h);
+      gr.addColorStop(0, 'rgba(18,16,20,0)'); gr.addColorStop(0.45, 'rgba(18,16,20,.62)'); gr.addColorStop(1, 'rgba(18,16,20,.95)');
+      ctx.fillStyle = gr; ctx.fillRect(0, st, f.w, f.h - st);
+      const gt = ctx.createLinearGradient(0, 0, 0, f.h * 0.3);
+      gt.addColorStop(0, 'rgba(18,16,20,.55)'); gt.addColorStop(1, 'rgba(18,16,20,0)');
+      ctx.fillStyle = gt; ctx.fillRect(0, 0, f.w, f.h * 0.3);
+    }
+    if (f.layout === 'split' && g.logo.on === 'media') {
+      const gt = ctx.createLinearGradient(0, 0, 0, f.pad * 3.4);
+      gt.addColorStop(0, 'rgba(18,16,20,.5)'); gt.addColorStop(1, 'rgba(18,16,20,0)');
+      ctx.fillStyle = gt; ctx.fillRect(0, 0, f.w, f.pad * 3.4);
+    }
+
+    const onDark = f.layout !== 'split';
+    this.drawContent(ctx, f, g, onDark);
+    this.drawLockup(ctx, g.logo.x, g.logo.y, f.logo, g.logo.color);
+
+    // locked brand rules
+    if (f.layout === 'split') { const b = f.pad * 0.14; ctx.fillStyle = this.aPaint(ctx, 0, f.h - b, f.w, f.h); ctx.fillRect(0, f.h - b, f.w, b); }
+    if (f.layout === 'photo') { const b = f.pad * 0.12; ctx.fillStyle = this.aPaint(ctx, 0, f.h - b, f.w, f.h); ctx.fillRect(0, f.h - b, f.w, b); }
+    if (f.layout === 'field') {
+      ctx.strokeStyle = 'rgba(255,255,255,.35)'; ctx.lineWidth = 2;
+      const lx = g.logo.x, ly = g.logo.atTop ? g.logo.y + this.logoH(f) + f.pad * 0.45 : g.logo.y - f.pad * 0.5;
+      ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(lx + f.logo, ly); ctx.stroke();
+    }
+
+    if (opts && opts.guides) {
+      const ins = f.safe ? f.safe : [f.w * 0.05, f.h * 0.05, f.w * 0.05, f.h * 0.05];
+      const l = f.safe ? f.w * 0.05 : ins[0], tp = f.safe ? f.safe[1] : ins[1], r = f.safe ? f.w * 0.05 : ins[2], bt = f.safe ? f.safe[3] : ins[3];
+      ctx.setLineDash([12, 10]); ctx.strokeStyle = this.aKey(); ctx.lineWidth = 3;
+      ctx.strokeRect(l, tp, f.w - l - r, f.h - tp - bt);
+      ctx.setLineDash([]);
+    }
+    ctx.restore();
+  }
+
+  paint() {
+    const a = this.acc(), rs = document.documentElement.style;
+    rs.setProperty('--nx-accent', a.key);
+    rs.setProperty('--nx-ink', this.aInk());
+    rs.setProperty('--nx-soft', a.key + '1a');
+    const c = this.canvasRef.current; if (!c) return;
+    const f = this.fmt(), dpr = 2;
+    const cw = f.w * dpr, ch = f.h * dpr;
+    if (c.width !== cw || c.height !== ch) { c.width = cw; c.height = ch; }
+    c.style.aspectRatio = f.w + ' / ' + f.h;
+    const ctx = c.getContext('2d');
+    this.render2(ctx, dpr, { guides: this.state.guides });
+  }
+
+  /* ---------- interaction ---------- */
+  toArt(e) {
+    const c = this.canvasRef.current, r = c.getBoundingClientRect(), f = this.fmt();
+    return { x: (e.clientX - r.left) / r.width * f.w, y: (e.clientY - r.top) / r.height * f.h, k: f.w / r.width };
+  }
+  onDown = (e) => {
+    if (!this.state.hasMedia) return;
+    const p = this.toArt(e), g = this.geo(this.fmt());
+    const b = g.media;
+    if (p.x < b.x || p.x > b.x + b.w || p.y < b.y || p.y > b.y + b.h) return;
+    this.drag = { x: p.x, y: p.y, ox: this.state.ox, oy: this.state.oy };
+    const el = e.currentTarget;
+    el.style.cursor = 'grabbing';
+    try { el.setPointerCapture(e.pointerId); } catch (err) {}
+  };
+  clamp(ox, oy, zoom) {
+    if (!this.media) return { ox, oy };
+    const b = this.geo(this.fmt()).media;
+    const base = Math.max(b.w / this.mediaW, b.h / this.mediaH) * zoom;
+    const mx = Math.max(0, (this.mediaW * base - b.w) / 2), my = Math.max(0, (this.mediaH * base - b.h) / 2);
+    return { ox: Math.max(-mx, Math.min(mx, ox)), oy: Math.max(-my, Math.min(my, oy)) };
+  }
+  onMove = (e) => {
+    if (!this.drag) return;
+    const p = this.toArt(e);
+    this.setState(st => this.clamp(this.drag.ox + (p.x - this.drag.x), this.drag.oy + (p.y - this.drag.y), st.zoom));
+  };
+  onUp = (e) => { this.drag = null; if (e.currentTarget) e.currentTarget.style.cursor = 'grab'; };
+  onWheel = (e) => {
+    if (!this.state.hasMedia) return;
+    e.preventDefault();
+    const z = Math.min(3, Math.max(1, this.state.zoom * (e.deltaY > 0 ? 0.96 : 1.04)));
+    this.setState({ zoom: z });
+  };
+  onDragOver = (e) => e.preventDefault();
+  onDrop = (e) => { e.preventDefault(); const f = e.dataTransfer.files && e.dataTransfer.files[0]; if (f) this.loadFile(f); };
+
+  /* ---------- format switching & sync ---------- */
+  goto(k) {
+    const s = this.state;
+    if (k === s.platform) return;
+    const xfs = Object.assign({}, s.xfs);
+    xfs[s.platform] = { ox: s.ox, oy: s.oy, zoom: s.zoom, tx: s.tx, ty: s.ty };
+    const next = xfs[k] || { ox: 0, oy: 0, zoom: 1.08, tx: 0, ty: 0 };
+    this.setState({ platform: k, xfs, ox: next.ox, oy: next.oy, zoom: next.zoom, tx: next.tx, ty: next.ty });
+    if (this.usingPh) this.loadPlaceholder(k);
+  }
+
+  applyAll = () => {
+    const s = this.state, xfs = {};
+    // crop offsets are in artboard px — rescale so the same framing lands in every format
+    const cur = this.fmt(), curG = this.geo(cur);
+    ORDER.forEach(k => {
+      const f = FORMATS[k], g = this.geo(f);
+      const r = Math.min(g.media.w / curG.media.w, g.media.h / curG.media.h);
+      xfs[k] = { ox: s.ox * r, oy: s.oy * r, zoom: s.zoom, tx: s.tx, ty: s.ty };
+    });
+    xfs[s.platform] = { ox: s.ox, oy: s.oy, zoom: s.zoom, tx: s.tx, ty: s.ty };
+    this.setState({ xfs, synced: true });
+    setTimeout(() => this.setState({ synced: false }), 1600);
+  };
+
+  exportAll = async () => {
+    const prev = this._ovr;
+    for (const k of ORDER) {
+      this._ovr = k;
+      const f = FORMATS[k], dpr = 2;
+      const c = document.createElement('canvas'); c.width = f.w * dpr; c.height = f.h * dpr;
+      this.render2(c.getContext('2d'), dpr, { guides: false });
+      const a = document.createElement('a');
+      a.download = 'nexyra-' + k + '-' + f.w + 'x' + f.h + '@2x.png';
+      a.href = c.toDataURL('image/png'); a.click();
+      await new Promise(r => setTimeout(r, 450));
+    }
+    this._ovr = prev;
+    this.paint();
+  };
+
+  /* ---------- export ---------- */
+  exportPng = () => {
+    const f = this.fmt(), dpr = 2;
+    const c = document.createElement('canvas'); c.width = f.w * dpr; c.height = f.h * dpr;
+    this.render2(c.getContext('2d'), dpr, { guides: false });
+    const a = document.createElement('a');
+    a.download = 'nexyra-' + this.state.platform + '-' + f.w + 'x' + f.h + '@2x.png';
+    a.href = c.toDataURL('image/png'); a.click();
+  };
+
+  exportVideo = async () => {
+    if (this.state.recording || !this.state.isVideo || !this.media) return;
+    const f = this.fmt();
+    const c = document.createElement('canvas'); c.width = f.w; c.height = f.h;
+    const ctx = c.getContext('2d');
+    const types = ['video/mp4;codecs=avc1.42E01E', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'];
+    const mime = types.find(t => window.MediaRecorder && MediaRecorder.isTypeSupported(t)) || '';
+    const stream = c.captureStream(30);
+    const rec = new MediaRecorder(stream, mime ? { mimeType: mime, videoBitsPerSecond: 8000000 } : undefined);
+    const chunks = [];
+    rec.ondataavailable = ev => { if (ev.data.size) chunks.push(ev.data); };
+    const dur = Math.min(15, this.media.duration || 6) * 1000;
+    this.setState({ recording: true });
+    const v = this.media;
+    v.currentTime = 0; v.muted = true; await v.play().catch(() => {});
+    let stop = false;
+    const tick = () => { if (stop) return; this.render2(ctx, 1, { guides: false }); requestAnimationFrame(tick); };
+    rec.onstop = () => {
+      stop = true;
+      const blob = new Blob(chunks, { type: mime || 'video/webm' });
+      const ext = /mp4/.test(mime) ? 'mp4' : 'webm';
+      const a = document.createElement('a');
+      a.download = 'nexyra-' + this.state.platform + '-' + f.w + 'x' + f.h + '.' + ext;
+      a.href = URL.createObjectURL(blob); a.click();
+      this.setState({ recording: false });
+    };
+    rec.start(); tick();
+    setTimeout(() => rec.state !== 'inactive' && rec.stop(), dur);
+  };
+
+  /* ---------- values ---------- */
+  renderVals() {
+    const s = this.state, f = this.fmt();
+    const set = (k) => (e) => this.setState({ [k]: e.target.value });
+    const num = (k) => (e) => this.setState({ [k]: parseFloat(e.target.value) });
+    const cap = String(s.caption || '').length;
+    return {
+      canvasRef: this.canvasRef,
+      aKey: this.aKey(), aInk: this.aInk(), aLabel: this.aLabel(), aCss: this.acc().css || this.acc().key,
+      onDown: this.onDown, onMove: this.onMove, onUp: this.onUp, onWheel: this.onWheel,
+      onDragOver: this.onDragOver, onDrop: this.onDrop,
+      platforms: ORDER.map(k => ({
+        short: SHORT[k], sub: FORMATS[k].sub.replace(/ /g, ''),
+        bg: s.platform === k ? INK : WHT, fg: s.platform === k ? WHT : INK,
+        hover: s.platform === k ? { background: INK } : { background: this.aKey() + '1a' },
+        select: () => this.goto(k)
+      })),
+      fmtLabel: f.label, fmtSub: f.sub,
+      fmtOrigin: f.origin ? 'Original layout' : 'Adapted from ' + f.from,
+      presets: PRESETS.map(p => ({ headline: p.headline, eyebrow: p.eyebrow, apply: () => this.setState({ eyebrow: p.eyebrow, headline: p.headline, support: p.support, cta: p.cta, showCta: true }) })),
+      tags: TAGS.map(t => ({ label: t, add: () => this.setState(st => ({ caption: (st.caption + (st.caption.endsWith(' ') || st.caption.endsWith('\n') || !st.caption ? '' : ' ') + t) })) })),
+      eyebrow: s.eyebrow, headline: s.headline, support: s.support, cta: s.cta, caption: s.caption,
+      setEyebrow: set('eyebrow'), setHeadline: set('headline'), setSupport: set('support'), setCta: set('cta'), setCaption: set('caption'),
+      toggleCta: () => this.setState({ showCta: !s.showCta }),
+      ctaToggleBg: s.showCta ? this.aKey() : WHT, ctaToggleFg: s.showCta ? this.aLabel() : INK, ctaToggleLabel: s.showCta ? 'Shown' : 'Hidden',
+      txRaw: s.tx, tyRaw: s.ty, setTx: num('tx'), setTy: num('ty'),
+      tx: Math.round(s.tx * f.pad * 1.1) + 'px', ty: Math.round(s.ty * f.pad * 1.2) + 'px',
+      zoom: s.zoom,
+      setZoom: (e) => { const z = parseFloat(e.target.value); this.setState(st => Object.assign({ zoom: z }, this.clamp(st.ox, st.oy, z))); },
+      zoomLabel: Math.round(s.zoom * 100) + '%',
+      gray: s.gray, toggleGray: () => this.setState({ gray: !s.gray }),
+      grayBg: s.gray ? INK : WHT, grayFg: s.gray ? WHT : INK,
+      guides: s.guides, toggleGuides: () => this.setState({ guides: !s.guides }),
+      guideBg: s.guides ? this.aKey() : WHT, guideFg: s.guides ? this.aLabel() : INK,
+      noMedia: !s.hasMedia, isVideo: s.isVideo, playLabel: s.playing ? 'Pause' : 'Play',
+      togglePlay: () => { if (!this.media) return; if (s.playing) { this.media.pause(); } else { this.media.play().catch(() => {}); } this.setState({ playing: !s.playing }); },
+      pickFile: () => this.input && this.input.click(),
+      resetMedia: () => this.setState({ ox: 0, oy: 0, zoom: 1.08 }),
+      nudgeUp: () => this.setState(st => this.clamp(st.ox, st.oy - 24, st.zoom)),
+      nudgeDown: () => this.setState(st => this.clamp(st.ox, st.oy + 24, st.zoom)),
+      nudgeLeft: () => this.setState(st => this.clamp(st.ox - 24, st.oy, st.zoom)),
+      nudgeRight: () => this.setState(st => this.clamp(st.ox + 24, st.oy, st.zoom)),
+      centreMedia: () => this.setState({ ox: 0, oy: 0 }),
+      focal: Math.round(s.ox) === 0 && Math.round(s.oy) === 0 ? 'centred' : Math.round(s.ox) + ', ' + Math.round(s.oy) + ' px',
+      zoomIn: () => this.setState(st => { const z = Math.min(3, st.zoom + 0.08); return Object.assign({ zoom: z }, this.clamp(st.ox, st.oy, z)); }),
+      zoomOut: () => this.setState(st => { const z = Math.max(1, st.zoom - 0.08); return Object.assign({ zoom: z }, this.clamp(st.ox, st.oy, z)); }),
+      applyAll: this.applyAll, exportAll: this.exportAll,
+      applyAllLabel: s.synced ? 'Applied to all six' : 'Apply this framing to all formats',
+      syncedCount: ORDER.filter(k => s.xfs[k]).length,
+      exportPng: this.exportPng, exportVideo: this.exportVideo,
+      recLabel: s.recording ? 'Recording…' : 'Export MP4',
+      mediaInfo: s.hasMedia ? ((this.usingPh ? 'Placeholder · ' : '') + s.mediaName + ' · ' + this.mediaW + '×' + this.mediaH + (s.isVideo ? ' · MP4' : '')) : 'JPG, PNG, WebP or MP4. The media area is fixed — the frame never moves.',
+      capCount: cap + ' / ' + f.cap, capColor: cap > f.cap ? '#B3261E' : '#6F6B75',
+      copyLabel: s.copied ? 'Copied' : 'Copy caption',
+      copyCaption: () => { navigator.clipboard && navigator.clipboard.writeText(s.caption); this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 1400); },
+      hintLine: s.hasMedia ? 'Drag on the canvas to reposition · scroll to zoom · the template frame, logo and brand elements stay locked.' : 'Drop a JPG, PNG, WebP or MP4 onto the canvas, or use Upload media — the layout never moves.',
+      btnPrimaryHover: { background: this.aInk(), color: '#FFFFFF' }, btnGhostHover: { background: this.aKey() + '1a' }, btnInkHover: { background: '#2E1065' },
+      presetHover: { borderColor: this.aKey() }, tagHover: { borderColor: this.aKey(), background: this.aKey() + '14' },
+      accHover: { borderColor: this.aKey() },
+      accents: ACC_ORDER.map(k => ({
+        label: ACCENTS[k].label, note: ACCENTS[k].note, css: ACCENTS[k].css,
+        border: s.accMode === k ? INK : '#DCD9E0',
+        pick: () => this.setState({ accMode: k })
+      })),
+      customBorder: s.accMode === 'custom' ? INK : '#DCD9E0',
+      customIsGrad: s.cIsGrad, customIsSolid: !s.cIsGrad,
+      customGradCss: 'linear-gradient(135deg,' + s.cG1 + ' 0%,' + s.cG2 + ' 100%)',
+      setCustomSolid: () => this.setState({ accMode: 'custom', cIsGrad: false }),
+      setCustomGrad: () => this.setState({ accMode: 'custom', cIsGrad: true }),
+      solidBg: s.accMode === 'custom' && !s.cIsGrad ? INK : WHT, solidFg: s.accMode === 'custom' && !s.cIsGrad ? WHT : INK,
+      gradBg: s.accMode === 'custom' && s.cIsGrad ? INK : WHT, gradFg: s.accMode === 'custom' && s.cIsGrad ? WHT : INK,
+      cSolid: s.cSolid, cG1: s.cG1, cG2: s.cG2, cSolidLabel: String(s.cSolid).toUpperCase(),
+      setSolid: (e) => this.setState({ accMode: 'custom', cIsGrad: false, cSolid: e.target.value }),
+      setG1: (e) => this.setState({ accMode: 'custom', cIsGrad: true, cG1: e.target.value }),
+      setG2: (e) => this.setState({ accMode: 'custom', cIsGrad: true, cG2: e.target.value })
+    };
+  }
+}
+</script>
+</body>
+</html>
