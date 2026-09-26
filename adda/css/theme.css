@@ -1,0 +1,52 @@
+/* ADDA brand layer over Modernist — retunes the system tokens to the logo's palette.
+   Navy (logo outline) = primary accent; Marigold (the "A") = secondary; Leaf (the "da") + Sky (the drum strap) = supporting marks. */
+:root {
+  --color-bg: #fbf8f2;
+  --color-surface: #f3ede2;
+  --color-text: #17234a;
+  --color-divider: color-mix(in srgb, #17234a 32%, transparent);
+
+  --color-accent: #123f8c;
+  --color-accent-100: #eef3fb;
+  --color-accent-200: #d9e4f6;
+  --color-accent-300: #b5caec;
+  --color-accent-400: #7f9fd6;
+  --color-accent-500: #3c6bc0;
+  --color-accent-600: #0d3475;
+  --color-accent-700: #0b2a5e;
+  --color-accent-800: #09214a;
+  --color-accent-900: #071935;
+
+  --color-accent-2: #f2a31b;
+  --color-accent-2-100: #fff6e6;
+  --color-accent-2-200: #fde9c4;
+  --color-accent-2-300: #fad48a;
+  --color-accent-2-400: #f6bc4e;
+  --color-accent-2-500: #f2a31b;
+  --color-accent-2-600: #d98a06;
+  --color-accent-2-700: #a86500;
+  --color-accent-2-800: #7a4800;
+  --color-accent-2-900: #4d2e00;
+
+  --adda-leaf: #6ab23a;
+  --adda-leaf-100: #eef7e6;
+  --adda-leaf-700: #3d7419;
+  --adda-sky: #4aaee6;
+  --adda-sky-100: #e8f5fc;
+  --adda-sky-700: #16648f;
+  --adda-white: #ffffff;
+}
+body { font-size: 17px; line-height: 1.6; text-wrap: pretty; -webkit-font-smoothing: antialiased; }
+a { color: var(--color-accent); }
+a:hover { color: var(--color-accent-600); }
+.btn { min-height: 44px; font-size: 15px; padding: 10px 18px; justify-content: flex-start; }
+.btn-secondary { border: 2px solid var(--color-accent); color: var(--color-accent); }
+.btn-secondary:hover { background: var(--color-accent-100); color: var(--color-accent-600); }
+.btn-marigold { background: var(--color-accent-2); color: var(--color-accent-800); }
+.btn-marigold:hover { background: var(--color-accent-2-400); color: var(--color-accent-800); }
+.input { min-height: 48px; font-size: 16px; background: var(--adda-white); border: 2px solid var(--color-divider); }
+.field > label { font-size: 14px; font-weight: 600; color: var(--color-text); }
+.tag { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.tag-leaf { background: var(--adda-leaf-100); color: var(--adda-leaf-700); }
+.tag-sky { background: var(--adda-sky-100); color: var(--adda-sky-700); }
+.tag-marigold { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
