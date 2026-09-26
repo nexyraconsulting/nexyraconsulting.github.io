@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Events | ADDA Slough</title>
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+<script src="js/imageslot.js"></script>
+<style>html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--color-bg);overflow-x:hidden}@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}</style>
+</helmet>
+
+<dc-import name="SiteHeader" current="events" hint-size="100%,84px" style="display:block"></dc-import>
+
+<main id="main">
+  <section aria-labelledby="page-title" style="background:var(--adda-white);border-bottom:2px solid var(--color-divider)">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(28px,4vw,48px) clamp(16px,4vw,40px) clamp(36px,5vw,56px)">
+      <nav aria-label="Breadcrumb" style="font-size:14px;margin-bottom:24px">
+        <ol style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px">
+          <li><a href="Home.dc.html">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" style="font-weight:600">Events</li>
+        </ol>
+      </nav>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px 64px;align-items:end">
+        <h1 id="page-title" style="font-size:clamp(48px,7vw,96px);line-height:1;letter-spacing:-.025em;margin:0;color:var(--color-accent)">Events</h1>
+        <p style="margin:0;font-size:clamp(18px,1.6vw,20px);max-width:32em">Festivals, cultural, sports and other events for the ADDA Slough community, and everyone who’d like to join us.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:32px">
+        <a class="btn btn-secondary" href="#upcoming">Upcoming</a>
+        <a class="btn btn-secondary" href="#durga-pujo">Durga Pujo 2026</a>
+        <a class="btn btn-secondary" href="#register">Programme registration</a>
+        <a class="btn btn-secondary" href="#past">Past events</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-hidden="true" style="position:relative;height:clamp(220px,38vw,420px);overflow:hidden;background:var(--color-accent-200);border-bottom:2px solid var(--color-divider)">
+    <div data-parallax="0.3" style="position:absolute;left:0;right:0;top:-16%;bottom:-16%">
+      <image-slot id="events-band" shape="rect" src="https://media.adda-slough.org/public/images/events/festivals/kali-pujo/kali-pujo-2024.jpg" placeholder="ADDA event photograph"></image-slot>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);height:10px">
+      <div style="background:var(--color-accent-2)"></div><div style="background:var(--adda-leaf)"></div><div style="background:var(--adda-sky)"></div><div style="background:var(--color-accent)"></div>
+    </div>
+  </section>
+
+  <section id="upcoming" aria-labelledby="upcoming-title" style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,80px) clamp(16px,4vw,40px)">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px">
+      <h2 id="upcoming-title" style="font-size:clamp(30px,3.2vw,40px);margin:0">Upcoming events</h2>
+      <div role="group" aria-label="Filter by category" style="display:flex;flex-wrap:wrap;border:2px solid var(--color-divider);background:var(--adda-white)">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+          <button type="button" aria-pressed="{{ f.pressed }}" onClick="{{ f.select }}" style="min-height:44px;padding:0 16px;border:0;border-right:2px solid var(--color-divider);margin-right:-2px;background:{{ f.bg }};color:{{ f.ink }};font:inherit;font-size:15px;font-weight:600;cursor:pointer">{{ f.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    <ul style="list-style:none;margin:0;padding:0;border-top:2px solid var(--color-divider)">
+      <sc-for list="{{ upcoming }}" as="ev" hint-placeholder-count="2">
+        <li id="{{ ev.anchor }}" style="display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;padding:24px 0;border-bottom:2px solid var(--color-divider)">
+          <div style="flex:0 1 240px;min-width:200px;aspect-ratio:16/9;background:var(--color-accent-100);overflow:hidden"><img src="{{ ev.img }}" alt="{{ ev.alt }}" loading="lazy" style="width:100%;height:100%;object-fit:cover"></img></div>
+          <div style="width:104px;flex:none;padding:14px 12px;background:{{ ev.dateBg }};color:var(--color-accent-800);display:flex;flex-direction:column;gap:2px">
+            <span style="font-family:var(--font-heading);font-weight:800;font-size:28px;line-height:1">{{ ev.day }}</span>
+            <span style="font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase">{{ ev.month }}</span>
+          </div>
+          <div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:8px">
+            <span class="{{ ev.tagClass }}" style="align-self:flex-start">{{ ev.type }}</span>
+            <h3 style="font-size:26px;margin:0">{{ ev.title }}</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:6px 24px;font-size:15px">
+              <span style="display:flex;gap:8px;align-items:flex-start">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>{{ ev.venue }}
+              </span>
+              <span style="display:flex;gap:8px;align-items:flex-start">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" aria-hidden="true" style="flex:none;margin-top:2px"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>{{ ev.when }}
+              </span>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <a class="btn btn-primary" href="{{ ev.href }}" target="{{ ev.target }}" rel="noopener">{{ ev.cta }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="square" aria-hidden="true"><path d="{{ ev.iconA }}"></path><path d="{{ ev.iconB }}"></path></svg>
+            </a>
+          </div>
+        </li>
+      </sc-for>
+    </ul>
+    <sc-if value="{{ noUpcoming }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:32px 0;border-bottom:2px solid var(--color-divider);display:flex;flex-direction:column;gap:12px">
+        <p style="margin:0;font-size:18px;font-weight:600">There are no upcoming {{ filterLabel }} events right now.</p>
+        <p style="margin:0">New dates are announced on <a href="https://www.facebook.com/adda.slough" target="_blank" rel="noopener">Facebook</a> and <a href="https://www.instagram.com/addaslough/" target="_blank" rel="noopener">Instagram</a>. You can also browse <a href="#past">past events</a>.</p>
+      </div>
+    </sc-if>
+  </section>
+
+  <section id="durga-pujo" aria-labelledby="pujo-title" style="background:var(--adda-white);border-top:2px solid var(--color-divider);border-bottom:2px solid var(--color-divider)">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(16px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(32px,5vw,72px);align-items:start">
+      <figure data-parallax-shift="-0.06" style="margin:0">
+        <div style="position:relative;aspect-ratio:2/3;background:var(--color-accent-2-100);box-shadow:var(--shadow-lg)">
+          <image-slot id="events-pujo-poster" shape="rect" fit="contain" src="https://media.adda-slough.org/public/images/promotions/durga-pujo-2026.jpg" placeholder="Durga Pujo 2026 poster"></image-slot>
+        </div>
+        <div aria-hidden="true" style="display:grid;grid-template-columns:repeat(4,1fr);height:10px">
+          <div style="background:var(--color-accent-2)"></div><div style="background:var(--adda-leaf)"></div><div style="background:var(--adda-sky)"></div><div style="background:var(--color-accent)"></div>
+        </div>
+      </figure>
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <span class="tag tag-marigold" style="align-self:flex-start">Festival · Featured</span>
+        <h2 id="pujo-title" style="font-size:clamp(40px,5vw,68px);line-height:1.02;letter-spacing:-.02em;margin:0;color:var(--color-accent)">Durga Pujo 2026</h2>
+        <p style="margin:0;font-size:19px;max-width:32em">Adda Durga Puja brings the true essence of Bengal’s Durga Puja to London, with traditional puja, authentic Bengali food, cultural programmes and joyful community gatherings. An unforgettable celebration you simply cannot afford to miss!</p>
+        <ol aria-label="Pujo days" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:2px solid var(--color-divider)">
+          <sc-for list="{{ pujoDays }}" as="d" hint-placeholder-count="5">
+            <li style="padding:12px 8px;border-right:2px solid var(--color-divider);margin-right:-2px;display:flex;flex-direction:column;gap:2px;background:{{ d.bg }}">
+              <span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase">{{ d.dow }}</span>
+              <span style="font-family:var(--font-heading);font-weight:800;font-size:28px;line-height:1;color:var(--color-accent)">{{ d.date }}</span>
+              <span style="font-size:12px">Oct</span>
+            </li>
+          </sc-for>
+        </ol>
+        <dl style="margin:0;display:grid;grid-template-columns:minmax(90px,auto) 1fr;border-top:2px solid var(--color-divider)">
+          <dt style="padding:14px 16px 14px 0;border-bottom:2px solid var(--color-divider);font-weight:800">Dates</dt>
+          <dd style="margin:0;padding:14px 0;border-bottom:2px solid var(--color-divider)">Friday 16 – Tuesday 20 October 2026</dd>
+          <dt style="padding:14px 16px 14px 0;border-bottom:2px solid var(--color-divider);font-weight:800">Venue</dt>
+          <dd style="margin:0;padding:14px 0;border-bottom:2px solid var(--color-divider)">Slough Cricket Club<br>Upton Court Road, Slough SL3 7LT<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Slough+Cricket+Club+Upton+Court+Road+SL3+7LT" target="_blank" rel="noopener" style="font-weight:600">Get directions</a></dd>
+        </dl>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a class="btn btn-primary" href="#register">Register for a programme
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="square" aria-hidden="true"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+          </a>
+          <a class="btn btn-secondary" href="#bhog">Sponsor Bhog</a>
+        </div>
+        <div id="bhog" style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:start;padding:20px;background:var(--color-accent-2-100);border-top:4px solid var(--color-accent-2)">
+          <div style="aspect-ratio:2/3;background:var(--adda-white)"><img src="https://media.adda-slough.org/public/images/promotions/durga-pujo-2026-3.jpg" alt="Sponsor Bhog poster" loading="lazy" style="width:100%;height:100%;object-fit:contain"></img></div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <h3 style="font-size:22px;margin:0">Sponsor Bhog, share blessings</h3>
+            <p style="margin:0;font-size:16px">Sponsor Bhog, receive Maa Durga’s blessings and share Prasad with family and friends.</p>
+            <p style="margin:0;font-size:16px"><strong>Bhog + Puja + Meal: £61</strong> (family: max 2 adults &amp; 2 kids). Other packages are available.</p>
+            <a href="mailto:addasloughinformation@gmail.com?subject=Bhog%20sponsorship%20%E2%80%94%20Durga%20Pujo%202026" style="font-weight:800;min-height:44px;display:flex;align-items:center">Ask about Bhog packages →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="register" aria-labelledby="register-title" style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(16px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px clamp(32px,5vw,72px);align-items:start">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:30em">
+      <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent-2-800)">Durga Pujo 2026</span>
+      <h2 id="register-title" style="font-size:clamp(32px,3.4vw,44px);margin:0">Programme registration</h2>
+      <p style="margin:0;font-size:17px">Sign up to perform or compete in this year’s cultural programme. Choose one programme per registration.</p>
+      <div style="padding:20px;background:var(--adda-sky-100);border-top:4px solid var(--adda-sky);display:flex;flex-direction:column;gap:10px">
+        <p style="margin:0;font-weight:800">Already registered?</p>
+        <p style="margin:0;font-size:15px">Find your registration to check or change the details.</p>
+        <a class="btn btn-secondary" href="#" style="align-self:flex-start;background:var(--adda-white)">Search or edit registration</a>
+      </div>
+      <p style="margin:0;font-size:15px">Questions? Email <a href="mailto:addasloughinformation@gmail.com" style="word-break:break-all">addasloughinformation@gmail.com</a></p>
+    </div>
+
+    <div style="background:var(--adda-white);border:2px solid var(--color-divider);padding:clamp(20px,3vw,40px)">
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="display:flex;flex-direction:column;gap:16px">
+          <span style="display:flex;align-items:center;justify-content:center;width:56px;height:56px;background:var(--adda-leaf);color:var(--adda-white)">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+          </span>
+          <h3 style="font-size:28px;margin:0">You’re registered, {{ form.name }}.</h3>
+          <p style="margin:0;font-size:17px">We’ve received your registration for <strong>{{ form.programme }}</strong>. The ADDA team will contact you on {{ form.phone }} or {{ form.email }} with timings.</p>
+          <button type="button" class="btn btn-secondary" onClick="{{ reset }}" style="align-self:flex-start">Register another programme</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <form novalidate="" onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:28px">
+          <sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+            <div role="alert" tabindex="-1" ref="{{ summaryRef }}" style="padding:16px 20px;border:2px solid var(--color-accent-2-700);border-left-width:8px;background:var(--color-accent-2-100)">
+              <p style="margin:0 0 8px;font-weight:800">Please check the following:</p>
+              <ul style="margin:0;padding-left:20px">
+                <sc-for list="{{ errorList }}" as="er" hint-placeholder-count="2">
+                  <li><a href="{{ er.href }}" style="color:var(--color-accent-2-800);font-weight:600">{{ er.msg }}</a></li>
+                </sc-for>
+              </ul>
+            </div>
+          </sc-if>
+
+          <fieldset id="f-programme" style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:12px">
+            <legend style="font-size:18px;font-weight:800;padding:0;margin-bottom:12px">Programme <span style="color:var(--color-accent-2-800)">*</span></legend>
+            <sc-if value="{{ err.programme }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0;color:var(--color-accent-2-800);font-weight:600;font-size:15px">{{ err.programme }}</p>
+            </sc-if>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:8px">
+              <sc-for list="{{ programmes }}" as="p" hint-placeholder-count="7">
+                <label class="radio" style="align-items:flex-start;gap:12px;padding:14px 14px;min-height:64px;border:2px solid {{ p.border }};background:{{ p.bg }}">
+                  <input type="radio" name="programme" value="{{ p.value }}" checked="{{ p.checked }}" onChange="{{ p.select }}"></input>
+                  <span class="dot" style="margin-top:3px"></span>
+                  <span style="display:flex;flex-direction:column;gap:2px">
+                    <span style="font-weight:800;font-size:16px;line-height:1.3">{{ p.name }}</span>
+                    <span style="font-size:14px;line-height:1.35;color:color-mix(in srgb,var(--color-text) 78%,transparent)">{{ p.sub }}</span>
+                  </span>
+                </label>
+              </sc-for>
+            </div>
+          </fieldset>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px">
+            <div class="field">
+              <label for="f-name">Name / Group <span style="color:var(--color-accent-2-800)">*</span></label>
+              <input id="f-name" class="input" type="text" autocomplete="name" value="{{ form.name }}" onChange="{{ setName }}" aria-invalid="{{ inv.name }}" aria-describedby="e-name" style="border-color:{{ bc.name }}"></input>
+              <sc-if value="{{ err.name }}" hint-placeholder-val="{{ false }}"><p id="e-name" style="margin:6px 0 0;color:var(--color-accent-2-800);font-weight:600;font-size:14px">{{ err.name }}</p></sc-if>
+            </div>
+            <div class="field">
+              <label for="f-contact">Contact name <span style="font-weight:400">(if different from Name / Group)</span></label>
+              <input id="f-contact" class="input" type="text" value="{{ form.contactName }}" onChange="{{ setContact }}"></input>
+            </div>
+            <div class="field">
+              <label for="f-phone">Contact no. <span style="color:var(--color-accent-2-800)">*</span></label>
+              <input id="f-phone" class="input" type="tel" autocomplete="tel" inputmode="tel" value="{{ form.phone }}" onChange="{{ setPhone }}" aria-invalid="{{ inv.phone }}" aria-describedby="e-phone" style="border-color:{{ bc.phone }}"></input>
+              <sc-if value="{{ err.phone }}" hint-placeholder-val="{{ false }}"><p id="e-phone" style="margin:6px 0 0;color:var(--color-accent-2-800);font-weight:600;font-size:14px">{{ err.phone }}</p></sc-if>
+            </div>
+            <div class="field">
+              <label for="f-email">Email <span style="color:var(--color-accent-2-800)">*</span></label>
+              <input id="f-email" class="input" type="email" autocomplete="email" value="{{ form.email }}" onChange="{{ setEmail }}" aria-invalid="{{ inv.email }}" aria-describedby="e-email" style="border-color:{{ bc.email }}"></input>
+              <sc-if value="{{ err.email }}" hint-placeholder-val="{{ false }}"><p id="e-email" style="margin:6px 0 0;color:var(--color-accent-2-800);font-weight:600;font-size:14px">{{ err.email }}</p></sc-if>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-notes">Notes</label>
+            <p id="h-notes" style="margin:0 0 8px;font-size:14px;color:color-mix(in srgb,var(--color-text) 78%,transparent)">Sound and stage set-up, e.g. microphones, instrument cables, power socket, chair.</p>
+            <textarea id="f-notes" class="input" rows="4" aria-describedby="h-notes" value="{{ form.notes }}" onChange="{{ setNotes }}"></textarea>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;padding-top:8px;border-top:2px solid var(--color-divider)">
+            <button type="submit" class="btn btn-primary" style="min-width:200px;margin-top:16px">Submit registration
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </button>
+            <span style="font-size:14px;margin-top:16px"><span style="color:var(--color-accent-2-800)">*</span> Required</span>
+          </div>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <section id="past" aria-labelledby="past-title" style="background:var(--adda-white);border-top:2px solid var(--color-divider)">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(16px,4vw,40px)">
+      <div style="margin-bottom:32px">
+        <span style="display:block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent-2-800);margin-bottom:8px">Archive</span>
+        <h2 id="past-title" style="font-size:clamp(30px,3.2vw,40px);margin:0">Past events</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px">
+        <sc-for list="{{ past }}" as="c" hint-placeholder-count="3">
+          <article style="display:flex;flex-direction:column;border:2px solid var(--color-divider);background:var(--color-bg)">
+            <div style="position:relative;aspect-ratio:4/3;background:var(--color-surface);overflow:hidden">
+              <div data-parallax="{{ c.speed }}" style="position:absolute;left:0;right:0;top:-14%;bottom:-14%">
+                <image-slot id="{{ c.slot }}" shape="rect" src="{{ c.img }}" placeholder="{{ c.title }}"></image-slot>
+              </div>
+            </div>
+            <div style="height:6px;background:{{ c.mark }}"></div>
+            <div style="padding:20px 20px 12px;display:flex;flex-direction:column;gap:8px">
+              <h3 style="font-size:24px;margin:0">{{ c.title }}</h3>
+              <p style="margin:0;font-size:16px">{{ c.desc }}</p>
+            </div>
+            <ul style="list-style:none;margin:0;padding:0 20px 16px">
+              <sc-for list="{{ c.subs }}" as="s" hint-placeholder-count="3">
+                <li style="border-top:2px solid var(--color-divider)"><a href="#" style="display:flex;align-items:center;justify-content:space-between;min-height:48px;font-weight:800;text-decoration:none;color:var(--color-accent)" style-hover="background:var(--color-accent-100)">{{ s }}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a></li>
+              </sc-for>
+            </ul>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dc-import name="SiteFooter" hint-size="100%,560px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const M = 'https://media.adda-slough.org/public/images/';
+const EVENTS = [
+  { anchor: 'ev-durga-pujo', cat: 'festivals', img: M + 'events/festivals/durga-pujo/durga-pujo-2026.jpg', alt: 'Durga Pujo 2026 event image', day: '16–20', month: 'Oct 2026', dateBg: 'var(--color-accent-2)', type: 'Festival', tagClass: 'tag tag-marigold', title: 'Durga Pujo 2026', venue: 'Slough Cricket Club, Upton Court Road, Slough SL3 7LT', when: 'Fri 16 – Tue 20 October', href: '#durga-pujo', target: '_self', cta: 'Details & registration', iconA: 'M12 5v14', iconB: 'm19 12-7 7-7-7' },
+  { anchor: 'madhubanti-bagchi', cat: 'cultural', img: M + 'events/cultural-and-other/cultural/madhubanti-bagchi-2026.jpg', alt: 'Madhubanti Bagchi 2026 event image', day: '31', month: 'Oct 2026', dateBg: 'var(--adda-sky-100)', type: 'Cultural', tagClass: 'tag tag-sky', title: 'Madhubanti Bagchi 2026', venue: 'Hexagon — Main House, Queen Walk, Reading RG1 7QF', when: 'Sat 31 October · 18:00–22:00', href: 'https://whatsonreading.com/venues/hexagon/whats-on/madhubanti-bagchi', target: '_blank', cta: 'Tickets — What’s On Reading', iconA: 'M7 7h10v10', iconB: 'M7 17 17 7' }
+];
+const FILTERS = [['all', 'All'], ['festivals', 'Festivals'], ['cultural', 'Cultural & other'], ['sports', 'Sports & leisure']];
+const PROGRAMMES = [
+  ['Solo/Group Performance', 'Solo / group performance', 'Cultural programme'],
+  ['Antakshari (Gaata Rahe Mera Dil)', 'Antakshari', 'Gaata Rahe Mera Dil'],
+  ['Bollywood Quiz (Puchho Zara Puchho)', 'Bollywood Quiz', 'Puchho Zara Puchho'],
+  ['Little Champ (Taare Zameen Par)', 'Little Champ', 'Taare Zameen Par'],
+  ['Sit & Draw (Satrangi Re)', 'Sit & Draw', 'Satrangi Re'],
+  ['Sharod Shriman & Shrimati', 'Sharod Shriman & Shrimati', 'Competition'],
+  ['Brain Teaser (Bheja Fry)', 'Brain Teaser', 'Bheja Fry']
+];
+const EMPTY = { programme: '', name: '', contactName: '', phone: '', email: '', notes: '' };
+const FIELD_ORDER = [['programme', 'f-programme'], ['name', 'f-name'], ['phone', 'f-phone'], ['email', 'f-email']];
+
+function validate(f) {
+  const e = {};
+  if (!f.programme) e.programme = 'Choose a programme';
+  if (!f.name.trim()) e.name = 'Enter your name or group name';
+  if (!f.phone.trim()) e.phone = 'Enter a contact number';
+  else if (f.phone.replace(/[^0-9]/g, '').length < 10) e.phone = 'Enter a valid phone number, e.g. 07823 602447';
+  if (!f.email.trim()) e.email = 'Enter your email address';
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = 'Enter an email address like name@example.com';
+  return e;
+}
+
+class Component extends DCLogic {
+  state = { filter: 'all', form: { ...EMPTY }, errors: {}, tried: false, submitted: false };
+  set(k) {
+    return (e) => {
+      const v = e.target.value;
+      this.setState(s => { const form = { ...s.form, [k]: v }; return { form, errors: s.tried ? validate(form) : s.errors }; });
+    };
+  }
+  renderVals() {
+    const { filter, form, errors, submitted } = this.state;
+    const upcoming = EVENTS.filter(e => filter === 'all' || e.cat === filter);
+    const errorList = FIELD_ORDER.filter(([k]) => errors[k]).map(([k, id]) => ({ msg: errors[k], href: '#' + id }));
+    const inv = {}, bc = {};
+    ['name', 'phone', 'email'].forEach(k => { inv[k] = errors[k] ? 'true' : 'false'; bc[k] = errors[k] ? 'var(--color-accent-2-700)' : 'var(--color-divider)'; });
+    return {
+      filters: FILTERS.map(([key, label]) => ({ label, pressed: filter === key ? 'true' : 'false',
+        bg: filter === key ? 'var(--color-accent)' : 'transparent', ink: filter === key ? 'var(--adda-white)' : 'var(--color-text)',
+        select: () => this.setState({ filter: key }) })),
+      upcoming, noUpcoming: upcoming.length === 0,
+      filterLabel: (FILTERS.find(f => f[0] === filter) || [])[1]?.toLowerCase(),
+      pujoDays: [['Fri', '16'], ['Sat', '17'], ['Sun', '18'], ['Mon', '19'], ['Tue', '20']].map(([dow, date], i) => ({ dow, date, bg: i % 2 ? 'var(--color-accent-2-100)' : 'var(--adda-white)' })),
+      programmes: PROGRAMMES.map(([value, name, sub]) => {
+        const checked = form.programme === value;
+        return { value, name, sub, checked,
+          border: checked ? 'var(--color-accent)' : (errors.programme ? 'var(--color-accent-2-700)' : 'var(--color-divider)'),
+          bg: checked ? 'var(--color-accent-100)' : 'var(--adda-white)',
+          select: () => this.setState(s => { const f = { ...s.form, programme: value }; return { form: f, errors: s.tried ? validate(f) : s.errors }; }) };
+      }),
+      form, err: errors, inv, bc, errorList, hasErrors: errorList.length > 0,
+      submitted, notSubmitted: !submitted,
+      summaryRef: (el) => { this.summary = el; },
+      setName: this.set('name'), setContact: this.set('contactName'), setPhone: this.set('phone'), setEmail: this.set('email'), setNotes: this.set('notes'),
+      submit: (e) => {
+        e.preventDefault();
+        const errs = validate(this.state.form);
+        if (Object.keys(errs).length) {
+          this.setState({ errors: errs, tried: true }, () => { if (this.summary) this.summary.focus(); });
+        } else {
+          this.setState({ errors: {}, submitted: true });
+        }
+      },
+      reset: () => this.setState({ form: { ...EMPTY }, errors: {}, tried: false, submitted: false }),
+      past: [
+        { slot: 'events-past-fest', img: M + 'events/festivals.jpg', speed: '0.1', title: 'Festivals', desc: 'Pujo celebrations through the years.', mark: 'var(--color-accent-2)', subs: ['Durga Pujo', 'Kali Pujo', 'Saraswati Pujo'] },
+        { slot: 'events-past-cult', img: M + 'events/cultural-and-other.jpg', speed: '0.14', title: 'Cultural & other', desc: 'Concerts, shows and community gatherings.', mark: 'var(--adda-sky)', subs: ['Cultural', 'Other'] },
+        { slot: 'events-past-sport', img: M + 'events/sports-and-leisure.jpg', speed: '0.1', title: 'Sports & leisure', desc: 'Tournaments and games for every generation.', mark: 'var(--adda-leaf)', subs: ['Badminton & Table Tennis', 'Cricket', 'Football'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

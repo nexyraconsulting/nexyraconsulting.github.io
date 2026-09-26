@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+</helmet>
+<div aria-hidden="true" style="height:{{ spacerH }}"></div>
+<header ref="{{ rootRef }}" style="position:fixed;top:0;left:0;right:0;z-index:100;background:var(--adda-white);border-bottom:2px solid var(--color-divider);box-shadow:{{ headerShadow }};transition:box-shadow .2s">
+  <a href="#main" style="position:absolute;left:-9999px;top:12px;z-index:60;background:var(--color-accent);color:var(--adda-white);padding:10px 16px;font-weight:600;text-decoration:none" style-focus="left:16px">Skip to main content</a>
+  <div aria-hidden="true" style="display:grid;grid-template-columns:repeat(4,1fr);height:6px">
+    <div style="background:var(--color-accent-2)"></div>
+    <div style="background:var(--adda-leaf)"></div>
+    <div style="background:var(--adda-sky)"></div>
+    <div style="background:var(--color-accent)"></div>
+  </div>
+  <div style="max-width:1320px;margin:0 auto;padding:10px clamp(16px,4vw,40px);display:flex;align-items:center;gap:20px;min-height:76px">
+    <a href="Home.dc.html" aria-label="ADDA Slough — home" style="display:block;flex:none;line-height:0">
+      <img src="images/addalogo.png" alt="ADDA Slough — Bringing Friends Closer" style="height:{{ logoH }};width:auto"></img>
+    </a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Main" style="display:flex;align-items:center;gap:2px;margin-left:auto">
+        <sc-for list="{{ menus }}" as="m" hint-placeholder-count="5">
+          <button type="button" aria-expanded="{{ m.expanded }}" aria-controls="mega-panel" onClick="{{ m.toggle }}" style="display:flex;align-items:center;gap:6px;height:48px;padding:0 14px;background:{{ m.bg }};border:0;box-shadow:inset 0 -3px 0 {{ m.bar }};font:inherit;font-size:15px;font-weight:600;color:var(--color-text);cursor:pointer" style-hover="color:var(--color-accent)">
+            {{ m.label }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="square" aria-hidden="true" style="transform:{{ m.rot }};transition:transform .15s"><path d="m6 9 6 6 6-6"></path></svg>
+          </button>
+        </sc-for>
+      </nav>
+      <a class="btn btn-primary" href="{{ contactHref }}" style="flex:none">
+        Contact us
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button type="button" aria-expanded="{{ mobileExpanded }}" aria-controls="mobile-menu" onClick="{{ toggleMobile }}" style="margin-left:auto;display:flex;align-items:center;gap:8px;height:48px;padding:0 14px;background:{{ mobileBtnBg }};color:{{ mobileBtnInk }};border:2px solid var(--color-accent);font:inherit;font-size:15px;font-weight:800;cursor:pointer">
+        {{ mobileLabel }}
+        <sc-if value="{{ mobileOpen }}" hint-placeholder-val="{{ false }}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </sc-if>
+        <sc-if value="{{ mobileClosed }}" hint-placeholder-val="{{ true }}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h16"></path></svg>
+        </sc-if>
+      </button>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ hasOpen }}" hint-placeholder-val="{{ false }}">
+    <div id="mega-panel" style="position:absolute;left:0;right:0;top:100%;background:var(--adda-white);border-top:2px solid var(--color-divider);border-bottom:2px solid var(--color-divider);box-shadow:var(--shadow-lg)">
+      <div style="max-width:1320px;margin:0 auto;padding:32px clamp(16px,4vw,40px) 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.6fr);gap:40px">
+        <div style="display:flex;flex-direction:column;gap:12px;padding-right:24px;border-right:2px solid var(--color-divider)">
+          <span style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent-2-800)">{{ openMenu.kicker }}</span>
+          <h2 style="font-size:32px;margin:0;color:var(--color-accent)">{{ openMenu.label }}</h2>
+          <p style="margin:0;font-size:16px;color:color-mix(in srgb,var(--color-text) 80%,transparent)">{{ openMenu.intro }}</p>
+        </div>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0 24px">
+          <sc-for list="{{ openMenu.items }}" as="it" hint-placeholder-count="4">
+            <li style="border-top:2px solid var(--color-divider)">
+              <a href="{{ it.href }}" onClick="{{ closeAll }}" style="display:flex;flex-direction:column;gap:4px;padding:14px 12px 18px 0;text-decoration:none;color:var(--color-text)" style-hover="color:var(--color-accent);background:var(--color-accent-100)">
+                <span style="display:flex;align-items:center;gap:8px;font-size:17px;font-weight:800">
+                  <span aria-hidden="true" style="width:10px;height:10px;flex:none;background:{{ it.mark }}"></span>
+                  {{ it.label }}
+                </span>
+                <span style="font-size:14px;line-height:1.45;color:color-mix(in srgb,var(--color-text) 78%,transparent);padding-left:18px">{{ it.desc }}</span>
+              </a>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showMobilePanel }}" hint-placeholder-val="{{ false }}">
+    <div id="mobile-menu" style="position:absolute;left:0;right:0;top:100%;height:{{ panelH }};overflow-y:auto;overscroll-behavior:contain;background:var(--adda-white);border-top:2px solid var(--color-divider)">
+      <nav aria-label="Main" style="padding:8px 20px 32px">
+        <sc-for list="{{ mobileMenus }}" as="m" hint-placeholder-count="5">
+          <div style="border-bottom:2px solid var(--color-divider)">
+            <button type="button" aria-expanded="{{ m.expanded }}" onClick="{{ m.toggle }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;min-height:60px;padding:0;background:transparent;border:0;font:inherit;font-size:21px;font-weight:800;color:var(--color-text);cursor:pointer;text-align:left">
+              {{ m.label }}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true" style="transform:{{ m.rot }}"><path d="m6 9 6 6 6-6"></path></svg>
+            </button>
+            <sc-if value="{{ m.isOpen }}" hint-placeholder-val="{{ false }}">
+              <ul style="list-style:none;margin:0 0 12px;padding:0">
+                <sc-for list="{{ m.items }}" as="it" hint-placeholder-count="3">
+                  <li>
+                    <a href="{{ it.href }}" onClick="{{ closeAll }}" style="display:flex;align-items:center;gap:12px;min-height:48px;padding:6px 0;text-decoration:none;color:var(--color-text);font-size:17px">
+                      <span aria-hidden="true" style="width:10px;height:10px;flex:none;background:{{ it.mark }}"></span>
+                      {{ it.label }}
+                    </a>
+                  </li>
+                </sc-for>
+              </ul>
+            </sc-if>
+          </div>
+        </sc-for>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:24px">
+          <a class="btn btn-primary" href="{{ contactHref }}" style="width:100%">Contact us</a>
+          <a href="mailto:addasloughinformation@gmail.com" style="font-size:16px;word-break:break-all">addasloughinformation@gmail.com</a>
+        </div>
+      </nav>
+    </div>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;520px&quot;},&quot;current&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;about&quot;,&quot;events&quot;,&quot;aid&quot;,&quot;media&quot;,&quot;involved&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;contactHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#contact&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const PAGES = { home: 'Home.dc.html', events: 'Events.dc.html' };
+const MENUS = [
+  { key: 'about', label: 'About', kicker: 'Who we are', intro: 'A Slough-based Bengali community and registered charity (no. 1183906), started by a close group of families in August 2012.', items: [
+    { label: 'About ADDA', desc: 'Our story, mission and charity registration', href: '#', mark: 'var(--color-accent)' },
+    { label: 'ADDA Family', desc: 'The families who make ADDA happen', href: '#', mark: 'var(--color-accent-2)' },
+    { label: 'Our mission', desc: 'Cultural integration, sport and social responsibility', href: '#', mark: 'var(--adda-leaf)' }
+  ]},
+  { key: 'events', label: 'Events', kicker: 'What’s on', intro: 'Festivals, cultural, sports and other events for the whole community, all year round.', items: [
+    { label: 'Upcoming events', desc: 'Everything coming up next', href: PAGES.events, mark: 'var(--color-accent)' },
+    { label: 'Durga Pujo 2026', desc: '16–20 October · Slough Cricket Club', href: PAGES.events + '#durga-pujo', mark: 'var(--color-accent-2)' },
+    { label: 'Pujo programme registration', desc: 'Perform or compete at Durga Pujo 2026', href: PAGES.events + '#register', mark: 'var(--color-accent-2)' },
+    { label: 'Festivals', desc: 'Durga, Kali and Saraswati Pujo, Holi', href: PAGES.events + '#past', mark: 'var(--adda-leaf)' },
+    { label: 'Cultural & other', desc: 'Concerts, shows and community gatherings', href: PAGES.events + '#past', mark: 'var(--adda-sky)' },
+    { label: 'Sports & leisure', desc: 'Cricket, football, badminton and picnics', href: PAGES.events + '#past', mark: 'var(--adda-leaf)' }
+  ]},
+  { key: 'aid', label: 'Adda Aid', kicker: 'Charity', intro: 'Giving back: from Covid-19 doorstep support in Slough to Cyclone Amphan relief in Bengal.', items: [
+    { label: 'Our charity work', desc: 'How ADDA supports communities in need', href: '#', mark: 'var(--color-accent)' },
+    { label: 'Adda Aid 2022', desc: 'Relief and support, 2022', href: '#', mark: 'var(--adda-leaf)' },
+    { label: 'Adda Aid 2021', desc: 'Relief and support, 2021', href: '#', mark: 'var(--adda-leaf)' },
+    { label: 'Adda Aid 2020', desc: 'Covid-19 and Cyclone Amphan relief', href: '#', mark: 'var(--adda-leaf)' }
+  ]},
+  { key: 'media', label: 'News & Media', kicker: 'In the news', intro: 'Updates from ADDA, plus press and digital coverage of our events.', items: [
+    { label: 'Latest updates', desc: 'News and announcements from ADDA', href: '#', mark: 'var(--color-accent)' },
+    { label: 'Print coverage', desc: 'ADDA in newspapers and magazines', href: '#', mark: 'var(--adda-sky)' },
+    { label: 'Digital coverage', desc: 'Online articles, TV and video', href: '#', mark: 'var(--adda-sky)' },
+    { label: 'Gallery', desc: 'Photos and videos from past events', href: '#', mark: 'var(--color-accent-2)' }
+  ]},
+  { key: 'involved', label: 'Get involved', kicker: 'Join in', intro: 'Become a member, sponsor an event, book a stall or take the stage at Pujo.', items: [
+    { label: 'Membership', desc: 'Join the ADDA community', href: '#', mark: 'var(--color-accent)' },
+    { label: 'Sponsorship & stalls', desc: 'Support an event or book a stall', href: '#', mark: 'var(--color-accent-2)' },
+    { label: 'Perform at Durga Pujo', desc: 'Register for a programme', href: PAGES.events + '#register', mark: 'var(--adda-leaf)' }
+  ]}
+];
+
+class Component extends DCLogic {
+  state = { open: null, mobileOpen: false, mobileSection: null, w: typeof window !== 'undefined' ? window.innerWidth : 1280, h: 84, scrolled: false };
+  measure() { if (this.root) { const h = this.root.offsetHeight; if (h && h !== this.state.h) this.setState({ h }); } }
+  // Site-wide parallax driver. [data-parallax="speed"] = oversized image layer inside an overflow:hidden frame;
+  // [data-parallax-shift="speed"] = whole element drifts (no crop). Disabled for prefers-reduced-motion.
+  runParallax() {
+    if (this.reduced) return;
+    const vh = window.innerHeight;
+    document.querySelectorAll('[data-parallax]').forEach(el => {
+      const host = el.parentElement; if (!host) return;
+      const r = host.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) return;
+      const s = parseFloat(el.getAttribute('data-parallax')) || 0.15;
+      const max = r.height * 0.14;
+      const y = Math.max(-max, Math.min(max, -(r.top + r.height / 2 - vh / 2) * s));
+      el.style.transform = 'translate3d(0,' + y.toFixed(1) + 'px,0)';
+    });
+    document.querySelectorAll('[data-parallax-shift]').forEach(el => {
+      const r = el.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) return;
+      const s = parseFloat(el.getAttribute('data-parallax-shift')) || 0.06;
+      const y = Math.max(-48, Math.min(48, -(r.top + r.height / 2 - vh / 2) * s));
+      el.style.transform = 'translate3d(0,' + y.toFixed(1) + 'px,0)';
+    });
+  }
+  componentDidMount() {
+    this.reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onScroll = () => {
+      const sc = window.scrollY > 4; if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
+      if (this.raf) return; this.raf = requestAnimationFrame(() => { this.raf = null; this.runParallax(); });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.ro = new ResizeObserver(() => this.measure()); if (this.root) this.ro.observe(this.root);
+    this.kick = setInterval(() => this.runParallax(), 400); setTimeout(() => clearInterval(this.kick), 4000);
+    this.runParallax(); this.measure();
+    this.onResize = () => { this.setState({ w: window.innerWidth }); this.runParallax(); };
+    this.onKey = (e) => { if (e.key === 'Escape') this.setState({ open: null, mobileOpen: false }); };
+    this.onDoc = (e) => { if (this.state.open && this.root && !this.root.contains(e.target)) this.setState({ open: null }); };
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('keydown', this.onKey);
+    document.addEventListener('click', this.onDoc);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    if (this.ro) this.ro.disconnect(); clearInterval(this.kick);
+    window.removeEventListener('keydown', this.onKey);
+    document.removeEventListener('click', this.onDoc);
+  }
+  renderVals() {
+    const { open, mobileOpen, mobileSection, w } = this.state;
+    const current = this.props.current ?? 'home';
+    const isDesktop = w >= 1080;
+    const openMenu = MENUS.find(m => m.key === open) || null;
+    const menus = MENUS.map(m => {
+      const isOpen = m.key === open, isCur = m.key === current;
+      return { ...m, expanded: isOpen ? 'true' : 'false', rot: isOpen ? 'rotate(180deg)' : 'none',
+        bar: isOpen || isCur ? 'var(--color-accent-2)' : 'transparent', bg: isOpen ? 'var(--color-accent-100)' : 'transparent',
+        toggle: (e) => { e.stopPropagation(); this.setState({ open: isOpen ? null : m.key }); } };
+    });
+    const mobileMenus = MENUS.map(m => {
+      const isOpen = m.key === mobileSection;
+      return { ...m, isOpen, expanded: isOpen ? 'true' : 'false', rot: isOpen ? 'rotate(180deg)' : 'none',
+        toggle: () => this.setState({ mobileSection: isOpen ? null : m.key }) };
+    });
+    return {
+      rootRef: (el) => { this.root = el; },
+      spacerH: this.state.h + 'px', panelH: 'calc(100dvh - ' + this.state.h + 'px)',
+      headerShadow: this.state.scrolled ? 'var(--shadow-md)' : 'none',
+      isDesktop, isMobile: !isDesktop, logoH: w < 480 ? '44px' : '54px',
+      menus, mobileMenus, openMenu: openMenu || { items: [] }, hasOpen: isDesktop && !!openMenu,
+      mobileOpen, mobileClosed: !mobileOpen, showMobilePanel: !isDesktop && mobileOpen,
+      mobileExpanded: mobileOpen ? 'true' : 'false', mobileLabel: mobileOpen ? 'Close' : 'Menu',
+      mobileBtnBg: mobileOpen ? 'var(--color-accent)' : 'transparent', mobileBtnInk: mobileOpen ? 'var(--adda-white)' : 'var(--color-accent)',
+      toggleMobile: () => this.setState({ mobileOpen: !mobileOpen }),
+      closeAll: () => this.setState({ open: null, mobileOpen: false }),
+      contactHref: this.props.contactHref ?? '#contact'
+    };
+  }
+}
+</script>
+</body>
+</html>
