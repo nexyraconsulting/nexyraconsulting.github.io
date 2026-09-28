@@ -1,0 +1,49 @@
+# Windows version. Run from the website folder:  powershell -ExecutionPolicy Bypass -File scripts\fetch-remaining-assets.ps1
+$ErrorActionPreference = "Stop"
+Set-Location (Join-Path $PSScriptRoot "..")
+$base = "https://media.adda-slough.org/public/"
+$files = @(
+  "images/banners/banner-1.jpg",
+  "images/banners/banner-2.jpg",
+  "images/charities/adda-aid-2020.jpg",
+  "images/charities/adda-aid-2021.jpg",
+  "images/charities/adda-aid-2022.jpg",
+  "images/events/cultural-and-other.jpg",
+  "images/events/cultural-and-other/cultural/10th-year-celebration-of-adda.jpg",
+  "images/events/cultural-and-other/cultural/2021-cactus-live-(virtual)-bengali-new-year-celebrations.jpg",
+  "images/events/cultural-and-other/cultural/adda-bijoya-concert-2022.jpg",
+  "images/events/cultural-and-other/cultural/adda-musical-night-2022.jpg",
+  "images/events/cultural-and-other/cultural/bangla-nababarsho-and-jojo-mukherjee-concert.jpg",
+  "images/events/cultural-and-other/cultural/bengali-nababarsho-2024.jpg",
+  "images/events/cultural-and-other/cultural/bengali-new-year-2023.jpg",
+  "images/events/cultural-and-other/cultural/bijoyar-adda-with-anupam-2023.jpg",
+  "images/events/cultural-and-other/cultural/grand-bijoya-2021-stereo-nation.jpg",
+  "images/events/cultural-and-other/cultural/lagnajita-chakraborty-live-2025.jpg",
+  "images/events/cultural-and-other/cultural/madhubanti-bagchi-2026.jpg",
+  "images/events/cultural-and-other/cultural/somlata-and-the-aces-2024.jpg",
+  "images/events/cultural-and-other/cultural/zubeen-garg-concert-(bijoya-2019).jpg",
+  "images/events/festivals/durga-pujo/durga-pujo-2021.jpg",
+  "images/events/festivals/durga-pujo/durga-pujo-2026.jpg",
+  "images/events/festivals/kali-pujo/kali-pujo-2024.jpg",
+  "images/events/festivals/kali-pujo/kali-pujo-2025.jpg",
+  "images/events/festivals/saraswati-pujo/saraswati-pujo-2025.jpg",
+  "images/events/sports-and-leisure/badminton-and-table-tennis.jpg",
+  "images/events/sports-and-leisure/cricket.jpg",
+  "images/events/sports-and-leisure/football.jpg",
+  "images/media/print/anandabazar-04-may-2023.jpg",
+  "images/media/print/asian-voice-news-02-oct-2020.jpg",
+  "images/media/print/bangla-post-17-feb-2022.jpg",
+  "images/media/print/times-of-india-10-sep-2025.jpg",
+  "images/org/people/amf040.jpg",
+  "images/promotions/durga-pujo-2026-1.jpg",
+  "images/promotions/durga-pujo-2026-4.jpg",
+  "images/promotions/durga-pujo-2026-5.jpg",
+  "images/promotions/madhubanti-bagchi-2026.jpg"
+)
+foreach ($f in $files) {
+  $out = Join-Path "assets" $f
+  New-Item -ItemType Directory -Force -Path (Split-Path $out) | Out-Null
+  Write-Host "Fetching $f"
+  Invoke-WebRequest -Uri ($base + $f) -OutFile $out
+}
+Write-Host "Done: $($files.Count) files saved under assets/"
