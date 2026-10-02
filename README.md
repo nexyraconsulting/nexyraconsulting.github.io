@@ -56,6 +56,12 @@ Typography: **Hanken Grotesk** (300/400/500/600/700) loaded from Google Fonts. T
 - The Pint Bar **Brand System** card shows a live, non-interactive `<iframe>` of the project page. To use a static screenshot instead, save a PNG as `assets/img/thepintbar-brand.png` and replace the iframe with:
   `<img src="assets/img/thepintbar-brand.png" alt="The Pint Bar Brand System" loading="lazy">`
 - All project links and the Contact Us link open in a new tab (`target="_blank" rel="noopener"`).
-- Contact CTA points to `https://nexyraconsulting.co.uk/contact` — update in `index.html` (4 occurrences) if the URL changes.
+- Contact CTA points to `https://nexyraconsulting.co.uk/contact.html` — update in `index.html` (4 occurrences) if the URL changes.
 - Layout is fully fluid (CSS grid `auto-fit` + `clamp()`); tested desktop → mobile. Touch targets are min 44px.
 - Update `<link rel="canonical">`, `og:url` and `sitemap.xml` to the production domain before launch.
+
+## Admin sign-in
+
+`login.html` gates `index.html` with an admin PIN (default **54927**). The PIN is stored as a SHA-256 hash in `login.html`; to change it, replace `PIN_HASH` with the SHA-256 of the new PIN. Sign-in lasts for the browser session.
+
+Note: this is a client-side gate suitable for keeping casual visitors out of a GitHub Pages site — it is not server-side security.

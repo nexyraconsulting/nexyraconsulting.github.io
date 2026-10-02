@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+<script>if (sessionStorage.getItem("nx-auth") !== "1") location.replace("login.html");</script>
 </head>
 <body>
 <div class="nx-shell">
@@ -29,7 +30,7 @@
     <nav class="nx-nav" aria-label="Primary">
       <a class="nx-nav__link" href="#works">Our Works</a>
       <a class="nx-nav__link" href="#capabilities">Capabilities</a>
-      <a class="nx-btn nx-btn--compact" href="https://nexyraconsulting.co.uk/contact" target="_blank" rel="noopener">Contact Us
+      <a class="nx-btn nx-btn--compact" href="https://nexyraconsulting.co.uk/contact.html" target="_blank" rel="noopener">Contact Us
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
       </a>
     </nav>
@@ -43,7 +44,7 @@
         <h1>Design, product<br>and software<br>engineered as <em>one system.</em></h1>
         <p class="nx-hero__lede">We are a technology consultancy working across brand and product design, digital product development, software engineering and IT consulting — from first principles to production.</p>
         <div class="nx-hero__actions">
-          <a class="nx-btn nx-btn--primary" href="https://nexyraconsulting.co.uk/contact" target="_blank" rel="noopener">Start a project
+          <a class="nx-btn nx-btn--primary" href="https://nexyraconsulting.co.uk/contact.html" target="_blank" rel="noopener">Start a project
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
           </a>
           <a class="nx-btn nx-btn--outline" href="#works">View our works
@@ -102,7 +103,7 @@
         <p class="nx-kicker">02 — Our Works</p>
         <h2>Selected projects</h2>
       </div>
-      <p class="nx-body">A brand system and two operational products delivered for The Pint Bar, a hospitality group.</p>
+      <p class="nx-body">A brand system and operational products for The Pint Bar, a hospitality group, and a customer and admin booking platform for ÉlanPro salon.</p>
     </div>
 
     <div class="nx-works__grid">
@@ -150,6 +151,34 @@
         </div>
       </a>
 
+      <a class="nx-card" href="https://nexyraconsulting.github.io/saloon/" target="_blank" rel="noopener">
+        <div class="nx-card__shot">
+          <img src="assets/img/elanpro-customer.png" alt="ÉlanPro customer app — services menu" loading="lazy" width="924" height="540" style="object-position: center top;">
+        </div>
+        <div class="nx-card__body">
+          <p class="nx-card__tag">Digital Product</p>
+          <h3>ÉlanPro Salon Booking — Customer</h3>
+          <p class="nx-body">A mobile-first booking app for salon clients: browse services, choose a stylist and time, and manage upcoming visits — installable as a web app.</p>
+          <span class="nx-card__link">View project
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="nx-card" href="https://nexyraconsulting.github.io/saloon/admin/" target="_blank" rel="noopener">
+        <div class="nx-card__shot">
+          <img src="assets/img/elanpro-admin.png" alt="ÉlanPro admin — today at the salon dashboard" loading="lazy" width="924" height="540" style="object-position: left top;">
+        </div>
+        <div class="nx-card__body">
+          <p class="nx-card__tag">Digital Product</p>
+          <h3>ÉlanPro Salon Booking — Admin</h3>
+          <p class="nx-body">The staff dashboard behind the app: daily appointments, calendar and blocked time, services, customers, and offers published live to the customer app.</p>
+          <span class="nx-card__link">View project
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg>
+          </span>
+        </div>
+      </a>
+
     </div>
   </section>
 
@@ -161,7 +190,7 @@
       </div>
       <div class="nx-contact__side">
         <p>We take on a small number of engagements at a time. Send us the shape of the problem and we will come back with how we would approach it.</p>
-        <a class="nx-btn nx-btn--light" href="https://nexyraconsulting.co.uk/contact" target="_blank" rel="noopener">Contact Nexyra
+        <a class="nx-btn nx-btn--light" href="https://nexyraconsulting.co.uk/contact.html" target="_blank" rel="noopener">Contact Nexyra
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
         </a>
       </div>
@@ -176,7 +205,7 @@
       <nav class="nx-footer__nav" aria-label="Footer">
         <a href="#works">Our Works</a>
         <a href="#capabilities">Capabilities</a>
-        <a href="https://nexyraconsulting.co.uk/contact" target="_blank" rel="noopener">Contact Us</a>
+        <a href="https://nexyraconsulting.co.uk/contact.html" target="_blank" rel="noopener">Contact Us</a>
       </nav>
     </div>
     <div class="nx-footer__base">
