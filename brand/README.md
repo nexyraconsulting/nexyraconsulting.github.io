@@ -9,7 +9,7 @@ No build step, no framework, no external services. Unzip and upload.
 ## Folder structure
 
 ```
-nexyra-brand-guidelines/
+site/
 ├── index.html                     Single-page guidelines site
 ├── README.md
 ├── css/
@@ -25,7 +25,7 @@ nexyra-brand-guidelines/
 │   ├── hanken-grotesk-webfonts.zip    Complete font package offered on the site
 │   └── OFL.txt                        SIL Open Font License 1.1
 ├── icons/                         37 interface icon SVGs + nexyra-icons.zip + README.txt
-├── logos/                         19 approved logo SVGs (see below)
+├── logos/                         24 approved logo SVGs (see below)
 └── assets/
     └── favicon.svg                App icon, violet
 ```
@@ -60,14 +60,18 @@ The Typography section of the site links each individual font file plus `hanken-
 
 ## Logo assets
 
-All 19 approved SVGs live in `/logos/` and are linked from Section 02 (view + download) and Section 08 (asset index). Artwork was **not** redrawn. Geometry, proportions, gradient stops and colours are exactly as supplied; only C2PA metadata was stripped to reduce file size.
+All 24 approved SVGs live in `/logos/` and are linked from Section 02 (view + download) and Section 08 (asset index). Artwork was **not** redrawn. Geometry, proportions, gradient stops and colours are exactly as supplied; only C2PA metadata was stripped to reduce file size.
 
 | Group | Files |
 | --- | --- |
-| Horizontal lock-up (primary) | `lockup-horizontal-gradient.svg`, `-on-light`, `-on-dark`, `-mono-black`, `-mono-white` |
-| Vertical lock-up (secondary) | `lockup-vertical-gradient.svg`, `-on-light`, `-on-dark`, `-mono-black`, `-mono-white` |
-| Monogram | `monogram-gradient.svg`, `-on-light`, `-on-dark`, `-mono-black`, `-mono-white` |
-| App icon (512 px, radius 112) | `app-icon-violet.svg`, `app-icon-blue.svg`, `app-icon-black.svg`, `app-icon-white.svg` |
+| Horizontal lock-up (primary) | `lockup-horizontal-gradient.svg`, `-on-light`, `-on-dark`, `-mono-black`, `-mono-white`, `-reverse` |
+| Vertical lock-up (secondary) | `lockup-vertical-gradient.svg`, `-on-light`, `-on-dark`, `-mono-black`, `-mono-white`, `-reverse` |
+| Monogram | `monogram-gradient.svg`, `-on-light`, `-on-dark`, `-mono-black`, `-mono-white`, `-reverse` |
+| App icon (512 px, radius 112) | `app-icon-violet.svg`, `app-icon-blue.svg`, `app-icon-black.svg`, `app-icon-white.svg`, `app-icon-gradient-white.svg`, `app-icon-gradient-black.svg` |
+
+The **reverse** set (`*-reverse.svg`) keeps the monogram in the full signature gradient with the purple accent strokes, and sets NEXYRA and CONSULTING in solid black (`#000000`). Use it on white or very light grounds where the full-colour mark is wanted with neutral type. Backgrounds are transparent.
+
+The **gradient app icons** (`app-icon-gradient-white.svg`, `app-icon-gradient-black.svg`) place the full-gradient monogram on a solid white or black tile, using the same 512 px canvas, 112 radius and monogram position as the other app icons.
 
 Usage rules for clear space, minimum sizes and misuse are documented on the site and are normative.
 
