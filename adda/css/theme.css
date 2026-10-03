@@ -38,12 +38,24 @@
 }
 body { font-size: 17px; line-height: 1.6; text-wrap: pretty; -webkit-font-smoothing: antialiased; }
 a { color: var(--color-accent); }
-a:hover { color: var(--color-accent-600); }
-.btn { min-height: 44px; font-size: 15px; padding: 10px 18px; justify-content: flex-start; }
+/* Text links (option 2b · marigold): colour change only. Skips buttons, cards, image/icon links. */
+a:not(.btn):not([style*="text-decoration: none"]):not([style*="line-height: 0"]):not([style*="display: block"]):not([style*="width: 44px"]) { transition: color .15s; }
+a:not(.btn):not([style*="text-decoration: none"]):not([style*="line-height: 0"]):not([style*="display: block"]):not([style*="width: 44px"]):is(:hover, :focus-visible) { color: var(--color-accent-2-700) !important; }
+:is([data-hero], footer) a:not(.btn):not([style*="text-decoration: none"]):not([style*="line-height: 0"]):not([style*="display: block"]):not([style*="width: 44px"]):is(:hover, :focus-visible),
+a:not(.btn):not([style*="text-decoration: none"]):not([style*="line-height: 0"]):not([style*="display: block"]):not([style*="width: 44px"])[style*="color: var(--adda-white)"]:is(:hover, :focus-visible) { color: var(--color-accent-2) !important; }
+
+/* Buttons (option 1b · logo sky blue) */
+.btn { min-height: 44px; font-size: 15px; padding: 10px 18px; justify-content: flex-start; border-width: 2px; transition: background-color .15s, color .15s, border-color .15s; }
+.btn.btn-primary { color: #fff; border-color: var(--color-accent); }
+.btn.btn-primary:hover { background: var(--adda-sky); border-color: var(--adda-sky); color: var(--color-text); }
+.btn.btn-primary:active { background: color-mix(in srgb, var(--adda-sky) 82%, #17234a); border-color: transparent; color: var(--color-text); }
 .btn-secondary { border: 2px solid var(--color-accent); color: var(--color-accent); }
-.btn-secondary:hover { background: var(--color-accent-100); color: var(--color-accent-600); }
-.btn-marigold { background: var(--color-accent-2); color: var(--color-accent-800); }
-.btn-marigold:hover { background: var(--color-accent-2-400); color: var(--color-accent-800); }
+.btn.btn-secondary:hover { background: var(--adda-sky-100); color: var(--color-accent); }
+.btn.btn-secondary:active { background: color-mix(in srgb, var(--adda-sky) 30%, #fff); color: var(--color-accent); }
+.btn-marigold { background: var(--color-accent-2); color: var(--color-accent-800); border-color: var(--color-accent-2); }
+.btn.btn-marigold:hover { background: var(--adda-sky); border-color: var(--adda-sky); color: var(--color-text); }
+.btn.btn-marigold:active { background: color-mix(in srgb, var(--adda-sky) 82%, #17234a); color: var(--color-text); }
+.btn.btn-ghost:hover { background: var(--adda-sky-100); color: var(--color-accent); }
 .input { min-height: 48px; font-size: 16px; background: var(--adda-white); border: 2px solid var(--color-divider); }
 .field > label { font-size: 14px; font-weight: 600; color: var(--color-text); }
 .tag { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -53,8 +65,7 @@ a:hover { color: var(--color-accent-600); }
 
 /* Full-bleed photo heroes */
 [data-hero] a:not(.btn) { color: #fff; }
-[data-hero] a:not(.btn):hover { color: var(--color-accent-2-300); }
 [data-hero] h1, [data-hero] h2, [data-hero] h3 { color: #fff; }
 [data-hero] .btn-secondary { color: #fff; border-color: #fff; background: transparent; }
-[data-hero] .btn-secondary:hover { background: rgba(255,255,255,.14); color: #fff; }
+[data-hero] .btn.btn-secondary:hover { background: var(--adda-sky); border-color: var(--adda-sky); color: var(--color-text); }
 [data-hero] .btn-ghost { color: #fff; }
