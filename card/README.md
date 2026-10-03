@@ -1,5 +1,20 @@
 # Nexyra Consulting — Digital Business Card
 
+## Package layout
+
+```
+deploy/
+├── index.html          ← upload this (self-contained)
+├── favicon.svg         ← optional, for /favicon.svg at domain root
+├── README.md
+└── source/             ← editable source, not needed on the host
+    ├── Nexyra Digital Card.dc.html
+    ├── support.js
+    └── assets/
+        ├── app-icon-violet.svg
+        └── logos/      (9 logo variations)
+```
+
 ## Files
 
 - `index.html` — **the deployable file.** Fully self-contained: logos, fonts, favicon, QR library and runtime are all inlined. No build step, no dependencies, works offline. This is the only file you need to host.
@@ -12,9 +27,9 @@ Share links carry the card's details in the URL fragment (`…/#c=…`), so a re
 
 The owner — anyone opening the plain URL with no `#c=` fragment — keeps full editing and management access.
 
-## Two card styles
+## Three card styles
 
-The header switcher offers **Ink** (dark, default) and **White**. The choice — like the field edits — is remembered per visitor. To ship one style as the published default, set the `cardTheme` prop (`ink` | `white`) in the source component and re-export. Logo variants swap automatically on the white card so white-on-white never occurs.
+The header switcher offers **Ink** (dark, default), **White** and **Gradient** (`#7C3AED` → `#2563EB`, 135°; white text, `#A78BFA` title and website, `#DDD6FE` contact icons and “Scan to save”). The owner’s choice is remembered and carried in share links, so recipients see the same style. To ship one style as the published default, set the `cardTheme` prop (`ink` | `white` | `gradient`) in the source component and re-export. Logo variants swap automatically on the white card so white-on-white never occurs.
 
 ## Deploy
 
