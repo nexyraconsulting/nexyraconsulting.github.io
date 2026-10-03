@@ -1,4 +1,4 @@
-/* Nexyra brand guidelines — progressive enhancement only.
+/* Nexyra brand guidelines: progressive enhancement only.
    The page is fully functional with JavaScript disabled. */
 (function () {
   'use strict';
