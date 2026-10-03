@@ -8,7 +8,7 @@ deploy/
 ├── favicon.svg         ← optional, for /favicon.svg at domain root
 ├── README.md
 └── source/             ← editable source, not needed on the host
-    ├── Nexyra Digital Card.dc.html
+    ├── nexyra-digital-card.dc.html
     ├── support.js
     └── assets/
         ├── app-icon-violet.svg
@@ -19,7 +19,13 @@ deploy/
 
 - `index.html` — **the deployable file.** Fully self-contained: logos, fonts, favicon, QR library and runtime are all inlined. No build step, no dependencies, works offline. This is the only file you need to host.
 - `favicon.svg` — the violet Nexyra app icon. Already inlined in `index.html`; this loose copy is only for hosts that also want a `/favicon.svg` at the domain root.
-- `source/Nexyra Digital Card.dc.html` — editable source, with `source/support.js` (its runtime) and `source/assets/` (nine logo variations + app icon). Keep these three together; open the `.dc.html` in a browser to work on it.
+- `source/nexyra-digital-card.dc.html` — editable source, with `source/support.js` (its runtime) and `source/assets/` (nine logo variations + app icon). Keep these three together; open the `.dc.html` in a browser to work on it.
+
+## Admin PIN gate
+
+Opening the plain URL (owner view) shows an **Admin Access** sign-in screen. The PIN is `54927`; only its SHA-256 hash is stored in the file. Once signed in, access lasts until the browser tab is closed. Shared recipient links (`#k=` / `#c=`) skip the gate and open the view-only card directly.
+
+Note: this is a front-end gate for a static file — it keeps casual visitors out of the editor, but it is not server-grade security. For stronger protection, add password protection at the host (e.g. Netlify/Cloudflare Access) on the plain URL.
 
 ## Owner vs. recipient
 
