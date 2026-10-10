@@ -1,4 +1,4 @@
-// GENERATED from dc-runtime/src/*.ts — do not edit. Rebuild with `cd dc-runtime && bun run build`.
+// NexDrive UI runtime: pre-built and self-contained. Do not edit; no build step is required (see DEVELOPER_HANDOVER.md).
 "use strict";
 (() => {
   var __defProp = Object.defineProperty;

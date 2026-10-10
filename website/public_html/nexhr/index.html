@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<style>#nx-loader{position:fixed;inset:0;z-index:2147483000;background:#FFFFFF;display:flex;align-items:center;justify-content:center;transition:opacity .3s ease}#nx-loader svg{width:100%;height:100%}#nx-loader.nx-done{opacity:0;pointer-events:none}</style>
+</head>
+<body>
+<div id="nx-loader" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxct)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxcb)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg></div>
+<script>(function(){var l=document.getElementById('nx-loader'),t0=Date.now();function done(){if(!l)return;l.classList.add('nx-done');setTimeout(function(){l&&l.remove();l=null},350)}(function poll(){var r=document.getElementById('dc-root');if(r&&r.textContent.trim().length>40&&document.readyState!=='loading'){setTimeout(done,Math.max(0,500-(Date.now()-t0)));return}if(Date.now()-t0>6000){done();return}setTimeout(poll,60)})()})();</script>
+<x-dc>
+<helmet>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/appleTouchIcon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="NexHR runs rotas, timesheets, leave, documents and employee records for shift-based teams. 14-day free trial.">
+<title>NexHR · HR, rota and timesheets for shift-based teams</title>
+<style>
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/hankenGroteskLatinExt.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/hankenGroteskLatin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;background:#FFFFFF}
+body{-webkit-font-smoothing:antialiased}
+h1,h2,h3,p{margin:0}
+button{font-family:inherit}
+a{color:#6D28D9;text-decoration:none}a:hover{color:#5B21B6}
+::selection{background:#EDE9FE;color:#0A0A0F}
+:focus-visible{outline:2px solid #7C3AED;outline-offset:2px}
+[id]{scroll-margin-top:110px}
+a,button{white-space:nowrap}
+</style>
+</helmet>
+
+<div style="font-family:'Hanken Grotesk','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif;background:#FFFFFF;color:#0A0A0F;font-size:15px;line-height:1.65;overflow-x:clip">
+
+  <div style="position:fixed;top:{{ nav.top }};left:{{ nav.top }};z-index:999;display:flex;align-items:center;gap:6px;padding:{{ nav.pad }};background:{{ nav.bg }};border:1px solid {{ nav.bd }};box-shadow:0 10px 30px rgba(10,10,15,0.06);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);transition:background .3s ease,border-color .3s ease">
+    <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuOpenAttr }}" aria-controls="nx-menu" aria-label="{{ menuLabel }}" style="display:flex;align-items:center;justify-content:center;width:{{ nav.tglW }};height:{{ nav.tglH }};flex:none;border:0;padding:0;cursor:pointer;background:{{ nav.btnBg }};color:{{ nav.fg }};transition:background .2s ease,color .2s ease" style-hover="background:#EDE9FE;color:#6D28D9">{{ menuIcon }}</button>
+    <a href="index.html" aria-label="NexHR home" style="display:block;overflow:hidden;width:{{ nav.logoW }};height:{{ nav.logoH }};line-height:0;flex:none;transition:width .35s cubic-bezier(0.2,0.7,0.2,1)">
+      <svg viewBox="0 0 372 104" aria-hidden="true" style="display:block;width:{{ nav.svgW }};height:{{ nav.logoH }}"><defs><linearGradient id="nxhrNavG" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxhrNavT"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxhrNavB"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(34,20) scale(0.457)"><g style="opacity:{{ nav.ml }};transition:opacity .4s ease"><g clip-path="url(#nxhrNavT)"><path fill="url(#nxhrNavG)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g><g clip-path="url(#nxhrNavB)"><path fill="url(#nxhrNavG)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g style="opacity:{{ nav.md }};transition:opacity .4s ease"><g clip-path="url(#nxhrNavT)"><path fill="#FFFFFF" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g><g clip-path="url(#nxhrNavB)"><path fill="#FFFFFF" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line stroke="#9333EA" fill="none" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line stroke="#9333EA" fill="none" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g><text x="138" y="72.5" font-family="'Hanken Grotesk','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif" font-size="58.7" font-weight="500" letter-spacing="4.6" fill="#0A0A0F">NEX<tspan font-weight="600" fill="#7C3AED">HR</tspan></text></svg>
+    </a>
+  </div>
+  <div style="position:fixed;top:{{ nav.top }};right:{{ nav.right }};z-index:1000;display:flex;align-items:center;gap:6px;padding:6px;background:{{ nav.bg }};border:1px solid {{ nav.bd }};box-shadow:0 10px 30px rgba(10,10,15,0.06);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);transition:background .3s ease,border-color .3s ease">
+    <sc-if value="{{ nav.wide }}" hint-placeholder-val="{{ true }}">
+      <a href="login.html" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;font-size:14px;font-weight:500;background:{{ nav.btnBg }};color:{{ nav.fg }};transition:background .2s ease,color .2s ease" style-hover="background:#EDE9FE;color:#6D28D9">Sign in</a>
+    </sc-if>
+    <a href="signup.html" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;font-size:14px;font-weight:500;background:#7C3AED;color:#FFFFFF" style-hover="background:#6D28D9;color:#FFFFFF" style-active="background:#5B21B6">Start free trial</a>
+  </div>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div id="nx-menu" role="dialog" aria-modal="true" aria-label="Site navigation" style="position:fixed;inset:0;z-index:995;background:#FFFFFF;overflow-y:auto;color:#0A0A0F">
+      <div style="max-width:1440px;margin:0 auto;padding:120px 7vw 56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px">
+        <nav aria-label="Main navigation">
+          <ul style="list-style:none;margin:0;padding:0">
+            <sc-for list="{{ menuItems }}" as="m" hint-placeholder-count="5">
+              <li style="border-top:1px solid #E7E7EC">
+                <a href="{{ m.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;font-weight:600;font-size:clamp(26px,2.6vw,38px);line-height:1.15;letter-spacing:-0.02em;color:#0A0A0F" style-hover="color:#7C3AED">{{ m.label }}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+              </li>
+            </sc-for>
+          </ul>
+        </nav>
+        <div style="border-left:1px solid #E7E7EC;padding-left:clamp(24px,3vw,48px);display:flex;flex-direction:column;gap:16px">
+          <p style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#6D28D9">Your workspace</p>
+          <a href="login.html" style="font-size:17px;font-weight:500;color:#0A0A0F;padding:11px 0;border-bottom:1px solid #E7E7EC" style-hover="color:#7C3AED">Sign in</a>
+          <a href="signup.html" style="font-size:17px;font-weight:500;color:#0A0A0F;padding:11px 0;border-bottom:1px solid #E7E7EC" style-hover="color:#7C3AED">Start a 14-day free trial</a>
+          <button type="button" onClick="{{ openDemo }}" style="text-align:left;font-size:17px;font-weight:500;color:#0A0A0F;padding:11px 0;border:0;border-bottom:1px solid #E7E7EC;background:transparent;cursor:pointer" style-hover="color:#7C3AED">Explore the demo</button>
+          <a href="signup.html" style="display:inline-flex;align-items:center;gap:10px;width:fit-content;margin-top:12px;font-size:14px;font-weight:500;padding:14px 24px;background:#7C3AED;color:#FFFFFF" style-hover="background:#6D28D9;color:#FFFFFF">Start free trial<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+        </div>
+      </div>
+      <div style="max-width:1440px;margin:0 auto;padding:0 7vw 48px">
+        <div style="display:flex;flex-wrap:wrap;gap:24px;padding-top:28px;border-top:1px solid #E7E7EC">
+          <a href="https://nexyraconsulting.co.uk/" style="font-size:14px;color:#4A4A5A" style-hover="color:#7C3AED">NexHR is a Nexyra Consulting product ↗</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <main id="top">
+    <section aria-labelledby="hero-heading" style="background:#FFFFFF;color:#0A0A0F;padding:{{ heroPad }} 0 0">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:56px;align-items:center;padding:0 7vw 64px">
+        <div style="display:flex;flex-direction:column;gap:28px;min-width:0">
+          <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6D28D9">HR · Rota · Timesheets</p>
+          <h1 id="hero-heading" style="font-size:clamp(44px,6.2vw,88px);font-weight:600;line-height:0.96;letter-spacing:-0.035em;text-wrap:balance">HR for teams that work in <span style="background-image:linear-gradient(135deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent">shifts.</span></h1>
+          <p style="font-size:18px;line-height:1.6;color:#4A4A5A;max-width:46ch;text-wrap:pretty">Rotas, clock-in, timesheets, leave, documents and employee records in one workspace. Staff check shifts on their phone, managers approve in one place, and HR sees the whole organisation.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+            <a href="signup.html" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:14px 24px;background:#7C3AED;color:#FFFFFF" style-hover="background:#6D28D9;color:#FFFFFF" style-active="background:#5B21B6">Start 14-day free trial<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>
+            <button type="button" onClick="{{ openDemo }}" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:13px 23px;border:1px solid #0A0A0F;background:transparent;color:#0A0A0F;cursor:pointer" style-hover="background:#F7F7F9">Explore the demo<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+          </div>
+          <p style="font-size:13px;color:#6B6B7B">No card needed. Then {{ priceLine }} per employee per month.</p>
+        </div>
+        <div aria-hidden="true" style="background:#F7F7F9;padding:clamp(16px,2.2vw,28px);border:1px solid #E7E7EC;min-width:0">
+          <div style="background:#FFFFFF;border:1px solid #E7E7EC;box-shadow:0 18px 40px rgba(10,10,15,0.08)">
+            <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:2px solid #0A0A0F;flex-wrap:wrap">
+              <span style="font-size:16px;font-weight:600;letter-spacing:-0.02em;white-space:nowrap">Today · Bristol Clinic</span>
+              <span style="font-size:12px;color:#6B6B7B;white-space:nowrap">Fri 9 Oct</span>
+              <span style="margin-left:auto;font-size:28px;font-weight:600;letter-spacing:-0.03em;font-variant-numeric:tabular-nums">{{ heroClock }}</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid #E7E7EC">
+              <sc-for list="{{ heroStats }}" as="x" hint-placeholder-count="3"><div style="padding:14px 18px;border-right:1px solid #E7E7EC;min-width:0"><p style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#6B6B7B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ x.l }}</p><p style="font-size:26px;font-weight:700;letter-spacing:-0.02em;font-variant-numeric:tabular-nums">{{ x.v }}</p></div></sc-for>
+            </div>
+            <sc-for list="{{ heroRows }}" as="r" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid #F0F0F3">
+                <span style="width:32px;height:32px;border-radius:999px;background:#EDE9FE;color:#5B21B6;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none">{{ r.ini }}</span>
+                <span style="flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.3"><span style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.n }}</span><span style="font-size:12px;color:#6B6B7B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.shift }}</span></span>
+                <span style="flex:none;font-size:12px;font-weight:600;padding:4px 10px;background:{{ r.bg }};color:{{ r.fg }};font-variant-numeric:tabular-nums;white-space:nowrap">{{ r.st }}</span>
+              </div>
+            </sc-for>
+            <div style="display:flex;align-items:center;gap:10px;padding:12px 18px;font-size:12px;color:#4A4A5A;background:#FAFAFB"><span style="width:8px;height:8px;border-radius:999px;background:#7C3AED;flex:none"></span>3 timesheets waiting for approval</div>
+          </div>
+        </div>
+      </div>
+      <div style="height:3px;background:linear-gradient(90deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%)"></div>
+      <ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));list-style:none;margin:0;padding:0 7vw;border-bottom:1px solid #E7E7EC">
+        <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+          <li style="border-right:1px solid #E7E7EC">
+            <a href="#product" style="display:block;padding:22px 24px 26px 0;font-size:15px;font-weight:500;color:#0A0A0F" style-hover="color:#7C3AED">
+              <span style="display:block;font-size:11px;font-weight:600;letter-spacing:0.2em;color:#7C3AED;margin-bottom:8px">{{ p.num }}</span>{{ p.label }}
+            </a>
+          </li>
+        </sc-for>
+      </ul>
+    </section>
+
+    <section id="product" aria-labelledby="product-heading" style="padding:88px 7vw">
+      <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:24px"><span style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#7C3AED">01</span><h2 id="product-heading" style="font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.025em;line-height:1.1">Everything HR runs each week</h2><span style="flex:1;height:2px;background:#E7E7EC"></span></div>
+      <p style="margin:0 0 48px;font-size:18px;line-height:1.6;color:#4A4A5A;max-width:640px">Eight modules share one employee record, so nobody keys the same data twice.</p>
+      <div style="display:grid;grid-template-columns:{{ modCols }};border-top:2px solid #0A0A0F">
+        <sc-for list="{{ modules }}" as="m" hint-placeholder-count="8">
+          <div style="padding:32px 32px 32px 0;border-right:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC">
+            <span style="display:flex;width:28px;height:28px;color:#7C3AED;margin-bottom:20px">{{ m.icon }}</span>
+            <h3 style="margin:0 0 8px;font-size:19px;font-weight:600;letter-spacing:-0.015em">{{ m.t }}</h3>
+            <p style="font-size:14px;line-height:1.65;color:#4A4A5A;text-wrap:pretty">{{ m.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-label="One record behind every module" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));align-items:stretch;border-top:1px solid #E7E7EC">
+      <div style="background:#F7F7F9;padding:56px 7vw;display:flex;align-items:center">
+        <div aria-hidden="true" style="width:100%;background:#FFFFFF;border:1px solid #E7E7EC;box-shadow:0 18px 40px rgba(10,10,15,0.08)">
+          <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:2px solid #0A0A0F;flex-wrap:wrap">
+            <span style="font-size:15px;font-weight:600;letter-spacing:-0.02em;white-space:nowrap">Rota · Bristol</span>
+            <span style="font-size:12px;color:#6B6B7B">w/c 12 Oct</span>
+            <span style="margin-left:auto;font-size:11px;font-weight:600;letter-spacing:0.14em;color:#6D28D9">PUBLISHED</span>
+          </div>
+          <div style="overflow:hidden">
+            <div style="display:grid;grid-template-columns:minmax(92px,1.3fr) repeat(5,minmax(0,1fr));font-size:11px">
+              <span style="padding:8px 12px;font-weight:600;letter-spacing:0.14em;color:#6B6B7B;border-bottom:1px solid #E7E7EC">TEAM</span>
+              <span style="padding:8px 6px;font-weight:600;color:#6B6B7B;border-bottom:1px solid #E7E7EC">Mon</span>
+              <span style="padding:8px 6px;font-weight:600;color:#6B6B7B;border-bottom:1px solid #E7E7EC">Tue</span>
+              <span style="padding:8px 6px;font-weight:600;color:#6B6B7B;border-bottom:1px solid #E7E7EC">Wed</span>
+              <span style="padding:8px 6px;font-weight:600;color:#6B6B7B;border-bottom:1px solid #E7E7EC">Thu</span>
+              <span style="padding:8px 6px;font-weight:600;color:#6B6B7B;border-bottom:1px solid #E7E7EC">Fri</span>
+              <sc-for list="{{ mockRows }}" as="row" hint-placeholder-count="4">
+                <span style="padding:10px 12px;font-size:13px;font-weight:500;border-bottom:1px solid #E7E7EC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ row.n }}</span>
+                <sc-for list="{{ row.c }}" as="c" hint-placeholder-count="5">
+                  <span style="padding:5px 4px;border-bottom:1px solid #E7E7EC;display:flex"><span style="flex:1;min-width:0;padding:4px 6px;background:{{ c.bg }};color:{{ c.fg }};border-top:2px solid {{ c.bd }};font-size:11px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;display:flex;flex-direction:column">{{ c.t }}<span style="font-weight:500;font-variant-numeric:tabular-nums">{{ c.tm }}</span></span></span>
+                </sc-for>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;padding:12px 16px;font-size:12px;color:#4A4A5A;border-top:1px solid #E7E7EC">
+            <span>Hours planned <strong style="color:#0A0A0F">151h 30m</strong></span><span>Clashes <strong style="color:#0A0A0F">0</strong></span><span>On leave <strong style="color:#0A0A0F">1</strong></span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:88px 7vw;display:flex;flex-direction:column;justify-content:center;gap:24px;background:#FFFFFF">
+        <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B7B">One record, every module</p>
+        <p style="font-size:clamp(24px,2.6vw,34px);font-weight:600;line-height:1.25;letter-spacing:-0.025em;text-wrap:pretty">Approved leave appears on the rota. Approved timesheets feed the hours report.</p>
+        <p style="font-size:15px;line-height:1.65;color:#4A4A5A;max-width:52ch">Managers see clashes before they publish, and HR exports the week without chasing anyone for a spreadsheet.</p>
+        <a href="#how" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:#6D28D9;align-self:flex-start" style-hover="color:#5B21B6">How it works<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+      </div>
+    </section>
+
+    <section id="roles" aria-labelledby="roles-heading" style="background:#F7F7F9;border-top:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC">
+      <div style="padding:88px 7vw">
+        <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:24px"><span style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#7C3AED">02</span><h2 id="roles-heading" style="font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.025em;line-height:1.1">Four roles, one workspace</h2><span style="flex:1;height:2px;background:#E7E7EC"></span></div>
+        <p style="margin:0 0 48px;font-size:18px;line-height:1.6;color:#4A4A5A;max-width:640px">Everyone sees what their job needs, and nothing more.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-top:2px solid #0A0A0F">
+          <sc-for list="{{ roles }}" as="r" hint-placeholder-count="4">
+            <div style="padding:32px 32px 32px 0;border-right:1px solid #E7E7EC">
+              <p style="font-size:12px;font-weight:600;letter-spacing:0.16em;color:#7C3AED;margin-bottom:12px">{{ r.k }}</p>
+              <h3 style="margin:0 0 20px;font-size:24px;font-weight:600;letter-spacing:-0.02em">{{ r.t }}</h3>
+              <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+                <sc-for list="{{ r.items }}" as="i" hint-placeholder-count="3">
+                  <li style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid #E7E7EC;font-size:14px;color:#0A0A0F"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:4px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>{{ i }}</li>
+                </sc-for>
+              </ul>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" aria-labelledby="how-heading" style="padding:88px 7vw">
+      <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:24px"><span style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#7C3AED">03</span><h2 id="how-heading" style="font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.025em;line-height:1.1">Live in an afternoon</h2><span style="flex:1;height:2px;background:#E7E7EC"></span></div>
+      <p style="margin:0 0 48px;font-size:18px;line-height:1.6;color:#4A4A5A;max-width:640px">From sign-up to your first published rota.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));border-top:2px solid #0A0A0F">
+        <sc-for list="{{ steps }}" as="st" hint-placeholder-count="3">
+          <div style="padding:28px 28px 28px 0;border-right:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC">
+            <p style="margin:0 0 12px;font-size:12px;font-weight:600;letter-spacing:0.16em;color:#7C3AED;font-variant-numeric:tabular-nums">{{ st.n }}</p>
+            <h3 style="margin:0 0 8px;font-size:19px;font-weight:600;letter-spacing:-0.015em">{{ st.t }}</h3>
+            <p style="font-size:14px;line-height:1.65;color:#4A4A5A;text-wrap:pretty">{{ st.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="security" aria-labelledby="security-heading" style="background:#F7F7F9;border-top:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC">
+      <div style="padding:88px 7vw">
+        <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:24px"><span style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#7C3AED">04</span><h2 id="security-heading" style="font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.025em;line-height:1.1">Built for employee data</h2><span style="flex:1;height:2px;background:#E7E7EC"></span></div>
+        <p style="margin:0 0 48px;font-size:18px;line-height:1.6;color:#4A4A5A;max-width:640px">Bank details, medical notes and right-to-work documents are sensitive by default.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));border-top:2px solid #0A0A0F">
+          <sc-for list="{{ security }}" as="x" hint-placeholder-count="4">
+            <div style="padding:32px 32px 32px 0;border-right:1px solid #E7E7EC">
+              <span style="display:flex;width:28px;height:28px;color:#7C3AED;margin-bottom:20px">{{ x.icon }}</span>
+              <h3 style="margin:0 0 10px;font-size:20px;font-weight:600;letter-spacing:-0.02em">{{ x.t }}</h3>
+              <p style="font-size:15px;line-height:1.65;color:#4A4A5A;text-wrap:pretty">{{ x.d }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="price-heading" style="padding:88px 7vw">
+      <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:48px"><span style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#7C3AED">05</span><h2 id="price-heading" style="font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.025em;line-height:1.1">One price per employee</h2><span style="flex:1;height:2px;background:#E7E7EC"></span></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px;align-items:end">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div role="group" aria-label="Currency" style="display:flex;border:1px solid #E7E7EC;width:fit-content">
+            <sc-for list="{{ curOpts }}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{ o.go }}" aria-pressed="{{ o.on }}" style="font-size:13px;font-weight:500;padding:9px 16px;border:0;border-left:1px solid #E7E7EC;background:{{ o.bg }};color:{{ o.fg }};cursor:pointer">{{ o.l }}</button></sc-for>
+          </div>
+          <p style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span style="font-size:clamp(56px,8vw,104px);font-weight:700;letter-spacing:-0.04em;line-height:1;font-variant-numeric:tabular-nums">{{ priceLine }}</span><span style="font-size:15px;color:#4A4A5A">per employee<br>per month</span></p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <ul style="margin:0;padding:0;list-style:none;border-top:2px solid #0A0A0F">
+            <sc-for list="{{ priceFacts }}" as="f" hint-placeholder-count="4"><li style="display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #E7E7EC;font-size:15px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:5px"><path d="M20 6 9 17l-5-5"></path></svg>{{ f }}</li></sc-for>
+          </ul>
+          <a href="pricing.html" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:#6D28D9;width:fit-content" style-hover="color:#5B21B6">See pricing and work out your cost<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section data-nav-tone="dark" aria-labelledby="cta-heading" style="background:#0A0A0F;color:#FFFFFF;padding:88px 7vw">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px;align-items:end">
+        <h2 id="cta-heading" style="font-size:clamp(32px,4.4vw,60px);font-weight:600;line-height:1.02;letter-spacing:-0.03em;text-wrap:pretty">Publish next week&#8217;s rota in NexHR.</h2>
+        <div>
+          <p style="margin:0 0 32px;font-size:17px;line-height:1.6;color:#B4B4C4;max-width:46ch;text-wrap:pretty">Start a 14-day free trial with every feature, or look around the demo workspace first.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <a href="signup.html" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:14px 24px;background:#7C3AED;color:#FFFFFF" style-hover="background:#6D28D9;color:#FFFFFF">Start free trial<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>
+            <button type="button" onClick="{{ openDemo }}" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:13px 23px;border:1px solid #FFFFFF;background:transparent;color:#FFFFFF;cursor:pointer" style-hover="background:#1A1A24">Explore the demo</button>
+          </div>
+        </div>
+      </div>
+      <div style="height:3px;background:linear-gradient(90deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%);margin-top:88px"></div>
+    </section>
+  </main>
+
+  <footer aria-label="Site footer" style="background:#FFFFFF;padding:88px 7vw 32px;color:#0A0A0F;border-top:1px solid #E7E7EC">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:40px 0;padding-bottom:56px">
+      <div style="padding-right:48px">
+        <span style="display:flex;align-items:center;gap:10px;margin-bottom:20px"><img src="assets/logos/nexyraMonogram.svg" alt="" style="height:30px;width:auto;display:block"><span style="font-size:23px;font-weight:500;letter-spacing:0.08em;line-height:1">NEX<span style="font-weight:600;color:#7C3AED">HR</span></span></span>
+        <p style="font-size:14px;line-height:1.65;color:#4A4A5A;max-width:30ch;text-wrap:pretty">HR, rota and timesheets for shift-based teams. A Nexyra Consulting product.</p>
+      </div>
+      <sc-for list="{{ footCols }}" as="col" hint-placeholder-count="3">
+        <div style="padding:0 32px;border-left:1px solid #E7E7EC">
+          <h3 style="margin:0 0 20px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B7B">{{ col.h }}</h3>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+            <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="3">
+              <li style="padding:12px 0;border-top:1px solid #E7E7EC"><a href="{{ l.href }}" style="display:flex;font-size:15px;font-weight:500;color:#0A0A0F;background-image:linear-gradient(135deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%);-webkit-background-clip:text;background-clip:text;transition:color .25s ease" style-hover="color:transparent;-webkit-text-fill-color:transparent">{{ l.label }}</a></li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+    <div style="height:2px;background:#0A0A0F"></div>
+    <div style="padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:#6B6B7B"><span>© 2026 Nexyra Consulting Ltd. All rights reserved.</span><a href="mailto:hello@nexyraconsulting.co.uk" style="color:#6B6B7B" style-hover="color:#6D28D9">hello@nexyraconsulting.co.uk</a></div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { cur: 'GBP', vw: 1400, tone: 'light', menuOpen: false };
+  componentDidMount() {
+    import(new URL('assets/js/platform.js', location.href).href).then(pf => {
+      this.pf = pf;
+      if (pf.workspaceFromHost()) { location.replace('login.html'); return; }
+      this.setState({ cur: pf.detectCurrency() });
+    });
+    this._r = () => this.setState({ vw: window.innerWidth }); this._r();
+    this._tone = () => { const y = this.state.vw < 640 ? 41 : 53, x = 60; const els = document.elementsFromPoint(x, y); const sec = els.map(e => e.closest && e.closest('[data-nav-tone]')).find(Boolean); const t = sec ? sec.getAttribute('data-nav-tone') : 'light'; if (t !== this.state.tone) this.setState({ tone: t }); };
+    this._key = e => { if (e.key === 'Escape' && this.state.menuOpen) this.setMenu(false); };
+    window.addEventListener('resize', this._r); window.addEventListener('scroll', this._tone, { passive: true }); window.addEventListener('keydown', this._key);
+    setTimeout(this._tone, 80);
+  }
+  setMenu(open) { this.setState({ menuOpen: open }); document.body.style.overflow = open ? 'hidden' : ''; }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); window.removeEventListener('scroll', this._tone); window.removeEventListener('keydown', this._key); document.body.style.overflow = ''; }
+  ico(paths) { const h = React.createElement; return h('svg', { width: 28, height: 28, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true }, paths.map((d, i) => h('path', { key: i, d }))); }
+  renderVals() {
+    const s = this.state, pf = this.pf, dark = s.tone === 'dark' && !s.menuOpen, h = React.createElement;
+    const sym = { GBP: '£', EUR: '€', USD: '$' }[s.cur], amt = { GBP: '4', EUR: '4.50', USD: '5' }[s.cur];
+    const I = {
+      cal: ['M8 2v4', 'M16 2v4', 'M3 10h18', 'M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z'],
+      clock: ['M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z', 'M12 6v6l4 2'],
+      plane: ['M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z'],
+      user: ['M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2', 'M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z'],
+      file: ['M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z', 'M14 2v4a2 2 0 0 0 2 2h4', 'M10 9H8', 'M16 13H8', 'M16 17H8'],
+      bank: ['M2 6h20v12H2z', 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z', 'M6 12h.01', 'M18 12h.01'],
+      mega: ['m3 11 18-5v12L3 14v-3z', 'M11.6 16.8a3 3 0 1 1-5.8-1.6'],
+      chart: ['M3 3v18h18', 'M18 17V9', 'M13 17V5', 'M8 17v-3'],
+      shield: ['M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z'],
+      lock: ['M5 11h14v11H5z', 'M7 11V7a5 5 0 0 1 10 0v4'],
+      layers: ['m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z', 'm22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65', 'm22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65'],
+      list: ['M3 12h.01', 'M3 18h.01', 'M3 6h.01', 'M8 12h13', 'M8 18h13', 'M8 6h13']
+    };
+    const C = { E: ['Early', '07:30', '#EDE9FE', '#5B21B6', '#7C3AED'], D: ['Day', '09:00', '#DBEAFE', '#1D4ED8', '#2563EB'], L: ['Late', '12:00', '#F3E8FF', '#6B21A8', '#9333EA'], A: ['Leave', '\u00a0', '#F7F7F9', '#4A4A5A', '#B4B4C4'], O: ['Off', '\u00a0', '#FFFFFF', '#8A8A9C', '#E7E7EC'] };
+    const narrow = s.vw < 640;
+    return {
+      nav: { top: narrow ? '16px' : '24px', right: narrow ? '16px' : '7vw', wide: s.vw >= 560,
+        bg: dark ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.72)', bd: dark ? 'rgba(255,255,255,0.18)' : 'rgba(10,10,15,0.08)',
+        btnBg: dark ? 'rgba(255,255,255,0.1)' : 'rgba(10,10,15,0.05)', fg: dark ? '#FFFFFF' : '#0A0A0F', hr: dark ? '#A78BFA' : '#7C3AED', tglW: narrow ? '40px' : '46px', tglH: narrow ? '38px' : '44px', pad: narrow ? '5px 8px 5px 5px' : '6px 10px 6px 6px', logoW: s.menuOpen ? (narrow ? '157px' : '182px') : (narrow ? '52.9px' : '61px'), logoH: narrow ? '43.7px' : '50.6px', svgW: narrow ? '156.3px' : '181px', ml: dark ? '0' : '1', md: dark ? '1' : '0' },
+      menuOpen: s.menuOpen, menuOpenAttr: s.menuOpen ? 'true' : 'false', menuLabel: s.menuOpen ? 'Close menu' : 'Open menu',
+      toggleMenu: () => this.setMenu(!s.menuOpen), closeMenu: () => this.setMenu(false),
+      menuIcon: h('svg', { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true }, (s.menuOpen ? ['M18 6 6 18', 'm6 6 12 12'] : ['M2.8 7h18.4', 'M2.8 12h18.4', 'M2.8 17h18.4']).map(d => h('path', { key: d, d }))),
+      menuItems: [{ label: 'Product', href: '#product' }, { label: 'Roles', href: '#roles' }, { label: 'How it works', href: '#how' }, { label: 'Security', href: '#security' }, { label: 'Pricing', href: 'pricing.html' }],
+      priceLine: sym + amt,
+      modCols: 'repeat(' + (s.vw >= 1000 ? 4 : s.vw >= 560 ? 2 : 1) + ',minmax(0,1fr))',
+      heroPad: narrow ? '120px' : '150px', heroClock: '14:20',
+      heroStats: [{ l: 'On shift', v: '8' }, { l: 'On break', v: '1' }, { l: 'Next start', v: '16:00' }],
+      heroRows: [
+        { ini: 'AO', n: 'Amara Okafor', shift: 'Day · 09:00–17:30', st: 'In since 08:56', bg: '#DCFCE7', fg: '#166534' },
+        { ini: 'TW', n: 'Tomasz Wilk', shift: 'Early · 07:30–15:30', st: 'On break · 14:05', bg: '#FEF3C7', fg: '#92400E' },
+        { ini: 'GM', n: 'Grace Mensah', shift: 'Late · 12:00–20:00', st: 'In since 11:52', bg: '#DCFCE7', fg: '#166534' },
+        { ini: 'LH', n: 'Liam Hartley', shift: 'Late · 16:00–00:00', st: 'Starts 16:00', bg: '#EDE9FE', fg: '#5B21B6' },
+        { ini: 'PN', n: 'Priya Nair', shift: 'Annual leave', st: 'On leave', bg: '#F1F1F4', fg: '#4A4A5A' }
+      ],
+      pillars: [{ num: '01', label: 'Rota planning' }, { num: '02', label: 'Clock-in and timesheets' }, { num: '03', label: 'Leave and balances' }, { num: '04', label: 'Employee records' }],
+      mockRows: [['Amara Okafor', 'DDDLO'], ['Tomasz Wilk', 'EEOEE'], ['Grace Mensah', 'LLDDA'], ['Liam Hartley', 'ODDOL']].map(([n, p]) => ({ n, c: p.split('').map(k => ({ t: C[k][0], tm: C[k][1], bg: C[k][2], fg: C[k][3], bd: C[k][4] })) })),
+      openDemo: () => { if (!pf) return; pf.demoSession(); location.href = 'app.html'; },
+      curOpts: ['GBP', 'EUR', 'USD'].map(c => ({ l: c + ' ' + { GBP: '£', EUR: '€', USD: '$' }[c], on: s.cur === c, bg: s.cur === c ? '#7C3AED' : '#FFFFFF', fg: s.cur === c ? '#FFFFFF' : '#4A4A5A', go: () => { this.setState({ cur: c }); pf && pf.saveCurrency(c); } })),
+      priceFacts: ['Every module and every role included', '14-day free trial, no card needed', 'Billed monthly, or yearly with two months free', 'Pay in pounds, euros or US dollars'],
+      modules: [
+        { icon: this.ico(I.cal), t: 'Rota planning', d: 'Build weekly rotas by location, copy last week and see leave clashes before you publish.' },
+        { icon: this.ico(I.clock), t: 'Clock-in and timesheets', d: 'Staff clock in, take breaks and clock out. Weekly timesheets go straight to their manager.' },
+        { icon: this.ico(I.plane), t: 'Leave', d: 'Requests, balances and approvals for annual, sick, compassionate and unpaid leave.' },
+        { icon: this.ico(I.user), t: 'Employee records', d: 'Profiles, contracts, emergency contacts and bank details, with every reveal logged.' },
+        { icon: this.ico(I.file), t: 'Documents and requests', d: 'Issue policies for acknowledgement. Staff request employment letters and track them to delivery.' },
+        { icon: this.ico(I.bank), t: 'Payslips', d: 'Monthly payslips available to every employee, on any device.' },
+        { icon: this.ico(I.mega), t: 'Announcements', d: 'Post news to the whole company or to a single location.' },
+        { icon: this.ico(I.chart), t: 'Reports and audit log', d: 'Hours, absence and headcount exports, plus a record of every sensitive action.' }
+      ],
+      roles: [
+        { k: 'EMPLOYEE', t: 'Their own week', items: ['Clock in and see shifts', 'Book leave and check balance', 'Download payslips and letters'] },
+        { k: 'MANAGER', t: 'Their team', items: ['Plan and publish the rota', 'Approve timesheets and leave', 'See team attendance'] },
+        { k: 'HR', t: 'The organisation', items: ['Add and manage employees', 'Run document requests', 'Reports and audit log'] },
+        { k: 'ADMIN', t: 'The workspace', items: ['Company settings and policies', 'Invite users and assign roles', 'Plan and billing'] }
+      ],
+      steps: [
+        { n: '01', t: 'Create your workspace', d: 'Choose your address, such as yourcompany.nexhr.com, and set up your admin account with two-step login.' },
+        { n: '02', t: 'Set up your company', d: 'Add locations, departments and your leave year. Change any of it later in Settings.' },
+        { n: '03', t: 'Invite your team', d: 'Send invitations by email and choose each person\u2019s role. They set their own password when they accept.' }
+      ],
+      security: [
+        { icon: this.ico(I.lock), t: 'Two-step login', d: 'Authenticator-app codes for every account. Required for Admin and HR, and optional for everyone else unless you turn it on.' },
+        { icon: this.ico(I.layers), t: 'Separate data per company', d: 'Each workspace has its own address, and every database query is limited to one organisation.' },
+        { icon: this.ico(I.shield), t: 'Role-based access', d: 'Employees see their own records, managers see their team, and only HR sees the organisation.' },
+        { icon: this.ico(I.list), t: 'Audit log', d: 'Sign-ins, approvals, bank-detail reveals and setting changes are recorded and can\u2019t be edited.' }
+      ],
+      footCols: [
+        { h: 'Product', links: [{ label: 'Features', href: '#product' }, { label: 'Security', href: '#security' }, { label: 'Pricing', href: 'pricing.html' }] },
+        { h: 'Account', links: [{ label: 'Start free trial', href: 'signup.html' }, { label: 'Sign in', href: 'login.html' }] },
+        { h: 'Nexyra', links: [{ label: 'Nexyra Consulting', href: 'https://nexyraconsulting.co.uk/' }, { label: 'Privacy Policy', href: 'https://nexyraconsulting.co.uk/privacy-policy.html' }, { label: 'Terms of Use', href: 'https://nexyraconsulting.co.uk/terms-of-use.html' }] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

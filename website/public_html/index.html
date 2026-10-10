@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>window.__resources = {"./zx-Nav%20v2.dc.html":"assets/components/Nav-v2-46414690b2.dc.html","./zx-Footer%20v3.dc.html":"assets/components/Footer-v3-f7036af1a1.dc.html","https://unpkg.com/react@18.3.1/umd/react.production.min.js":"assets/js/react.production.min-aa77ae4c49.js","https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"assets/js/react-dom.production.min-feb8ddc9d0.js"};</script>
+<style>#nx-loader{position:fixed;inset:0;z-index:2147483000;background:#FFFFFF;display:flex;align-items:center;justify-content:center;transition:opacity .3s ease}#nx-loader svg{width:100%;height:100%}#nx-loader.nx-done{opacity:0;pointer-events:none}</style>
+<style>@media (max-width: 640px) { .nx-search:not([data-open="true"]) .nx-search-input { padding: 0 !important; } }</style>
+<script src="assets/js/dc-runtime-2e38395c4a.js"></script>
+
+</head>
+<body>
+<div id="nx-loader" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxct)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxcb)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg></div>
+<script>(function(){var l=document.getElementById('nx-loader'),t0=Date.now();function done(){if(!l)return;l.classList.add('nx-done');setTimeout(function(){l&&l.remove();l=null},350)}(function poll(){var r=document.getElementById('dc-root');if(r&&r.textContent.trim().length>40&&document.readyState!=='loading'){setTimeout(done,Math.max(0,500-(Date.now()-t0)));return}if(Date.now()-t0>6000){done();return}setTimeout(poll,60)})()})();</script>
+<x-dc>
+<helmet>
+<link rel="icon" href="assets/img/image-a6e3d7ae08.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-771a285a9d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-b32d9b382e.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-3560987b16.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-881c68f3b9.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-4b17538334.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-560d9f41c0.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-2cba32d0c1.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-38c3847fad.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  * { box-sizing: border-box; }
+  body { -webkit-font-smoothing: antialiased; }
+  a { color: #6D28D9; text-decoration: none; }
+  a:hover { color: #5B21B6; }
+  ::selection { background: #EDE9FE; color: #0A0A0F; }
+  :focus-visible { outline: 2px solid #7C3AED; outline-offset: 2px; }
+</style>
+<script src="assets/js/zx-parallax.js" defer=""></script>
+</helmet>
+
+<div style="font-family: 'Hanken Grotesk', 'Neue Haas Grotesk Display', 'Helvetica Neue', Arial, sans-serif; background: #FFFFFF; color: #0A0A0F; font-size: 15px; line-height: 1.65; overflow-x: clip;">
+
+  <dc-import name="zx-Nav v2" hint-size="100%,1px"></dc-import>
+
+  <main id="top">
+
+    <section data-nav-tone="dark" style="position: relative; overflow: hidden; isolation: isolate; background: #07061A; color: #FFFFFF; padding: max(176px, var(--nx-clear, 118px)) 7vw 0;" aria-labelledby="hero-heading">
+      <canvas ref="{{ heroCanvas }}" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: -3;"></canvas>
+      <div aria-hidden="true" style="position: absolute; inset: 0; z-index: -2; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 72px 72px; -webkit-mask-image: radial-gradient(ellipse 70% 70% at 72% 40%, #000 0%, transparent 75%); mask-image: radial-gradient(ellipse 70% 70% at 72% 40%, #000 0%, transparent 75%);"></div>
+      <div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(7,6,26,0.55) 0%, rgba(7,6,26,0.15) 55%, rgba(7,6,26,0) 100%);"></div>
+      <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #B9B3E6; margin: 0 0 48px;">Strategy · Design · Technology · Finance</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: end;">
+        <h1 id="hero-heading" style="margin: 0; font-size: clamp(44px, 7.2vw, 104px); font-weight: 600; line-height: 0.96; letter-spacing: -0.03em;">Designing<br><span style="background: linear-gradient(135deg, #A78BFA 0%, #7C3AED 39%, #3B82F6 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; display: inline-block; padding-bottom: 0.08em;">what's next.</span></h1>
+        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #D6D3EE; max-width: 46ch; text-wrap: pretty;">We design, build and transform digital products and technology solutions, and run the finance function behind them, partnering with enterprises and organisations from strategy and discovery through to deployment, scale and reporting.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; margin: 48px 0;">
+        <a href="contact.html" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; padding: 14px 24px; background: #7C3AED; color: #FFFFFF;" style-hover="background: #6D28D9; color: #FFFFFF;">Start a Project
+          <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+        </a>
+        <a href="work.html" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; padding: 13px 23px; border: 1px solid rgba(255,255,255,0.7); color: #FFFFFF; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);" style-hover="background: rgba(255,255,255,0.1); color: #FFFFFF;">View Our Work
+          <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+        </a>
+      </div>
+      <div style="height: 3px; background: linear-gradient(90deg, #A78BFA 0%, #7C3AED 39%, #3B82F6 100%);"></div>
+      <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); list-style: none; margin: 0; padding: 0;">
+        <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+          <li style="border-right: 1px solid rgba(255,255,255,0.12);">
+            <a href="{{ p.href }}" style="display: block; padding: 22px 24px 26px 0; font-size: 15px; font-weight: 500; color: #FFFFFF; transition: color 180ms ease;" style-hover="color: #C4B5FD;">
+              <span style="display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: #A78BFA; margin-bottom: 8px;">{{ p.num }}</span>
+              <span style="display: inline-flex; align-items: baseline; gap: 8px;">{{ p.label }}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto;"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span>
+            </a>
+          </li>
+        </sc-for>
+      </ul>
+    </section>
+
+    <section style="padding: 0 7vw 88px;" aria-label="Nexyra in numbers">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+          <div style="padding: 32px 24px 32px 0; border-right: 1px solid #E7E7EC;">
+            <p style="margin: 0; font-size: clamp(38px, 5vw, 62px); font-weight: 700; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums;">{{ s.value }}</p>
+            <p style="margin: 10px 0 0; font-size: 13px; color: #6B6B7B;">{{ s.label }}</p>
+          </div>
+        </sc-for>
+      </div>
+      <div style="height: 1px; background: #E7E7EC;"></div>
+    </section>
+
+    <section style="background: #F7F7F9; border-top: 1px solid #E7E7EC; border-bottom: 1px solid #E7E7EC;" aria-labelledby="value-heading">
+      <div style="padding: 88px 7vw;">
+        <div style="display: flex; align-items: baseline; gap: 20px; margin-bottom: 48px;">
+          <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: #7C3AED;">01</span>
+          <h2 id="value-heading" style="margin: 0; font-size: clamp(28px, 3.4vw, 44px); font-weight: 600; letter-spacing: -0.025em;">Why Nexyra</h2>
+          <span style="flex: 1; height: 2px; background: #E7E7EC;"></span>
+        </div>
+        <p style="margin: 0 0 48px; font-size: 18px; line-height: 1.6; color: #4A4A5A; max-width: 640px;">Built for technology-led organisations.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); border-top: 2px solid #0A0A0F;">
+          <sc-for list="{{ valueProps }}" as="v" hint-placeholder-count="3">
+            <div style="padding: 32px 32px 32px 0; border-right: 1px solid #E7E7EC;">
+              <span style="display: block; color: #7C3AED; margin-bottom: 20px;">{{ v.icon }}</span>
+              <h3 style="margin: 0 0 10px; font-size: 24px; font-weight: 600; letter-spacing: -0.02em;">{{ v.title }}</h3>
+              <p style="margin: 0 0 24px; font-size: 15px; line-height: 1.65; color: #4A4A5A; text-wrap: pretty;">{{ v.desc }}</p>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column;">
+                <sc-for list="{{ v.items }}" as="item" hint-placeholder-count="3">
+                  <li style="display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-top: 1px solid #E7E7EC; font-size: 14px; color: #0A0A0F;">
+                    <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 4px;" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                    {{ item }}
+                  </li>
+                </sc-for>
+              </ul>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 88px 7vw;" aria-labelledby="capability-heading">
+      <div style="display: flex; align-items: baseline; gap: 20px; margin-bottom: 48px;">
+        <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: #7C3AED;">02</span>
+        <h2 id="capability-heading" style="margin: 0; font-size: clamp(28px, 3.4vw, 44px); font-weight: 600; letter-spacing: -0.025em;">What we do</h2>
+        <span style="flex: 1; height: 2px; background: #E7E7EC;"></span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); border-top: 2px solid #0A0A0F;">
+        <sc-for list="{{ capabilities }}" as="c" hint-placeholder-count="11">
+          <a href="{{ c.href }}" style="display: flex; align-items: baseline; gap: 16px; padding: 18px 24px 18px 0; border-bottom: 1px solid #E7E7EC; color: #0A0A0F; transition: color 180ms ease;" style-hover="color: #6D28D9;">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.16em; color: #6B6B7B; font-variant-numeric: tabular-nums;">{{ c.num }}</span>
+            <span style="flex: 1; font-size: 17px; font-weight: 500; letter-spacing: -0.01em;">{{ c.label }}</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto;"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="position: relative; overflow: hidden; isolation: isolate; min-height: clamp(560px, 50vw, 720px); display: flex; flex-direction: column; justify-content: flex-end; background: #0A0A0F; color: #FFFFFF; padding: 160px 7vw 80px; border-top: 1px solid #E7E7EC;" aria-label="Our approach in practice">
+      <div data-nav-tone="dark" role="img" aria-label="A client and consultant in conversation at a table with a laptop" style="position: absolute; inset: 0; z-index: -2; filter: grayscale(1); background-image: url(&quot;assets/img/partnership-unsplash.jpg&quot;); background-size: cover; background-position: 70% center;"></div>
+      <div data-nav-tone="dark" aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,10,15,0.15) 0%, rgba(10,10,15,0.35) 25%, rgba(10,10,15,0.72) 52%, rgba(10,10,15,0.92) 100%), linear-gradient(90deg, rgba(10,10,15,0.35) 0%, rgba(10,10,15,0) 60%);"></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 28px 64px; align-items: flex-end;">
+        <div style="flex: 1.25 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 22px;">
+          <p style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #DDD6FE;">Partnership, not vendor</p>
+          <p style="margin: 0; font-size: clamp(28px, 3.2vw, 46px); font-weight: 600; line-height: 1.12; letter-spacing: -0.03em; text-wrap: balance;">We invest in understanding your organisation deeply. Your success is our metric.</p>
+        </div>
+        <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+          <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #E4E4EC; max-width: 46ch; text-wrap: pretty;">We measure ourselves by the outcomes we help you achieve, not hours billed.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            <a href="about.html" style="display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 14px; font-weight: 500; padding: 14px 24px; background: #7C3AED; color: #FFFFFF;" style-hover="background: #6D28D9; color: #FFFFFF;">More About Us
+              <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+            </a>
+            <a href="contact.html" style="display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 14px; font-weight: 500; padding: 13px 23px; border: 1px solid rgba(255,255,255,0.7); color: #FFFFFF;" style-hover="background: #FFFFFF; color: #0A0A0F;">Start a Project</a>
+          </div>
+        </div>
+      </div>
+      <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, #A78BFA 0%, #7C3AED 39%, #3B82F6 100%);"></div>
+    </section>
+
+    <section style="background: #F7F7F9; border-top: 1px solid #E7E7EC; border-bottom: 1px solid #E7E7EC;" aria-labelledby="process-heading">
+      <div style="padding: 88px 7vw;">
+        <div style="display: flex; align-items: baseline; gap: 20px; margin-bottom: 48px;">
+          <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: #7C3AED;">03</span>
+          <h2 id="process-heading" style="margin: 0; font-size: clamp(28px, 3.4vw, 44px); font-weight: 600; letter-spacing: -0.025em;">Our engagement model</h2>
+          <span style="flex: 1; height: 2px; background: #E7E7EC;"></span>
+        </div>
+        <p style="margin: 0 0 48px; font-size: 18px; line-height: 1.6; color: #4A4A5A; max-width: 640px;">From discovery to scale: we cover every stage.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); border-top: 2px solid #0A0A0F;">
+          <sc-for list="{{ process }}" as="p" hint-placeholder-count="8">
+            <div style="padding: 28px 28px 28px 0; border-right: 1px solid #E7E7EC; border-bottom: 1px solid #E7E7EC;">
+              <p style="margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: #7C3AED; font-variant-numeric: tabular-nums;">{{ p.step }}</p>
+              <h3 style="margin: 0 0 8px; font-size: 19px; font-weight: 600; letter-spacing: -0.015em;">{{ p.title }}</h3>
+              <p style="margin: 0; font-size: 14px; line-height: 1.65; color: #4A4A5A; text-wrap: pretty;">{{ p.desc }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #0A0A0F; color: #FFFFFF; padding: 88px 7vw;" aria-labelledby="cta-heading">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: end;">
+        <h2 id="cta-heading" style="margin: 0; font-size: clamp(32px, 4.4vw, 60px); font-weight: 600; line-height: 1.02; letter-spacing: -0.03em; text-wrap: pretty;">Ready to build something transformative?</h2>
+        <div>
+          <p style="margin: 0 0 32px; font-size: 17px; line-height: 1.6; color: #B4B4C4; max-width: 46ch; text-wrap: pretty;">Tell us about your project and we'll outline how we can help, from a focused product build to a full digital transformation programme.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            <a href="contact.html" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; padding: 14px 24px; background: #7C3AED; color: #FFFFFF;" style-hover="background: #6D28D9; color: #FFFFFF;">Start a Project
+              <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+            </a>
+            <a href="contact.html" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; padding: 13px 23px; border: 1px solid #FFFFFF; color: #FFFFFF;" style-hover="background: #1A1A24; color: #FFFFFF;">Book a Discovery Call</a>
+          </div>
+        </div>
+      </div>
+      <div style="height: 3px; background: linear-gradient(90deg, #A78BFA 0%, #7C3AED 39%, #3B82F6 100%); margin-top: 88px;"></div>
+    </section>
+  </main>
+
+  <dc-import name="zx-Footer v3" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="">
+const icon = (paths) => React.createElement("svg", { width: 28, height: 28, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, paths.map((d, i) => React.createElement("path", { key: i, d })));
+
+const CAPABILITIES = ["User Research & Insights","Brand Building","Marketing Strategy & Execution","Digital Transformation","Managed Services","Accounts & Business Services","Experience Design (UX/UI)","SaaS Product Design","Enterprise Software Design","Automation & Intelligent Systems","No-Code Development"];
+
+const CAP_LINKS = {"User Research & Insights":"services-user-research.html","Brand Building":"services-brand-building.html","Marketing Strategy & Execution":"services-marketing-strategy.html","Digital Transformation":"services-digital-transformation.html","Managed Services":"services-managed-services.html","Accounts & Business Services":"services-accounts-and-business-services.html","Experience Design (UX/UI)":"services-experience-design.html","SaaS Product Design":"services-product-and-service-design.html","Enterprise Software Design":"services-enterprise-software-design.html","Automation & Intelligent Systems":"services-automation-and-intelligent-systems.html","No-Code Development":"services-no-code-development.html"};
+
+class Component extends DCLogic {
+  heroCanvas = React.createRef();
+
+  componentDidMount() {
+    const c = this.heroCanvas.current;
+    if (!c) return;
+    const ctx = c.getContext("2d");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const S = { w: 0, h: 0, parts: [], flow: [], mx: -9999, my: -9999, last: null, lastMove: 0, px: 0, py: 0 };
+    const seedParticles = () => {
+      const n = Math.round(Math.min(150, (S.w * S.h) / 9000));
+      const f = Math.round(Math.min(S.w < 700 ? 260 : 900, (S.w * S.h) / 1400));
+      S.flow = Array.from({ length: f }, (_, i) => ({ x: Math.random() * S.w, y: Math.random() * S.h, life: Math.random() * 300, b: i % 3 === 0 }));
+      S.parts = Array.from({ length: n }, (_, i) => ({ x: Math.random() * S.w, y: Math.random() * S.h, vx: (Math.random() - 0.5) * 0.12, vy: (Math.random() - 0.5) * 0.12, r: 0.6 + Math.random() * 1.4, b: i % 3 === 0 }));
+    };
+    const resize = () => {
+      const r = c.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      S.w = r.width; S.h = r.height;
+      c.width = Math.round(S.w * dpr); c.height = Math.round(S.h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seedParticles(); S.last = null;
+      if (this.drawFrame) this.drawFrame(reduce ? 18000 : performance.now());
+    };
+    const base = (a0 = "#07061A", a1 = "#0E0A2E", alpha = 1) => {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = alpha;
+      const g = ctx.createLinearGradient(0, 0, S.w, S.h);
+      g.addColorStop(0, a0); g.addColorStop(1, a1);
+      ctx.fillStyle = g; ctx.fillRect(0, 0, S.w, S.h);
+      ctx.globalAlpha = 1;
+    };
+    const host = c.parentElement;
+    this.onMove = (e) => { const r = c.getBoundingClientRect(); S.mx = e.clientX - r.left; S.my = e.clientY - r.top; S.lastMove = performance.now(); };
+    this.onLeave = () => { S.mx = -9999; S.my = -9999; };
+    host.addEventListener("pointermove", this.onMove);
+    host.addEventListener("pointerleave", this.onLeave);
+    const blobs = (t, list, alpha, speed = 1) => {
+      ctx.globalCompositeOperation = "lighter";
+      const m = Math.max(S.w, S.h);
+      for (const b of list) {
+        const x = (b.x + Math.sin(t * b.sx * speed + b.p) * b.ax) * S.w;
+        const y = (b.y + Math.cos(t * b.sy * speed + b.p) * b.ay) * S.h;
+        const rg = ctx.createRadialGradient(x, y, 0, x, y, b.r * m);
+        rg.addColorStop(0, "rgba(" + b.c + "," + alpha + ")");
+        rg.addColorStop(0.5, "rgba(" + b.c + "," + (alpha * 0.25).toFixed(3) + ")");
+        rg.addColorStop(1, "rgba(" + b.c + ",0)");
+        ctx.fillStyle = rg; ctx.fillRect(0, 0, S.w, S.h);
+      }
+    };
+    const BL = [
+      { c: "124,58,237", r: 0.55, x: 0.30, y: 0.30, ax: 0.14, ay: 0.12, sx: 0.00011, sy: 0.00013, p: 0 },
+      { c: "59,130,246", r: 0.50, x: 0.82, y: 0.28, ax: 0.10, ay: 0.14, sx: 0.00009, sy: 0.00012, p: 2 },
+      { c: "167,139,250", r: 0.42, x: 0.62, y: 0.80, ax: 0.14, ay: 0.08, sx: 0.00013, sy: 0.0001, p: 4 },
+      { c: "147,51,234", r: 0.36, x: 0.18, y: 0.90, ax: 0.10, ay: 0.08, sx: 0.0001, sy: 0.00008, p: 1 },
+    ];
+    const signal = (t, rail, head, mid, width, blobA) => {
+      base("#06051A", "#0B0A2A"); blobs(t, BL, blobA, 0.5);
+      ctx.globalCompositeOperation = "lighter";
+      const Lh = Math.hypot(S.w, S.h), gap = 34;
+      ctx.save(); ctx.translate(S.w * 0.55, S.h * 0.5); ctx.rotate(-0.456);
+      let i = 0;
+      for (let y = -Lh / 2; y <= Lh / 2; y += gap, i++) {
+        ctx.strokeStyle = "rgba(167,139,250," + rail + ")"; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(-Lh / 2, y); ctx.lineTo(Lh / 2, y); ctx.stroke();
+        if (i % 3 !== 0) continue;
+        const sp = 0.05 + ((i * 37) % 11) / 110, sd = (i * 0.6180339) % 1;
+        const px = ((t * sp + sd * (Lh + 600)) % (Lh + 600)) - Lh / 2 - 300;
+        const len = 140 + ((i * 53) % 5) * 40;
+        const g = ctx.createLinearGradient(px - len, 0, px, 0);
+        const col = i % 2 ? "96,165,250" : "167,139,250";
+        g.addColorStop(0, "rgba(" + col + ",0)");
+        if (mid) g.addColorStop(0.7, "rgba(" + col + "," + mid + ")");
+        g.addColorStop(1, "rgba(" + col + "," + head + ")");
+        ctx.strokeStyle = g; ctx.lineWidth = width;
+        ctx.beginPath(); ctx.moveTo(px - len, y); ctx.lineTo(px, y); ctx.stroke();
+      }
+      ctx.restore();
+    };
+    const ptr = (t) => {
+      const live = S.mx > -9000 && performance.now() - S.lastMove < 2500;
+      const tx = live ? S.mx : S.w * (0.68 + 0.18 * Math.sin(t * 0.00031));
+      const ty = live ? S.my : S.h * (0.42 + 0.22 * Math.sin(t * 0.00047 + 1));
+      if (!S.px && !S.py) { S.px = tx; S.py = ty; }
+      S.px += (tx - S.px) * 0.12; S.py += (ty - S.py) * 0.12;
+      return { x: S.px, y: S.py };
+    };
+    const contours = (g, t, cx, cy, alphaMul) => {
+      const m = Math.max(S.w, S.h), R = 30, steps = 140;
+      for (let k = 0; k < R; k++) {
+        const rk = m * (0.03 + k * 0.022);
+        g.beginPath();
+        for (let s = 0; s <= steps; s++) {
+          const a = (s / steps) * Math.PI * 2;
+          const w = 1 + 0.10 * Math.sin(3 * a + t * 0.00025 + k * 0.18) + 0.06 * Math.sin(5 * a - t * 0.00035 + k * 0.33);
+          const x = cx + Math.cos(a) * rk * w * 1.25, y = cy + Math.sin(a) * rk * w * 0.8;
+          s ? g.lineTo(x, y) : g.moveTo(x, y);
+        }
+        g.strokeStyle = (k / R < 0.5 ? "rgba(167,139,250," : "rgba(96,165,250,") + ((k % 5 === 0 ? 0.9 : 0.5) * alphaMul).toFixed(3) + ")";
+        g.lineWidth = k % 5 === 0 ? 1.4 : 1;
+        g.stroke();
+      }
+    };
+    const off = document.createElement("canvas"), octx = off.getContext("2d");
+    const D = {
+      L0: (t) => signal(t, 0.09, 0.95, 0.55, 1.8, 0.28),
+      K: (t) => {
+        if (S.last !== "K") { base("#06051A", "#0B0A2A"); S.last = "K"; }
+        base("#06051A", "#0B0A2A", 0.09);
+        ctx.globalCompositeOperation = "lighter";
+        const tt = t * 0.00008;
+        for (const p of S.flow) {
+          const a = Math.sin(p.x * 0.0028 + tt) * 1.6 + Math.cos(p.y * 0.0034 - tt * 1.3) * 1.6 - 0.45;
+          let vx = Math.cos(a) * 1.1, vy = Math.sin(a) * 1.1;
+          const dx = p.x - S.mx, dy = p.y - S.my, d2 = dx * dx + dy * dy;
+          if (d2 < 140 * 140) { const f = (1 - Math.sqrt(d2) / 140) * 3; const d = Math.sqrt(d2) || 1; vx += dx / d * f; vy += dy / d * f; }
+          const ox = p.x, oy = p.y;
+          p.x += vx; p.y += vy; p.life -= 1;
+          if (p.life < 0 || p.x < -10 || p.x > S.w + 10 || p.y < -10 || p.y > S.h + 10) { p.x = Math.random() * S.w; p.y = Math.random() * S.h; p.life = 150 + Math.random() * 250; continue; }
+          const k = p.x / S.w;
+          ctx.strokeStyle = p.b ? "rgba(96,165,250," + (0.25 + 0.35 * k).toFixed(3) + ")" : "rgba(167,139,250," + (0.22 + 0.33 * k).toFixed(3) + ")";
+          ctx.lineWidth = 1.1;
+          ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(p.x, p.y); ctx.stroke();
+        }
+      },
+      N: (t) => {
+        base("#06051A", "#0B0A2A"); blobs(t, BL, 0.24, 0.5);
+        ctx.globalCompositeOperation = "lighter";
+        const P = ptr(t), th = 0.456, ox = S.w * 0.55, oy = S.h * 0.5;
+        const dx = P.x - ox, dy = P.y - oy;
+        const lx = Math.cos(th) * dx - Math.sin(th) * dy, ly = Math.sin(th) * dx + Math.cos(th) * dy;
+        const Lh = Math.hypot(S.w, S.h), gap = 30, sig = 120, amp = 46;
+        const disp = (x, y) => { const ddx = x - lx, ddy = y - ly; const f = Math.exp(-(ddx * ddx + ddy * ddy) / (2 * sig * sig)); return [y + Math.sign(ddy || 1) * amp * f * Math.min(1, Math.abs(ddy) / 30 + 0.2), f]; };
+        ctx.save(); ctx.translate(ox, oy); ctx.rotate(-th);
+        let i = 0;
+        for (let y = -Lh / 2; y <= Lh / 2; y += gap, i++) {
+          let near = 0;
+          ctx.beginPath();
+          for (let x = -Lh / 2; x <= Lh / 2; x += 14) { const [yy, f] = disp(x, y); near = Math.max(near, f); x === -Lh / 2 ? ctx.moveTo(x, yy) : ctx.lineTo(x, yy); }
+          ctx.strokeStyle = "rgba(167,139,250," + (0.07 + near * 0.22).toFixed(3) + ")"; ctx.lineWidth = 1; ctx.stroke();
+          if (i % 3 !== 0) continue;
+          const sp = 0.05 + ((i * 37) % 11) / 110, sd = (i * 0.6180339) % 1;
+          const px = ((t * sp + sd * (Lh + 600)) % (Lh + 600)) - Lh / 2 - 300;
+          const len = 160 + ((i * 53) % 5) * 40;
+          const g = ctx.createLinearGradient(px - len, 0, px, 0);
+          const col = i % 2 ? "96,165,250" : "167,139,250";
+          g.addColorStop(0, "rgba(" + col + ",0)"); g.addColorStop(0.7, "rgba(" + col + ",0.5)"); g.addColorStop(1, "rgba(" + col + ",0.95)");
+          ctx.strokeStyle = g; ctx.lineWidth = 1.8;
+          ctx.beginPath();
+          for (let x = px - len; x <= px; x += 8) { const [yy] = disp(x, y); x === px - len ? ctx.moveTo(x, yy) : ctx.lineTo(x, yy); }
+          ctx.stroke();
+        }
+        ctx.restore();
+      },
+      O: (t) => {
+        base("#06051A", "#0B0A2A"); blobs(t, BL, 0.2, 0.5);
+        ctx.globalCompositeOperation = "lighter";
+        const P = ptr(t), sp = 24;
+        for (let y = sp / 2; y < S.h; y += sp) for (let x = sp / 2; x < S.w; x += sp) {
+          const dx = x - P.x, dy = y - P.y, d = Math.sqrt(dx * dx + dy * dy) || 1;
+          const env = Math.exp(-d / 300);
+          const wv = Math.sin(d * 0.05 - t * 0.006);
+          const o = wv * 9 * env;
+          const X = x + dx / d * o, Y = y + dy / d * o;
+          const u = x / S.w;
+          const a = (0.2 + 0.25 * u) + Math.max(0, wv) * env * 0.8;
+          const r = 1.4 + Math.max(0, wv) * env * 1.8;
+          ctx.fillStyle = (u > 0.62 ? "rgba(96,165,250," : "rgba(167,139,250,") + Math.min(1, a).toFixed(3) + ")";
+          ctx.fillRect(X - r / 2, Y - r / 2, r, r);
+        }
+      },
+    };
+    // hero rotation: random pick per homepage visit, never the same twice in a row
+    const ROTATION = ["L0", "K", "N"];
+    const pick = () => {
+      let prev = null; try { prev = localStorage.getItem("nx-hero-last"); } catch (err) {}
+      const pool = ROTATION.filter((v) => v !== prev);
+      const v = pool[Math.floor(Math.random() * pool.length)];
+      try { localStorage.setItem("nx-hero-last", v); } catch (err) {}
+      S.last = null; S.lx = undefined;
+      this.setState({ heroVariant: v });
+      return v;
+    };
+    this.heroVariant = pick();
+    this.repick = () => { this.heroVariant = pick(); if (reduce) this.drawFrame(18000); };
+    this.onPageShow = (e) => { if (e.persisted) this.repick(); };
+    window.addEventListener("pageshow", this.onPageShow);
+    this.drawFrame = (t) => { try { D[this.heroVariant](t); } catch (err) {} };
+    this.ro = new ResizeObserver(resize);
+    this.ro.observe(c);
+    resize();
+    if (reduce) return;
+    let visible = true;
+    this.io = new IntersectionObserver(([en]) => { visible = en.isIntersecting; });
+    this.io.observe(c);
+    const loop = (t) => { if (visible) this.drawFrame(t); this.raf = requestAnimationFrame(loop); };
+    this.raf = requestAnimationFrame(loop);
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+    if (this.ro) this.ro.disconnect();
+    if (this.io) this.io.disconnect();
+    window.removeEventListener("pageshow", this.onPageShow);
+    const host = this.heroCanvas.current && this.heroCanvas.current.parentElement;
+    if (host) { host.removeEventListener("pointermove", this.onMove); host.removeEventListener("pointerleave", this.onLeave); }
+  }
+
+  renderVals() {
+    return {
+      heroCanvas: this.heroCanvas,
+      pillars: [
+        { num: "01", label: "Product Design & Development", href: "services.html#product-service-design" },
+        { num: "02", label: "Software Engineering", href: "services.html#enterprise-software-design" },
+        { num: "03", label: "Digital Transformation", href: "services.html#digital-transformation" },
+        { num: "04", label: "IT & Technology Consulting", href: "services.html#automation-intelligent-systems" },
+      ],
+      stats: [
+        { value: "100+", label: "Projects Delivered" },
+        { value: "27", label: "Specialists" },
+        { value: "8+", label: "Industry Sectors" },
+        { value: "3", label: "Continents Active" },
+      ],
+      valueProps: [
+        { title: "Strategy to Delivery", desc: "We embed strategic thinking into every phase, from architecture decisions to interaction design. Every technical choice is made with your business outcome in mind.", items: ["Technology strategy & roadmapping", "Architecture & systems design", "Outcome-focused delivery frameworks"], icon: icon(["M12 2a10 10 0 1 0 10 10", "M12 6a6 6 0 1 0 6 6", "M12 10a2 2 0 1 0 2 2"]) },
+        { title: "Full-Stack Capability", desc: "One partner across the entire product lifecycle: product design, frontend and backend engineering, cloud infrastructure, and AI integration.", items: ["Product design & UX/UI", "Full-stack software development", "Cloud, APIs, and AI/ML integration"], icon: icon(["m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z", "m6.08 10.37-3.5 1.59a1 1 0 0 0 0 1.83l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9a1 1 0 0 0 0-1.83l-3.48-1.59", "m6.08 15.87-3.5 1.59a1 1 0 0 0 0 1.83l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9a1 1 0 0 0 0-1.83l-3.48-1.59"]) },
+        { title: "Enterprise-Ready", desc: "Built for the scale, security, and compliance demands of enterprise and regulated-sector organisations from day one.", items: ["Security & compliance by default", "Scalable, maintainable architecture", "Dedicated senior-level teams"], icon: icon(["M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"]) },
+      ],
+      capabilities: CAPABILITIES.map((label, i) => ({ label, num: String(i + 1).padStart(2, "0"), href: CAP_LINKS[label] })),
+      process: [
+        { step: "01", title: "Discovery & Scoping", desc: "We work with your team to understand business goals, technical landscape, constraints, and user needs before any work begins." },
+        { step: "02", title: "Strategy & Architecture", desc: "Define the technology approach, platform choices, and product roadmap, so every decision downstream has a clear rationale." },
+        { step: "03", title: "Product Design", desc: "UX research, information architecture, interaction design, and high-fidelity prototyping with continuous stakeholder validation." },
+        { step: "04", title: "Engineering & Build", desc: "Full-stack development across iterative sprints, with regular client reviews and CI/CD from the first commit." },
+        { step: "05", title: "QA & Validation", desc: "Rigorous testing, accessibility audits, performance benchmarking, and security review before anything ships." },
+        { step: "06", title: "Deployment & Launch", desc: "Managed production rollout, infrastructure setup, monitoring configuration, and dedicated go-live support." },
+        { step: "07", title: "Continuous Improvement", desc: "Post-launch analytics, user feedback loops, and iterative enhancement sprints driven by real-world data." },
+        { step: "08", title: "Scale & Evolve", desc: "As your business grows, we scale the product, engineering team, and infrastructure alongside it." },
+      ],
+
+    };
+  }
+}
+</script>
+
+
+</body></html>

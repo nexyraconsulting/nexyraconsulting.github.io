@@ -1,5 +1,5 @@
 /* NexDrive front-end runtime configuration. Loaded before the app.
-   Never put secrets here — this file is public. See docs/environment.md. */
+   Never put secrets here — this file is public. See CONFIGURATION_CHECKLIST.md. */
 window.NEXDRIVE_CONFIG = {
   // 'demo' = in-memory sample data (current build). 'live' is reserved for the backend integration (docs/developer-guide.md §4).
   mode: 'demo',
@@ -11,9 +11,6 @@ window.NEXDRIVE_CONFIG = {
   showDemoPanel: true,
   // false = app fills the browser viewport instead of sitting in a phone frame on desktop.
   deviceFrame: true,
-  // Show the Admin login (PIN) screen before the app. The PIN is verified against a salted hash —
-  // see docs/security.md. This is a demo gate only; production access must be enforced server-side.
-  adminLogin: true,
   // Play the NEXDrive lock-up animation on start.
   launchAnimation: true,
   timezone: 'Europe/London',
