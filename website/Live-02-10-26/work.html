@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>window.__resources = {"./zx-Nav%20v2.dc.html":"assets/components/Nav-v2-46414690b2.dc.html","./zx-Footer%20v3.dc.html":"assets/components/Footer-v3-f7036af1a1.dc.html","https://unpkg.com/react@18.3.1/umd/react.production.min.js":"assets/js/react.production.min-aa77ae4c49.js","https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"assets/js/react-dom.production.min-feb8ddc9d0.js"};</script>
+<style>#nx-loader{position:fixed;inset:0;z-index:2147483000;background:#FFFFFF;display:flex;align-items:center;justify-content:center;transition:opacity .3s ease}#nx-loader svg{width:100%;height:100%}#nx-loader.nx-done{opacity:0;pointer-events:none}</style>
+<style>@media (max-width: 640px) { .nx-search:not([data-open="true"]) .nx-search-input { padding: 0 !important; } }</style>
+<script src="assets/js/dc-runtime-2e38395c4a.js"></script>
+
+</head>
+<body>
+<div id="nx-loader" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxct)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxcb)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg></div>
+<script>(function(){var l=document.getElementById('nx-loader'),t0=Date.now();function done(){if(!l)return;l.classList.add('nx-done');setTimeout(function(){l&&l.remove();l=null},350)}(function poll(){var r=document.getElementById('dc-root');if(r&&r.textContent.trim().length>40&&document.readyState!=='loading'){setTimeout(done,Math.max(0,500-(Date.now()-t0)));return}if(Date.now()-t0>6000){done();return}setTimeout(poll,60)})()})();</script>
+<x-dc>
+<helmet>
+<link rel="icon" href="assets/img/image-a6e3d7ae08.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-771a285a9d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-b32d9b382e.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-3560987b16.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-881c68f3b9.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-4b17538334.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-560d9f41c0.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-2cba32d0c1.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-38c3847fad.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  * { box-sizing: border-box; }
+  body { -webkit-font-smoothing: antialiased; }
+  a { color: #6D28D9; text-decoration: none; }
+  a:hover { color: #5B21B6; }
+  ::selection { background: #EDE9FE; color: #0A0A0F; }
+  :focus-visible { outline: 2px solid #7C3AED; outline-offset: 2px; }
+  .nx-case { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+  .nx-case-img { aspect-ratio: 4 / 3; }
+  @media (max-width: 900px) {
+    .nx-case { grid-template-columns: 1fr; gap: 32px; }
+    .nx-case-img { aspect-ratio: 16 / 10; }
+  }
+</style>
+<script src="assets/js/zx-parallax.js" defer=""></script>
+</helmet>
+
+<div style="font-family: 'Hanken Grotesk', 'Neue Haas Grotesk Display', 'Helvetica Neue', Arial, sans-serif; background: #FFFFFF; color: #0A0A0F; font-size: 15px; line-height: 1.65; overflow-x: clip;">
+  <dc-import name="zx-Nav v2" active="work" hint-size="100%,76px"></dc-import>
+
+  <main>
+    <section style="padding: max(88px, var(--nx-clear, 118px)) 7vw 40px;" aria-labelledby="work-heading">
+      <p style="margin: 0 0 48px; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #6B6B7B;">Portfolio</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: end;">
+        <h1 id="work-heading" style="margin: 0; font-size: clamp(38px, 5.4vw, 80px); font-weight: 600; line-height: 1.0; letter-spacing: -0.03em; text-wrap: pretty;">Measurable impact for forward-thinking organizations</h1>
+        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #4A4A5A; max-width: 46ch; text-wrap: pretty;">Our work delivers clarity, precision, and outcomes that drive sustainable business value across industries.</p>
+      </div>
+    </section>
+
+    <section style="padding: 0 7vw 64px;" aria-label="Filter by industry">
+      <div style="height: 2px; background: #0A0A0F; margin-bottom: 20px;"></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="7">
+          <button type="button" sc-camel-on-click="{{ f.onClick }}" aria-pressed="{{ f.pressed }}" style="font-family: inherit; font-size: 13px; font-weight: 500; padding: 9px 16px; cursor: pointer; white-space: nowrap; transition: background 0.15s, color 0.15s; background: {{ f.bg }}; color: {{ f.fg }}; border: {{ f.border }};">{{ f.label }}</button>
+        </sc-for>
+      </div>
+    </section>
+
+    <sc-for list="{{ cases }}" as="c" hint-placeholder-count="6">
+      <section style="padding: 72px 7vw; background: {{ c.bg }}; border-top: 1px solid #E7E7EC;" aria-labelledby="{{ c.headingId }}">
+        <article class="nx-case">
+          <div class="nx-case-img" style="overflow: hidden; background: #F7F7F9;">
+            <img src="{{ c.img }}" alt="{{ c.alt }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1);">
+          </div>
+          <div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 20px;">
+              <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #6D28D9;">{{ c.client }}</span>
+              <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.16em; color: #6B6B7B; font-variant-numeric: tabular-nums;">{{ c.num }}</span>
+            </div>
+            <div style="height: 2px; background: #0A0A0F; margin-bottom: 24px;"></div>
+            <h2 id="{{ c.headingId }}" style="margin: 0 0 20px; font-size: clamp(26px, 3vw, 38px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.12; text-wrap: pretty;">{{ c.title }}</h2>
+            <p style="margin: 0 0 28px; font-size: 17px; line-height: 1.65; color: #4A4A5A; max-width: 52ch; text-wrap: pretty;">{{ c.desc }}</p>
+            <dl style="margin: 0 0 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 2px solid #0A0A0F;">
+              <sc-for list="{{ c.metrics }}" as="m" hint-placeholder-count="3">
+                <div style="padding: 18px 20px 18px 0; border-right: 1px solid #E7E7EC; border-bottom: 1px solid #E7E7EC;">
+                  <dt style="font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(24px, 2.4vw, 32px); font-weight: 300; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; color: #7C3AED;">{{ m.value }}</dt>
+                  <dd style="margin: 8px 0 0; font-size: 12px; color: #6B6B7B; line-height: 1.4;">{{ m.label }}</dd>
+                </div>
+              </sc-for>
+            </dl>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{ c.services }}" as="tag" hint-placeholder-count="2">
+                <span style="font-size: 12px; font-weight: 500; padding: 5px 12px; border: 1px solid #E7E7EC; color: #4A4A5A; white-space: nowrap;">{{ tag }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </article>
+      </section>
+    </sc-for>
+
+    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); border-top: 1px solid #E7E7EC; border-bottom: 1px solid #E7E7EC;" aria-labelledby="confidentiality">
+      <div style="padding: 88px 7vw; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+        <p style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #6B6B7B;">Confidentiality and trust</p>
+        <p style="margin: 0; font-size: clamp(24px, 2.6vw, 34px); font-weight: 600; line-height: 1.25; letter-spacing: -0.025em; text-wrap: pretty;">Many of our most impactful engagements remain confidential.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #4A4A5A; max-width: 52ch; text-wrap: pretty;">The case studies shown represent a selection of our work delivering measurable outcomes across industries.</p>
+      </div>
+      <div style="filter: grayscale(1); min-height: 360px; background-image: url(&quot;assets/img/image-2ed5eb305e.jpg&quot;); background-size: cover; background-position: center;" role="img" aria-label="Data visualization colorful spiral"></div>
+    </section>
+
+    <section style="background: #0A0A0F; color: #FFFFFF; padding: 88px 7vw;" aria-labelledby="work-cta">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: end;">
+        <h2 id="work-cta" style="margin: 0; font-size: clamp(32px, 4.4vw, 60px); font-weight: 600; line-height: 1.02; letter-spacing: -0.03em;">Let's explore what's possible</h2>
+        <div>
+          <p style="margin: 0 0 32px; font-size: 17px; line-height: 1.6; color: #B4B4C4; max-width: 46ch; text-wrap: pretty;">We'll share relevant case studies and discuss how our approach can deliver impact for your organization.</p>
+          <a href="contact.html" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; padding: 14px 24px; background: #7C3AED; color: #FFFFFF;" style-hover="background: #6D28D9; color: #FFFFFF;">Start a Conversation
+            <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="zx-Footer v3" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="">
+const CASES = [
+  { industry: "Financial Services", client: "Global Financial Services", title: "AI-Powered Customer Service Transformation", desc: "Deployed an intelligent customer service platform that reduced response times by 70% and improved satisfaction scores by 42 points.", services: ["AI Solutions", "Digital Transformation"], metrics: [{ value: "70%", label: "Response Time Reduction" }, { value: "+42pts", label: "CSAT Improvement" }, { value: "$8.2M", label: "Cost Savings" }], img: "assets/work-ai-service.jpg", alt: "AI-Powered Customer Service Transformation" },
+  { industry: "Retail & E-commerce", client: "Leading E-commerce Platform", title: "Complete Brand Repositioning & Digital Experience Redesign", desc: "Transformed brand identity and redesigned end-to-end digital experience, resulting in significant increases in conversion and customer engagement.", services: ["Brand Strategy", "Experience Design"], metrics: [{ value: "+156%", label: "Conversion Rate" }, { value: "+89%", label: "Session Duration" }, { value: "+203%", label: "Mobile Revenue" }], img: "assets/work-brand-repositioning.jpg", alt: "Complete Brand Repositioning & Digital Experience Redesign" },
+  { industry: "Healthcare", client: "Healthcare Technology Leader", title: "Data Platform Modernization & Analytics Strategy", desc: "Built modern data infrastructure and analytics capabilities that enabled predictive patient care and operational optimization.", services: ["Data & Analytics", "Digital Transformation"], metrics: [{ value: "12x faster", label: "Processing Speed" }, { value: "94%", label: "Predictive Accuracy" }, { value: "320%", label: "ROI" }], img: "assets/work-data-platform.jpg", alt: "Data Platform Modernization & Analytics Strategy" },
+  { industry: "Technology", client: "Enterprise Software Company", title: "Go-to-Market Strategy & Product Launch", desc: "Developed comprehensive GTM strategy and launched new product line, exceeding first-year revenue targets by 180%.", services: ["Marketing Strategy", "Product Design"], metrics: [{ value: "+180%", label: "Revenue vs Target" }, { value: "12,400+", label: "Customer Acquisition" }, { value: "23%", label: "Market Share Gain" }], img: "assets/work-gtm-launch.jpg", alt: "Go-to-Market Strategy & Product Launch" },
+  { industry: "Manufacturing", client: "Global Manufacturing Corporation", title: "Intelligent Automation & Process Optimization", desc: "Implemented enterprise-wide automation platform that streamlined operations and reduced manual processing by 85%.", services: ["Automation", "Innovation Consulting"], metrics: [{ value: "85%", label: "Manual Work Reduction" }, { value: "-92%", label: "Error Rate" }, { value: "$14.5M", label: "Annual Savings" }], img: "assets/work-automation.jpg", alt: "Intelligent Automation & Process Optimization" },
+  { industry: "Consumer Products", client: "Consumer Goods Brand", title: "Customer Journey Optimization & Personalization", desc: "Mapped and optimized customer journeys across all touchpoints, implementing AI-driven personalization that drove retention and lifetime value.", services: ["Journey Mapping", "User Research"], metrics: [{ value: "+47%", label: "Customer Retention" }, { value: "+63%", label: "Lifetime Value" }, { value: "+82%", label: "Repeat Purchase" }], img: "assets/work-journey-mapping.jpg", alt: "Customer Journey Optimization & Personalization" },
+];
+
+const FILTER_OPTIONS = ["All Industries", "Financial Services", "Healthcare", "Technology", "Retail & E-commerce", "Manufacturing", "Consumer Products"];
+
+class Component extends DCLogic {
+  state = { filter: "All Industries" };
+
+  renderVals() {
+    const { filter } = this.state;
+    const shown = filter === "All Industries" ? CASES : CASES.filter((c) => c.industry === filter);
+    return {
+      filters: FILTER_OPTIONS.map((label) => {
+        const on = label === filter;
+        return {
+          label,
+          pressed: on,
+          bg: on ? "#7C3AED" : "#FFFFFF",
+          fg: on ? "#FFFFFF" : "#4A4A5A",
+          border: on ? "1px solid #7C3AED" : "1px solid #E7E7EC",
+          onClick: () => this.setState({ filter: label }),
+        };
+      }),
+      cases: shown.map((c, i) => ({
+        ...c,
+        num: String(CASES.indexOf(c) + 1).padStart(2, "0"),
+        headingId: "case-" + (CASES.indexOf(c) + 1),
+        bg: i % 2 === 1 ? "#F7F7F9" : "#FFFFFF",
+      })),
+    };
+  }
+}
+</script>
+
+
+</body></html>

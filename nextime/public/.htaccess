@@ -1,0 +1,43 @@
+# NEXTime — Apache configuration for the web root (public/).
+# Nginx, Netlify, Vercel and Cloudflare equivalents are in DEPLOYMENT.md section 9.
+
+Options -Indexes
+DirectoryIndex index.html
+AddDefaultCharset utf-8
+ErrorDocument 404 /index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Force HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Clean URLs: /pricing → index.html#/pricing, /login → account.html
+  RewriteRule ^pricing/?$ /index.html#/pricing [NE,R=302,L]
+  RewriteRule ^(login|signin|sign-in)/?$ /account.html [R=302,L]
+  RewriteRule ^(signup|sign-up|trial)/?$ /account.html?view=signup [R=302,L]
+</IfModule>
+
+# Never serve dotfiles, sources or backups
+<FilesMatch "(^\.|\.(md|sql|ts|toml|env|bak|log)$)">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(self \"https://js.stripe.com\")"
+  # Replace YOUR-PROJECT-REF. 'unsafe-inline'/'unsafe-eval' are required by the self-contained page bundles.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://js.stripe.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://cdn.simpleicons.org https://*.stripe.com; font-src 'self' data:; connect-src 'self' https://YOUR-PROJECT-REF.supabase.co wss://YOUR-PROJECT-REF.supabase.co https://YOUR-PROJECT-REF.functions.supabase.co https://api.stripe.com; frame-src https://js.stripe.com https://hooks.stripe.com; worker-src 'self' blob:; base-uri 'self'; form-action 'self' https://pay.gocardless.com https://pay-sandbox.gocardless.com; frame-ancestors 'none'"
+
+  # Pages must always be fresh; config may change without a rebuild.
+  <FilesMatch "\.(html|js)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>

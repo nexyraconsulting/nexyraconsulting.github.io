@@ -1,0 +1,17 @@
+{
+  "name": "nextime-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NEXTime Rota and Timesheet reference API server (snapshot API, sign-in, audit log)",
+  "main": "server.js",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js",
+    "create-user": "node server.js create-user",
+    "db:init": "psql \"$DATABASE_URL\" -f ../database/schema-postgresql.sql"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.11.5"
+  }
+}

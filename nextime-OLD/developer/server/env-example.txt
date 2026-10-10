@@ -1,0 +1,26 @@
+# Copy this file to ".env" in the same folder and fill in the values.
+# Never commit .env to version control.
+
+# Port the server listens on
+PORT=8080
+
+# PostgreSQL connection string
+DATABASE_URL=postgres://nextime_app:CHANGE_ME@localhost:5432/nextime
+# true for most managed databases (AWS RDS, Azure, DigitalOcean, Supabase, Neon)
+DATABASE_SSL=false
+
+# Organisation id used by the app (must match NEXTIME_CONFIG.organisationId in config.js)
+ORGANISATION_ID=default
+ORGANISATION_NAME=Your Organisation Ltd
+
+# Random string of at least 32 characters, e.g. output of: node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
+SESSION_SECRET=CHANGE_ME_TO_A_LONG_RANDOM_STRING
+SESSION_HOURS=8
+# Set to false only for local testing over http://localhost
+COOKIE_SECURE=true
+
+# Folder with the built app; served at /
+STATIC_DIR=../../deploy/nextime
+
+# Only if the app is hosted on a different origin than this API (not recommended)
+CORS_ORIGIN=

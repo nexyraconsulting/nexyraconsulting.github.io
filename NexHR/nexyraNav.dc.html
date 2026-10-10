@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .nx-pill { position: fixed; top: 24px; left: 24px; z-index: 999; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.5); border: 1px solid rgba(10,10,15,0.08); box-shadow: 0 10px 30px rgba(10,10,15,0.06); padding: 6px 10px 6px 6px; -webkit-backdrop-filter: blur(20px) saturate(140%); backdrop-filter: blur(20px) saturate(140%); transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+  .nx-pill[data-tone="dark"] { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
+  .nx-pill[data-tone="dark"] .nx-toggle { background: rgba(255,255,255,0.1); color: #FFFFFF; }
+  .nx-mono-light, .nx-mono-dark { transition: opacity 0.4s ease; }
+  .nx-mono-dark { opacity: 0; }
+  .nx-pill[data-tone="dark"] .nx-mono-dark { opacity: 1; }
+  .nx-pill[data-tone="dark"] .nx-mono-light { opacity: 0; }
+  .nx-pill[data-tone="dark"] .nx-toggle:hover { background: rgba(255,255,255,0.18); color: #FFFFFF; }
+  .nx-toggle { display: flex; align-items: center; justify-content: center; width: 46px; height: 44px; background: rgba(10,10,15,0.05); border: none; padding: 0; cursor: pointer; color: #0A0A0F; flex-shrink: 0; transition: background 0.2s ease, color 0.2s ease; }
+  .nx-toggle:hover { background: #EDE9FE; color: #6D28D9; }
+  .nx-logo { display: block; overflow: hidden; width: 61px; height: 50.6px; line-height: 0; transition: width 0.35s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .nx-logo[data-open="true"] { width: 195.5px; }
+  .nx-logo-svg { display: block; width: 194.6px; height: 50.6px; }
+  .nx-search { position: fixed; top: 24px; right: 7vw; z-index: 1000; display: flex; flex-direction: column; align-items: flex-end; }
+  .nx-search-bar { display: flex; align-items: center; width: 124px; height: 58px; margin: 0; padding: 6px; box-sizing: border-box; background: rgba(255,255,255,0.5); border: 1px solid rgba(10,10,15,0.08); box-shadow: 0 10px 30px rgba(10,10,15,0.06); -webkit-backdrop-filter: blur(20px) saturate(140%); backdrop-filter: blur(20px) saturate(140%); color: #0A0A0F; transition: width 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+  .nx-search[data-tone="dark"] .nx-search-bar { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); box-shadow: 0 10px 30px rgba(0,0,0,0.18); color: #FFFFFF; }
+  .nx-search[data-open="true"] .nx-search-bar { width: min(460px, calc(100vw - 48px)); background: rgba(255,255,255,0.88); border-color: rgba(10,10,15,0.1); color: #0A0A0F; }
+  .nx-search-input { flex: 1; min-width: 0; width: 0; height: 100%; border: none; outline: none; background: transparent; padding: 0 0 0 12px; font-family: inherit; font-size: 15px; color: inherit; opacity: 0; transition: opacity 0.2s ease; }
+  .nx-search-input::placeholder { color: #6B6B7B; }
+  .nx-search[data-open="true"] .nx-search-input { opacity: 1; transition-delay: 0.15s; }
+  .nx-search-btn { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; height: 44px; padding: 0 12px; border: none; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 500; color: inherit; background: rgba(10,10,15,0.05); transition: background 0.2s ease, color 0.2s ease; }
+  .nx-search-btn:hover { background: #EDE9FE; color: #6D28D9; }
+  .nx-search[data-tone="dark"]:not([data-open="true"]) .nx-search-btn { background: rgba(255,255,255,0.1); }
+  .nx-search[data-tone="dark"]:not([data-open="true"]) .nx-search-btn:hover { background: rgba(255,255,255,0.18); color: #FFFFFF; }
+  .nx-search-btn span { display: inline-flex; }
+  .nx-search-ico-close { display: none !important; }
+  .nx-search[data-open="true"] .nx-search-ico-close { display: inline-flex !important; }
+  .nx-search[data-open="true"] .nx-search-ico-open, .nx-search[data-open="true"] .nx-search-label { display: none !important; }
+  .nx-search[data-open="true"] .nx-search-btn { width: 44px; justify-content: center; padding: 0; }
+  @keyframes nxDrop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .nx-search-results { width: min(460px, calc(100vw - 48px)); max-height: min(62vh, 560px); overflow-y: auto; margin-top: 8px; box-sizing: border-box; padding: 8px 20px 12px; background: rgba(255,255,255,0.96); border: 1px solid #E7E7EC; box-shadow: 0 18px 40px rgba(10,10,15,0.12); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); color: #0A0A0F; animation: nxDrop 0.25s ease; }
+  .nx-sr-count { margin: 8px 0 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #6B6B7B; }
+  .nx-sr-item { display: flex; flex-direction: column; gap: 3px; padding: 14px 0; border-top: 1px solid #E7E7EC; color: #0A0A0F; text-decoration: none; }
+  .nx-sr-item:first-of-type { border-top: none; }
+  .nx-sr-item:hover, .nx-sr-item[data-active="true"] { color: #0A0A0F; }
+  .nx-sr-item:hover .nx-sr-title, .nx-sr-item[data-active="true"] .nx-sr-title { color: #7C3AED; }
+  .nx-sr-meta { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #6D28D9; }
+  .nx-sr-title { font-size: 16px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; transition: color 0.2s ease; }
+  .nx-sr-snip { font-size: 13px; line-height: 1.55; color: #4A4A5A; }
+  .nx-sr-snip [data-hit="true"] { color: #0A0A0F; font-weight: 600; background: #EDE9FE; }
+  .nx-sr-empty { margin: 12px 0 6px; font-size: 14px; line-height: 1.55; color: #4A4A5A; }
+  @keyframes nxFade { from { opacity: 0; } to { opacity: 1; } }
+  .nx-overlay { animation: nxFade 0.2s ease; }
+
+  .nx-track { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1.25fr); align-items: start; }
+  .nx-col { min-width: 0; transition: opacity 0.25s ease, visibility 0.25s; }
+  .nx-col-sub, .nx-col-preview { border-left: 1px solid #E7E7EC; padding-left: clamp(24px, 3vw, 48px); }
+  .nx-col-main, .nx-col-sub { padding-right: clamp(24px, 3vw, 48px); }
+  .nx-track[data-level="0"] .nx-col-sub, .nx-track[data-level="0"] .nx-col-preview, .nx-track[data-preview="false"] .nx-col-preview { visibility: hidden; opacity: 0; }
+  .nx-col-preview { position: sticky; top: 24px; }
+
+  .nx-main-list { list-style: none; margin: 0; padding: 0; }
+  .nx-main-list li { border-top: 1px solid #E7E7EC; }
+  .nx-main-list li:first-child { border-top: none; }
+  .nx-main-link { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; background: none; border: none; padding: 14px 0; margin: 0; cursor: pointer; text-align: left; font-family: 'Hanken Grotesk', sans-serif; font-weight: 600; font-size: clamp(26px, 2.6vw, 38px); line-height: 1.15; letter-spacing: -0.02em; color: #0A0A0F; transition: color 0.2s ease; }
+  .nx-main-link svg { flex-shrink: 0; color: #B4B4C4; transition: color 0.2s ease; }
+  .nx-main-link[data-dim="true"] { color: #9A9AAA; }
+  .nx-main-link:hover, .nx-main-link:focus-visible, .nx-main-link[data-active="true"] { color: #7C3AED; }
+  .nx-main-link:hover svg, .nx-main-link[data-active="true"] svg { color: #7C3AED; }
+  .nx-main-link[data-current="page"] .nx-label::after { content: ""; display: inline-block; width: 7px; height: 7px; margin-left: 12px; vertical-align: middle; background: linear-gradient(135deg, #A78BFA 0%, #7C3AED 39%, #3B82F6 100%); border-radius: 50%; }
+
+  .nx-back { display: flex; align-items: center; gap: 12px; width: 100%; background: none; border: none; border-bottom: 2px solid #0A0A0F; padding: 14px 0 16px; margin: 0 0 8px; cursor: pointer; text-align: left; font-family: 'Hanken Grotesk', sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em; color: #0A0A0F; transition: color 0.2s ease; }
+  .nx-back:hover, .nx-back:focus-visible { color: #7C3AED; }
+  .nx-back-mobile { display: none; }
+  .nx-sub-overview { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #6D28D9; padding: 10px 0 6px; transition: color 0.2s ease; }
+  .nx-sub-overview:hover { color: #0A0A0F; }
+  .nx-sub-group { margin-top: 22px; }
+  .nx-sub-heading { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #6B6B7B; margin: 0 0 6px; }
+  .nx-sub-link { display: block; font-size: 17px; font-weight: 500; line-height: 1.35; color: #0A0A0F; padding: 11px 0; border-top: 1px solid #E7E7EC; transition: color 0.2s ease; }
+  .nx-sub-heading + .nx-sub-link, .nx-sub-group > .nx-sub-link:first-child { border-top: none; }
+  .nx-sub-link:hover, .nx-sub-link:focus-visible, .nx-sub-link[data-selected="true"] { color: #7C3AED; }
+  .nx-sub-btn { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; margin: 0; background: none; border: none; border-top: 1px solid #E7E7EC; cursor: pointer; text-align: left; font-family: inherit; }
+  .nx-sub-btn { padding: 13px 0; }
+  .nx-sub-btn > span:first-child { flex: 1 1 auto; min-width: 0; }
+  .nx-sub-btn svg { flex-shrink: 0; color: #B4B4C4; transition: color 0.2s ease; }
+  .nx-sub-btn:hover svg, .nx-sub-btn[data-selected="true"] svg { color: #7C3AED; }
+  .nx-sub-tag { display: block; margin-top: 3px; font-size: 13px; font-weight: 400; color: #6B6B7B; }
+  .nx-overlay a:focus-visible, .nx-overlay button:focus-visible { outline: 2px solid #7C3AED; outline-offset: 2px; }
+
+  .nx-preview-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #6D28D9; margin: 24px 0 10px; }
+  .nx-preview-cta { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; padding: 14px 24px; background: #7C3AED; color: #FFFFFF; margin-top: 28px; transition: background 0.2s ease; }
+  .nx-preview-cta:hover { background: #6D28D9; color: #FFFFFF; }
+
+  @media (max-width: 1199px) {
+    .nx-stage { overflow: hidden; }
+    .nx-track { width: 150%; grid-template-columns: repeat(3, minmax(0, 1fr)); transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .nx-track[data-level="2"] { transform: translateX(-33.3333%); }
+    .nx-track[data-level="1"] .nx-col-preview, .nx-track[data-level="2"] .nx-col-main { visibility: hidden; opacity: 0; }
+    .nx-col-preview { position: static; padding-right: 4px; }
+  }
+  @media (max-width: 759px) {
+    .nx-track { width: 300%; }
+    .nx-track[data-level="1"] { transform: translateX(-33.3333%); }
+    .nx-track[data-level="2"] { transform: translateX(-66.6667%); }
+    .nx-track[data-level="1"] .nx-col-main, .nx-track[data-level="2"] .nx-col-sub { visibility: hidden; opacity: 0; }
+    .nx-col-sub, .nx-col-preview { border-left: none; padding-left: 0; }
+    .nx-col-main, .nx-col-sub, .nx-col-preview { padding-right: 0; }
+    .nx-back-mobile { display: flex; }
+    .nx-main-link { font-size: 28px; }
+  }
+  @media (max-width: 640px) {
+    .nx-pill { top: 16px; left: 16px; padding: 5px 8px 5px 5px; }
+    .nx-toggle { width: 40px; height: 38px; }
+    .nx-logo { width: 52.9px; height: 43.7px; }
+    .nx-logo[data-open="true"] { width: 169px; }
+    .nx-logo-svg { width: 168.1px; height: 43.7px; }
+    .nx-search { top: 16px; right: 16px; }
+    .nx-search-bar { height: 50px; width: 50px; padding: 5px; }
+    .nx-search-btn { height: 38px; width: 38px; padding: 0; justify-content: center; }
+    .nx-search-label { display: none !important; }
+    .nx-search[data-open="true"] .nx-search-bar, .nx-search-results { width: calc(100vw - 32px); }
+    .nx-search[data-open="true"] .nx-search-btn { width: 38px; }
+  }
+</style>
+<script src="assets/js/nxSearchIndex.js" defer></script>
+<script src="assets/js/nxSearchEngine.js" defer></script>
+</helmet>
+
+<div class="nx-pill" data-tone="{{ tone }}" style="font-family: 'Hanken Grotesk', 'Neue Haas Grotesk Display', 'Helvetica Neue', Arial, sans-serif;">
+  <button class="nx-toggle" type="button" onClick="{{ toggle }}" aria-expanded="{{ openAttr }}" aria-controls="nx-menu-overlay" aria-label="{{ toggleLabel }}">
+    {{ toggleIcon }}
+  </button>
+  <a href="{{ homeHref }}" class="nx-logo" data-open="{{ openAttr }}" aria-label="Nexyra Consulting homepage">
+    <svg class="nx-logo-svg" viewBox="0 0 400 104" aria-hidden="true">
+      <defs>
+        <linearGradient id="nxNavGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130">
+          <stop offset="0" stop-color="#A78BFA"></stop>
+          <stop offset="0.39" stop-color="#7C3AED"></stop>
+          <stop offset="1" stop-color="#3B82F6"></stop>
+        </linearGradient>
+        <clipPath id="nxNavCutTop"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath>
+        <clipPath id="nxNavCutBot"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath>
+      </defs>
+      <g transform="translate(34,20) scale(0.457)">
+        <g class="nx-mono-light">
+          <g clip-path="url(#nxNavCutTop)"><path fill="url(#nxNavGrad)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g>
+          <g clip-path="url(#nxNavCutBot)"><path fill="url(#nxNavGrad)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g>
+        </g>
+        <g class="nx-mono-dark">
+          <g clip-path="url(#nxNavCutTop)"><path fill="#FFFFFF" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g>
+          <g clip-path="url(#nxNavCutBot)"><path fill="#FFFFFF" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g>
+        </g>
+        <line stroke="#9333EA" fill="none" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line>
+        <line stroke="#9333EA" fill="none" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line>
+      </g>
+      <text x="138" y="57.1" font-family="'Hanken Grotesk','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif" font-size="51" font-weight="500" letter-spacing="5.33" fill="#000000">NEXYRA</text>
+      <text x="140.7" y="84.0" font-family="'Hanken Grotesk','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif" font-size="16.1" font-weight="400" letter-spacing="9.67" fill="#000000">CONSULTING</text>
+    </svg>
+  </a>
+</div>
+
+<div class="nx-search" data-open="{{ searchOpenAttr }}" data-tone="{{ searchTone }}" style="font-family: 'Hanken Grotesk', 'Neue Haas Grotesk Display', 'Helvetica Neue', Arial, sans-serif;">
+  <form class="nx-search-bar" role="search" onSubmit="{{ onSearchSubmit }}">
+    <input ref="{{ searchInputRef }}" class="nx-search-input" type="text" placeholder="Search Nexyra" aria-label="Search the site" autocomplete="off" value="{{ query }}" onChange="{{ onQuery }}" onKeyDown="{{ onSearchKey }}" tabIndex="{{ inputTab }}" aria-controls="nx-search-results">
+    <button type="button" class="nx-search-btn" onClick="{{ onSearchButton }}" aria-label="{{ searchBtnLabel }}" aria-expanded="{{ searchOpenAttr }}">
+      <span class="nx-search-ico-open"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></span>
+      <span class="nx-search-ico-close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></span>
+      <span class="nx-search-label">Search</span>
+    </button>
+  </form>
+  <sc-if value="{{ showResults }}" hint-placeholder-val="{{ false }}">
+    <div id="nx-search-results" class="nx-search-results" role="listbox" aria-label="Search results">
+      <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
+        <p class="nx-sr-count">{{ resultCount }}</p>
+        <sc-for list="{{ results }}" as="res" hint-placeholder-count="4">
+          <a class="nx-sr-item" href="{{ res.url }}" role="option" aria-selected="{{ res.activeAttr }}" data-active="{{ res.activeAttr }}" onClick="{{ res.onClick }}" onMouseEnter="{{ res.onEnter }}">
+            <span class="nx-sr-meta">{{ res.meta }}</span>
+            <span class="nx-sr-title">{{ res.title }}</span>
+            <span class="nx-sr-snip"><sc-for list="{{ res.parts }}" as="pt" hint-placeholder-count="1"><span data-hit="{{ pt.hit }}">{{ pt.t }}</span></sc-for></span>
+          </a>
+        </sc-for>
+      </sc-if>
+      <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+        <p class="nx-sr-empty">No results for “{{ query }}”. Try a service, industry or topic.</p>
+      </sc-if>
+    </div>
+  </sc-if>
+</div>
+
+<sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+  <div id="nx-menu-overlay" class="nx-overlay" role="dialog" aria-modal="true" aria-label="Site navigation" style="position: fixed; inset: 0; z-index: 995; background: #FFFFFF; overflow-y: auto; font-family: 'Hanken Grotesk', 'Neue Haas Grotesk Display', 'Helvetica Neue', Arial, sans-serif; color: #0A0A0F;">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 112px 7vw 56px;">
+      <div class="nx-stage">
+        <div class="nx-track" data-level="{{ level }}" data-preview="{{ previewAttr }}">
+
+          <nav class="nx-col nx-col-main" aria-label="Main navigation">
+            <ul class="nx-main-list">
+              <sc-for list="{{ items }}" as="it" hint-placeholder-count="7">
+                <li>
+                  <sc-if value="{{ it.isSection }}" hint-placeholder-val="{{ false }}">
+                    <button type="button" class="nx-main-link" data-active="{{ it.activeAttr }}" data-dim="{{ it.dimAttr }}" data-current="{{ it.current }}" aria-expanded="{{ it.activeAttr }}" onClick="{{ it.onSelect }}">
+                      <span class="nx-label">{{ it.label }}</span>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                    </button>
+                  </sc-if>
+                  <sc-if value="{{ it.isLink }}" hint-placeholder-val="{{ true }}">
+                    <a class="nx-main-link" href="{{ it.to }}" data-dim="{{ it.dimAttr }}" data-current="{{ it.current }}" aria-current="{{ it.current }}" onClick="{{ closeMenu }}"><span class="nx-label">{{ it.label }}</span></a>
+                  </sc-if>
+                </li>
+              </sc-for>
+            </ul>
+          </nav>
+
+          <div class="nx-col nx-col-sub">
+            <button type="button" class="nx-back" onClick="{{ back }}" aria-label="{{ backLabel }}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+              <span>{{ sectionLabel }}</span>
+            </button>
+            <sc-if value="{{ hasOverview }}" hint-placeholder-val="{{ true }}"><a class="nx-sub-overview" href="{{ overviewTo }}" onClick="{{ closeMenu }}">{{ overviewLabel }}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </a></sc-if>
+            <sc-for list="{{ subGroups }}" as="g" hint-placeholder-count="1">
+              <div class="nx-sub-group">
+                <sc-if value="{{ g.hasHeading }}" hint-placeholder-val="{{ false }}"><p class="nx-sub-heading">{{ g.heading }}</p></sc-if>
+                <sc-for list="{{ g.items }}" as="l" hint-placeholder-count="4">
+                  <sc-if value="{{ l.isLink }}" hint-placeholder-val="{{ true }}">
+                    <a class="nx-sub-link" href="{{ l.to }}" data-selected="{{ l.selectedAttr }}" onMouseEnter="{{ l.onEnter }}" onFocus="{{ l.onEnter }}" onClick="{{ l.onClick }}">{{ l.label }}</a>
+                  </sc-if>
+                  <sc-if value="{{ l.isGroup }}" hint-placeholder-val="{{ false }}">
+                    <button type="button" class="nx-sub-link nx-sub-btn" data-selected="{{ l.selectedAttr }}" aria-expanded="{{ l.selectedAttr }}" aria-controls="nx-product-nav" aria-label="{{ l.ariaLabel }}" onMouseEnter="{{ l.onEnter }}" onMouseLeave="{{ l.onLeave }}" onFocus="{{ l.onFocus }}" onClick="{{ l.onClick }}">
+                      <span><span style="display: block;">{{ l.label }}</span><span class="nx-sub-tag">{{ l.tagline }}</span></span>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                    </button>
+                  </sc-if>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+
+          <div class="nx-col nx-col-preview" aria-live="polite">
+            <button type="button" class="nx-back nx-back-mobile" onClick="{{ back }}" aria-label="{{ backLabel }}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+              <span>{{ sectionLabel }}</span>
+            </button>
+            <sc-if value="{{ hasProduct }}" hint-placeholder-val="{{ false }}">
+              <nav id="nx-product-nav" ref="{{ pvRef }}" aria-label="{{ prod.navLabel }}">
+                <p class="nx-preview-eyebrow" style="margin-top: 14px;">{{ prod.tagline }}</p>
+                <h3 style="margin: 0; font-size: clamp(24px, 2.2vw, 32px); font-weight: 600; line-height: 1.12; letter-spacing: -0.02em;">{{ prod.label }}</h3>
+                <a class="nx-sub-overview" ref="{{ prodFirstRef }}" href="{{ prod.to }}" onClick="{{ closeMenu }}" style="margin-top: 10px;">{{ prod.overview }}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a>
+                <sc-for list="{{ prod.groups }}" as="pg" hint-placeholder-count="2">
+                  <div class="nx-sub-group">
+                    <p class="nx-sub-heading">{{ pg.heading }}</p>
+                    <sc-for list="{{ pg.items }}" as="pl" hint-placeholder-count="5">
+                      <a class="nx-sub-link" href="{{ pl.to }}" onClick="{{ closeMenu }}">{{ pl.label }}</a>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </nav>
+            </sc-if>
+            <sc-if value="{{ hasPreview }}" hint-placeholder-val="{{ false }}">
+              <div ref="{{ pvRef }}">
+                <img src="{{ pv.img }}" alt="{{ pv.alt }}" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; filter: grayscale(1); background: #F7F7F9;">
+                <p class="nx-preview-eyebrow">{{ pv.group }}</p>
+                <h3 style="margin: 0; font-size: clamp(24px, 2.2vw, 32px); font-weight: 600; line-height: 1.12; letter-spacing: -0.02em; text-wrap: pretty;">{{ pv.label }}</h3>
+                <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.65; color: #4A4A5A; max-width: 52ch; text-wrap: pretty;">{{ pv.desc }}</p>
+                <sc-if value="{{ pv.hasFeature }}" hint-placeholder-val="{{ false }}">
+                  <p style="margin: 20px 0 0; padding-top: 16px; border-top: 1px solid #E7E7EC; font-size: 13px; line-height: 1.5; color: #6B6B7B; max-width: 52ch;"><span style="font-weight: 600; color: #0A0A0F;">Featured work:</span> {{ pv.feature }}</p>
+                </sc-if>
+                <a class="nx-preview-cta" href="{{ pv.to }}" onClick="{{ closeMenu }}">{{ pv.cta }}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a>
+              </div>
+            </sc-if>
+          </div>
+
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; margin-top: 56px; padding-top: 28px; border-top: 1px solid #E7E7EC;">
+        <a href="mailto:hello@nexyraconsulting.co.uk" style="font-size: 14px; color: #4A4A5A;">hello@nexyraconsulting.co.uk</a>
+        <a href="tel:+447415171157" style="font-size: 14px; color: #4A4A5A;">+44 74151 71157</a>
+      </div>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SERVICES = [
+  { key: "user-research", group: "Core service", label: "User Research & Insights", to: "https://nexyraconsulting.co.uk/services-user-research.html", img: "assets/nav/insights-journey-mapping.jpg", alt: "Researchers mapping a customer journey on a wall", desc: "Evidence before opinion. Qualitative and quantitative research across your customers, market and competitors, turned into decisions your teams can act on." },
+  { key: "brand-building", group: "Core service", label: "Brand Building", to: "https://nexyraconsulting.co.uk/services-brand-building.html", img: "assets/nav/services-brand.jpg", alt: "Branded packaging and collateral on a studio table", desc: "Positioning, identity and the system that holds them together, documented so every team ships on-brand without asking permission." },
+  { key: "marketing-strategy", group: "Core service", label: "Marketing Strategy & Execution", to: "https://nexyraconsulting.co.uk/services-marketing-strategy.html", img: "assets/nav/work-gtm-launch.jpg", alt: "Campaign planning session in progress", desc: "Go-to-market planning, messaging architecture and the campaigns behind it, measured against pipeline and revenue rather than impressions." },
+  { key: "digital-transformation", group: "Core service", label: "Digital Transformation", to: "https://nexyraconsulting.co.uk/services-digital-transformation.html", img: "assets/nav/services-digital-transformation-hero.jpg", alt: "Abstract grid of a modern building facade", desc: "Modernisation with a business case attached: target operating model, platforms and data, sequenced into deliverable phases that stick." },
+  { key: "managed-services", group: "Core service", label: "Managed Services", to: "https://nexyraconsulting.co.uk/services-managed-services.html", img: "assets/nav/home-partnership.jpg", alt: "Embedded team working alongside a client", desc: "Embedded Nexyra teams running design, brand and digital operations alongside yours, under clear service levels, month after month." },
+  { key: "accounts-business-services", group: "Core service", label: "Accounts & Business Services", to: "https://nexyraconsulting.co.uk/services-accounts-and-business-services.html", img: "assets/nav/services-accounts-hero.jpg", alt: "Glass-partitioned office corridor", desc: "Accounts, audit and assurance under one roof, with management reporting and forecasting leaders can actually read." },
+  { key: "experience-design", group: "Extended capability", label: "Experience Design (UX/UI)", to: "https://nexyraconsulting.co.uk/services-experience-design.html", img: "assets/nav/services-product.jpg", alt: "Interface wireframes being drawn on a tablet", desc: "Information architecture, high-fidelity screens, prototypes and accessible, developer-ready specifications." },
+  { key: "product-service-design", group: "Extended capability", label: "Product and Service Design", to: "https://nexyraconsulting.co.uk/services-product-and-service-design.html", img: "assets/nav/services-creative.jpg", alt: "Concept sketches and prototypes on a work surface", desc: "Service blueprints, MVP definition, concept testing and the roadmap that takes an idea to launch." },
+  { key: "enterprise-software-design", group: "Extended capability", label: "Enterprise Software Design", to: "https://nexyraconsulting.co.uk/services-enterprise-software-design.html", img: "assets/nav/services-enterprise-software-hero.jpg", alt: "A tall glass building against the sky", desc: "Design discipline for ERP, CRM, internal platforms and admin tooling, making complex workflows navigable every day." },
+  { key: "automation-intelligent-systems", group: "Extended capability", label: "Automation & Intelligent Systems", to: "https://nexyraconsulting.co.uk/services-automation-and-intelligent-systems.html", img: "assets/nav/services-automation-hero.jpg", alt: "Shelving units filled with stacked boxes in an automated warehouse aisle", desc: "Workflow automation, AI-assisted decision support and system integration, designed around measurable time saved." },
+  { key: "no-code-development", group: "Extended capability", label: "No-Code Development", to: "https://nexyraconsulting.co.uk/services-no-code-development.html", img: "assets/nav/services-no-code-hero.jpg", alt: "Blurred city street at night", desc: "Fast, low-risk builds for internal tools, pilots and validation work, integrated with your stack and handed over with training." },
+];
+const INDUSTRIES = [
+  { key: "ind-financial", group: "Industry", label: "Financial Services", img: "assets/nav/work-ai-service.jpg", alt: "Customer service operations supported by AI tooling", desc: "Banks, insurers and fintechs modernising how they serve customers, from AI-assisted service platforms to the data and compliance layers underneath.", feature: "AI-Powered Customer Service Transformation" },
+  { key: "ind-healthcare", group: "Industry", label: "Healthcare", img: "assets/nav/work-data-platform.jpg", alt: "Data platform dashboards", desc: "Healthcare technology and care providers turning clinical and operational data into predictive, patient-centred decisions.", feature: "Data Platform Modernisation & Analytics Strategy" },
+  { key: "ind-technology", group: "Industry", label: "Technology", img: "assets/nav/work-gtm-launch.jpg", alt: "Campaign planning session in progress", desc: "Software and platform companies taking new products to market with a clear proposition, sharp positioning and launch plans tied to revenue.", feature: "Go-to-Market Strategy & Product Launch" },
+  { key: "ind-retail", group: "Industry", label: "Retail & E-commerce", img: "assets/nav/work-brand-repositioning.jpg", alt: "Brand repositioning work on screen", desc: "Retailers and marketplaces repositioning the brand and rebuilding the digital experience end to end, measured in conversion and revenue.", feature: "Brand Repositioning & Digital Experience Redesign" },
+  { key: "ind-manufacturing", group: "Industry", label: "Manufacturing", img: "assets/nav/work-automation.jpg", alt: "Automated production environment", desc: "Manufacturers removing manual effort and error from operations with enterprise-wide automation and connected systems.", feature: "Intelligent Automation & Process Optimisation" },
+  { key: "ind-fmcg", group: "Industry", label: "Consumer Products", img: "assets/nav/work-journey-mapping.jpg", alt: "Customer journey map on a wall", desc: "Consumer brands building retention and lifetime value through mapped journeys, personalisation and research-led product decisions.", feature: "Customer Journey Optimisation & Personalisation" },
+].map((i) => ({ ...i, to: "https://nexyraconsulting.co.uk/work.html", cta: "Explore our work" }));
+const BY_KEY = Object.fromEntries([...SERVICES.map((s) => ({ ...s, cta: "Visit page" })), ...INDUSTRIES].map((s) => [s.key, s]));
+
+// Product sub-navigation. Nexyra pages are absolute; NEXHR pages are local to this app.
+const PRODUCTS = [
+  { key: "nexdrive", label: "NEXDrive", tagline: "For driving instructors", to: "https://nexyraconsulting.co.uk/products-nexdrive.html", overview: "NEXDrive overview", groups: [
+    { heading: "Explore", items: [
+      { label: "The complete toolkit", to: "https://nexyraconsulting.co.uk/products-nexdrive.html#toolkit-heading" },
+      { label: "Refer & earn", to: "https://nexyraconsulting.co.uk/products-nexdrive.html#referral-heading" },
+      { label: "Pricing", to: "https://nexyraconsulting.co.uk/products-nexdrive.html#pricing-heading" },
+      { label: "14-day free trial", to: "https://nexyraconsulting.co.uk/products-nexdrive.html#trial-heading" },
+      { label: "Common questions", to: "https://nexyraconsulting.co.uk/products-nexdrive.html#faq-heading" },
+    ] },
+    { heading: "Get started", items: [
+      { label: "Open the NEXDrive app", to: "https://nexyraconsulting.co.uk/nexdrive/index.html" },
+    ] },
+  ] },
+  { key: "nexhr", label: "NEXHR", tagline: "All-in-one HR workspace", to: "index.html", overview: "NEXHR overview", groups: [
+    { heading: "Explore", items: [
+      { label: "Product", to: "index.html#product" },
+      { label: "Roles", to: "index.html#roles" },
+      { label: "How it works", to: "index.html#how" },
+      { label: "Security", to: "index.html#security" },
+      { label: "Pricing", to: "pricing.html" },
+    ] },
+    { heading: "Get started", items: [
+      { label: "Start free trial", to: "signup.html" },
+      { label: "Sign in", to: "login.html" },
+    ] },
+  ] },
+  { key: "nextime", label: "NEXTime", tagline: "For rotas & timesheets", to: "https://nexyraconsulting.co.uk/nextime/index.html", overview: "NEXTime overview", groups: [
+    { heading: "Explore", items: [
+      { label: "Features", to: "https://nexyraconsulting.co.uk/nextime/index.html#/features" },
+      { label: "How it works", to: "https://nexyraconsulting.co.uk/nextime/index.html#/how-it-works" },
+      { label: "Security", to: "https://nexyraconsulting.co.uk/nextime/index.html#/security" },
+      { label: "Pricing", to: "https://nexyraconsulting.co.uk/nextime/index.html#/pricing" },
+      { label: "FAQ", to: "https://nexyraconsulting.co.uk/nextime/index.html#/faq" },
+    ] },
+    { heading: "Get started", items: [
+      { label: "Start free trial", to: "https://nexyraconsulting.co.uk/nextime/account.html?view=signup" },
+      { label: "Sign in", to: "https://nexyraconsulting.co.uk/nextime/account.html" },
+    ] },
+  ] },
+];
+const PRODUCT_BY_KEY = Object.fromEntries(PRODUCTS.map((p) => [p.key, p]));
+
+const MENU = [
+  { key: "about", label: "About", to: "https://nexyraconsulting.co.uk/about.html", overview: "About Nexyra", groups: [
+    { heading: null, items: [
+      { label: "Our story", to: "https://nexyraconsulting.co.uk/about.html#about-heading" },
+      { label: "What we stand for", to: "https://nexyraconsulting.co.uk/about.html#values-heading" },
+      { label: "What we bring", to: "https://nexyraconsulting.co.uk/about.html#expertise-heading" },
+    ] },
+  ] },
+  { key: "services", label: "Services", to: "https://nexyraconsulting.co.uk/services.html", overview: "All services", preview: true, groups: [
+    { heading: "Core services", items: SERVICES.filter((s) => s.group === "Core service") },
+    { heading: "Extended capabilities", items: SERVICES.filter((s) => s.group === "Extended capability") },
+  ] },
+  { key: "products", label: "Products", to: "https://nexyraconsulting.co.uk/products-nexdrive.html", overview: null, preview: true, products: true, groups: [
+    { heading: null, items: PRODUCTS },
+  ] },
+  { key: "work", label: "Work", to: "https://nexyraconsulting.co.uk/work.html", overview: "All work", preview: true, groups: [
+    { heading: "Industries", items: INDUSTRIES },
+  ] },
+  { key: "pricing", label: "Pricing", to: "https://nexyraconsulting.co.uk/pricing.html", overview: "Pricing overview", groups: [
+    { heading: null, items: [
+      { label: "Architecture", to: "https://nexyraconsulting.co.uk/pricing.html#arch-heading" },
+      { label: "Fixed price, fixed scope", to: "https://nexyraconsulting.co.uk/pricing.html#fixed-heading" },
+      { label: "Partnership Ladder", to: "https://nexyraconsulting.co.uk/pricing.html#ladder-heading" },
+      { label: "Common questions", to: "https://nexyraconsulting.co.uk/pricing.html#faq-heading" },
+    ] },
+  ] },
+  { key: "insight", label: "Insight", to: "https://nexyraconsulting.co.uk/insight.html" },
+  { key: "careers", label: "Careers", to: "https://nexyraconsulting.co.uk/careers.html" },
+  { key: "contact", label: "Contact", to: "https://nexyraconsulting.co.uk/contact.html" },
+];
+
+const line = (d) => React.createElement("path", { key: d, d });
+const directNav = () => typeof window !== "undefined" && window.matchMedia("(min-width: 1200px) and (hover: hover)").matches;
+
+class Component extends DCLogic {
+  state = { open: false, section: null, drilled: false, preview: null, tone: "light", searchTone: "light", searchOpen: false, query: "", active: 0 };
+  searchInputRef = React.createRef();
+  openSearch = () => { this.setState({ searchOpen: true }); setTimeout(() => this.searchInputRef.current && this.searchInputRef.current.focus(), 60); };
+  closeSearch = () => { this.setState({ searchOpen: false, query: "", active: 0 }); };
+  onSearchButton = () => (this.state.searchOpen ? this.closeSearch() : this.openSearch());
+  onQuery = (e) => this.setState({ query: e.target.value, active: 0 });
+  goResult = (res) => { if (!res) return; this.closeSearch(); this.closeMenu(); window.location.href = res.url; };
+  onSearchSubmit = (e) => { e.preventDefault(); this.goResult(this.searchResults()[this.state.active]); };
+  onSearchKey = (e) => {
+    const n = this.searchResults().length;
+    if (e.key === "Escape") { e.stopPropagation(); this.closeSearch(); }
+    else if (e.key === "ArrowDown" && n) { e.preventDefault(); this.setState((s) => ({ active: (s.active + 1) % n })); }
+    else if (e.key === "ArrowUp" && n) { e.preventDefault(); this.setState((s) => ({ active: (s.active - 1 + n) % n })); }
+  };
+  searchResults = () => {
+    const q = this.state.query.trim();
+    if (q.length < 2 || !window.NX_SEARCH) { this._lastLabel = ""; return []; }
+    if (this._lastQ === q && this._lastR) return this._lastR;
+    const r = window.NX_SEARCH(q, window.NX_SEARCH_INDEX || []);
+    this._lastQ = q; this._lastR = r.results; this._lastLabel = r.label;
+    return this._lastR;
+  };
+  toneAt = (pill) => {
+    const r = pill.getBoundingClientRect();
+    const stack = document.elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+    let el = stack.find((e) => !pill.contains(e) && !e.closest(".nx-pill") && !e.closest(".nx-search") && !e.closest("#nx-menu-overlay"));
+    let tone = "light";
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const layers = Array.from(document.querySelectorAll('[data-parallax-layer], img, [style*="background-image"]')).filter((c) => {
+      if (pill.contains(c) || c.closest("#nx-menu-overlay") || c.closest(".nx-pill") || c.closest(".nx-search")) return false;
+      const b = c.getBoundingClientRect();
+      if (cx < b.left || cx > b.right || cy < b.top || cy > b.bottom) return false;
+      const st = getComputedStyle(c);
+      return st.visibility !== "hidden" && st.display !== "none" && +st.opacity > 0.2;
+    });
+    const layer = el && layers.reverse().find((c) => el === c || el.contains(c) || (c.parentElement && c.parentElement.contains(el)));
+    if (layer) el = layer;
+    while (el && el !== document.documentElement) {
+      const explicit = el.getAttribute && el.getAttribute("data-nav-tone");
+      if (explicit) { tone = explicit; break; }
+      const cs = getComputedStyle(el);
+      const bgUrl = (cs.backgroundImage.match(/url\(["']?([^"')]+)["']?\)/) || [])[1];
+      const isImg = el.tagName === "IMG";
+      const src = isImg ? el.currentSrc || el.src : bgUrl;
+      if (src) {
+        const img = this.loadImg(src);
+        const fit = isImg ? cs.objectFit : cs.backgroundSize;
+        const lum = img ? this.regionLum(img, el.getBoundingClientRect(), r, fit === "contain" ? "contain" : "cover") : null;
+        if (lum !== null) { tone = lum < 0.5 ? "dark" : "light"; break; }
+      }
+      if (/gradient/.test(cs.backgroundImage)) {
+        const gm = cs.backgroundImage.match(/rgba?\(([^)]+)\)/);
+        if (gm) {
+          const v = gm[1].split(",").map(Number);
+          if (v[3] === undefined || v[3] > 0.5) { tone = (0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2]) / 255 < 0.4 ? "dark" : "light"; break; }
+        }
+      }
+      const m = cs.backgroundColor.match(/[\d.]+/g);
+      if (m && (m[3] === undefined || +m[3] > 0.5)) {
+        const lum = (0.2126 * m[0] + 0.7152 * m[1] + 0.0722 * m[2]) / 255;
+        tone = lum < 0.4 ? "dark" : "light";
+        break;
+      }
+      el = el.parentElement;
+    }
+    return tone;
+  };
+  detectTone = () => {
+    this.toneRaf = null;
+    const pill = document.querySelector(".nx-pill");
+    const bar = document.querySelector(".nx-search-bar");
+    const tone = pill ? this.toneAt(pill) : this.state.tone;
+    const searchTone = bar ? this.toneAt(bar) : tone;
+    if (tone !== this.state.tone || searchTone !== this.state.searchTone) this.setState({ tone, searchTone });
+  };
+  imgCache = {};
+  loadImg = (src) => {
+    const c = this.imgCache[src];
+    if (c) return c.ok ? c.img : null;
+    const img = new Image();
+    this.imgCache[src] = { ok: false, img };
+    img.crossOrigin = "anonymous";
+    img.onload = () => { this.imgCache[src].ok = true; this.queueTone(); };
+    img.src = src;
+    return null;
+  };
+  regionLum = (img, rect, box, fit) => {
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    if (!iw || !ih || !rect.width || !rect.height) return null;
+    const sc = fit === "contain" ? Math.min(rect.width / iw, rect.height / ih) : Math.max(rect.width / iw, rect.height / ih);
+    const ox = rect.left + (rect.width - iw * sc) / 2, oy = rect.top + (rect.height - ih * sc) / 2;
+    let sx = (box.left - ox) / sc, sy = (box.top - oy) / sc, sw = box.width / sc, sh = box.height / sc;
+    sx = Math.max(0, Math.min(iw - 1, sx)); sy = Math.max(0, Math.min(ih - 1, sy));
+    sw = Math.max(1, Math.min(iw - sx, sw)); sh = Math.max(1, Math.min(ih - sy, sh));
+    try {
+      const cv = this.lumCanvas || (this.lumCanvas = document.createElement("canvas"));
+      cv.width = 16; cv.height = 16;
+      const x = cv.getContext("2d", { willReadFrequently: true });
+      x.clearRect(0, 0, 16, 16); x.drawImage(img, sx, sy, sw, sh, 0, 0, 16, 16);
+      const d = x.getImageData(0, 0, 16, 16).data; let t = 0;
+      for (let i = 0; i < d.length; i += 4) t += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+      return t / (d.length / 4) / 255;
+    } catch (err) { return null; }
+  };
+  queueTone = () => { if (!this.toneRaf) this.toneRaf = requestAnimationFrame(this.detectTone); };
+  pvRef = React.createRef();
+
+  componentDidMount() {
+    this._prevS = { open: this.state.open, preview: this.state.preview };
+    this.measureClear = () => {
+      const els = document.querySelectorAll('.nx-pill, .nx-search-bar');
+      let b = 0; els.forEach(el => { b = Math.max(b, el.getBoundingClientRect().bottom); });
+      if (b) document.documentElement.style.setProperty('--nx-clear', Math.ceil(b + 30) + 'px');
+    };
+    this.measureClear(); requestAnimationFrame(this.measureClear);
+    window.addEventListener('resize', this.measureClear);
+    this.onKey = (e) => {
+      if (e.key === "Escape" && this.state.searchOpen) { this.closeSearch(); return; }
+      if (e.key !== "Escape" || !this.state.open) return;
+      this.back(true);
+    };
+    window.addEventListener("keydown", this.onKey);
+    window.addEventListener("scroll", this.queueTone, { passive: true });
+    window.addEventListener("resize", this.queueTone);
+    setTimeout(this.detectTone, 60);
+    setTimeout(this.detectTone, 600);
+    this.toneTimer = setInterval(this.queueTone, 700);
+    Object.values(BY_KEY).forEach((s) => { const i = new Image(); i.src = s.img; });
+  }
+  componentDidUpdate() {
+    const prev = this._prevS || {}; this._prevS = { open: this.state.open, preview: this.state.preview };
+    if (prev.open !== undefined && prev.open !== this.state.open) document.body.style.overflow = this.state.open ? "hidden" : "";
+    if (prev.preview && prev.preview !== this.state.preview && this.pvRef.current && this.pvRef.current.animate) {
+      this.pvRef.current.animate([{ opacity: 0.3, transform: "translateY(4px)" }, { opacity: 1, transform: "none" }], { duration: 280, easing: "cubic-bezier(0.2, 0.7, 0.2, 1)" });
+    }
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.measureClear);
+    window.removeEventListener("keydown", this.onKey);
+    window.removeEventListener("scroll", this.queueTone);
+    window.removeEventListener("resize", this.queueTone);
+    clearInterval(this.toneTimer);
+    clearTimeout(this.hoverT);
+    document.body.style.overflow = "";
+  }
+
+  toggle = () => this.setState((s) => ({ open: !s.open, section: null, drilled: false, preview: null }));
+  closeMenu = () => this.setState({ open: false, section: null, drilled: false, preview: null });
+  back = (escape) => this.setState((s) => {
+    if (s.drilled) return { drilled: false };
+    if (s.section) return { section: null, preview: null };
+    return escape === true ? { open: false } : null;
+  });
+  selectSection = (key) => this.setState((s) => {
+    if (s.section === key) return { section: null, drilled: false, preview: null };
+    const m = MENU.find((x) => x.key === key);
+    return { section: key, drilled: false, preview: m.preview ? m.groups[0].items[0].key : null };
+  });
+  prodFirstRef = React.createRef();
+  focusProduct = () => setTimeout(() => { const el = this.prodFirstRef.current; if (el) el.focus({ preventScroll: true }); }, 60);
+  onProductEnter = (key) => () => {
+    clearTimeout(this.hoverT);
+    this.hoverT = setTimeout(() => { if (this.state.preview !== key) this.setState({ preview: key }); }, 90);
+  };
+  onProductLeave = () => clearTimeout(this.hoverT);
+  onProductClick = (key) => (e) => {
+    clearTimeout(this.hoverT);
+    const keyboard = e.detail === 0;
+    this.setState(directNav() ? { preview: key } : { preview: key, drilled: true });
+    if (keyboard || !directNav()) this.focusProduct();
+  };
+  onServiceClick = (key) => (e) => {
+    if (directNav()) { this.closeMenu(); return; }
+    e.preventDefault();
+    this.setState({ preview: key, drilled: true });
+  };
+
+  renderVals() {
+    const active = this.props.active || "";
+    const { open, section, drilled, preview } = this.state;
+    const sec = MENU.find((m) => m.key === section) || null;
+
+    const items = MENU.map((m) => {
+      const isSection = !!m.groups;
+      const isActive = section === m.key;
+      return {
+        label: m.label,
+        to: m.to,
+        isSection,
+        isLink: !isSection,
+        activeAttr: isActive ? "true" : "false",
+        dimAttr: section && !isActive ? "true" : "false",
+        current: m.key === active ? "page" : undefined,
+        onSelect: () => this.selectSection(m.key),
+      };
+    });
+
+    const subGroups = sec ? sec.groups.map((g) => ({
+      heading: g.heading,
+      hasHeading: !!g.heading,
+      items: g.items.map((it) => sec.products ? {
+        label: it.label,
+        tagline: it.tagline,
+        ariaLabel: it.label + ", " + it.tagline + ": show pages",
+        isLink: false,
+        isGroup: true,
+        to: it.to,
+        selectedAttr: preview === it.key ? "true" : "false",
+        onEnter: this.onProductEnter(it.key),
+        onLeave: this.onProductLeave,
+        onFocus: () => { if (this.state.preview !== it.key) this.setState({ preview: it.key }); },
+        onClick: this.onProductClick(it.key),
+      } : sec.preview ? {
+        isLink: true,
+        isGroup: false,
+        label: it.label,
+        to: it.to,
+        selectedAttr: preview === it.key ? "true" : "false",
+        onEnter: () => { if (this.state.preview !== it.key) this.setState({ preview: it.key }); },
+        onClick: this.onServiceClick(it.key),
+      } : {
+        isLink: true,
+        isGroup: false,
+        label: it.label,
+        to: it.to,
+        selectedAttr: "false",
+        onEnter: null,
+        onClick: this.closeMenu,
+      }),
+    })) : [];
+
+    const pv = sec && sec.preview && !sec.products && preview ? BY_KEY[preview] : null;
+    const prod = sec && sec.products && preview ? PRODUCT_BY_KEY[preview] : null;
+
+    return {
+      homeHref: "https://nexyraconsulting.co.uk/",
+      contactHref: "https://nexyraconsulting.co.uk/contact.html",
+      open,
+      searchOpenAttr: this.state.searchOpen ? "true" : "false",
+      searchInputRef: this.searchInputRef,
+      query: this.state.query,
+      onQuery: this.onQuery,
+      onSearchKey: this.onSearchKey,
+      onSearchSubmit: this.onSearchSubmit,
+      onSearchButton: this.onSearchButton,
+      searchBtnLabel: this.state.searchOpen ? "Close search" : "Open search",
+      inputTab: this.state.searchOpen ? 0 : -1,
+      ...(() => {
+        const rs = this.searchResults();
+        const q = this.state.query.trim();
+        return {
+          showResults: this.state.searchOpen && q.length >= 2,
+          hasResults: rs.length > 0,
+          noResults: rs.length === 0,
+          resultCount: this._lastLabel || (rs.length + (rs.length === 1 ? " result" : " results")),
+          results: rs.map((r, i) => ({ ...r, activeAttr: i === this.state.active ? "true" : "false", onClick: (e) => { e.preventDefault(); this.goResult(r); }, onEnter: () => { if (this.state.active !== i) this.setState({ active: i }); } })),
+        };
+      })(),
+      openAttr: open ? "true" : "false",
+      tone: open ? "light" : this.state.tone,
+      searchTone: open || this.state.searchOpen ? "light" : this.state.searchTone || "light",
+      toggle: this.toggle,
+      closeMenu: this.closeMenu,
+      back: () => this.back(false),
+      toggleLabel: open ? "Close menu" : "Open menu",
+      toggleIcon: React.createElement(
+        "svg",
+        { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" },
+        open ? [line("M18 6 6 18"), line("m6 6 12 12")] : [line("M2.8 7h18.4"), line("M2.8 12h18.4"), line("M2.8 17h18.4")]
+      ),
+      items,
+      level: section ? (drilled ? "2" : "1") : "0",
+      previewAttr: sec && sec.preview ? "true" : "false",
+      sectionLabel: sec ? sec.label : "",
+      backLabel: sec ? (drilled ? "Back to " + sec.label : "Back to menu") : "Back",
+      overviewLabel: sec ? sec.overview : "",
+      overviewTo: sec ? sec.to : "#",
+      hasOverview: !sec || !!sec.overview,
+      subGroups,
+      hasPreview: !!pv,
+      hasProduct: !!prod,
+      prodFirstRef: this.prodFirstRef,
+      prod: prod ? { ...prod, navLabel: prod.label + " pages" } : { label: "", tagline: "", to: "#", overview: "", navLabel: "", groups: [] },
+      pvRef: this.pvRef,
+      pv: pv ? { ...pv, hasFeature: !!pv.feature } : { img: "", alt: "", group: "", label: "", desc: "", to: "#", cta: "", feature: "", hasFeature: false },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

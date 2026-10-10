@@ -1,0 +1,164 @@
+openapi: 3.0.3
+info:
+  title: NEXTime Rota and Timesheet API
+  version: 1.0.0
+  description: Step 1 snapshot API with session sign-in. See docs/api-contract.md for Step 2 record endpoints.
+servers:
+  - url: /api
+components:
+  securitySchemes:
+    session:
+      type: apiKey
+      in: cookie
+      name: nextime_session
+  parameters:
+    orgId:
+      name: orgId
+      in: path
+      required: true
+      schema: { type: string, example: default }
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          enum: [unauthorised, forbidden, not_found, invalid_snapshot, if_match_required, version_conflict, invalid_credentials, too_many_attempts, server_error]
+    User:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        email: { type: string, format: email }
+        role: { type: string, enum: [Administrator, Manager, Employee] }
+        organisationId: { type: string }
+    Shift:
+      type: object
+      required: [id, empId, date, start, end]
+      properties:
+        id: { type: string, example: S0001 }
+        empId: { type: string, example: EMP-001 }
+        date: { type: string, format: date }
+        start: { type: string, pattern: '^[0-2][0-9]:[0-5][0-9]$' }
+        end: { type: string, pattern: '^[0-2][0-9]:[0-5][0-9]$' }
+        brk: { type: integer, description: Break minutes }
+        aStart: { type: string, description: Actual start HH:MM or empty }
+        aEnd: { type: string, description: Actual end HH:MM or empty }
+        aBrk: { oneOf: [ { type: integer }, { type: string, enum: [''] } ] }
+        notes: { type: string }
+    Employee:
+      type: object
+      required: [id, first, last, contract]
+      properties:
+        id: { type: string, example: EMP-001 }
+        first: { type: string }
+        last: { type: string }
+        role: { type: string }
+        department: { type: string }
+        location: { type: string }
+        contract: { type: string, enum: [Full Time, Part Time, Zero Hour Contract] }
+        status: { type: string, enum: [Active, On Leave, Left] }
+        startDate: { type: string, format: date }
+        unavailableDays: { type: array, items: { type: integer, minimum: 0, maximum: 6 } }
+        notes: { type: string }
+    AuditEntry:
+      type: object
+      properties:
+        id: { type: string }
+        at: { type: string, format: date-time }
+        action: { type: string }
+        entity: { type: string, enum: [Shift, Timesheet, Rota, Employee, Leave, Swap, Settings, Security, Data] }
+        ref: { type: string }
+        empId: { type: string }
+        date: { type: string, format: date }
+        summary: { type: string }
+        changes:
+          type: array
+          items: { type: object, properties: { f: { type: string }, from: {}, to: {} } }
+        reason: { type: string }
+    Snapshot:
+      type: object
+      description: Whole organisation document. See docs/architecture.md section 2. Unknown fields must be preserved.
+      required: [settings, employees, shifts]
+      additionalProperties: true
+      properties:
+        version: { type: integer, example: 2 }
+        savedAt: { type: string, format: date-time }
+        demo: { type: boolean }
+        settings: { type: object, additionalProperties: true }
+        employees: { type: array, items: { $ref: '#/components/schemas/Employee' } }
+        shifts: { type: array, items: { $ref: '#/components/schemas/Shift' } }
+        leave: { type: array, items: { type: object, additionalProperties: true } }
+        approvals: { type: object, additionalProperties: { type: object, properties: { at: { type: string }, hours: { type: number } } } }
+        published: { type: object, additionalProperties: { type: object, properties: { at: { type: string }, shifts: { type: integer } } } }
+        swaps: { type: array, items: { type: object, additionalProperties: true } }
+        audit: { type: array, items: { $ref: '#/components/schemas/AuditEntry' } }
+security:
+  - session: []
+paths:
+  /health:
+    get:
+      security: []
+      summary: Health check (database reachable)
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: object, properties: { ok: { type: boolean } } } } } }
+  /auth/login:
+    post:
+      security: []
+      summary: Sign in and receive a session cookie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, required: [email, password], properties: { email: { type: string }, password: { type: string } } }
+      responses:
+        '200': { description: Signed in, content: { application/json: { schema: { type: object, properties: { user: { $ref: '#/components/schemas/User' } } } } } }
+        '401': { description: Wrong details, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '429': { description: Too many attempts, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+  /auth/logout:
+    post:
+      summary: Sign out
+      responses:
+        '204': { description: Signed out }
+  /auth/me:
+    get:
+      summary: Current user
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: object, properties: { user: { $ref: '#/components/schemas/User' } } } } } }
+        '401': { description: Not signed in }
+  /organisations/{orgId}/snapshot:
+    parameters: [ { $ref: '#/components/parameters/orgId' } ]
+    get:
+      summary: Load the organisation snapshot
+      responses:
+        '200':
+          description: OK
+          headers: { ETag: { schema: { type: string, example: '"v12"' } } }
+          content: { application/json: { schema: { type: object, properties: { snapshot: { $ref: '#/components/schemas/Snapshot' } } } } }
+        '404': { description: Nothing saved yet }
+    put:
+      summary: Save the organisation snapshot (optimistic concurrency)
+      parameters:
+        - name: If-Match
+          in: header
+          required: false
+          description: ETag from the last GET or PUT. Required once a snapshot exists.
+          schema: { type: string, example: '"v12"' }
+      requestBody:
+        required: true
+        content: { application/json: { schema: { type: object, required: [snapshot], properties: { snapshot: { $ref: '#/components/schemas/Snapshot' } } } } }
+      responses:
+        '204': { description: Saved, headers: { ETag: { schema: { type: string, example: '"v13"' } } } }
+        '400': { description: Invalid snapshot }
+        '403': { description: Wrong organisation or role }
+        '412': { description: Someone else saved a newer version }
+        '428': { description: If-Match required }
+  /organisations/{orgId}/audit:
+    parameters: [ { $ref: '#/components/parameters/orgId' } ]
+    get:
+      summary: Full audit history
+      parameters:
+        - { name: from, in: query, schema: { type: string, format: date } }
+        - { name: to, in: query, schema: { type: string, format: date } }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: object, properties: { entries: { type: array, items: { $ref: '#/components/schemas/AuditEntry' } } } } } } }

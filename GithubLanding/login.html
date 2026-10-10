@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in — Nexyra Consulting</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="assets/logo/monogram-gradient.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>if (sessionStorage.getItem("nx-auth") === "1") location.replace("index.html");</script>
+</head>
+<body>
+<main class="nx-login">
+  <div class="nx-login__panel">
+    <div class="nx-login__brand">
+      <img src="assets/logo/lockup-horizontal-on-light.svg" alt="Nexyra Consulting" width="400" height="104">
+    </div>
+    <div class="nx-login__head">
+      <p class="nx-kicker">Admin</p>
+      <h1>Sign in</h1>
+    </div>
+    <form id="nx-login-form" novalidate>
+      <label for="pin">Admin PIN</label>
+      <input id="pin" name="pin" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" required autofocus aria-describedby="pin-error">
+      <p class="nx-login__error" id="pin-error" role="alert"></p>
+      <button class="nx-btn nx-btn--primary" type="submit">Sign in
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+      </button>
+    </form>
+  </div>
+</main>
+<script>
+  // SHA-256 of the admin PIN. Replace to change the PIN.
+  var PIN_HASH = "c801c8d6ea1fa8aa85cea1c3a9da7cdb10cdeb0bcf973c1caecbebecbf58cf81";
+  var form = document.getElementById("nx-login-form");
+  var input = document.getElementById("pin");
+  var error = document.getElementById("pin-error");
+  async function sha256(s) {
+    var b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+    return Array.from(new Uint8Array(b)).map(function (x) { return x.toString(16).padStart(2, "0"); }).join("");
+  }
+  input.addEventListener("input", function () { error.textContent = ""; input.removeAttribute("aria-invalid"); });
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var pin = input.value.trim();
+    if (!pin) { error.textContent = "Enter your admin PIN."; input.setAttribute("aria-invalid", "true"); return; }
+    if (await sha256(pin) === PIN_HASH) {
+      sessionStorage.setItem("nx-auth", "1");
+      location.replace("index.html");
+    } else {
+      error.textContent = "Incorrect PIN. Try again.";
+      input.setAttribute("aria-invalid", "true");
+      input.select();
+    }
+  });
+</script>
+</body>
+</html>

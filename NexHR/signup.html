@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<style>#nx-loader{position:fixed;inset:0;z-index:2147483000;background:#FFFFFF;display:flex;align-items:center;justify-content:center;transition:opacity .3s ease}#nx-loader svg{width:100%;height:100%}#nx-loader.nx-done{opacity:0;pointer-events:none}</style>
+</head>
+<body>
+<div id="nx-loader" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxct)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxcb)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg></div>
+<script>(function(){var l=document.getElementById('nx-loader'),t0=Date.now();function done(){if(!l)return;l.classList.add('nx-done');setTimeout(function(){l&&l.remove();l=null},350)}(function poll(){var r=document.getElementById('dc-root');if(r&&r.textContent.trim().length>40&&document.readyState!=='loading'){setTimeout(done,Math.max(0,500-(Date.now()-t0)));return}if(Date.now()-t0>6000){done();return}setTimeout(poll,60)})()})();</script>
+<x-dc>
+<helmet>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/appleTouchIcon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#7C3AED">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start your free trial · NexHR</title>
+<style>
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/hankenGroteskLatinExt.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/hankenGroteskLatin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#FFFFFF;color:#0A0A0F;font-family:'Hanken Grotesk','Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.5}
+button,input,select{font-family:inherit;font-size:inherit;color:inherit}
+h1,p{margin:0}
+a{color:#6D28D9;text-decoration:none}a:hover{color:#5B21B6}
+:focus-visible{outline:2px solid #7C3AED;outline-offset:2px}
+::selection{background:#EDE9FE}
+</style>
+</helmet>
+<div>
+<dc-import name="nexyraNav" active="products" hint-size="100%,1px"></dc-import>
+<main style="min-height:100vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));background:#FFFFFF">
+  <section aria-label="NexHR" data-nav-tone="dark" style="position:relative;overflow:hidden;isolation:isolate;background:#07061A;color:#FFFFFF;padding:max(88px,var(--nx-clear,118px)) 7vw clamp(28px,4vw,56px);display:flex;flex-direction:column;justify-content:space-between;gap:48px">
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse 60% 50% at 30% 30%,rgba(124,58,237,0.32),transparent 70%),radial-gradient(ellipse 50% 45% at 85% 25%,rgba(59,130,246,0.22),transparent 70%),radial-gradient(ellipse 45% 40% at 60% 85%,rgba(167,139,250,0.18),transparent 70%),linear-gradient(135deg,#06051A,#0B0A2A)"></div>
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 60% 40%,#000 0%,transparent 75%);mask-image:radial-gradient(ellipse 70% 70% at 60% 40%,#000 0%,transparent 75%)"></div>
+    <div><nav aria-label="Breadcrumb" style="margin:0 0 40px"><ol style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#B9B3E6"><li style="display:flex;gap:10px;flex:none;white-space:nowrap"><span>Products</span><span style="color:rgba(255,255,255,0.35)" aria-hidden="true">/</span></li><li style="display:flex;gap:10px;flex:none;white-space:nowrap"><a href="index.html" style="color:#B9B3E6" style-hover="color:#FFFFFF">NexHR</a><span style="color:rgba(255,255,255,0.35)" aria-hidden="true">/</span></li><li style="display:flex;gap:10px;flex:none;white-space:nowrap"><span aria-current="page" style="color:#C4B5FD">Start free trial</span></li></ol></nav><a href="index.html" aria-label="NexHR overview" style="display:block;width:fit-content"><img src="assets/logos/nexhrLockupOnDark.svg" alt="NexHR" style="height:40px;width:auto;display:block"></a></div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#B9B3E6">14-day free trial</p>
+      <h2 style="margin:0;font-size:clamp(36px,4.6vw,64px);font-weight:600;line-height:0.98;letter-spacing:-0.03em">HR for teams that work in shifts.</h2>
+      <p style="font-size:17px;line-height:1.6;color:#D6D3EE;max-width:40ch;text-wrap:pretty">Every feature for 14 days, with no card needed. Your workspace is ready in a few minutes.</p>
+      <ol style="list-style:none;margin:8px 0 0;padding:0;border-top:1px solid rgba(255,255,255,0.14);max-width:360px">
+        <sc-for list="{{ stepList }}" as="st" hint-placeholder-count="5"><li style="display:flex;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.14);font-size:15px;font-weight:500;color:{{ st.fg }}"><span style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:{{ st.nfg }}">{{ st.n }}</span>{{ st.l }}</li></sc-for>
+      </ol>
+    </div>
+    <div style="height:3px;background:linear-gradient(90deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%)"></div>
+  </section>
+  <div style="padding:max(clamp(32px,5vw,72px),calc(var(--nx-clear,118px) - 24px)) 7vw clamp(32px,5vw,72px);display:flex;flex-direction:column;justify-content:center;gap:24px">
+  <div style="width:100%;max-width:520px;background:#FFFFFF;border-top:2px solid #0A0A0F;padding:28px 0 0;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+      <span style="font-size:12px;color:#6B6B7B">Step {{ stepNo }} of 5</span>
+    </div>
+    <div style="display:flex;gap:6px" aria-hidden="true">
+      <sc-for list="{{ bar }}" as="b" hint-placeholder-count="5"><span style="flex:1;height:4px;border-radius:0;background:{{ b.bg }}"></span></sc-for>
+    </div>
+
+    <sc-if value="{{ is.account }}" hint-placeholder-val="{{ true }}">
+      <form onSubmit="{{ submitAccount }}" novalidate="" style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Start your free trial</h1>
+          <p style="color:#5A5A6A">14 days with every feature. No card needed.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Your name
+            <input value="{{ f.name }}" onChange="{{ on.name }}" autoComplete="name" style="height:46px;padding:0 14px;border:1.5px solid {{ bd.name }};border-radius:0;font-weight:400;font-size:15px;outline:none" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+            <span style="font-weight:400;color:#B91C1C;min-height:0">{{ er.name }}</span>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Work email
+            <input type="email" value="{{ f.email }}" onChange="{{ on.email }}" autoComplete="email" style="height:46px;padding:0 14px;border:1.5px solid {{ bd.email }};border-radius:0;font-weight:400;font-size:15px;outline:none" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+            <span style="font-weight:400;color:#B91C1C">{{ er.email }}</span>
+          </label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Password
+          <div style="position:relative;display:flex;align-items:center">
+            <input type="{{ pwType }}" value="{{ f.password }}" onChange="{{ on.password }}" autoComplete="new-password" style="width:100%;height:46px;padding:0 52px 0 14px;border:1.5px solid {{ bd.password }};border-radius:0;font-weight:400;font-size:15px;outline:none" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+            <button type="button" onClick="{{ togglePw }}" style="position:absolute;right:6px;height:34px;padding:0 10px;border:0;border-radius:0;background:transparent;color:#6D28D9;font-size:12px;font-weight:600;cursor:pointer" style-hover="background:#F4F2FB">{{ pwLabel }}</button>
+          </div>
+          <span style="font-weight:400;color:{{ pwHintFg }}">{{ pwHint }}</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Company name
+          <input value="{{ f.company }}" onChange="{{ on.company }}" autoComplete="organization" style="height:46px;padding:0 14px;border:1.5px solid {{ bd.company }};border-radius:0;font-weight:400;font-size:15px;outline:none" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+          <span style="font-weight:400;color:#B91C1C">{{ er.company }}</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Workspace address
+          <div style="display:flex;align-items:stretch;border:1.5px solid {{ bd.slug }};border-radius:0;overflow:hidden">
+            <input value="{{ f.slug }}" onChange="{{ on.slug }}" autoComplete="off" spellCheck="false" style="flex:1;min-width:0;height:43px;padding:0 4px 0 14px;border:0;font-weight:500;font-size:15px;outline:none;background:#FFFFFF">
+            <span style="display:flex;align-items:center;padding:0 14px;background:#F7F7F9;color:#6B6B7B;font-weight:500;font-size:15px;border-left:1px solid #E7E7EC">.nexhr.com</span>
+          </div>
+          <span style="font-weight:400;color:{{ slugFg }}">{{ slugMsg }}</span>
+        </label>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Country
+            <select value="{{ f.country }}" onChange="{{ on.country }}" style="height:46px;padding:0 12px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:400;font-size:15px;background:#FFFFFF">
+              <sc-for list="{{ countries }}" as="c" hint-placeholder-count="8"><option value="{{ c.k }}">{{ c.n }}</option></sc-for>
+            </select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Billing currency
+            <select value="{{ f.currency }}" onChange="{{ on.currency }}" style="height:46px;padding:0 12px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:400;font-size:15px;background:#FFFFFF">
+              <option value="GBP">GBP £ · £4 per employee</option><option value="EUR">EUR € · €4.50 per employee</option><option value="USD">USD $ · $5 per employee</option>
+            </select>
+          </label>
+        </div>
+        <label style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#4A4A5A;cursor:pointer">
+          <input type="checkbox" checked="{{ f.terms }}" onChange="{{ on.terms }}" style="width:18px;height:18px;margin:1px 0 0;accent-color:#7C3AED;flex:none">
+          <span>I agree to the NexHR terms of service and data processing agreement.<span style="display:block;color:#B91C1C">{{ er.terms }}</span></span>
+        </label>
+        <button type="submit" disabled="{{ busy }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;opacity:{{ busyOp }}" style-hover="background:#6D28D9" style-active="background:#5B21B6">{{ accountBtn }}</button>
+        <p style="text-align:left;font-size:13px;color:#4A4A5A">Already using NexHR? <a href="login.html" style="font-weight:600">Sign in</a></p>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.verify }}">
+      <form onSubmit="{{ submitVerify }}" novalidate="" style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Check your email</h1>
+          <p style="color:#5A5A6A">We sent a 6-digit code to <strong style="color:#0A0A0F">{{ f.email }}</strong>. It expires in 15 minutes.</p>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:0;background:#FEF3C7;color:#92400E;font-size:13px">
+          <span><strong>Demo mode:</strong> no email is sent. Your code is <strong style="letter-spacing:0.12em">{{ demoCode }}</strong>.</span>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Verification code
+          <input ref="{{ codeRef }}" value="{{ code }}" onChange="{{ onCode }}" inputMode="numeric" autoComplete="one-time-code" maxLength="6" placeholder="000000" style="height:54px;padding:0 16px;border:1.5px solid {{ codeBd }};border-radius:0;font-weight:500;font-size:24px;letter-spacing:0.4em;outline:none;font-variant-numeric:tabular-nums" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+          <span role="alert" style="font-weight:400;color:#B91C1C">{{ codeErr }}</span>
+        </label>
+        <button type="submit" disabled="{{ busy }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;opacity:{{ busyOp }}" style-hover="background:#6D28D9" style-active="background:#5B21B6">Verify email</button>
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px">
+          <button type="button" onClick="{{ resend }}" style="align-self:flex-start;text-align:left;border:0;background:transparent;padding-left:0;padding-right:0;padding:0;color:#6D28D9;font-weight:600;cursor:pointer">Send a new code</button>
+          <button type="button" onClick="{{ back }}" style="align-self:flex-start;text-align:left;border:0;background:transparent;padding-left:0;padding-right:0;padding:0;color:#4A4A5A;cursor:pointer">Use a different email</button>
+        </div>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.security }}">
+      <form onSubmit="{{ submitTotp }}" novalidate="" style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Set up two-step login</h1>
+          <p style="color:#5A5A6A">Admin accounts must use an authenticator app, such as Microsoft Authenticator, Google Authenticator or 1Password.</p>
+        </div>
+        <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;padding:16px;border:1px solid #E7E7EC;border-radius:0">
+          <div ref="{{ qrRef }}" aria-label="QR code for your authenticator app" style="width:148px;height:148px;flex:none;display:flex;align-items:center;justify-content:center;background:#F7F7F9;border-radius:0;color:#8A8A9C;font-size:12px;text-align:left">QR code</div>
+          <div style="flex:1;min-width:180px;display:flex;flex-direction:column;gap:6px">
+            <span style="font-size:13px;color:#4A4A5A">Scan the code, or enter this key in your app:</span>
+            <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;font-weight:600;letter-spacing:0.04em;word-break:break-all;color:#0A0A0F">{{ secretFmt }}</code>
+            <button type="button" onClick="{{ copySecret }}" style="width:fit-content;border:0;background:transparent;padding:0;color:#6D28D9;font-weight:600;font-size:13px;cursor:pointer">{{ copyLabel }}</button>
+          </div>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">6-digit code from the app
+          <input value="{{ code }}" onChange="{{ onCode }}" inputMode="numeric" autoComplete="one-time-code" maxLength="6" placeholder="000000" style="height:54px;padding:0 16px;border:1.5px solid {{ codeBd }};border-radius:0;font-weight:500;font-size:24px;letter-spacing:0.4em;outline:none;font-variant-numeric:tabular-nums" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+          <span role="alert" style="font-weight:400;color:#B91C1C">{{ codeErr }}</span>
+        </label>
+        <button type="submit" disabled="{{ busy }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;opacity:{{ busyOp }}" style-hover="background:#6D28D9" style-active="background:#5B21B6">Turn on two-step login</button>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.recovery }}">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Save your recovery codes</h1>
+          <p style="color:#5A5A6A">If you lose your phone, each code signs you in once. Store them somewhere safe, away from your phone.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:16px;border-radius:0;background:#F7F7F9;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;font-weight:600">
+          <sc-for list="{{ recovery }}" as="r" hint-placeholder-count="8"><span>{{ r }}</span></sc-for>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button type="button" onClick="{{ copyCodes }}" style="height:40px;padding:0 14px;border:1px solid #D9D7E3;border-radius:0;background:#FFFFFF;font-weight:600;cursor:pointer" style-hover="background:#F7F7F9">{{ copyCodesLabel }}</button>
+          <button type="button" onClick="{{ downloadCodes }}" style="height:40px;padding:0 14px;border:1px solid #D9D7E3;border-radius:0;background:#FFFFFF;font-weight:600;cursor:pointer" style-hover="background:#F7F7F9">Download as text</button>
+        </div>
+        <button type="button" onClick="{{ toCompany }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#6D28D9" style-active="background:#5B21B6">I&#8217;ve saved my codes</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.company }}">
+      <form onSubmit="{{ submitCompany }}" novalidate="" style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Set up {{ f.company }}</h1>
+          <p style="color:#5A5A6A">You can change all of this later in Settings.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Legal entity name
+            <input value="{{ c.legal }}" onChange="{{ onC.legal }}" style="height:46px;padding:0 14px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:400;font-size:15px;outline:none" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Number of employees
+            <select value="{{ c.size }}" onChange="{{ onC.size }}" style="height:46px;padding:0 12px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:400;font-size:15px;background:#FFFFFF"><option>1–10</option><option>11–50</option><option>51–200</option><option>201–500</option><option>500+</option></select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Time zone
+            <select value="{{ c.tz }}" onChange="{{ onC.tz }}" style="height:46px;padding:0 12px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:400;font-size:15px;background:#FFFFFF"><sc-for list="{{ tzs }}" as="z" hint-placeholder-count="6"><option value="{{ z }}">{{ z }}</option></sc-for></select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Leave year starts
+            <select value="{{ c.leaveYear }}" onChange="{{ onC.leaveYear }}" style="height:46px;padding:0 12px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:400;font-size:15px;background:#FFFFFF"><option>1 January</option><option>1 April</option><option>1 September</option><option>Employee start date</option></select>
+          </label>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:13px;font-weight:600;color:#2A2A35">Locations</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ locs }}" as="x" hint-placeholder-count="1"><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 6px 0 12px;border-radius:0;background:#EDE9FE;color:#5B21B6;font-weight:600;font-size:13px">{{ x.n }}<button type="button" onClick="{{ x.rm }}" aria-label="Remove {{ x.n }}" style="width:22px;height:22px;border:0;border-radius:0;background:transparent;color:#5B21B6;cursor:pointer;font-size:15px;line-height:1" style-hover="background:#DDD6FE">×</button></span></sc-for>
+          </div>
+          <div style="display:flex;gap:8px"><input value="{{ newLoc }}" onChange="{{ onNewLoc }}" onKeyDown="{{ locKey }}" placeholder="Add a location, e.g. Manchester office" style="flex:1;min-width:0;height:42px;padding:0 14px;border:1.5px solid #D9D7E3;border-radius:0;font-size:14px;outline:none" style-focus="border-color:#7C3AED"><button type="button" onClick="{{ addLoc }}" style="height:42px;padding:0 16px;border:1px solid #D9D7E3;border-radius:0;background:#FFFFFF;font-weight:600;cursor:pointer" style-hover="background:#F7F7F9">Add</button></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:13px;font-weight:600;color:#2A2A35">Departments</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ depts }}" as="x" hint-placeholder-count="4"><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 6px 0 12px;border-radius:0;background:#DBEAFE;color:#1D4ED8;font-weight:600;font-size:13px">{{ x.n }}<button type="button" onClick="{{ x.rm }}" aria-label="Remove {{ x.n }}" style="width:22px;height:22px;border:0;border-radius:0;background:transparent;color:#1D4ED8;cursor:pointer;font-size:15px;line-height:1" style-hover="background:#BFDBFE">×</button></span></sc-for>
+          </div>
+          <div style="display:flex;gap:8px"><input value="{{ newDept }}" onChange="{{ onNewDept }}" onKeyDown="{{ deptKey }}" placeholder="Add a department" style="flex:1;min-width:0;height:42px;padding:0 14px;border:1.5px solid #D9D7E3;border-radius:0;font-size:14px;outline:none" style-focus="border-color:#7C3AED"><button type="button" onClick="{{ addDept }}" style="height:42px;padding:0 16px;border:1px solid #D9D7E3;border-radius:0;background:#FFFFFF;font-weight:600;cursor:pointer" style-hover="background:#F7F7F9">Add</button></div>
+        </div>
+        <button type="submit" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#6D28D9" style-active="background:#5B21B6">Continue</button>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.team }}">
+      <form onSubmit="{{ submitTeam }}" novalidate="" style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Invite your team</h1>
+          <p style="color:#5A5A6A">Each person gets an email to set their password. You can invite more people from Settings › Users &amp; access.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ invites }}" as="iv" hint-placeholder-count="3">
+            <div style="display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap">
+              <div style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:4px">
+                <input type="email" value="{{ iv.email }}" onChange="{{ iv.setEmail }}" placeholder="name@company.com" aria-label="Email address" style="height:44px;padding:0 14px;border:1.5px solid {{ iv.bd }};border-radius:0;font-size:14px;outline:none" style-focus="border-color:#7C3AED">
+                <span style="font-size:12px;color:#B91C1C">{{ iv.err }}</span>
+              </div>
+              <select value="{{ iv.role }}" onChange="{{ iv.setRole }}" aria-label="Role" style="flex:0 0 130px;height:44px;padding:0 10px;border:1.5px solid #D9D7E3;border-radius:0;font-size:14px;background:#FFFFFF"><option value="employee">Employee</option><option value="manager">Manager</option><option value="hr">HR</option><option value="admin">Admin</option></select>
+              <button type="button" onClick="{{ iv.rm }}" aria-label="Remove row" style="flex:none;width:44px;height:44px;border:1px solid #E7E7EC;border-radius:0;background:#FFFFFF;color:#6B6B7B;cursor:pointer;font-size:18px" style-hover="background:#F7F7F9">×</button>
+            </div>
+          </sc-for>
+          <button type="button" onClick="{{ addInvite }}" style="width:fit-content;border:0;background:transparent;padding:4px 0;color:#6D28D9;font-weight:600;cursor:pointer">+ Add another person</button>
+        </div>
+        <button type="submit" disabled="{{ busy }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;opacity:{{ busyOp }}" style-hover="background:#6D28D9" style-active="background:#5B21B6">{{ teamBtn }}</button>
+        <button type="button" onClick="{{ skipTeam }}" style="align-self:flex-start;text-align:left;border:0;background:transparent;padding-left:0;padding-right:0;color:#4A4A5A;font-weight:500;cursor:pointer">Skip for now</button>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.done }}">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">{{ f.company }} is ready</h1>
+          <p style="color:#5A5A6A">Your workspace is at <strong style="color:#0A0A0F">{{ address }}</strong>. Your trial runs until {{ trialEnds }}.</p>
+        </div>
+        <sc-if value="{{ hasSent }}">
+          <div style="display:flex;flex-direction:column;border:1px solid #E7E7EC;border-radius:0;overflow:hidden">
+            <div style="padding:10px 14px;background:#F7F7F9;font-size:12px;color:#4A4A5A"><strong style="color:#92400E">Demo mode:</strong> invitations aren&#8217;t emailed. Copy each link and open it to accept.</div>
+            <sc-for list="{{ sent }}" as="x" hint-placeholder-count="2">
+              <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid #F0F0F3;font-size:13px">
+                <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><strong>{{ x.email }}</strong> · {{ x.role }}</span>
+                <button type="button" onClick="{{ x.copy }}" style="flex:none;border:0;background:transparent;color:#6D28D9;font-weight:600;cursor:pointer">{{ x.copyLabel }}</button>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:#4A4A5A">
+          <span style="font-weight:600;color:#2A2A35">Next steps in your workspace</span>
+          <span>1. Check your leave policies in Settings</span>
+          <span>2. Add employees, or invite more users</span>
+          <span>3. Build and publish your first rota</span>
+        </div>
+        <button type="button" onClick="{{ openApp }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#6D28D9" style-active="background:#5B21B6">Open {{ f.company }}</button>
+      </div>
+    </sc-if>
+  </div>
+  <div style="color:#6B6B7B;font-size:12px;display:flex;gap:16px;flex-wrap:wrap"><span>© 2026 Nexyra Consulting Ltd</span><a href="pricing.html">Pricing</a><a href="login.html">Sign in</a></div>
+  </div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  COUNTRIES = [['GB','United Kingdom','GBP','Europe/London','United Kingdom (London)'],['IE','Ireland','EUR','Europe/Dublin','European Union (Dublin)'],['DE','Germany','EUR','Europe/Berlin','European Union (Frankfurt)'],['FR','France','EUR','Europe/Paris','European Union (Paris)'],['NL','Netherlands','EUR','Europe/Amsterdam','European Union (Frankfurt)'],['ES','Spain','EUR','Europe/Madrid','European Union (Frankfurt)'],['US','United States','USD','America/New_York','United States (Virginia)'],['XX','Another country','USD','UTC','United States (Virginia)']];
+  TZS = ['Europe/London','Europe/Dublin','Europe/Berlin','Europe/Paris','Europe/Amsterdam','Europe/Madrid','America/New_York','America/Chicago','America/Los_Angeles','UTC'];
+  STEPS = ['account','verify','security','recovery','company','team','done'];
+  state = { step: 'account', f: { name: '', email: '', password: '', company: '', slug: '', country: 'GB', currency: 'GBP', terms: false }, slugTouched: false, er: {}, showPw: false, busy: false,
+    code: '', codeErr: '', demoCode: '', secret: '', recovery: [], copied: '', c: { legal: '', size: '11–50', tz: 'Europe/London', leaveYear: '1 January' },
+    locs: ['Head office'], depts: ['Operations', 'People', 'Finance'], newLoc: '', newDept: '', invites: [{ email: '', role: 'employee' }, { email: '', role: 'manager' }], sent: [] };
+  codeRef = React.createRef(); qrRef = React.createRef();
+
+  componentDidMount() {
+    import(new URL('assets/js/platform.js', location.href).href).then(pf => {
+      this.pf = pf;
+      const q = new URLSearchParams(location.search).get('currency');
+      const cur = pf.CURRENCIES[q] ? q : pf.detectCurrency();
+      const ctry = cur === 'USD' ? 'US' : cur === 'EUR' ? 'IE' : 'GB';
+      const co = this.COUNTRIES.find(x => x[0] === ctry);
+      this.setState(s => ({ f: { ...s.f, currency: cur, country: ctry }, c: { ...s.c, tz: co[3] } }));
+    });
+  }
+  componentDidUpdate(pp, ps) {
+        if (this.state.step === 'verify' && ps.step !== 'verify') setTimeout(() => this.codeRef.current && this.codeRef.current.focus(), 30);
+  }
+  async drawQr(n) {
+    n = n || 0; if (!this.qrRef.current) { if (n < 40) setTimeout(() => this.drawQr(n + 1), 50); return; }
+    const pf = this.pf, s = this.state; const svg = await pf.qrSvg(pf.otpauthUri(s.secret, s.f.email, s.f.slug + '.' + pf.BASE_DOMAIN));
+    if (svg && this.qrRef.current) { this.qrRef.current.innerHTML = svg; this.qrRef.current.style.background = '#FFFFFF'; const el = this.qrRef.current.querySelector('svg'); if (el) { el.setAttribute('width', '148'); el.setAttribute('height', '148'); } }
+    else if (this.qrRef.current) this.qrRef.current.textContent = 'QR code unavailable offline. Enter the key instead.';
+  }
+  setF(k, v) {
+    this.setState(s => {
+      const f = { ...s.f, [k]: v }; let slugTouched = s.slugTouched;
+      if (k === 'company' && !s.slugTouched && this.pf) f.slug = this.pf.slugify(v);
+      if (k === 'slug') { f.slug = String(v).toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 30); slugTouched = true; }
+      if (k === 'country') { const co = this.COUNTRIES.find(x => x[0] === v); if (co) f.currency = co[2]; }
+      return { f, slugTouched, er: { ...s.er, [k]: '' } };
+    });
+  }
+  copy(text, key) { try { navigator.clipboard.writeText(text); } catch (e) {} this.setState({ copied: key }); clearTimeout(this._ct); this._ct = setTimeout(() => this.setState({ copied: '' }), 1800); }
+
+  submitAccount = async e => {
+    e.preventDefault(); const pf = this.pf, f = this.state.f; if (!pf || this.state.busy) return;
+    const er = {};
+    if (!f.name.trim()) er.name = 'Enter your name';
+    if (pf.emailProblem(f.email)) er.email = pf.emailProblem(f.email);
+    if (pf.passwordProblem(f.password)) er.password = pf.passwordProblem(f.password);
+    if (!f.company.trim()) er.company = 'Enter your company name';
+    if (pf.slugProblem(f.slug)) er.slug = pf.slugProblem(f.slug);
+    if (!f.terms) er.terms = 'You need to agree to continue';
+    if (Object.keys(er).length) return this.setState({ er });
+    this.setState({ busy: true });
+    try {
+      const co = this.COUNTRIES.find(x => x[0] === f.country);
+      const t = pf.createTenant({ slug: f.slug, name: f.company, country: f.country, currency: f.currency, tz: co[3], region: co[4] });
+      const u = await pf.createUser({ tenant: t.slug, name: f.name, email: f.email, password: f.password, role: 'admin' });
+      this.tenant = t; this.user = u;
+      const demoCode = pf.issueCode('verify', u.id);
+      this.setState({ busy: false, step: 'verify', demoCode, code: '', codeErr: '', c: { ...this.state.c, legal: f.company.trim() + (f.country === 'GB' ? ' Ltd' : ''), tz: co[3] } });
+    } catch (x) { this.setState({ busy: false, er: { slug: x.message } }); }
+  };
+  submitVerify = e => {
+    e.preventDefault(); const pf = this.pf;
+    const err = pf.checkCode('verify', this.user.id, this.state.code);
+    if (err) return this.setState({ codeErr: err });
+    pf.updateUser(this.user.id, { verified: true });
+    this.setState({ step: 'security', secret: pf.newSecret(), code: '', codeErr: '' }, () => this.drawQr());
+  };
+  submitTotp = async e => {
+    e.preventDefault(); const pf = this.pf; this.setState({ busy: true });
+    const ok = await pf.verifyTotp(this.state.secret, this.state.code);
+    if (!ok) return this.setState({ busy: false, codeErr: 'That code doesn\u2019t match. Check the time on your phone is set automatically, then try the newest code.' });
+    const codes = pf.recoveryCodes(); await pf.enableTotp(this.user.id, this.state.secret, codes);
+    pf.startSession(pf.getUser(this.user.id));
+    this.setState({ busy: false, step: 'recovery', recovery: codes, code: '', codeErr: '' });
+  };
+  submitCompany = e => {
+    e.preventDefault(); const s = this.state;
+    this.pf.updateTenant(this.tenant.slug, { legal: s.c.legal || s.f.company, size: s.c.size, tz: s.c.tz, leaveYear: s.c.leaveYear, locations: s.locs, departments: s.depts, locSummary: s.locs.length + (s.locs.length === 1 ? ' location' : ' locations') });
+    this.setState({ step: 'team' });
+  };
+  submitTeam = e => {
+    e.preventDefault(); const pf = this.pf, rows = this.state.invites;
+    let bad = false; const seen = {};
+    const checked = rows.map(r => { const em = r.email.trim().toLowerCase(); let err = ''; if (em) { err = pf.emailProblem(em) || (seen[em] ? 'Listed twice' : em === this.user.email ? 'That\u2019s you' : ''); seen[em] = 1; } if (err) bad = true; return { ...r, err }; });
+    if (bad) return this.setState({ invites: checked });
+    const sent = [];
+    checked.filter(r => r.email.trim()).forEach(r => { try { const res = pf.invite({ tenant: this.tenant.slug, email: r.email, role: r.role, invitedBy: this.user.id }); sent.push({ email: res.user.email, role: pf.ROLES[r.role].label, link: res.link }); } catch (x) {} });
+    this.setState({ sent, step: 'done' });
+  };
+  renderVals() {
+    const s = this.state, f = s.f, er = s.er, pf = this.pf;
+    const idx = { account: 0, verify: 1, security: 2, recovery: 2, company: 3, team: 4, done: 4 }[s.step];
+    const bd = k => er[k] ? '#DC2626' : '#D9D7E3';
+    const slugErr = er.slug || (f.slug && pf ? pf.slugProblem(f.slug) : '');
+    const pwP = pf && f.password ? pf.passwordProblem(f.password) : '';
+    const filled = s.invites.filter(r => r.email.trim()).length;
+    const t = pf && this.tenant ? pf.getTenant(this.tenant.slug) : null;
+    const on = {}; ['name', 'email', 'password', 'company', 'slug', 'country', 'currency'].forEach(k => on[k] = e => this.setF(k, e.target.value)); on.terms = e => this.setF('terms', e.target.checked);
+    const onC = {}; ['legal', 'size', 'tz', 'leaveYear'].forEach(k => onC[k] = e => { const v = e.target.value; this.setState(st => ({ c: { ...st.c, [k]: v } })); });
+    const addLoc = () => { const v = s.newLoc.trim(); if (v && s.locs.indexOf(v) < 0) this.setState({ locs: [...s.locs, v], newLoc: '' }); };
+    const addDept = () => { const v = s.newDept.trim(); if (v && s.depts.indexOf(v) < 0) this.setState({ depts: [...s.depts, v], newDept: '' }); };
+    return {
+      stepNo: idx + 1, stepList: ['Your account', 'Verify your email', 'Two-step login', 'Your company', 'Your team'].map((l, i) => ({ l, n: '0' + (i + 1), fg: i === idx ? '#FFFFFF' : i < idx ? '#C4B5FD' : '#8A8A9C', nfg: i <= idx ? '#A78BFA' : '#6B6B7B' })), bar: [0, 1, 2, 3, 4].map(i => ({ bg: i <= idx ? '#7C3AED' : '#E7E7EC' })),
+      is: Object.fromEntries(this.STEPS.map(k => [k, s.step === k])),
+      f, er, on, bd: { name: bd('name'), email: bd('email'), password: bd('password'), company: bd('company'), slug: slugErr ? '#DC2626' : '#D9D7E3' },
+      countries: this.COUNTRIES.map(c => ({ k: c[0], n: c[1] })),
+      pwType: s.showPw ? 'text' : 'password', pwLabel: s.showPw ? 'Hide' : 'Show', togglePw: () => this.setState({ showPw: !s.showPw }),
+      pwHint: er.password || (f.password ? (pwP || 'Strong enough') : 'At least 10 characters, with a letter and a number'), pwHintFg: er.password ? '#B91C1C' : (f.password && !pwP ? '#15803D' : '#6B6B7B'),
+      slugMsg: slugErr || (f.slug ? f.slug + '.nexhr.com is available' : 'Your team signs in here'), slugFg: slugErr ? '#B91C1C' : (f.slug ? '#15803D' : '#6B6B7B'),
+      busy: s.busy, busyOp: s.busy ? 0.6 : 1, accountBtn: s.busy ? 'Creating workspace…' : 'Create workspace', submitAccount: this.submitAccount,
+      demoCode: s.demoCode, code: s.code, codeErr: s.codeErr, codeBd: s.codeErr ? '#DC2626' : '#D9D7E3', codeRef: this.codeRef,
+      onCode: e => this.setState({ code: e.target.value.replace(/\D/g, '').slice(0, 6), codeErr: '' }),
+      submitVerify: this.submitVerify, resend: () => this.setState({ demoCode: pf.issueCode('verify', this.user.id), code: '', codeErr: 'A new code has been sent.' }),
+      back: () => { pf.removeUser(this.user.id); this.setState({ step: 'account' }); },
+      qrRef: this.qrRef, secretFmt: pf && s.secret ? pf.formatSecret(s.secret) : '', copySecret: () => this.copy(s.secret, 'secret'), copyLabel: s.copied === 'secret' ? 'Copied' : 'Copy key', submitTotp: this.submitTotp,
+      recovery: s.recovery, copyCodes: () => this.copy(s.recovery.join('\n'), 'codes'), copyCodesLabel: s.copied === 'codes' ? 'Copied' : 'Copy codes',
+      downloadCodes: () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['NexHR recovery codes for ' + f.email + ' (' + f.slug + '.nexhr.com)\n\n' + s.recovery.join('\n') + '\n'], { type: 'text/plain' })); a.download = 'nexhrRecoveryCodes.txt'; a.click(); },
+      toCompany: () => this.setState({ step: 'company' }),
+      c: s.c, onC, tzs: this.TZS, submitCompany: this.submitCompany,
+      locs: s.locs.map(n => ({ n, rm: () => this.setState({ locs: s.locs.filter(x => x !== n) }) })), newLoc: s.newLoc, onNewLoc: e => this.setState({ newLoc: e.target.value }), addLoc, locKey: e => { if (e.key === 'Enter') { e.preventDefault(); addLoc(); } },
+      depts: s.depts.map(n => ({ n, rm: () => this.setState({ depts: s.depts.filter(x => x !== n) }) })), newDept: s.newDept, onNewDept: e => this.setState({ newDept: e.target.value }), addDept, deptKey: e => { if (e.key === 'Enter') { e.preventDefault(); addDept(); } },
+      invites: s.invites.map((r, i) => ({ ...r, bd: r.err ? '#DC2626' : '#D9D7E3',
+        setEmail: e => { const v = e.target.value; this.setState(st => ({ invites: st.invites.map((x, j) => j === i ? { ...x, email: v, err: '' } : x) })); },
+        setRole: e => { const v = e.target.value; this.setState(st => ({ invites: st.invites.map((x, j) => j === i ? { ...x, role: v } : x) })); },
+        rm: () => this.setState(st => ({ invites: st.invites.length > 1 ? st.invites.filter((x, j) => j !== i) : [{ email: '', role: 'employee' }] })) })),
+      addInvite: () => this.setState({ invites: [...s.invites, { email: '', role: 'employee' }] }),
+      teamBtn: filled ? 'Send ' + filled + (filled === 1 ? ' invitation' : ' invitations') : 'Continue', submitTeam: this.submitTeam, skipTeam: () => this.setState({ step: 'done', sent: [] }),
+      address: f.slug + '.nexhr.com', trialEnds: t && t.plan.trialEnds ? new Date(t.plan.trialEnds + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : '',
+      hasSent: s.sent.length > 0, sent: s.sent.map((x, i) => ({ ...x, copy: () => this.copy(x.link, 'inv' + i), copyLabel: s.copied === 'inv' + i ? 'Copied' : 'Copy link' })),
+      openApp: () => { location.href = pf.onPlatformHost() ? pf.workspaceUrl(f.slug, 'app.html') : 'app.html'; }
+    };
+  }
+}
+</script>
+</body>
+</html>

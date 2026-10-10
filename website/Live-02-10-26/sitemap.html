@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>window.__resources = {"./zx-Nav%20v2.dc.html":"assets/components/Nav-v2-46414690b2.dc.html","./zx-Footer%20v3.dc.html":"assets/components/Footer-v3-f7036af1a1.dc.html","https://unpkg.com/react@18.3.1/umd/react.production.min.js":"assets/js/react.production.min-aa77ae4c49.js","https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"assets/js/react-dom.production.min-feb8ddc9d0.js"};</script>
+<style>#nx-loader{position:fixed;inset:0;z-index:2147483000;background:#FFFFFF;display:flex;align-items:center;justify-content:center;transition:opacity .3s ease}#nx-loader svg{width:100%;height:100%}#nx-loader.nx-done{opacity:0;pointer-events:none}</style>
+<style>@media (max-width: 640px) { .nx-search:not([data-open="true"]) .nx-search-input { padding: 0 !important; } }</style>
+<script src="assets/js/dc-runtime-2e38395c4a.js"></script>
+
+</head>
+<body>
+<div id="nx-loader" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxct)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxcb)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg></div>
+<script>(function(){var l=document.getElementById('nx-loader'),t0=Date.now();function done(){if(!l)return;l.classList.add('nx-done');setTimeout(function(){l&&l.remove();l=null},350)}(function poll(){var r=document.getElementById('dc-root');if(r&&r.textContent.trim().length>40&&document.readyState!=='loading'){setTimeout(done,Math.max(0,500-(Date.now()-t0)));return}if(Date.now()-t0>6000){done();return}setTimeout(poll,60)})()})();</script>
+<x-dc>
+<helmet>
+<link rel="icon" href="assets/img/image-a6e3d7ae08.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-771a285a9d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-b32d9b382e.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-3560987b16.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-881c68f3b9.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-4b17538334.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-560d9f41c0.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-2cba32d0c1.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fonts/font-38c3847fad.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  * { box-sizing: border-box; }
+  body { -webkit-font-smoothing: antialiased; }
+  a { color: #6D28D9; text-decoration: none; }
+  a:hover { color: #5B21B6; }
+  ::selection { background: #EDE9FE; color: #0A0A0F; }
+  :focus-visible { outline: 2px solid #7C3AED; outline-offset: 2px; }
+  .sm-link svg { color: #B4B4C4; transition: color 0.2s ease, transform 0.2s ease; }
+  .sm-link:hover { color: #7C3AED !important; }
+  .sm-link:hover svg { color: #7C3AED; transform: translateX(2px); }
+  .sm-link[aria-current="page"] { color: #6D28D9 !important; }
+</style>
+</helmet>
+
+<div style="font-family: 'Hanken Grotesk', 'Neue Haas Grotesk Display', 'Helvetica Neue', Arial, sans-serif; background: #FFFFFF; color: #0A0A0F; font-size: 15px; line-height: 1.65; overflow-x: clip;">
+  <dc-import name="zx-Nav v2" hint-size="100%,1px"></dc-import>
+
+  <main>
+    <section style="padding: max(88px, var(--nx-clear, 118px)) 7vw 56px;" aria-labelledby="sm-heading">
+      <p style="margin: 0 0 48px; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #6B6B7B;">Sitemap</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: end;">
+        <h1 id="sm-heading" style="margin: 0; font-size: clamp(38px, 5.4vw, 80px); font-weight: 600; line-height: 1.0; letter-spacing: -0.03em; text-wrap: pretty;">Every page, in one place</h1>
+        <div>
+          <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #4A4A5A; max-width: 46ch; text-wrap: pretty;">A complete index of the Nexyra website, organised the same way as our navigation.</p>
+          <p style="margin: 20px 0 0; font-size: 13px; color: #6B6B7B;">{{ totalLabel }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 0 7vw 104px;" aria-label="Site index">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 56px 48px;">
+        <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+          <div>
+            <div style="height: 2px; background: #0A0A0F;"></div>
+            <div style="display: flex; align-items: baseline; gap: 14px; padding: 20px 0 12px;">
+              <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: #7C3AED; font-variant-numeric: tabular-nums;">{{ g.num }}</span>
+              <h2 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em;">{{ g.title }}</h2>
+              <span style="margin-left: auto; font-size: 12px; color: #6B6B7B; font-variant-numeric: tabular-nums;">{{ g.count }}</span>
+            </div>
+            <ul style="list-style: none; margin: 0; padding: 0;">
+              <sc-for list="{{ g.links }}" as="l" hint-placeholder-count="5">
+                <li style="border-top: 1px solid #E7E7EC;">
+                  <a class="sm-link" href="{{ l.to }}" aria-current="{{ l.current }}" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; font-size: 15px; font-weight: 500; line-height: 1.4; color: #0A0A0F; transition: color 0.2s ease;">
+                    <span>{{ l.label }}</span>
+                    <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                  </a>
+                </li>
+              </sc-for>
+            </ul>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="zx-Footer v3" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="">
+// Single source for the sitemap: add a line here when a page is added to the site.
+const SITE = [
+  { title: "Main pages", links: [
+    { label: "Home", to: "index.html" },
+    { label: "About", to: "about.html" },
+    { label: "Services", to: "services.html" },
+    { label: "Work", to: "work.html" },
+    { label: "Pricing", to: "pricing.html" },
+    { label: "Insight", to: "insight.html" },
+    { label: "Careers", to: "careers.html" },
+    { label: "Contact", to: "contact.html" },
+    { label: "Locations", to: "location.html" },
+  ] },
+  { title: "Services", links: [
+    { label: "User Research & Insights", to: "services-user-research.html" },
+    { label: "Brand Building", to: "services-brand-building.html" },
+    { label: "Marketing Strategy & Execution", to: "services-marketing-strategy.html" },
+    { label: "Digital Transformation", to: "services-digital-transformation.html" },
+    { label: "Managed Services", to: "services-managed-services.html" },
+    { label: "Accounts & Business Services", to: "services-accounts-and-business-services.html" },
+    { label: "Experience Design (UX/UI)", to: "services-experience-design.html" },
+    { label: "Product and Service Design", to: "services-product-and-service-design.html" },
+    { label: "Enterprise Software Design", to: "services-enterprise-software-design.html" },
+    { label: "Automation & Intelligent Systems", to: "services-automation-and-intelligent-systems.html" },
+    { label: "No-Code Development", to: "services-no-code-development.html" },
+  ] },
+  { title: "Insight articles", links: [
+    { label: "The Strategic Imperative of AI Integration in 2026", to: "insight.html#post-ai-integration" },
+    { label: "Design Systems at Scale", to: "insight.html#post-design-systems" },
+    { label: "Beyond Digital Transformation", to: "insight.html#post-adaptive-orgs" },
+    { label: "The Data-Driven Brand", to: "insight.html#post-data-driven-brand" },
+    { label: "Customer Journey Mapping in the Age of AI", to: "insight.html#post-journey-mapping" },
+    { label: "Automation ROI", to: "insight.html#post-automation-roi" },
+    { label: "The Future of Work", to: "insight.html#post-future-of-work" },
+  ] },
+  { title: "Legal", links: [
+    { label: "Privacy Policy", to: "privacy-policy.html" },
+    { label: "Terms of Use", to: "terms-of-use.html" },
+    { label: "Cookie Policy", to: "cookie-policy.html" },
+    { label: "Sitemap", to: "sitemap.html", current: "page" },
+  ] },
+];
+
+class Component extends DCLogic {
+  renderVals() {
+    const total = SITE.reduce((n, g) => n + g.links.length, 0);
+    return {
+      totalLabel: total + " pages and articles",
+      groups: SITE.map((g, i) => ({
+        ...g,
+        num: String(i + 1).padStart(2, "0"),
+        count: String(g.links.length),
+      })),
+    };
+  }
+}
+
+</script>
+
+
+</body></html>
