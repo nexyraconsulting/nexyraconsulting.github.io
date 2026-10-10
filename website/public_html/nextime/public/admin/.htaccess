@@ -1,0 +1,12 @@
+# NEXTime platform console — restrict to NEXTime staff.
+# 1) Create the password file OUTSIDE the web root:  htpasswd -c /etc/apache2/.nextime-admin youruser
+# 2) Update AuthUserFile below. Optionally also limit by IP.
+AuthType Basic
+AuthName "NEXTime platform console"
+AuthUserFile /etc/apache2/.nextime-admin
+Require valid-user
+# Require ip 203.0.113.10
+
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow"
+</IfModule>

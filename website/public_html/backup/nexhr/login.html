@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<style>#nx-loader{position:fixed;inset:0;z-index:2147483000;background:#FFFFFF;display:flex;align-items:center;justify-content:center;transition:opacity .3s ease}#nx-loader svg{width:100%;height:100%}#nx-loader.nx-done{opacity:0;pointer-events:none}</style>
+</head>
+<body>
+<div id="nx-loader" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxct)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxcb)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg></div>
+<script>(function(){var l=document.getElementById('nx-loader'),t0=Date.now();function done(){if(!l)return;l.classList.add('nx-done');setTimeout(function(){l&&l.remove();l=null},350)}(function poll(){var r=document.getElementById('dc-root');if(r&&r.textContent.trim().length>40&&document.readyState!=='loading'){setTimeout(done,Math.max(0,500-(Date.now()-t0)));return}if(Date.now()-t0>6000){done();return}setTimeout(poll,60)})()})();</script>
+<x-dc>
+<helmet>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/appleTouchIcon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#7C3AED">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sign in · NexHR</title>
+<style>
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/hankenGroteskLatinExt.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/hankenGroteskLatin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#FFFFFF;color:#0A0A0F;font-family:'Hanken Grotesk','Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.5}
+button,input{font-family:inherit;font-size:inherit;color:inherit}
+h1,p{margin:0}
+a{color:#6D28D9;text-decoration:none}a:hover{color:#5B21B6}
+:focus-visible{outline:2px solid #7C3AED;outline-offset:2px}
+::selection{background:#EDE9FE}
+@keyframes nxShake{0%,100%{transform:none}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+</style>
+</helmet>
+<main style="min-height:100vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));background:#FFFFFF">
+  <section aria-label="NexHR" style="position:relative;overflow:hidden;isolation:isolate;background:#07061A;color:#FFFFFF;padding:clamp(28px,4vw,56px) 7vw;display:flex;flex-direction:column;justify-content:space-between;gap:48px">
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse 60% 50% at 30% 30%,rgba(124,58,237,0.32),transparent 70%),radial-gradient(ellipse 50% 45% at 85% 25%,rgba(59,130,246,0.22),transparent 70%),radial-gradient(ellipse 45% 40% at 60% 85%,rgba(167,139,250,0.18),transparent 70%),linear-gradient(135deg,#06051A,#0B0A2A)"></div>
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 60% 40%,#000 0%,transparent 75%);mask-image:radial-gradient(ellipse 70% 70% at 60% 40%,#000 0%,transparent 75%)"></div>
+    <a href="index.html" aria-label="NexHR home" style="display:flex;align-items:center;gap:10px;width:fit-content"><img src="assets/logos/nexyraMonogramWhite.svg" alt="" style="height:30px;width:auto;display:block"><span style="font-size:23px;font-weight:500;letter-spacing:0.08em;line-height:1;color:#FFFFFF">NEX<span style="font-weight:600;color:#A78BFA">HR</span></span></a>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#B9B3E6">Workspace sign-in</p>
+      <h2 style="margin:0;font-size:clamp(36px,4.6vw,64px);font-weight:600;line-height:0.98;letter-spacing:-0.03em">Your team&#8217;s week, in one place.</h2>
+      <p style="font-size:17px;line-height:1.6;color:#D6D3EE;max-width:40ch;text-wrap:pretty">Rotas, timesheets, leave and employee records for your whole team, in one workspace.</p>
+    </div>
+    <div style="height:3px;background:linear-gradient(90deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%)"></div>
+  </section>
+  <div style="padding:clamp(32px,5vw,72px) 7vw;display:flex;flex-direction:column;justify-content:center;gap:24px">
+  <div style="width:100%;max-width:440px;background:#FFFFFF;border-top:2px solid #0A0A0F;padding:28px 0 0;display:flex;flex-direction:column;gap:24px">
+
+    <sc-if value="{{ ws.show }}">
+      <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #E7E7EC;border-radius:0">
+        <span style="width:34px;height:34px;flex:none;border-radius:0;background:#0A0A0F;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">{{ ws.ini }}</span>
+        <span style="flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.3"><span style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ ws.name }}</span><span style="font-size:12px;color:#6B6B7B">{{ ws.addr }}</span></span>
+        <sc-if value="{{ ws.canChange }}"><button type="button" onClick="{{ changeWs }}" style="flex:none;border:0;background:transparent;color:#6D28D9;font-weight:600;font-size:13px;cursor:pointer">Change</button></sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.workspace }}" hint-placeholder-val="{{ true }}">
+      <form onSubmit="{{ submitWs }}" novalidate="" style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:6px;text-align:left">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Sign in to your workspace</h1>
+          <p style="color:#5A5A6A">Enter your company&#8217;s NexHR address.</p>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Workspace address
+          <div style="display:flex;align-items:stretch;border:1.5px solid {{ wsBd }};border-radius:0;overflow:hidden">
+            <input ref="{{ firstRef }}" value="{{ slug }}" onChange="{{ onSlug }}" autoComplete="off" spellCheck="false" placeholder="yourcompany" style="flex:1;min-width:0;height:47px;padding:0 4px 0 14px;border:0;font-weight:500;font-size:15px;outline:none;background:#FFFFFF">
+            <span style="display:flex;align-items:center;padding:0 14px;background:#F7F7F9;color:#6B6B7B;font-weight:500;font-size:15px;border-left:1px solid #E7E7EC">.nexhr.com</span>
+          </div>
+          <span role="alert" style="font-weight:400;color:#B91C1C">{{ err }}</span>
+        </label>
+        <button type="submit" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#6D28D9" style-active="background:#5B21B6">Continue</button>
+        <button type="button" onClick="{{ toFind }}" style="align-self:flex-start;text-align:left;border:0;background:transparent;padding-left:0;padding-right:0;color:#6D28D9;font-weight:600;font-size:13px;cursor:pointer">I don&#8217;t know my workspace address</button>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.find }}">
+      <form onSubmit="{{ submitFind }}" novalidate="" style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:6px;text-align:left">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Find your workspace</h1>
+          <p style="color:#5A5A6A">We&#8217;ll email you a link to every workspace you belong to.</p>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Work email
+          <input type="email" value="{{ email }}" onChange="{{ onEmail }}" autoComplete="email" style="height:50px;padding:0 14px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:400;font-size:15px;outline:none" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+          <span role="alert" style="font-weight:400;color:#B91C1C">{{ err }}</span>
+        </label>
+        <button type="submit" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#6D28D9">Find workspaces</button>
+        <sc-if value="{{ found.done }}">
+          <div style="display:flex;flex-direction:column;border:1px solid #E7E7EC;border-radius:0;overflow:hidden">
+            <div style="padding:10px 14px;background:#F7F7F9;font-size:12px;color:#4A4A5A"><strong style="color:#92400E">Demo mode:</strong> {{ found.note }}</div>
+            <sc-for list="{{ found.list }}" as="w" hint-placeholder-count="1"><button type="button" onClick="{{ w.go }}" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:0;border-top:1px solid #F0F0F3;background:#FFFFFF;cursor:pointer;text-align:left" style-hover="background:#FAF9FE"><span style="flex:1;font-weight:600">{{ w.name }}</span><span style="font-size:12px;color:#6B6B7B">{{ w.addr }}</span></button></sc-for>
+          </div>
+        </sc-if>
+        <button type="button" onClick="{{ toWorkspace }}" style="align-self:flex-start;text-align:left;border:0;background:transparent;padding-left:0;padding-right:0;color:#4A4A5A;font-size:13px;cursor:pointer">Back</button>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.signin }}">
+      <form onSubmit="{{ submitSignin }}" novalidate="" style="display:flex;flex-direction:column;gap:16px">
+        <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1;text-align:left">Sign in</h1>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Email
+          <input ref="{{ firstRef }}" type="email" value="{{ email }}" onChange="{{ onEmail }}" autoComplete="username" style="height:50px;padding:0 14px;border:1.5px solid {{ inBd }};border-radius:0;font-weight:400;font-size:15px;outline:none;animation:{{ shake }}" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">
+          <span style="display:flex;justify-content:space-between;gap:8px">Password<button type="button" onClick="{{ toForgot }}" style="align-self:flex-start;text-align:left;border:0;background:transparent;padding-left:0;padding-right:0;padding:0;color:#6D28D9;font-weight:600;font-size:13px;cursor:pointer">Forgot password?</button></span>
+          <div style="position:relative;display:flex;align-items:center">
+            <input type="{{ pwType }}" value="{{ password }}" onChange="{{ onPassword }}" autoComplete="current-password" style="width:100%;height:50px;padding:0 60px 0 14px;border:1.5px solid {{ inBd }};border-radius:0;font-weight:400;font-size:15px;outline:none;animation:{{ shake }}" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+            <button type="button" onClick="{{ togglePw }}" style="position:absolute;right:6px;height:36px;padding:0 10px;border:0;border-radius:0;background:transparent;color:#6D28D9;font-size:12px;font-weight:600;cursor:pointer" style-hover="background:#F4F2FB">{{ pwLabel }}</button>
+          </div>
+        </label>
+        <div role="alert" aria-live="polite" style="min-height:20px;font-size:13px;color:{{ msgFg }}">{{ msg }}</div>
+        <button type="submit" disabled="{{ busy }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;opacity:{{ busyOp }}" style-hover="background:#6D28D9" style-active="background:#5B21B6">{{ signinBtn }}</button>
+        <sc-if value="{{ demoHint }}">
+          <div style="display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-radius:0;background:#F6F4FD;font-size:13px;color:#4A4A5A">
+            <span><strong style="color:#2A2A35">Demo workspace.</strong> Open it without a password, then switch between Employee, Manager and HR views.</span>
+            <button type="button" onClick="{{ openDemo }}" style="width:fit-content;border:0;background:transparent;padding:0;color:#6D28D9;font-weight:600;cursor:pointer">Open the demo workspace</button>
+          </div>
+        </sc-if>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.totp }}">
+      <form onSubmit="{{ submitTotp }}" novalidate="" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:6px;text-align:left">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Two-step login</h1>
+          <p style="color:#5A5A6A">{{ totpPrompt }}</p>
+        </div>
+        <input ref="{{ codeRef }}" value="{{ code }}" onChange="{{ onCode }}" inputMode="{{ codeMode }}" autoComplete="one-time-code" maxLength="{{ codeMax }}" placeholder="{{ codePh }}" aria-label="{{ totpPrompt }}" style="height:56px;padding:0 16px;border:1.5px solid {{ codeBd }};border-radius:0;font-weight:500;font-size:24px;letter-spacing:0.3em;text-align:left;outline:none;font-variant-numeric:tabular-nums;animation:{{ shake }}" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+        <div role="alert" style="min-height:20px;font-size:13px;color:#B91C1C;text-align:left">{{ err }}</div>
+        <button type="submit" disabled="{{ busy }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;opacity:{{ busyOp }}" style-hover="background:#6D28D9" style-active="background:#5B21B6">Verify</button>
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px">
+          <button type="button" onClick="{{ toggleRecovery }}" style="align-self:flex-start;text-align:left;border:0;background:transparent;padding-left:0;padding-right:0;padding:0;color:#6D28D9;font-weight:600;cursor:pointer">{{ recoveryToggle }}</button>
+          <button type="button" onClick="{{ toSignin }}" style="align-self:flex-start;text-align:left;border:0;background:transparent;padding-left:0;padding-right:0;padding:0;color:#4A4A5A;cursor:pointer">Back</button>
+        </div>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.enrol }}">
+      <form onSubmit="{{ submitEnrol }}" novalidate="" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h1 style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.15">Set up two-step login</h1>
+          <p style="color:#5A5A6A">{{ enrolWhy }}</p>
+        </div>
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:14px;border:1px solid #E7E7EC;border-radius:0">
+          <div ref="{{ qrRef }}" aria-label="QR code for your authenticator app" style="width:132px;height:132px;flex:none;display:flex;align-items:center;justify-content:center;background:#F7F7F9;border-radius:0;color:#8A8A9C;font-size:12px;text-align:left">QR code</div>
+          <div style="flex:1;min-width:160px;display:flex;flex-direction:column;gap:6px">
+            <span style="font-size:13px;color:#4A4A5A">Scan the code, or enter this key:</span>
+            <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;font-weight:600;word-break:break-all">{{ secretFmt }}</code>
+          </div>
+        </div>
+        <input value="{{ code }}" onChange="{{ onCode }}" inputMode="numeric" autoComplete="one-time-code" maxLength="6" placeholder="000000" aria-label="6-digit code" style="height:54px;padding:0 16px;border:1.5px solid {{ codeBd }};border-radius:0;font-weight:500;font-size:24px;letter-spacing:0.4em;text-align:left;outline:none" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+        <div role="alert" style="min-height:20px;font-size:13px;color:#B91C1C">{{ err }}</div>
+        <button type="submit" disabled="{{ busy }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;opacity:{{ busyOp }}" style-hover="background:#6D28D9">Turn on and continue</button>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.recovery }}">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h1 style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.15">Save your recovery codes</h1>
+          <p style="color:#5A5A6A">Each code signs you in once if you lose your phone.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:16px;border-radius:0;background:#F7F7F9;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;font-weight:600">
+          <sc-for list="{{ recovery }}" as="r" hint-placeholder-count="8"><span>{{ r }}</span></sc-for>
+        </div>
+        <button type="button" onClick="{{ copyCodes }}" style="width:fit-content;height:40px;padding:0 14px;border:1px solid #D9D7E3;border-radius:0;background:#FFFFFF;font-weight:600;cursor:pointer" style-hover="background:#F7F7F9">{{ copyCodesLabel }}</button>
+        <button type="button" onClick="{{ enter }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#6D28D9">I&#8217;ve saved my codes</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.forgot }}">
+      <form onSubmit="{{ submitForgot }}" novalidate="" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:6px;text-align:left">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Reset your password</h1>
+          <p style="color:#5A5A6A">{{ forgotPrompt }}</p>
+        </div>
+        <sc-if value="{{ rs.askEmail }}" hint-placeholder-val="{{ true }}">
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Email
+            <input type="email" value="{{ email }}" onChange="{{ onEmail }}" autoComplete="username" style="height:50px;padding:0 14px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:400;font-size:15px;outline:none" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+          </label>
+        </sc-if>
+        <sc-if value="{{ rs.askCode }}">
+          <div style="padding:12px 14px;border-radius:0;background:#FEF3C7;color:#92400E;font-size:13px"><strong>Demo mode:</strong> no email is sent. Your code is <strong style="letter-spacing:0.12em">{{ rs.demoCode }}</strong>.</div>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Code from the email
+            <input value="{{ code }}" onChange="{{ onCode }}" inputMode="numeric" maxLength="6" autoComplete="one-time-code" style="height:50px;padding:0 14px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:500;font-size:18px;letter-spacing:0.3em;outline:none" style-focus="border-color:#7C3AED">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">New password
+            <input type="password" value="{{ password }}" onChange="{{ onPassword }}" autoComplete="new-password" style="height:50px;padding:0 14px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:400;font-size:15px;outline:none" style-focus="border-color:#7C3AED">
+            <span style="font-weight:400;color:#6B6B7B">At least 10 characters, with a letter and a number</span>
+          </label>
+        </sc-if>
+        <div role="alert" style="min-height:20px;font-size:13px;color:{{ msgFg }}">{{ msg }}</div>
+        <button type="submit" disabled="{{ busy }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;opacity:{{ busyOp }}" style-hover="background:#6D28D9">{{ rs.btn }}</button>
+        <button type="button" onClick="{{ toSignin }}" style="align-self:flex-start;text-align:left;border:0;background:transparent;padding-left:0;padding-right:0;color:#4A4A5A;font-size:13px;cursor:pointer">Back to sign in</button>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.invite }}">
+      <form onSubmit="{{ submitInvite }}" novalidate="" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:6px;text-align:left">
+          <h1 style="font-size:30px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Join {{ inv.company }}</h1>
+          <p style="color:#5A5A6A">You&#8217;ve been invited as <strong style="color:#0A0A0F">{{ inv.role }}</strong>. Set up your account for {{ inv.email }}.</p>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Your name
+          <input value="{{ inv.name }}" onChange="{{ onInvName }}" autoComplete="name" style="height:50px;padding:0 14px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:400;font-size:15px;outline:none" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#2A2A35">Choose a password
+          <input type="password" value="{{ password }}" onChange="{{ onPassword }}" autoComplete="new-password" style="height:50px;padding:0 14px;border:1.5px solid #D9D7E3;border-radius:0;font-weight:400;font-size:15px;outline:none" style-focus="border-color:#7C3AED;outline:2px solid #7C3AED;outline-offset:0">
+          <span style="font-weight:400;color:#6B6B7B">At least 10 characters, with a letter and a number</span>
+        </label>
+        <div role="alert" style="min-height:20px;font-size:13px;color:#B91C1C">{{ err }}</div>
+        <button type="submit" disabled="{{ busy }}" style="height:50px;border:0;border-radius:0;background:#7C3AED;text-align:left;padding:0 24px;color:#FFFFFF;font-size:15px;font-weight:600;cursor:pointer;opacity:{{ busyOp }}" style-hover="background:#6D28D9">Create account</button>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ is.expired }}">
+      <div style="display:flex;flex-direction:column;gap:12px;text-align:left">
+        <h1 style="font-size:24px;font-weight:600;letter-spacing:-0.02em">This invitation has expired</h1>
+        <p style="color:#5A5A6A">Invitations last seven days. Ask your administrator to send a new one.</p>
+        <button type="button" onClick="{{ toWorkspace }}" style="align-self:flex-start;text-align:left;border:0;background:transparent;padding-left:0;padding-right:0;color:#6D28D9;font-weight:600;cursor:pointer">Go to sign in</button>
+      </div>
+    </sc-if>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:0;background:#F6F4FD;color:#4A4A5A;font-size:12.5px;line-height:1.5">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+      <span><strong style="color:#2A2A35;font-weight:600">Restricted access.</strong> For authorised users of this workspace only. Sign-in attempts are monitored and logged.</span>
+    </div>
+  </div>
+  <div style="color:#4A4A5A;font-size:13px">New to NexHR? <a href="signup.html" style="font-weight:600">Start a free trial</a></div>
+  </div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { mode: 'workspace', slug: '', tenant: null, email: '', password: '', showPw: false, code: '', err: '', msg: '', ok: false, busy: false, shake: false,
+    useRecovery: false, secret: '', recovery: [], copied: false, found: null, rs: { stage: 'email', demoCode: '' }, inv: null, invName: '', locked: 0 };
+  firstRef = React.createRef(); codeRef = React.createRef(); qrRef = React.createRef();
+
+  componentDidMount() {
+    import(new URL('assets/js/platform.js', location.href).href).then(pf => {
+      this.pf = pf;
+      const q = new URLSearchParams(location.search);
+      const token = q.get('invite');
+      if (token) {
+        const inv = pf.readInvite(token);
+        if (!inv) return this.setState({ mode: 'expired' });
+        this.token = token; this.user = inv.user;
+        return this.setState({ mode: 'invite', tenant: inv.tenant, slug: inv.tenant.slug, inv: { company: inv.tenant.name, role: pf.ROLES[inv.user.role].label, email: inv.user.email }, invName: inv.user.name });
+      }
+      const ses = pf.getSession(); const slug = pf.currentWorkspace();
+      if (ses && (!slug || ses.tenant === slug)) { location.replace('app.html'); return; }
+      const t = slug ? pf.getTenant(slug) : null;
+      if (t) this.setState({ mode: 'signin', slug, tenant: t, email: q.get('email') || '' }, this.focus);
+      else this.setState({ slug: pf.workspaceFromHost() ? '' : slug, err: pf.workspaceFromHost() ? 'We can\u2019t find a workspace at this address.' : '' }, this.focus);
+    });
+  }
+  
+  focus = () => setTimeout(() => { const r = (this.state.mode === 'totp' ? this.codeRef : this.firstRef).current; r && r.focus(); }, 40);
+  async drawQr(n) {
+    n = n || 0; if (!this.qrRef.current) { if (n < 40) setTimeout(() => this.drawQr(n + 1), 50); return; }
+    const pf = this.pf, s = this.state; const svg = await pf.qrSvg(pf.otpauthUri(s.secret, this.user.email, s.slug + '.' + pf.BASE_DOMAIN));
+    const el = this.qrRef.current; if (!el) return;
+    if (svg) { el.innerHTML = svg; el.style.background = '#FFFFFF'; const v = el.querySelector('svg'); if (v) { v.setAttribute('width', '132'); v.setAttribute('height', '132'); } }
+    else el.textContent = 'Enter the key instead';
+  }
+  fail(err) { this.setState({ err, msg: err, ok: false, busy: false, shake: true }, () => setTimeout(() => this.setState({ shake: false }), 400)); }
+  go(mode, extra) { this.setState({ mode, err: '', msg: '', code: '', busy: false, ...(extra || {}) }, () => { this.focus(); if (mode === 'enrol') this.drawQr(); }); }
+  enter = () => { this.pf.startSession(this.pf.getUser(this.user.id)); this.setState({ ok: true, msg: 'Signed in. Opening NexHR…' }); setTimeout(() => location.replace('app.html'), 250); };
+
+  submitWs = e => {
+    e.preventDefault(); const pf = this.pf; const slug = this.state.slug.trim().toLowerCase();
+    if (!slug) return this.fail('Enter your workspace address');
+    const t = pf.getTenant(slug); if (!t) return this.fail('We can\u2019t find ' + slug + '.nexhr.com. Check the spelling, or find it by email.');
+    if (pf.onPlatformHost() && pf.workspaceFromHost() !== slug) { location.href = pf.workspaceUrl(slug, 'login.html'); return; }
+    this.go('signin', { tenant: t, slug });
+  };
+  submitFind = e => {
+    e.preventDefault(); const pf = this.pf; const em = this.state.email;
+    if (pf.emailProblem(em)) return this.fail(pf.emailProblem(em));
+    const list = pf.workspacesFor(em);
+    this.setState({ err: '', found: { list, note: list.length ? 'these are the workspaces we would email you.' : 'no workspaces use this email. We would still send an email, so nobody can test which addresses exist.' } });
+  };
+  submitSignin = async e => {
+    e.preventDefault(); const pf = this.pf, s = this.state; if (s.busy) return;
+    if (!s.email || !s.password) return this.fail('Enter your email and password');
+    if (!window.crypto || !crypto.subtle) return this.fail('A secure connection (HTTPS) is required to sign in.');
+    this.setState({ busy: true, msg: '', err: '' });
+    const r = await pf.signIn(s.slug, s.email, s.password);
+    if (r.error) return this.fail(r.error);
+    this.user = r.user;
+    if (r.needs === 'totp') return this.go('totp', { useRecovery: false });
+    if (r.needs === 'enrol') return this.go('enrol', { secret: pf.newSecret() });
+    this.setState({ busy: false }); this.enter();
+  };
+  submitTotp = async e => {
+    e.preventDefault(); const s = this.state; this.setState({ busy: true });
+    const ok = await this.pf.checkSecondFactor(this.pf.getUser(this.user.id), s.code);
+    if (!ok) return this.fail(s.useRecovery ? 'That recovery code isn\u2019t valid or has been used.' : 'That code isn\u2019t right. Try the newest code in your app.');
+    this.enter();
+  };
+  submitEnrol = async e => {
+    e.preventDefault(); const pf = this.pf, s = this.state; this.setState({ busy: true });
+    if (!await pf.verifyTotp(s.secret, s.code)) return this.fail('That code doesn\u2019t match. Check your phone\u2019s time is set automatically.');
+    const codes = pf.recoveryCodes(); await pf.enableTotp(this.user.id, s.secret, codes);
+    this.go('recovery', { recovery: codes });
+  };
+  submitForgot = async e => {
+    e.preventDefault(); const pf = this.pf, s = this.state;
+    if (s.rs.stage === 'email') {
+      if (pf.emailProblem(s.email)) return this.fail(pf.emailProblem(s.email));
+      const u = pf.findUser(s.slug, s.email);
+      this.resetUser = u;
+      return this.setState({ err: '', msg: '', rs: { stage: 'code', demoCode: u && u.status === 'active' ? pf.issueCode('reset', u.id) : '(no account with this email)' } });
+    }
+    if (!this.resetUser) return this.fail('That code isn\u2019t right.');
+    if (pf.passwordProblem(s.password)) return this.fail(pf.passwordProblem(s.password));
+    const bad = pf.checkCode('reset', this.resetUser.id, s.code); if (bad) return this.fail(bad);
+    await pf.setPassword(this.resetUser.id, s.password);
+    this.go('signin', { password: '', rs: { stage: 'email', demoCode: '' } });
+    this.setState({ msg: 'Password changed. Sign in with your new password.', ok: true });
+  };
+  submitInvite = async e => {
+    e.preventDefault(); const pf = this.pf, s = this.state;
+    if (!s.invName.trim()) return this.fail('Enter your name');
+    if (pf.passwordProblem(s.password)) return this.fail(pf.passwordProblem(s.password));
+    this.setState({ busy: true });
+    try { const u = await pf.acceptInvite(this.token, s.invName, s.password); this.user = u; if (pf.needs2fa(s.tenant, u)) return this.go('enrol', { secret: pf.newSecret() }); this.enter(); }
+    catch (x) { this.fail(x.message); }
+  };
+
+  renderVals() {
+    const s = this.state, pf = this.pf, t = s.tenant;
+    const modes = ['workspace', 'find', 'signin', 'totp', 'enrol', 'recovery', 'forgot', 'invite', 'expired'];
+    const enrolWhy = this.user && pf ? (this.user.role === 'admin' || this.user.role === 'hr' ? pf.ROLES[this.user.role].label + ' accounts must use an authenticator app.' : t && t.name + ' requires two-step login for everyone.') : '';
+    return {
+      is: Object.fromEntries(modes.map(m => [m, s.mode === m])),
+      ws: { show: !!t && s.mode !== 'expired', name: t ? t.name : '', addr: s.slug + '.nexhr.com', ini: t ? t.name.split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase() : '', canChange: !!pf && !pf.workspaceFromHost() && ['signin', 'forgot'].indexOf(s.mode) >= 0 },
+      changeWs: () => this.go('workspace', { tenant: null }),
+      firstRef: this.firstRef, codeRef: this.codeRef, qrRef: this.qrRef,
+      slug: s.slug, onSlug: e => this.setState({ slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''), err: '' }), wsBd: s.err ? '#DC2626' : '#D9D7E3', submitWs: this.submitWs,
+      toFind: () => this.go('find', { found: null }), submitFind: this.submitFind, toWorkspace: () => { history.replaceState(null, '', location.pathname); this.go('workspace', { tenant: null }); },
+      found: { done: !!s.found, note: s.found ? s.found.note : '', list: (s.found ? s.found.list : []).map(w => ({ name: w.name, addr: w.slug + '.nexhr.com', go: () => { if (pf.onPlatformHost()) location.href = pf.workspaceUrl(w.slug, 'login.html'); else this.go('signin', { tenant: w, slug: w.slug }); } })) },
+      email: s.email, onEmail: e => this.setState({ email: e.target.value, err: '', msg: '' }),
+      password: s.password, onPassword: e => this.setState({ password: e.target.value, err: '', msg: '' }),
+      pwType: s.showPw ? 'text' : 'password', pwLabel: s.showPw ? 'Hide' : 'Show', togglePw: () => this.setState({ showPw: !s.showPw }),
+      inBd: s.err ? '#DC2626' : s.ok ? '#16A34A' : '#D9D7E3', shake: s.shake ? 'nxShake .35s' : 'none',
+      msg: s.msg, msgFg: s.ok ? '#15803D' : '#B91C1C', err: s.err,
+      busy: s.busy || s.ok, busyOp: s.busy ? 0.6 : 1, signinBtn: s.busy ? 'Checking…' : s.ok ? 'Signed in' : 'Sign in', submitSignin: this.submitSignin,
+      demoHint: !!t && t.demo, openDemo: () => { pf.demoSession(); location.replace('app.html'); },
+      toForgot: () => this.go('forgot', { rs: { stage: 'email', demoCode: '' }, password: '' }), toSignin: () => this.go('signin', { rs: { stage: 'email', demoCode: '' }, password: '' }),
+      code: s.code, onCode: e => this.setState({ code: s.useRecovery && s.mode === 'totp' ? e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 11) : e.target.value.replace(/\D/g, '').slice(0, 6), err: '' }),
+      codeBd: s.err ? '#DC2626' : '#D9D7E3', codeMode: s.useRecovery ? 'text' : 'numeric', codeMax: s.useRecovery ? '11' : '6', codePh: s.useRecovery ? 'xxxxx-xxxxx' : '000000',
+      totpPrompt: s.useRecovery ? 'Enter one of your recovery codes.' : 'Enter the 6-digit code from your authenticator app.',
+      recoveryToggle: s.useRecovery ? 'Use authenticator code' : 'Use a recovery code', toggleRecovery: () => this.setState({ useRecovery: !s.useRecovery, code: '', err: '' }, this.focus), submitTotp: this.submitTotp,
+      enrolWhy, secretFmt: pf && s.secret ? pf.formatSecret(s.secret) : '', submitEnrol: this.submitEnrol,
+      recovery: s.recovery, copyCodes: () => { try { navigator.clipboard.writeText(s.recovery.join('\n')); } catch (x) {} this.setState({ copied: true }); }, copyCodesLabel: s.copied ? 'Copied' : 'Copy codes', enter: this.enter,
+      forgotPrompt: s.rs.stage === 'email' ? 'Enter your email and we\u2019ll send you a code.' : 'Enter the code we sent and choose a new password.',
+      rs: { askEmail: s.rs.stage === 'email', askCode: s.rs.stage === 'code', demoCode: s.rs.demoCode, btn: s.rs.stage === 'email' ? 'Send code' : 'Change password' }, submitForgot: this.submitForgot,
+      inv: { ...(s.inv || {}), name: s.invName }, onInvName: e => this.setState({ invName: e.target.value }), submitInvite: this.submitInvite
+    };
+  }
+}
+</script>
+</body>
+</html>

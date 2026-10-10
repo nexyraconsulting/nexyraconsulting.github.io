@@ -11,17 +11,17 @@
   "lang": "en-GB",
   "icons": [
     {
-      "src": "brand/logos/app-icon-192.png",
+      "src": "assets/logos/app-icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "brand/logos/app-icon-512.png",
+      "src": "assets/logos/app-icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "brand/logos/app-icon.svg",
+      "src": "assets/logos/app-icon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }

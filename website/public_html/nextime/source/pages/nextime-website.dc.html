@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<style>#nx-loader{position:fixed;inset:0;z-index:2147483000;background:#FFFFFF;display:flex;align-items:center;justify-content:center;transition:opacity .3s ease}#nx-loader svg{width:100%;height:100%}#nx-loader.nx-done{opacity:0;pointer-events:none}</style>
+<div id="nx-loader" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxct)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxcb)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg></div>
+<script>(function(){var l=document.getElementById('nx-loader'),t0=Date.now();function done(){if(!l)return;l.classList.add('nx-done');setTimeout(function(){l&&l.remove();l=null},350)}(function poll(){var r=document.getElementById('dc-root');if(r&&r.textContent.trim().length>40&&document.readyState!=='loading'){setTimeout(done,Math.max(0,500-(Date.now()-t0)));return}if(Date.now()-t0>6000){done();return}setTimeout(poll,60)})()})();</script>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXTime · Rota &amp; timesheet software</title>
+  <meta name="description" content="Rotas, timesheets, approvals and payroll hours for teams with one or many locations. 14-day free trial.">
+  <link rel="icon" href="Assets/brand/icons/nextime-icon.svg" type="image/svg+xml">
+  <script src="app/nextime-saas.js"></script>
+  <script src="Assets/nexyra/zx-search-index.js" defer></script>
+  <script src="Assets/nexyra/zx-search-engine.js" defer></script>
+  <style>
+    @font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('Assets/fonts/hanken-grotesk-latin-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('Assets/fonts/hanken-grotesk-latin-ext-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+    html, body { margin: 0; padding: 0; background: #FFFFFF; }
+    * { box-sizing: border-box; }
+    body { -webkit-font-smoothing: antialiased; }
+    a { color: #6D28D9; text-decoration: none; }
+    a:hover { color: #5B21B6; }
+    ::selection { background: #EDE9FE; color: #0A0A0F; }
+    :focus-visible { outline: 2px solid #7C3AED; outline-offset: 2px; }
+    a, button { white-space: nowrap; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .nx-plus { transform: rotate(45deg); }
+  </style>
+</helmet>
+
+<div style="font-family:'Hanken Grotesk','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif;background:#FFFFFF;color:#0A0A0F;font-size:15px;line-height:1.65;overflow-x:clip">
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxTg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxTct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxTcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxTct)"><path fill="url(#nxTg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxTcb)"><path fill="url(#nxTg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg>
+  </template>
+
+  <dc-import name="NxSiteNav" active="products" product="nextime" site-url="https://nexyraconsulting.co.uk/" sign-in-url="{{ signInUrl }}" trial-url="{{ trialUrl }}" hint-size="100%,0px"></dc-import>
+
+  <main>
+    <div data-screen-label="Product header" style="padding:calc(var(--nx-clear, 112px) + 8px) 7vw 0">
+      <nav aria-label="Breadcrumb">
+        <ol style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B7B">
+          <li>Products</li>
+          <li aria-hidden="true" style="color:#B4B4C4">/</li>
+          <li aria-current="page" style="color:#6D28D9">NEXTime</li>
+        </ol>
+      </nav>
+      <img src="Assets/brand/logos/nextime-lockup-on-light.svg" alt="NEXTime" style="display:block;height:40px;width:auto;margin-top:40px">
+    </div>
+
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+      <section style="padding:40px 0 0 7vw;overflow:hidden" aria-labelledby="hero-h">
+        <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:56px 64px">
+          <div style="flex:5 1 400px;min-width:0;max-width:600px;display:flex;flex-direction:column;gap:28px;padding:24px 7vw 72px 0;box-sizing:content-box">
+            <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B7B">Rota &amp; timesheet software</p>
+            <h1 id="hero-h" style="margin:0;font-size:clamp(44px,5.6vw,88px);font-weight:600;line-height:0.96;letter-spacing:-0.03em;text-wrap:balance">Rotas and hours, finally in one place.</h1>
+            <p style="margin:0;font-size:18px;line-height:1.6;color:#4A4A5A;max-width:48ch;text-wrap:pretty">Plan shifts, record actual times, approve timesheets and export payroll-ready hours. For teams with one site or many, with every feature in every plan.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:12px">
+              <a href="{{ trialUrl }}" style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;padding:16px 26px;background:#7C3AED;color:#FFFFFF" style-hover="background:#6D28D9;color:#FFFFFF">Start your 14-day free trial
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+              <a href="#/pricing" style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;padding:15px 25px;border:1px solid #0A0A0F;color:#0A0A0F" style-hover="background:#0A0A0F;color:#FFFFFF">See pricing</a>
+            </div>
+            <p style="margin:0;font-size:13px;line-height:1.6;color:#6B6B7B;border-top:2px solid #0A0A0F;padding-top:16px;white-space:normal">Card optional for the trial · Pay by card, Apple Pay, Google Pay or Direct Debit · Cancel any time</p>
+          </div>
+          <div aria-label="Product preview" style="flex:7 1 520px;min-width:0;position:relative;min-height:clamp(380px,48vw,680px);background:linear-gradient(135deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%)">
+            <div style="position:absolute;left:clamp(20px,3.5vw,56px);top:clamp(20px,3.5vw,56px);right:0;bottom:0;overflow:hidden;background:#FFFFFF;box-shadow:0 30px 80px rgba(46,16,101,0.4)">
+              <img src="Assets/marketing/app-rota-2x.jpg" width="1431" height="706" alt="The NEXTime weekly rota: staff in rows, days in columns, each shift showing its times and paid hours." style="display:block;width:1100px;max-width:none;height:auto">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" style="background:#F7F7F9;padding:88px 7vw;border-top:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC" aria-labelledby="feat-h">
+        <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:48px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#7C3AED">01</span>
+          <h2 id="feat-h" style="margin:0;font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.025em">What it does</h2>
+          <span style="flex:1;height:2px;background:#E7E7EC"></span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));border-top:2px solid #0A0A0F">
+          <sc-for list="{{ features }}" as="f" hint-placeholder-count="8">
+            <div style="padding:28px 28px 32px 0;border-right:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC;display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:12px;font-weight:600;letter-spacing:0.16em;color:#7C3AED;font-variant-numeric:tabular-nums">{{ f.num }}</span>
+              <h3 style="margin:0;font-size:20px;font-weight:600;letter-spacing:-0.02em">{{ f.title }}</h3>
+              <p style="margin:0;font-size:14px;line-height:1.65;color:#4A4A5A;text-wrap:pretty;padding-right:8px">{{ f.text }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section id="how-it-works" style="padding:88px 7vw" aria-labelledby="how-h">
+        <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:48px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#7C3AED">02</span>
+          <h2 id="how-h" style="margin:0;font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.025em">Up and running in an afternoon</h2>
+          <span style="flex:1;height:2px;background:#E7E7EC"></span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-top:2px solid #0A0A0F">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+            <div style="padding:24px 24px 24px 0;border-right:1px solid #E7E7EC">
+              <p style="margin:0 0 10px;font-size:12px;font-weight:600;letter-spacing:0.16em;color:#7C3AED">{{ s.num }}</p>
+              <p style="margin:0 0 6px;font-size:18px;font-weight:600;letter-spacing:-0.01em">{{ s.label }}</p>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:#4A4A5A;text-wrap:pretty">{{ s.text }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section id="security" style="background:#F7F7F9;padding:88px 7vw;border-top:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC" aria-labelledby="sec-h">
+        <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:48px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#7C3AED">03</span>
+          <h2 id="sec-h" style="margin:0;font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.025em">Security and control</h2>
+          <span style="flex:1;height:2px;background:#E7E7EC"></span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px">
+          <div>
+            <p style="margin:0 0 16px;font-size:clamp(24px,2.8vw,36px);font-weight:600;line-height:1.1;letter-spacing:-0.025em">Your workspace.<br>Your people.<br>Your rules.</p>
+            <p style="margin:0;font-size:15px;line-height:1.7;color:#4A4A5A;max-width:56ch;text-wrap:pretty">Each company gets its own isolated workspace. Owners decide who sees what, every change is recorded, and your data can leave with you at any time.</p>
+          </div>
+          <ul style="list-style:none;margin:0;padding:0;border-top:2px solid #0A0A0F">
+            <sc-for list="{{ security }}" as="x" hint-placeholder-count="5">
+              <li style="display:grid;grid-template-columns:22px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #E7E7EC">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:5px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:16px;font-weight:600">{{ x.title }}</span><span style="font-size:14px;line-height:1.6;color:#4A4A5A">{{ x.text }}</span></span>
+              </li>
+            </sc-for>
+          </ul>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isPricing }}" hint-placeholder-val="{{ false }}">
+      <section style="padding:56px 7vw 48px" aria-labelledby="pr-h">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:end">
+          <h1 id="pr-h" style="margin:0;font-size:clamp(44px,6.8vw,100px);font-weight:600;line-height:0.96;letter-spacing:-0.03em">One price<br>per team size.</h1>
+          <p style="margin:0;font-size:18px;line-height:1.6;color:#4A4A5A;max-width:48ch;text-wrap:pretty">Every feature in every plan. You pay for the number of active staff you schedule, by card, wallet, Direct Debit or annual invoice. Start with 14 days free.</p>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ showPlans }}" hint-placeholder-val="{{ true }}">
+    <section id="pricing" style="padding:{{ pricePad }};border-top:{{ priceBorder }}" aria-labelledby="plans-h">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px;margin-bottom:32px">
+        <span style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#7C3AED">{{ priceNum }}</span>
+        <h2 id="plans-h" style="margin:0;font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.025em">Plans</h2>
+        <span style="flex:1 1 40px;height:2px;background:#E7E7EC"></span>
+        <div role="group" aria-label="Billing cycle" style="display:flex;border:1px solid #0A0A0F">
+          <sc-for list="{{ cycles }}" as="c" hint-placeholder-count="2">
+            <button type="button" onClick="{{ c.onClick }}" aria-pressed="{{ c.pressed }}" style="font-family:inherit;font-size:14px;font-weight:500;padding:10px 16px;border:0;background:{{ c.bg }};color:{{ c.fg }};cursor:pointer;white-space:nowrap">{{ c.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-top:2px solid #0A0A0F">
+        <sc-for list="{{ plans }}" as="p" hint-placeholder-count="4">
+          <div style="padding:28px 28px 32px;border-right:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC;border-left:{{ p.left }};background:{{ p.bg }};display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+              <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:{{ p.eyeFg }}">{{ p.name }}</p>
+              <sc-if value="{{ p.popular }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#6D28D9;white-space:nowrap">Most chosen</span></sc-if>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:6px">
+              <span style="font-size:clamp(40px,4vw,56px);font-weight:600;letter-spacing:-0.03em;line-height:1;font-variant-numeric:tabular-nums">{{ p.price }}</span>
+              <span style="font-size:14px;color:#6B6B7B">{{ p.per }}</span>
+            </div>
+            <span style="font-size:13px;color:#6B6B7B;min-height:20px">{{ p.billed }}</span>
+            <p style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">{{ p.limit }}</p>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:#4A4A5A;flex:1;text-wrap:pretty">{{ p.blurb }}</p>
+            <a href="{{ p.href }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:12px 20px;background:{{ p.ctaBg }};color:{{ p.ctaFg }};border:1px solid {{ p.ctaBorder }}" style-hover="background:{{ p.ctaHover }};color:{{ p.ctaHoverFg }}">{{ p.cta }}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>
+          </div>
+        </sc-for>
+      </div>
+      
+      <div id="ways-to-pay" style="margin-top:56px">
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;margin-bottom:16px">
+          <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B7B">Ways to pay</p>
+          <p style="margin:0;font-size:13px;color:#6B6B7B">Cards and wallets by Stripe · Direct Debit by GoCardless</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));border-top:2px solid #0A0A0F">
+          <div style="display:flex;flex-direction:column;gap:10px;padding:20px 20px 22px 0;border-right:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC">
+            <div style="display:flex;align-items:center;gap:8px;height:28px"><img src="https://cdn.simpleicons.org/visa" alt="Visa" style="height:14px;width:auto;display:block"><img src="https://cdn.simpleicons.org/mastercard" alt="Mastercard" style="height:24px;width:auto;display:block"><img src="https://cdn.simpleicons.org/americanexpress" alt="American Express" style="height:24px;width:auto;display:block"></div>
+            <span style="font-size:15px;font-weight:600">Debit and credit card</span>
+            <span style="font-size:13px;line-height:1.5;color:#4A4A5A">Visa, Mastercard and American Express. Charged automatically each month or year.</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:20px 20px 22px 0;border-right:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC">
+            <div style="display:flex;align-items:center;gap:8px;height:28px"><img src="https://cdn.simpleicons.org/applepay" alt="Apple Pay" style="height:26px;width:auto;display:block"><img src="https://cdn.simpleicons.org/googlepay" alt="Google Pay" style="height:26px;width:auto;display:block"></div>
+            <span style="font-size:15px;font-weight:600">Apple Pay and Google Pay</span>
+            <span style="font-size:13px;line-height:1.5;color:#4A4A5A">One tap on your phone or browser. No card number to type.</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:20px 20px 22px 0;border-right:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC">
+            <div style="display:flex;align-items:center;gap:8px;height:28px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A0A0F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" x2="21" y1="22" y2="22"></line><line x1="6" x2="6" y1="18" y2="11"></line><line x1="10" x2="10" y1="18" y2="11"></line><line x1="14" x2="14" y1="18" y2="11"></line><line x1="18" x2="18" y1="18" y2="11"></line><polygon points="12 2 20 7 4 7"></polygon></svg></div>
+            <span style="font-size:15px;font-weight:600">Direct Debit</span>
+            <span style="font-size:13px;line-height:1.5;color:#4A4A5A">From your bank account: UK Bacs, SEPA, ACH, BECS and PAD. 3 working days’ notice before each payment.</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:20px 20px 22px 0;border-right:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC">
+            <div style="display:flex;align-items:center;gap:8px;height:28px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A0A0F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg></div>
+            <span style="font-size:15px;font-weight:600">Invoice and bank transfer</span>
+            <span style="font-size:13px;line-height:1.5;color:#4A4A5A">For yearly plans and Enterprise. Pay within 30 days, with your PO number on every invoice.</span>
+          </div>
+        </div>
+      </div>
+      <p style="margin:24px 0 0;font-size:14px;color:#6B6B7B;border-left:3px solid #7C3AED;padding-left:20px;max-width:80ch">Prices in GBP, excluding VAT. Active staff are people on your staff list not marked as Left. Owner, admin and manager logins are free.</p>
+
+      <div id="included" style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px">
+        <div>
+          <p style="margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B7B">Included in every plan</p>
+          <p style="margin:0;font-size:clamp(24px,2.8vw,36px);font-weight:600;line-height:1.1;letter-spacing:-0.025em">No feature tiers.<br>No add-ons.</p>
+        </div>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));column-gap:32px;border-top:2px solid #0A0A0F">
+          <sc-for list="{{ included }}" as="i" hint-placeholder-count="10">
+            <li style="display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid #E7E7EC;font-size:15px">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:6px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>{{ i }}
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ showFaqSection }}" hint-placeholder-val="{{ true }}">
+    <section id="faq" style="padding:88px 7vw;border-top:1px solid #E7E7EC" aria-labelledby="faq-h">
+      <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:48px">
+        <span style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#7C3AED">{{ faqNum }}</span>
+        <h2 id="faq-h" style="margin:0;font-size:clamp(28px,3.4vw,44px);font-weight:600;letter-spacing:-0.025em">Questions</h2>
+        <span style="flex:1;height:2px;background:#E7E7EC"></span>
+      </div>
+      <div style="border-top:2px solid #0A0A0F;max-width:960px">
+        <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="6">
+          <details style="border-bottom:1px solid #E7E7EC">
+            <summary style="display:flex;justify-content:space-between;align-items:center;gap:24px;padding:20px 0;cursor:pointer;font-size:18px;font-weight:600;letter-spacing:-0.01em" style-hover="color:#7C3AED">{{ q.q }}
+              <svg class="nx-plus" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" style="flex:none;transition:transform .2s ease"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+            </summary>
+            <p style="margin:0 0 22px;font-size:15px;line-height:1.7;color:#4A4A5A;max-width:72ch;text-wrap:pretty">{{ q.a }}</p>
+          </details>
+        </sc-for>
+      </div>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ isFaq }}" hint-placeholder-val="{{ false }}">
+      <section style="padding:56px 7vw 48px" aria-labelledby="faqp-h">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:end">
+          <h1 id="faqp-h" style="margin:0;font-size:clamp(44px,6.8vw,100px);font-weight:600;line-height:0.96;letter-spacing:-0.03em">Questions,<br>answered.</h1>
+          <p style="margin:0;font-size:18px;line-height:1.6;color:#4A4A5A;max-width:48ch;text-wrap:pretty">The trial, plans, payment and your data. Can’t find what you need? Email <a href="mailto:hello@nexyraconsulting.co.uk?subject=NEXTime">hello@nexyraconsulting.co.uk</a>.</p>
+        </div>
+      </section>
+      <section style="padding:0 7vw 88px" aria-label="Questions by topic">
+        <sc-for list="{{ faqGroups }}" as="g" hint-placeholder-count="3">
+          <div id="{{ g.id }}" style="display:flex;flex-wrap:wrap;gap:16px 48px;padding:32px 0 8px;border-top:2px solid #0A0A0F">
+            <div style="flex:1 1 240px;display:flex;align-items:baseline;gap:16px">
+              <span style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#7C3AED">{{ g.num }}</span>
+              <h2 style="margin:0;font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-0.02em;line-height:1.1">{{ g.heading }}</h2>
+            </div>
+            <div style="flex:2 1 480px;min-width:0">
+              <sc-for list="{{ g.items }}" as="q" hint-placeholder-count="3">
+                <details id="{{ q.id }}" style="border-bottom:1px solid #E7E7EC">
+                  <summary style="display:flex;justify-content:space-between;align-items:center;gap:24px;padding:20px 0;cursor:pointer;font-size:18px;font-weight:600;letter-spacing:-0.01em;white-space:normal" style-hover="color:#7C3AED">{{ q.q }}
+                    <svg class="nx-plus" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" style="flex:none;transition:transform .2s ease"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+                  </summary>
+                  <p style="margin:0 0 22px;font-size:15px;line-height:1.7;color:#4A4A5A;max-width:72ch;text-wrap:pretty">{{ q.a }}</p>
+                </details>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </section>
+    </sc-if>
+
+
+    <section data-nav-tone="dark" style="background:linear-gradient(135deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%);color:#FFFFFF;padding:96px 7vw" aria-labelledby="cta-h">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:end">
+        <h2 id="cta-h" style="margin:0;font-size:clamp(36px,5vw,72px);font-weight:600;line-height:1;letter-spacing:-0.03em">Try it with your own rota.</h2>
+        <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start">
+          <p style="margin:0;font-size:18px;line-height:1.6;max-width:44ch">14 days with every feature. Bring your existing NEXTime data across in one click.</p>
+          <a href="{{ trialUrl }}" style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;padding:16px 26px;background:#FFFFFF;color:#2E1065" style-hover="background:#0A0A0F;color:#FFFFFF">Start free trial
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer data-nav-tone="dark" style="background:#0A0A0F;color:#FFFFFF;padding:56px 7vw 28px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:32px;padding-bottom:40px;border-bottom:1px solid #2A2A36">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <img src="Assets/brand/logos/nextime-logo-dark.svg" alt="NEXTime Rota &amp; Timesheet" style="width:176px;height:auto;display:block;margin-left:-7px">
+        <span style="font-size:13px;line-height:1.6;color:#B4B4C4">A product of Nexyra Consulting.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#A78BFA">Product</span>
+        <a href="#/" style="color:#FFFFFF;font-size:14px" style-hover="color:#A78BFA">Overview</a>
+        <a href="#/pricing" style="color:#FFFFFF;font-size:14px" style-hover="color:#A78BFA">Pricing</a>
+        <a href="#/faq" style="color:#FFFFFF;font-size:14px" style-hover="color:#A78BFA">FAQ</a>
+        <a href="{{ signInUrl }}" style="color:#FFFFFF;font-size:14px" style-hover="color:#A78BFA">Sign in</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#A78BFA">Company</span>
+        <a href="https://nexyraconsulting.co.uk/" style="color:#FFFFFF;font-size:14px" style-hover="color:#A78BFA">Nexyra Consulting</a>
+        <a href="mailto:hello@nexyraconsulting.co.uk" style="color:#FFFFFF;font-size:14px" style-hover="color:#A78BFA">hello@nexyraconsulting.co.uk</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#A78BFA">Legal</span>
+        <span style="color:#B4B4C4;font-size:14px">Terms of Service</span>
+        <span style="color:#B4B4C4;font-size:14px">Privacy Policy</span>
+        <span style="color:#B4B4C4;font-size:14px">Data Processing Agreement</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding-top:20px;font-size:12px;color:#B4B4C4">
+      <span>© 2026 Nexyra Consulting</span>
+      <span>Payments by Stripe and GoCardless</span>
+      <span style="margin-left:auto">Prices exclude VAT</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const PLANS = [
+  { id: 'starter', name: 'Starter', limit: 10, monthly: 29, annual: 290, blurb: 'Single-site teams moving off spreadsheets and group chats.' },
+  { id: 'team', name: 'Team', limit: 50, monthly: 79, annual: 790, blurb: 'Growing teams across a few locations, with several managers.', popular: true },
+  { id: 'business', name: 'Business', limit: 200, monthly: 179, annual: 1790, blurb: 'Multi-site operators who need approvals, audit and payroll exports at scale.' },
+  { id: 'enterprise', name: 'Enterprise', limit: null, monthly: null, annual: null, blurb: 'More than 200 staff, custom terms, onboarding support and invoiced billing.' }
+];
+const FEATURES = [
+  ['Weekly rota', 'Drag shifts to move them, Alt-drag to copy, repeat weekly, and copy last week in one click. Publish when it is ready.'],
+  ['Timesheets', 'Record actual start, finish and break against each shift. Late and early flags appear automatically.'],
+  ['Approvals and locking', 'Approve a week per employee. Approved weeks lock; later changes need a reason and are logged as amendments.'],
+  ['Overnight-safe hours', '18:00 to 02:00 is 8 hours, less the break. Paid hours use actuals where recorded, otherwise the schedule.'],
+  ['Working-time rules', 'Weekly maximum per contract, minimum rest, consecutive days. Breaches warn on the rota without blocking you.'],
+  ['Leave and availability', 'Holiday, sickness and regular unavailable days, shown on the rota so clashes are obvious.'],
+  ['Shift swaps', 'Staff request a swap on a future shift. Managers approve or decline from the rota.'],
+  ['Payroll and reports', 'Payroll CSV with basic and overtime hours, A4 PDF reports, and breakdowns by location, department and role.']
+];
+const STEPS = [
+  ['01', 'Create your workspace', 'Sign up with your company name and email. Bring existing NEXTime data across if you have it.'],
+  ['02', 'Add locations and staff', 'Set up sites, departments, roles and contracts. Shift templates make the first rota quick.'],
+  ['03', 'Invite your team', 'Managers get the rota and timesheets. Employees see their own shifts and hours.'],
+  ['04', 'Publish and approve', 'Publish the week, record actual times, approve timesheets and export payroll.']
+];
+const SECURITY = [
+  ['Two-factor sign-in', 'Authenticator-app codes on every account, and Owners can make it mandatory.'],
+  ['Four roles', 'Owner, Admin, Manager and Employee, each seeing only what they need.'],
+  ['Full audit history', 'Every shift, timesheet, approval and sign-in is recorded with who and when.'],
+  ['Isolated workspaces', 'Row-level security keeps each company’s data separate, encrypted in transit and at rest.'],
+  ['Export any time', 'Download the whole workspace as JSON, or payroll as CSV, whenever you want.']
+];
+const INCLUDED = ['Unlimited locations', 'Unlimited managers', 'Weekly rota and templates', 'Timesheets and approvals', 'Working-time rules', 'Leave and availability', 'Shift swaps', 'Payroll CSV and PDF reports', 'Two-factor and roles', 'Audit history and data export'];
+const FAQS = [
+  ['How does the free trial work?', 'You get 14 days with every feature. A card is optional: add one at sign-up or any time during the trial, and nothing is charged until it ends. If you add nothing, the workspace pauses and your data is kept.'],
+  ['How do I pay?', 'By debit or credit card (Visa, Mastercard, American Express), Apple Pay or Google Pay through Stripe; by Direct Debit through GoCardless (UK Bacs, SEPA, US ACH, Australian and New Zealand BECS, Canadian PAD); or, on yearly plans, by invoice and bank transfer. Change method any time in Workspace → Plan & billing.'],
+  ['What counts as active staff?', 'Anyone on your staff list who is not marked as Left. Owner, admin and manager logins are free, so you only pay for the people you schedule.'],
+  ['Can I change plan later?', 'Yes, at any time from Workspace → Plan & billing. Upgrades and downgrades are prorated on your next payment.'],
+  ['What happens if we grow past our plan?', 'NEXTime asks the Owner to move up a plan before more active staff can be added. Nothing already in the rota is affected.'],
+  ['Where is our data and who can see it?', 'Each company has its own isolated workspace protected by row-level security, encrypted in transit and at rest. Only people you invite can sign in, and every change is in the audit history.'],
+  ['Can we cancel?', 'Any time. Your data is kept for 90 days after cancelling in case you change your mind, and you can export everything first.'],
+  ['Do prices include VAT?', 'No. Prices are in GBP and exclude VAT, which is added where it applies.']
+];
+
+const FAQ_GROUP = ['Trial and billing', 'Trial and billing', 'Plans', 'Plans', 'Plans', 'Data and security', 'Trial and billing', 'Trial and billing'];
+const FAQ_ORDER = ['Trial and billing', 'Plans', 'Data and security'];
+const slugify = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const WAYS = [['Debit and credit card', 'Visa, Mastercard and American Express, charged automatically each month or year.'], ['Apple Pay and Google Pay', 'One tap on your phone or browser.'], ['Direct Debit', 'UK Bacs, SEPA, ACH, BECS and PAD, with notice before each payment.'], ['Invoice and bank transfer', 'For yearly plans and Enterprise, payable within 30 days.']];
+function parseRoute(hash) {
+  const p = String(hash || '').replace(/^#\/?/, '').split('/');
+  if (p[0] === 'pricing') return { route: 'pricing', target: p[1] === 'plans' ? 'pricing' : p[1] || '' };
+  if (p[0] === 'faq') return { route: 'faq', target: p[1] ? 'faq-' + p[1] : '' };
+  if (['features', 'how-it-works', 'security'].indexOf(p[0]) >= 0) return { route: 'home', target: p[0] };
+  return { route: 'home', target: '' };
+}
+
+class Component extends DCLogic {
+  state = { route: 'home', cycle: 'monthly', ready: false };
+
+  componentDidMount() {
+    const go = (initial) => {
+      const r = parseRoute(location.hash);
+      if (r.route !== this.state.route) this.setState({ route: r.route });
+      setTimeout(() => {
+        document.body.style.overflow = '';
+        const el = r.target && document.getElementById(r.target);
+        if (el) {
+          if (el.tagName === 'DETAILS') el.open = true;
+          const clear = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nx-clear')) || 110;
+          window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - clear, behavior: initial ? 'auto' : 'smooth' });
+        } else if (!initial) window.scrollTo(0, 0);
+      }, 90);
+    };
+    go(true);
+    this._h = () => go(false);
+    window.addEventListener('hashchange', this._h);
+    const wait = () => { if (!window.NXSaaS) return setTimeout(wait, 40); this.setState({ ready: true }); };
+    wait();
+  }
+  componentWillUnmount() { window.removeEventListener('hashchange', this._h); }
+
+  renderVals() {
+    const s = this.state, S = window.NXSaaS;
+    const acct = (qs) => (S ? S.url('account', qs) : '#');
+    const home = s.route === 'home';
+    const annual = s.cycle === 'annual';
+    return {
+      isHome: home, notHome: !home, isPricing: s.route === 'pricing', isFaq: s.route === 'faq',
+      showPlans: s.route !== 'faq', showFaqSection: s.route !== 'faq',
+      navActive: home ? 'product' : s.route,
+      navFeatures: FEATURES.map((f) => ({ title: f[0], text: f[1] })),
+      navFaqs: FAQS.map((f, i) => ({ q: f[0], a: f[1], slug: slugify(f[0]), group: FAQ_GROUP[i] || 'More' })),
+      faqGroups: FAQ_ORDER.map((g, gi) => ({ heading: g, id: 'topic-' + slugify(g), num: String(gi + 1).padStart(2, '0'), items: FAQS.map((f, i) => ({ q: f[0], a: f[1], id: 'faq-' + slugify(f[0]), g: FAQ_GROUP[i] })).filter((x) => x.g === g) })),
+      searchIndex: [].concat(
+        [{ meta: 'Page', title: 'Product overview', text: 'Rotas, timesheets, approvals and payroll-ready hours for teams with one site or many.', url: '#/' }, { meta: 'Page', title: 'Pricing', text: 'One price per team size. Every feature in every plan. 14-day free trial.', url: '#/pricing' }, { meta: 'Page', title: 'FAQ', text: 'Questions about the trial, plans, payment and your data.', url: '#/faq' }],
+        FEATURES.map((f) => ({ meta: 'Feature', title: f[0], text: f[1], url: '#/features' })),
+        STEPS.map((x) => ({ meta: 'How it works', title: x[1], text: x[2], url: '#/how-it-works' })),
+        SECURITY.map((x) => ({ meta: 'Security', title: x[0], text: x[1], url: '#/security' })),
+        PLANS.map((p) => ({ meta: 'Plan', title: p.name + (p.monthly ? ' · £' + p.monthly + '/month' : ''), text: (p.limit ? 'Up to ' + p.limit + ' active staff. ' : 'More than 200 active staff. ') + p.blurb, url: '#/pricing/plans' })),
+        WAYS.map((w) => ({ meta: 'Ways to pay', title: w[0], text: w[1], url: '#/pricing/ways-to-pay' })),
+        FAQS.map((f) => ({ meta: 'Question', title: f[0], text: f[1], url: '#/faq/' + slugify(f[0]) }))
+      ),
+      signInUrl: acct(), trialUrl: acct({ view: 'signup' }),
+      features: FEATURES.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), title: f[0], text: f[1] })),
+      steps: STEPS.map((x) => ({ num: x[0], label: x[1], text: x[2] })),
+      security: SECURITY.map((x) => ({ title: x[0], text: x[1] })),
+      pricePad: home ? '88px 7vw' : '0 7vw 88px', priceBorder: home ? '1px solid #E7E7EC' : '0',
+      priceNum: home ? '04' : '01', faqNum: home ? '05' : '02',
+      cycles: [['monthly', 'Monthly'], ['annual', 'Yearly · 2 months free']].map((c) => { const on = s.cycle === c[0]; return { label: c[1], pressed: on ? 'true' : 'false', bg: on ? '#0A0A0F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0A0A0F', onClick: () => this.setState({ cycle: c[0] }) }; }),
+      plans: PLANS.map((p) => {
+        const ent = p.monthly == null; const pop = !!p.popular;
+        return {
+          name: p.name, popular: pop,
+          price: ent ? 'Custom' : '£' + (annual ? Math.round(p.annual / 12) : p.monthly),
+          per: ent ? '' : '/ month',
+          billed: ent ? 'Invoiced annually' : annual ? '£' + p.annual + ' billed yearly' : 'Billed monthly',
+          limit: ent ? 'More than 200 active staff' : 'Up to ' + p.limit + ' active staff',
+          blurb: p.blurb,
+          href: ent ? 'mailto:hello@nexyraconsulting.co.uk?subject=NEXTime%20Enterprise' : acct({ plan: p.id }),
+          cta: ent ? 'Talk to us' : 'Start free trial',
+          bg: pop ? '#F5F3FF' : '#FFFFFF', left: pop ? '3px solid #7C3AED' : '0', eyeFg: pop ? '#6D28D9' : '#6B6B7B',
+          ctaBg: pop ? '#7C3AED' : 'transparent', ctaFg: pop ? '#FFFFFF' : '#0A0A0F', ctaBorder: pop ? '#7C3AED' : '#0A0A0F',
+          ctaHover: pop ? '#6D28D9' : '#0A0A0F', ctaHoverFg: '#FFFFFF'
+        };
+      }),
+      included: INCLUDED,
+      faqs: FAQS.map((f) => ({ q: f[0], a: f[1] }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -7,8 +7,8 @@
 <meta name="description" content="NexDrive — lessons, learners, bookings and payments for UK driving instructors.">
 <meta name="theme-color" content="#0A0A0F">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" type="image/svg+xml" href="brand/logos/app-icon.svg">
-<link rel="apple-touch-icon" href="brand/logos/app-icon-180.png">
+<link rel="icon" type="image/svg+xml" href="assets/logos/app-icon.svg">
+<link rel="apple-touch-icon" href="assets/logos/app-icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="css/nexdrive-base.css">
 <script src="js/vendor/react.production.min.js"></script>
@@ -52,7 +52,7 @@ input::placeholder, textarea::placeholder { color:#9A9AAA; }
 <sc-if value="{{ panel }}" hint-placeholder-val="{{ false }}">
 <aside style="width:420px; flex:none; box-sizing:border-box; background:#FFFFFF; border-right:2px solid #0A0A0F; padding:36px 32px 28px; display:flex; flex-direction:column; gap:28px; height:100vh; overflow-y:auto; position:sticky; top:0">
   <div style="display:flex; align-items:center; gap:10px">
-    <img src="brand/logos/monogram-on-light.svg" alt="" style="height:30px; width:auto">
+    <img src="assets/logos/monogram-on-light.svg" alt="" style="height:30px; width:auto">
     <span style="font-size:21px; font-weight:500; line-height:1"><span style="letter-spacing:0.105em">NEX</span><span style="color:#7C3AED; letter-spacing:0.005em; margin-left:-0.06em">Drive</span></span>
   </div>
   <div style="display:flex; flex-direction:column; gap:12px">
@@ -104,7 +104,7 @@ input::placeholder, textarea::placeholder { color:#9A9AAA; }
 <sc-if value="{{ is.ob_welcome }}" hint-placeholder-val="{{ false }}">
 <div style="min-height:100%; background:#0A0A0F; color:#FFFFFF; display:flex; flex-direction:column; padding:40px 24px 28px; box-sizing:border-box; gap:36px">
   <div style="display:flex; align-items:center; gap:10px">
-    <img src="brand/logos/monogram-gradient.svg" alt="" style="height:34px; width:auto">
+    <img src="assets/logos/monogram-gradient.svg" alt="" style="height:34px; width:auto">
     <span style="font-size:24px; font-weight:500; line-height:1"><span style="letter-spacing:0.105em">NEX</span><span style="color:#7C3AED; letter-spacing:0.005em; margin-left:-0.06em">Drive</span></span>
   </div>
   <div style="display:flex; flex-direction:column; gap:18px; margin-top:auto">
@@ -123,7 +123,7 @@ input::placeholder, textarea::placeholder { color:#9A9AAA; }
     <button onClick="{{ obGo.register }}" style="display:flex; align-items:center; justify-content:space-between; width:100%; height:54px; padding:0 18px; background:#7C3AED; color:#FFFFFF; border:0; font-size:16px; font-weight:600; cursor:pointer" style-hover="background:#8B5CF6" style-active="background:#6D28D9">Start 14-day free trial{{ ic.arrow }}</button>
     <button onClick="{{ obLogin }}" style="display:flex; align-items:center; width:100%; height:50px; padding:0 18px; background:transparent; color:#FFFFFF; border:1.5px solid #4A4A5A; font-size:15px; font-weight:500; cursor:pointer" style-hover="border-color:#FFFFFF">I already have an account</button>
   </div>
-  <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#8A8A9C"><img src="brand/logos/monogram-mono-white.svg" alt="" style="height:14px; width:auto; opacity:.7">A Nexyra product</div>
+  <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#8A8A9C"><img src="assets/logos/monogram-mono-white.svg" alt="" style="height:14px; width:auto; opacity:.7">A Nexyra product</div>
 </div>
 </sc-if>
 
@@ -298,7 +298,7 @@ input::placeholder, textarea::placeholder { color:#9A9AAA; }
 <sc-if value="{{ is.home }}" hint-placeholder-val="{{ false }}">
 <div style="display:flex; flex-direction:column; padding-bottom:24px">
   <div style="padding:10px 12px 0 20px; display:flex; align-items:center; justify-content:space-between">
-    <div style="display:flex; align-items:center; gap:8px"><img src="brand/logos/monogram-on-light.svg" alt="" style="height:24px; width:auto"><span style="font-size:17px; font-weight:500; line-height:1"><span style="letter-spacing:0.105em">NEX</span><span style="color:#7C3AED; letter-spacing:0.005em; margin-left:-0.06em">Drive</span></span></div>
+    <div style="display:flex; align-items:center; gap:8px"><img src="assets/logos/monogram-on-light.svg" alt="" style="height:24px; width:auto"><span style="font-size:17px; font-weight:500; line-height:1"><span style="letter-spacing:0.105em">NEX</span><span style="color:#7C3AED; letter-spacing:0.005em; margin-left:-0.06em">Drive</span></span></div>
     <div style="display:flex; align-items:center; gap:4px">
       <button onClick="{{ go.notifications }}" aria-label="Notifications" style="position:relative; width:44px; height:44px; display:flex; align-items:center; justify-content:center; background:transparent; border:0; cursor:pointer; color:#0A0A0F" style-hover="background:#F7F7F9">{{ ic.bell }}<sc-if value="{{ hm.unread }}"><span style="position:absolute; top:7px; right:6px; min-width:16px; height:16px; padding:0 4px; box-sizing:border-box; background:#7C3AED; color:#FFFFFF; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center">{{ hm.unread }}</span></sc-if></button>
       <button onClick="{{ go.more }}" aria-label="Account" style="width:36px; height:36px; background:#0A0A0F; color:#FFFFFF; border:0; font-size:13px; font-weight:600; cursor:pointer; letter-spacing:0.04em">{{ hm.initials }}</button>
@@ -806,7 +806,7 @@ input::placeholder, textarea::placeholder { color:#9A9AAA; }
   <button onClick="{{ go.security }}" style="display:flex; align-items:center; gap:14px; min-height:60px; padding:10px 16px 10px 20px; background:#FFFFFF; border:0; border-top:1px solid #E7E7EC; border-bottom:1px solid #E7E7EC; text-align:left; cursor:pointer; color:#0A0A0F" style-hover="background:#F7F7F9">{{ ic.shield }}<span style="flex:1; display:flex; flex-direction:column; gap:2px"><span style="font-size:16px; font-weight:500">Security</span><span style="font-size:13px; color:#6B6B7B">Password, verification, log out</span></span><span style="color:#9A9AAA">{{ ics.right }}</span></button>
 
   <button onClick="{{ mo.logout }}" style="display:flex; align-items:center; gap:14px; margin-top:24px; min-height:56px; padding:0 20px; background:#FFFFFF; border:0; border-top:1px solid #E7E7EC; border-bottom:1px solid #E7E7EC; text-align:left; cursor:pointer; color:#B91C1C; font-size:16px; font-weight:600" style-hover="background:#FEF2F2">{{ ic.logout }}Log out</button>
-  <div style="display:flex; align-items:center; gap:8px; padding:20px; font-size:12px; color:#6B6B7B"><img src="brand/logos/monogram-mono-black.svg" alt="" style="height:14px; width:auto; opacity:.6">NexDrive 1.0 · A Nexyra product</div>
+  <div style="display:flex; align-items:center; gap:8px; padding:20px; font-size:12px; color:#6B6B7B"><img src="assets/logos/monogram-mono-black.svg" alt="" style="height:14px; width:auto; opacity:.6">NexDrive 1.0 · A Nexyra product</div>
 </div>
 </sc-if>
 
@@ -1023,7 +1023,7 @@ input::placeholder, textarea::placeholder { color:#9A9AAA; }
       <div style="padding:22px; display:flex; justify-content:center; background:#FFFFFF">{{ rq.qr }}</div>
       <div style="display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:12px; padding:14px 16px; border-top:1px solid #E7E7EC">
         <span style="display:flex; flex-direction:column; gap:2px; min-width:0"><span style="font-size:11px; font-weight:600; letter-spacing:0.16em; color:#6B6B7B">REFERRAL CODE</span><span style="font-size:22px; font-weight:700; letter-spacing:0.08em">{{ rq.code }}</span></span>
-        <span style="display:flex; align-items:center; gap:6px"><img src="brand/logos/monogram-on-light.svg" alt="" style="height:18px; width:auto"><span style="font-size:14px; font-weight:500; line-height:1"><span style="letter-spacing:0.105em">NEX</span><span style="color:#7C3AED; letter-spacing:0.005em; margin-left:-0.06em">Drive</span></span></span>
+        <span style="display:flex; align-items:center; gap:6px"><img src="assets/logos/monogram-on-light.svg" alt="" style="height:18px; width:auto"><span style="font-size:14px; font-weight:500; line-height:1"><span style="letter-spacing:0.105em">NEX</span><span style="color:#7C3AED; letter-spacing:0.005em; margin-left:-0.06em">Drive</span></span></span>
       </div>
     </div>
     <p style="margin:0; font-size:15px; line-height:1.55; color:#4A4A5A; text-wrap:pretty">Ask another driving instructor to scan this QR code to start their NexDrive registration with your referral automatically applied.</p>
@@ -1125,7 +1125,7 @@ input::placeholder, textarea::placeholder { color:#9A9AAA; }
 
 <sc-if value="{{ push }}" hint-placeholder-val="{{ false }}">
 <button onClick="{{ openPush }}" style="position:absolute; z-index:60; top:{{ pushTop }}px; left:10px; right:10px; display:grid; grid-template-columns:36px minmax(0,1fr); gap:12px; padding:12px 14px; text-align:left; background:#1A1A24; color:#FFFFFF; border:0; border-radius:18px; box-shadow:0 12px 32px rgba(10,10,15,.35); cursor:pointer; animation:nxDrop .35s cubic-bezier(.2,.8,.2,1)">
-  <img src="brand/logos/app-icon.svg" alt="" style="width:36px; height:36px">
+  <img src="assets/logos/app-icon.svg" alt="" style="width:36px; height:36px">
   <span style="display:flex; flex-direction:column; gap:2px; min-width:0"><span style="display:flex; justify-content:space-between; font-size:12px; color:#B4B4C4"><span style="font-weight:600; letter-spacing:0.04em">NEXDRIVE</span><span>now</span></span><span style="font-size:14px; font-weight:600">{{ pushTitle }}</span><span style="font-size:13px; color:#B4B4C4">{{ pushText }}</span></span>
 </button>
 </sc-if>
@@ -1324,7 +1324,7 @@ input::placeholder, textarea::placeholder { color:#9A9AAA; }
 </main>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;device&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;phone&quot;,&quot;large&quot;,&quot;tablet&quot;],&quot;default&quot;:&quot;phone&quot;,&quot;tsType&quot;:&quot;'phone'|'large'|'tablet'&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;startAt&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dashboard&quot;,&quot;onboarding&quot;],&quot;default&quot;:&quot;dashboard&quot;,&quot;tsType&quot;:&quot;'dashboard'|'onboarding'&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;adminLogin&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;launchAnimation&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;dataState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;populated&quot;,&quot;empty&quot;],&quot;default&quot;:&quot;populated&quot;,&quot;tsType&quot;:&quot;'populated'|'empty'&quot;,&quot;section&quot;:&quot;States&quot;},&quot;subscriptionState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;active&quot;,&quot;trial&quot;,&quot;payment_failed&quot;,&quot;expired&quot;],&quot;default&quot;:&quot;active&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;States&quot;},&quot;offline&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;States&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;device&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;phone&quot;,&quot;large&quot;,&quot;tablet&quot;],&quot;default&quot;:&quot;phone&quot;,&quot;tsType&quot;:&quot;'phone'|'large'|'tablet'&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;startAt&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dashboard&quot;,&quot;onboarding&quot;],&quot;default&quot;:&quot;dashboard&quot;,&quot;tsType&quot;:&quot;'dashboard'|'onboarding'&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;launchAnimation&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;dataState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;populated&quot;,&quot;empty&quot;],&quot;default&quot;:&quot;populated&quot;,&quot;tsType&quot;:&quot;'populated'|'empty'&quot;,&quot;section&quot;:&quot;States&quot;},&quot;subscriptionState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;active&quot;,&quot;trial&quot;,&quot;payment_failed&quot;,&quot;expired&quot;],&quot;default&quot;:&quot;active&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;States&quot;},&quot;offline&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;States&quot;}}">
 let TODAY, NOW; const ANCHOR='2026-10-07';
 const DEV={phone:{w:390,h:844},large:{w:430,h:932},tablet:{w:820,h:1180}};
 const pad=n=>String(n).padStart(2,'0');
@@ -1382,23 +1382,6 @@ const planPct=p=>Math.round((1-p.price/25)*100);
 const planTerm=p=>p.months===1?'Rolling monthly · cancel any time':`${p.months}-month term · ${gbp(p.price)}/mo`;
 const planPer=p=>p.months===1?'per month':`every ${p.months} months`;
 const REF={pct:20,code:'NEXDANIEL25'};
-// Admin gate: only a salted PBKDF2-SHA256 hash of the PIN is stored — the PIN itself never appears in source.
-const GATE={salt:'ddc440a3ddf206fb8f521e4ec92ca978',hash:'bf2aaddf889951648a709eb06892730ace38bc81c7455452a217e6b00ca604ce',iter:210000,key:'nd-admin-session',maxTries:5,lockMs:30000};
-async function gateHash(pin){const hx=s=>new Uint8Array(s.match(/../g).map(x=>parseInt(x,16)));const salt=hx(GATE.salt);const pw=new TextEncoder().encode(pin);let out;
-  if(window.crypto&&crypto.subtle){const k=await crypto.subtle.importKey('raw',pw,'PBKDF2',false,['deriveBits']);out=new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',salt,iterations:GATE.iter,hash:'SHA-256'},k,256));}
-  else out=pbkdf2Js(pw,salt,GATE.iter);return [...out].map(x=>x.toString(16).padStart(2,'0')).join('');}
-// Pure-JS PBKDF2-HMAC-SHA256 fallback for browsers without Web Crypto (e.g. some file:// contexts).
-function sha256Js(m){const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
-  const l=m.length,n=((l+9+63)>>6)<<6,b=new Uint8Array(n);b.set(m);b[l]=0x80;const bl=l*8;b[n-4]=bl>>>24;b[n-3]=bl>>>16;b[n-2]=bl>>>8;b[n-1]=bl;
-  let H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];const w=new Uint32Array(64);const r=(x,k)=>(x>>>k)|(x<<(32-k));
-  for(let i=0;i<n;i+=64){for(let t=0;t<16;t++)w[t]=(b[i+t*4]<<24)|(b[i+t*4+1]<<16)|(b[i+t*4+2]<<8)|b[i+t*4+3];
-    for(let t=16;t<64;t++){const s0=r(w[t-15],7)^r(w[t-15],18)^(w[t-15]>>>3),s1=r(w[t-2],17)^r(w[t-2],19)^(w[t-2]>>>10);w[t]=(w[t-16]+s0+w[t-7]+s1)|0;}
-    let [a,c,d,e,f,g,h2,k]=H;for(let t=0;t<64;t++){const S1=r(f,6)^r(f,11)^r(f,25),ch=(f&g)^(~f&h2),t1=(k+S1+ch+K[t]+w[t])|0,S0=r(a,2)^r(a,13)^r(a,22),mj=(a&c)^(a&d)^(c&d),t2=(S0+mj)|0;k=h2;h2=g;g=f;f=(e+t1)|0;e=d;d=c;c=a;a=(t1+t2)|0;}
-    H=[H[0]+a,H[1]+c,H[2]+d,H[3]+e,H[4]+f,H[5]+g,H[6]+h2,H[7]+k].map(x=>x|0);}
-  const o=new Uint8Array(32);H.forEach((x,i)=>{o[i*4]=x>>>24;o[i*4+1]=x>>>16;o[i*4+2]=x>>>8;o[i*4+3]=x;});return o;}
-function pbkdf2Js(pw,salt,iter){let key=pw.length>64?sha256Js(pw):pw;const k=new Uint8Array(64);k.set(key);const ip=k.map(x=>x^0x36),op=k.map(x=>x^0x5c);
-  const hmac=d=>{const a=new Uint8Array(64+d.length);a.set(ip);a.set(d,64);const ih=sha256Js(a);const z=new Uint8Array(96);z.set(op);z.set(ih,64);return sha256Js(z);};
-  const s=new Uint8Array(salt.length+4);s.set(salt);s[salt.length+3]=1;let u=hmac(s);const t=u.slice();for(let i=1;i<iter;i++){u=hmac(u);for(let j=0;j<32;j++)t[j]^=u[j];}return t;}
 const REF_CODES={NEXDANIEL25:{owner:'Daniel W.',active:true,phone:'07700900123',email:'daniel@wilsondriving.co.uk'},NEXMARK14:{owner:'Mark D.',active:false}};
 const REF_USED_PHONES=['07700900301'];
 const refLink=(c,base)=>`${base||'https://app.nexdrive.co.uk/join'}?ref=${encodeURIComponent(c)}`;
@@ -1570,18 +1553,8 @@ class Component extends DCLogic {
     this.ck=setInterval(()=>this.tick(),15000);this.onVis=()=>{if(!document.hidden)this.tick();};document.addEventListener('visibilitychange',this.onVis);window.addEventListener('focus',this.onVis);
     try{const q=new URLSearchParams(window.location.search).get('ref');if(q)this.startRefOnboarding(q.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,16),'link');}catch(e){}
     if(!window.qrcode)this.qi=setInterval(()=>{if(window.qrcode){clearInterval(this.qi);this._qrE=null;this.forceUpdate();}},250);
-    if(this.gateOn()){let ok=false;try{ok=sessionStorage.getItem(GATE.key)===GATE.hash.slice(0,16);}catch(e){}if(!ok){this.setState({gate:true});return;}}
     if(this.launchOn()) this.startSplash(); else this.schedulePush();
   }
-  gateOn(){return false;}
-  async gateSubmit(e){if(e&&e.preventDefault)e.preventDefault();const s=this.state;if(s.gBusy)return;
-    if(s.gLockUntil&&Date.now()<s.gLockUntil)return;
-    const pin=(s.gPin||'').trim();if(!pin)return this.setState({gErr:'Enter your admin PIN.'});
-    
-    this.setState({gBusy:true,gErr:''});let h='';try{h=await gateHash(pin);}catch(err){}
-    if(h&&h===GATE.hash){try{sessionStorage.setItem(GATE.key,GATE.hash.slice(0,16));}catch(err){}this.setState({gate:false,gBusy:false,gPin:'',gTries:0});if(this.launchOn())this.startSplash();else this.schedulePush();return;}
-    const t=(s.gTries||0)+1;if(t>=GATE.maxTries){const until=Date.now()+GATE.lockMs;clearTimeout(this.gt);this.gt=setTimeout(()=>this.setState({gLockUntil:0,gTries:0,gErr:''}),GATE.lockMs);return this.setState({gBusy:false,gPin:'',gTries:t,gLockUntil:until,gErr:'Too many incorrect attempts. Please wait 30 seconds and try again.'});}
-    this.setState({gBusy:false,gPin:'',gTries:t,gErr:`Incorrect PIN. ${GATE.maxTries-t} attempt${GATE.maxTries-t===1?'':'s'} left.`});}
   componentWillUnmount(){ window.removeEventListener('resize',this.onR); clearInterval(this.ck); document.removeEventListener('visibilitychange',this.onVis); window.removeEventListener('focus',this.onVis); clearTimeout(this.pt); clearTimeout(this.pt2); clearTimeout(this.tt); clearTimeout(this.st1); clearTimeout(this.st2); clearInterval(this.qi); clearTimeout(this.gt); }
   cfg(){ return (typeof window!=='undefined'&&window.NEXDRIVE_CONFIG)||{}; }
   launchOn(){ return this.props.launchAnimation!==false&&this.cfg().launchAnimation!==false; }
@@ -1843,9 +1816,6 @@ class Component extends DCLogic {
       toast:s.toast?{text:s.toast.text,bg:s.toast.kind==='warn'?'#92400E':s.toast.kind==='err'?'#991B1B':'#0A0A0F',icon:s.toast.kind==='warn'||s.toast.kind==='err'?ics.warn:ics.check}:null,
       sheetOpen:!!s.sheet,
       splash:!!s.splash, replaySplash:()=>this.startSplash(),
-      gate:s.gate?{pin:s.gPin||'',type:s.gShow?'text':'password',eye:s.gShow?ic.eyeOff:ic.eye,toggleLabel:s.gShow?'Hide PIN':'Show PIN',toggle:()=>this.setState({gShow:!s.gShow}),
-        onPin:e=>this.setState({gPin:e.target.value.replace(/\D/g,'').slice(0,12),gErr:s.gLockUntil?s.gErr:''}),submit:e=>this.gateSubmit(e),
-        err:s.gErr||'',bd:s.gErr?'#B91C1C':'#CFCFD8',locked:!!s.gLockUntil,busy:!!s.gBusy||!!s.gLockUntil,btn:s.gBusy?'Checking…':s.gLockUntil?'Locked — try again shortly':'Login',btnBg:s.gLockUntil?'#9A9AAA':'#7C3AED'}:null,
       splashEl:s.splash?React.createElement('div',{key:'splash'+this.splashRun,onClick:()=>this.skipSplash(),style:{position:'absolute',inset:0,zIndex:100,cursor:'pointer',opacity:s.splashOut?0:1,transition:'opacity .4s ease'},dangerouslySetInnerHTML:{__html:this.splashHtml()}}):null};
     if(s.splash){v.sbBg='#0A0A0F';v.sbFg='#FFFFFF';}
     const sh={};if(s.sheet)sh[s.sheet.type]=true;v.sh=sh;
@@ -1856,7 +1826,7 @@ class Component extends DCLogic {
     v.hReg={name:this.setIn('reg','name'),phone:this.setIn('reg','phone'),email:this.setIn('reg','email'),password:this.setIn('reg','password'),terms:this.setIn('reg','terms')};
     const pw=s.reg.password;const rc=ok=>ok?'#166534':(s.regTried?ERR:'#6B6B7B');
     v.pwRules=[{t:'8+ characters',c:rc(pw.length>=8)},{t:'A letter',c:rc(/[a-z]/i.test(pw))},{t:'A number',c:rc(/\d/.test(pw))}];
-    v.sampleReg=()=>this.setState({reg:(s.ref.code||(s.flow||'').startsWith('ref'))?{name:'Chloe Adams',phone:'07700 900874',email:'chloe@adamsdriving.co.uk',password:'Learner2026',terms:true}:{name:'Daniel Wilson',phone:'07700 900123',email:'daniel@wilsondriving.co.uk',password:'Learner2026',terms:true}});
+    v.sampleReg=()=>this.setState({reg:(s.ref.code||(s.flow||'').startsWith('ref'))?{name:'Chloe Adams',phone:'07700 900874',email:'chloe@adamsdriving.co.uk',password:'Demo'+Math.random().toString(36).slice(2,8)+'7',terms:true}:{name:'Daniel Wilson',phone:'07700 900123',email:'daniel@wilsondriving.co.uk',password:'Demo'+Math.random().toString(36).slice(2,8)+'7',terms:true}});
     v.obGo={register:()=>this.setState({ob:'register'})};v.obLogin=()=>this.reseed('populated',{tab:'home'});
     v.obBack=()=>this.obBack();v.obHeader=['register','verify','details','plan'].includes(s.ob)&&s.phase==='onboarding';
     const si=['register','verify','details','plan'].indexOf(s.ob);v.step={label:`Step ${si+1} of 4`,bars:[0,1,2,3].map(i=>({c:i<=si?'#7C3AED':'#E7E7EC'}))};
