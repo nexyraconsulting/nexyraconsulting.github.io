@@ -16,8 +16,8 @@
   <meta name="description" content="Rotas, timesheets, approvals and payroll hours for teams with one or many locations. 14-day free trial.">
   <link rel="icon" href="Assets/brand/icons/nextime-icon.svg" type="image/svg+xml">
   <script src="app/nextime-saas.js"></script>
-  <script src="Assets/nexyra/zx-search-index.js" defer></script>
-  <script src="Assets/nexyra/zx-search-engine.js" defer></script>
+  <link rel="stylesheet" href="release/nextime/public/assets/nav/nexyra-nav.css">
+  <script src="release/nextime/public/assets/nav/nexyra-nav.js" data-active="products" data-product="nextime" defer></script>
   <style>
     @font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('Assets/fonts/hanken-grotesk-latin-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
     @font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('Assets/fonts/hanken-grotesk-latin-ext-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
@@ -39,8 +39,6 @@
   <template id="__bundler_thumbnail">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxTg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxTct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxTcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxTct)"><path fill="url(#nxTg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxTcb)"><path fill="url(#nxTg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg>
   </template>
-
-  <dc-import name="NxSiteNav" active="products" product="nextime" site-url="https://nexyraconsulting.co.uk/" sign-in-url="{{ signInUrl }}" trial-url="{{ trialUrl }}" hint-size="100%,0px"></dc-import>
 
   <main>
     <div data-screen-label="Product header" style="padding:calc(var(--nx-clear, 112px) + 8px) 7vw 0">

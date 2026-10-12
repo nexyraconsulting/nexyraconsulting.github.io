@@ -1,7 +1,7 @@
 # DEPLOYMENT
 
 Two tracks:
-- **Track A (prototype go-live, about 30 minutes):** upload `public/`, keep `demoMode: true`. Good for demos, pilots and sales; data stays in each visitor's browser.
+- **Track A (prototype go-live, about 30 minutes):** upload `public/nextime/` to `/nextime/` on the Nexyra web root, keep `demoMode: true`. Good for demos, pilots and sales; data stays in each visitor's browser.
 - **Track B (production, multi-device):** everything in Track A, plus Supabase, payments and email (steps 5–8), and the client wiring in DEVELOPER_HANDOVER.md section 4.
 
 ## 1. Server requirements
@@ -20,22 +20,30 @@ Two tracks:
 
 ## 3. Uploading the files
 
-Upload **the contents of `public/`** (not the folder itself) to the web root, **including the dotfiles** `.htaccess` and `admin/.htaccess`:
+`public/` has the same layout as the Nexyra web root. NEXTime lives in `public/nextime/` and uses the **shared** navigation and runtime in `public/assets/` (identical to `/assets/` on nexyraconsulting.co.uk).
+
+Upload `public/nextime/` to `/nextime/` on the Nexyra web root, **including the dotfiles** `nextime/.htaccess` and `nextime/admin/.htaccess`:
 ```bash
-rsync -avz --delete public/ user@server:/var/www/nextime/
+rsync -avz --delete public/nextime/ user@server:/var/www/nexyra/nextime/
+# only if the server has no /assets/nav/ or /assets/js/ yet (never --delete here: assets/ is shared):
+rsync -avz public/assets/ user@server:/var/www/nexyra/assets/
 ```
 Don't upload `supabase/`, `database/`, `source/`, `.env.example` or the `.md` files. The `.htaccess` blocks them anyway.
 
 ## 4. Folder structure on the server
 
 ```text
-/var/www/nextime/
-├── index.html  account.html  app.html  robots.txt  .htaccess
-├── config/app-config.js
-├── js/nextime-supabase.js
-└── admin/ console.html  .htaccess  config/app-config.js
+/var/www/nexyra/                  Nexyra web root
+├── assets/nav/                   shared navigation + search (nexyra-nav.js, .css, nexyra-menu.js, search engine + index)
+├── assets/js/                    shared runtime (dc-runtime, React, ReactDOM)
+└── nextime/
+    ├── index.html  account.html  app.html  robots.txt  .htaccess
+    ├── assets/ fonts/ brand/ img/
+    ├── config/app-config.js
+    ├── js/nextime-saas.js  js/nextime-supabase.js
+    └── admin/ console.html  .htaccess  config/app-config.js
 ```
-Every page must be served from the **same origin** (sign-in state is shared). Keep the relative layout exactly as above: each page loads `config/app-config.js` relative to itself.
+Every page must be served from the **same origin** (sign-in state is shared). Keep the relative layout exactly as above: each page loads `config/app-config.js` relative to itself, and `nextime/index.html` loads `../assets/nav/` and `../assets/js/`, so `nextime/` must sit directly under the root that holds `assets/`.
 
 ## 5. Environment configuration
 
@@ -92,23 +100,23 @@ Point DNS at the host: `A`/`AAAA` for a server, or `CNAME` for Netlify, Vercel o
 ```nginx
 server {
   listen 443 ssl http2; server_name nextime.example.com;
-  root /var/www/nextime; index index.html;
+  root /var/www/nexyra; index index.html;
   ssl_certificate /etc/letsencrypt/live/nextime.example.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/nextime.example.com/privkey.pem;
   location ~ /\.(?!well-known) { deny all; }
   location ~* \.(md|sql|ts|toml|env)$ { deny all; }
-  location /admin/ { auth_basic "NEXTime console"; auth_basic_user_file /etc/nginx/.nextime-admin; }
+  location /nextime/admin/ { auth_basic "NEXTime console"; auth_basic_user_file /etc/nginx/.nextime-admin; }
   location ~* \.(html|js)$ { add_header Cache-Control "no-cache, must-revalidate"; }
   add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
   add_header X-Content-Type-Options nosniff always;
   add_header X-Frame-Options DENY always;
   add_header Referrer-Policy strict-origin-when-cross-origin always;
-  # add the Content-Security-Policy line from public/.htaccess
+  # add the Content-Security-Policy line from public/nextime/.htaccess (scope it to location /nextime/)
   gzip on; gzip_types text/html application/javascript image/svg+xml;
 }
 server { listen 80; server_name nextime.example.com; return 301 https://$host$request_uri; }
 ```
-**Netlify / Cloudflare Pages:** publish directory `public`; copy the headers into a `public/_headers` file; protect `/admin/*` with the host's password or access feature.
+**Netlify / Cloudflare Pages:** publish directory `public` (or the Nexyra site that already contains `assets/`); copy the headers into a `_headers` file under `/nextime/*`; protect `/nextime/admin/*` with the host's password or access feature.
 
 ## 10. SSL / HTTPS
 
@@ -136,7 +144,7 @@ None for deployment. The HTML files are pre-built and self-contained. UI changes
 4. Direct Debit in GoCardless sandbox: sort code `200000`, account `55779911`.
 5. Invite an Employee, accept in a private window, check they see only **My shifts**.
 6. Add staff beyond the plan limit; it should be blocked.
-7. Console (`/admin/console.html`) asks for Basic Auth, then platform sign-in, then shows the workspace.
+7. Console (`/nextime/admin/console.html`) asks for Basic Auth, then platform sign-in, then shows the workspace.
 8. Simulate a failed payment (Stripe: card `4000 0000 0000 0341`); the workspace shows "Payment failed".
 9. `curl -I https://domain/supabase/` and `/README.md` return 403/404; check headers with securityheaders.com.
 10. Mobile (iOS Safari, Android Chrome): sign in, rota scroll, timesheet table scroll.
@@ -154,6 +162,6 @@ See the table in README.md. Also:
 1. Back up: `supabase db dump -f backup_$(date +%F).sql`.
 2. `supabase db push` (new migrations only).
 3. `supabase functions deploy <changed>`.
-4. Upload changed files from `public/` (`rsync --delete` keeps the server clean). Keep the server's own `config/app-config.js`: exclude it with `--exclude config/`.
+4. Upload changed files from `public/nextime/` (`rsync --delete` keeps the server clean). Keep the server's own `config/app-config.js`: exclude it with `--exclude config/`.
 5. Re-run the tests in step 13.
-6. Rollback: redeploy the previous `public/` and functions from git; for the database, restore the dump or use PITR.
+6. Rollback: redeploy the previous `public/nextime/` and functions from git; for the database, restore the dump or use PITR.

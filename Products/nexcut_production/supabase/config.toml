@@ -1,0 +1,14 @@
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.checkout-status]
+verify_jwt = false
+
+[functions.create-checkout]
+verify_jwt = false
+
+[functions.store-sync]
+verify_jwt = false
+
+[functions.send-notifications]
+verify_jwt = false

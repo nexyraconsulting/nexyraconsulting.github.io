@@ -2,7 +2,7 @@
 
 ## 1. In one paragraph
 
-NEXTime is a multi-tenant rota and timesheet SaaS. The UI is four pre-built, self-contained HTML pages (React 18 inside). Today they run on a browser-storage layer (`source/js/nextime-saas.js`, embedded in the pages), so every flow works with no backend: sign-up, 2FA, invites, roles, plans, payments (simulated), console. The backend is already written: Supabase schema with RLS, seven edge functions for Stripe, GoCardless, invites and cron, and a client adapter (`public/js/nextime-supabase.js`). **Your main task is connecting the pages to that adapter (section 4)**, then configuring and deploying (DEPLOYMENT.md).
+NEXTime is a multi-tenant rota and timesheet SaaS. The UI is four pre-built HTML pages (React 18) served at `/nextime/` on the Nexyra site. `index.html` loads the shared Nexyra navigation and runtime from `/assets/`; the other three are self-contained bundles. Today they run on a browser-storage layer (`nextime/js/nextime-saas.js`, also embedded in the three bundles), so every flow works with no backend: sign-up, 2FA, invites, roles, plans, payments (simulated), console. The backend is already written: Supabase schema with RLS, seven edge functions for Stripe, GoCardless, invites and cron, and a client adapter (`public/nextime/js/nextime-supabase.js`). **Your main task is connecting the pages to that adapter (section 4)**, then configuring and deploying (DEPLOYMENT.md).
 
 ## 2. Architecture
 
@@ -70,7 +70,11 @@ Defined once in the database (see API_DOCUMENTATION.md section 5) and mirrored i
 
 ## 6. Editing the UI
 
-`source/pages/*.dc.html` are the editable sources ("Design Components": plain HTML templates with `{{ }}` bindings plus a logic class). `public/*.html` are their compiled, self-contained bundles. Options:
+`source/pages/*.dc.html` are the editable sources ("Design Components": plain HTML templates with `{{ }}` bindings plus a logic class). `public/nextime/account.html`, `app.html` and `admin/console.html` are compiled, self-contained bundles. `public/nextime/index.html` is not bundled: it is the website Design Component itself, run by the shared `/assets/js/dc-runtime-2e38395c4a.js`, so it can be edited directly.
+
+**Top navigation and search are shared, not NEXTime code.** They live in `/assets/nav/` (same files as nexyraconsulting.co.uk) and `index.html` includes them with `<script src="../assets/nav/nexyra-nav.js" data-active="products" data-product="nextime" defer>`. Menu content is in `nexyra-menu.js`; behaviour in `nexyra-nav.js`. Change them once for every Nexyra page, never per product. Page content clears the fixed nav with the CSS variable `--nx-clear`, which the script sets.
+
+Options for editing the UI:
 1. **Recommended for small changes:** open the project in Claude Design (or ask Nexyra for the project link), edit, then re-export the four bundles.
 2. **Long-term:** port the pages to your own React/Vite app. The logic classes are plain React class components; the templates map directly to JSX.
 
@@ -95,7 +99,7 @@ The compiled bundles are not hand-editable (assets are base64-packed).
 3. Phase 2 record tables exist but aren't used; concurrent editing relies on snapshot versioning (last-write is rejected, not merged).
 4. Invites to people who already have an account: `invite-member` logs it but only Supabase's own invite email is sent to new users. Add a Resend email using `sendEmail` from `_shared/common.ts` for existing users.
 5. Enterprise is "contact us", with no self-serve checkout.
-6. The marketing screenshot (`app-rota` image inside `index.html`) shows sample data; replace it when real customer-safe imagery is available.
+6. The marketing screenshot (`nextime/assets/img/app-rota-2x.jpg`) shows sample data; replace it when real customer-safe imagery is available.
 7. Card logos come from the Simple Icons CDN at runtime inside the app's payment modal; CSP allows `cdn.simpleicons.org`. Self-host them if you prefer no third-party image requests.
 8. VAT: GoCardless amounts add `VAT_RATE`; for non-UK customers, consider Stripe Tax or a merchant-of-record setup.
 

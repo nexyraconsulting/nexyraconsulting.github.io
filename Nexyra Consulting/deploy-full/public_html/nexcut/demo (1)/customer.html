@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/dc-runtime.js"></script>
+<script src="js/fit-frame.js"></script>
+</head>
+<body>
+
+<x-dc>
+
+<helmet>
+<link rel="stylesheet" href="css/modernist.css">
+<script src="js/modernist-ds.js"></script>
+<link rel="stylesheet" href="css/leaflet.css">
+<script src="js/leaflet-1.9.4.min.js"></script>
+<script src="js/nexcut-data.js"></script>
+<link rel="stylesheet" href="css/fonts.css">
+</helmet>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<mask id="mC1" sc-camel-mask-units="userSpaceOnUse" x="-30" y="-30" width="170" height="170"><rect x="-30" y="-30" width="170" height="170" fill="#fff"></rect><path d="M95 0V44C95 72 74 88 52 90L38.5 88.8" fill="none" stroke="#000" stroke-width="23"></path><polygon points="0,-2 0,22 18,-2" fill="#000"></polygon><circle cx="52" cy="90" r="4" fill="#000"></circle></mask>
+<mask id="mC2" sc-camel-mask-units="userSpaceOnUse" x="-30" y="-30" width="170" height="170"><rect x="-30" y="-30" width="170" height="170" fill="#fff"></rect><polygon points="86,-2 104,-2 104,22" fill="#000"></polygon><circle cx="52" cy="90" r="4" fill="#000"></circle></mask>
+<symbol id="uC" sc-camel-view-box="0 0 104 100" overflow="visible"><path mask="url(#mC1)" d="M9 0V44C9 72 30 88 52 90L63 89" fill="none" stroke="var(--c1, currentColor)" stroke-width="17"></path><path mask="url(#mC2)" d="M95 0V44C95 72 74 88 52 90L41 89" fill="none" stroke="var(--c2, currentColor)" stroke-width="17"></path></symbol>
+<symbol id="i-search" sc-camel-view-box="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></g></symbol>
+<symbol id="i-pin" sc-camel-view-box="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></g></symbol>
+<symbol id="i-locate" sc-camel-view-box="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="2.5"></circle></g></symbol>
+<symbol id="i-cal" sc-camel-view-box="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></g></symbol>
+<symbol id="i-heart" sc-camel-view-box="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></symbol>
+<symbol id="i-heartf" sc-camel-view-box="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></symbol>
+<symbol id="i-user" sc-camel-view-box="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></g></symbol>
+<symbol id="i-clock" sc-camel-view-box="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></g></symbol>
+<symbol id="i-star" sc-camel-view-box="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9Z" fill="currentColor"></path></symbol>
+<symbol id="i-left" sc-camel-view-box="0 0 24 24"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+<symbol id="i-arrow" sc-camel-view-box="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+<symbol id="i-check" sc-camel-view-box="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+<symbol id="i-x" sc-camel-view-box="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></symbol>
+<symbol id="i-map" sc-camel-view-box="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"></path><path d="M9 4v14M15 6v14"></path></g></symbol>
+<symbol id="i-list" sc-camel-view-box="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></symbol>
+<symbol id="i-info" sc-camel-view-box="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01"></path></g></symbol>
+<symbol id="i-dl" sc-camel-view-box="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+</defs>
+</svg>
+
+<div style="min-height:100vh;background:#F7F7F9;display:flex;flex-wrap:wrap;gap:56px;justify-content:center;align-items:flex-start;padding:clamp(16px,4vh,40px) 16px 64px;box-sizing:border-box">
+  <x-import component-from-global-scope="IOSDevice" from="js/ios-frame.js" hint-size="402px,874px">
+    <div data-screen-label="NEXCut customer app" style="height:100%;display:flex;flex-direction:column;position:relative;background:#fff;color:#0A0A0F;font-family:'Hanken Grotesk','Helvetica Neue',Arial,sans-serif;overflow:hidden">
+      {{ nxSplash }}
+      <div style="height:54px;flex:none"></div>
+
+      <sc-if value="{{ tbHome }}" hint-placeholder-val="{{ true }}">
+        <div style="height:52px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 16px;border-bottom:1px solid #E7E7EC">
+          <span style="display:flex;align-items:center;gap:8px"><img src="img/logo.svg" alt="" style="height:22px"><span style="display:flex;align-items:baseline;font-size:22px;font-weight:500;line-height:1;letter-spacing:0.01em"><span>NEXC</span><svg sc-camel-view-box="0 0 104 100" style="width:0.54em;height:0.52em;overflow:visible;margin:0 0.03em 0 0.04em;--c1:#7C3AED;--c2:#2563EB"><use href="#uC"></use></svg><span>t</span></span></span>
+          <button sc-camel-on-click="{{ goProfile }}" aria-label="Account" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;background:none;cursor:pointer;font-size:14px;font-weight:600;color:#0A0A0F"><sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}"><span style="width:32px;height:32px;border:1px solid #0A0A0F;display:flex;align-items:center;justify-content:center">{{ userInitials }}</span></sc-if><sc-if value="{{ signedOut }}" hint-placeholder-val="{{ true }}"><svg width="24" height="24"><use href="#i-user"></use></svg></sc-if></button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ tbSearch }}" hint-placeholder-val="{{ false }}">
+        <div style="height:56px;flex:none;display:flex;align-items:center;gap:4px;padding:0 8px;border-bottom:1px solid #E7E7EC">
+          <button sc-camel-on-click="{{ goHome }}" aria-label="Back" style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;border:0;background:none;cursor:pointer;color:#0A0A0F"><svg width="24" height="24"><use href="#i-left"></use></svg></button>
+          <sc-if value="{{ isResults }}" hint-placeholder-val="{{ false }}">
+            <button sc-camel-on-click="{{ goSearch }}" style="flex:1;min-width:0;height:40px;border:1px solid #6B6B7B;background:#fff;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:15px;cursor:pointer;text-align:left;color:#0A0A0F"><svg width="18" height="18" style="flex:none"><use href="#i-search"></use></svg><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ searchPill }}</span></button>
+            <button sc-camel-on-click="{{ openFilters }}" aria-label="Filters" style="width:44px;height:44px;flex:none;position:relative;display:flex;align-items:center;justify-content:center;border:0;background:none;cursor:pointer;color:#0A0A0F"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg><sc-if value="{{ hasFCount }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:6px;right:4px;min-width:16px;height:16px;background:#7C3AED;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ fCount }}</span></sc-if></button>
+          </sc-if>
+          <sc-if value="{{ isSearch }}" hint-placeholder-val="{{ false }}"><span style="font-size:17px;font-weight:600">Search</span></sc-if>
+        </div>
+      </sc-if>
+      <sc-if value="{{ tbTitle }}" hint-placeholder-val="{{ false }}">
+        <div style="height:52px;flex:none;display:flex;align-items:center;padding:0 16px;border-bottom:1px solid #E7E7EC"><span style="font-size:17px;font-weight:600">{{ acctTitle }}</span></div>
+      </sc-if>
+      <sc-if value="{{ tbBook }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:none;border-bottom:1px solid #E7E7EC">
+          <div style="height:52px;display:flex;align-items:center;gap:4px;padding:0 8px">
+            <button sc-camel-on-click="{{ bkExit }}" aria-label="Close booking" style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;border:0;background:none;cursor:pointer;color:#0A0A0F"><svg width="22" height="22"><use href="#i-x"></use></svg></button>
+            <span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ bkBizName }}</span><span style="font-size:12px;color:#4A4A5A">{{ bkStepTxt }}</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:0 16px 10px"><sc-for list="{{ steps }}" as="st" hint-placeholder-count="5"><span style="height:3px;background:{{ st.bd }}"></span></sc-for></div>
+        </div>
+      </sc-if>
+
+      <div ref="{{ scRef }}" style="flex:1;overflow-y:auto;overflow-x:hidden;position:relative;scrollbar-width:none">
+        <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}"><p style="padding:40px 16px;font-size:15px;color:#4A4A5A">Loading…</p></sc-if>
+
+        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:24px 16px 28px;display:flex;flex-direction:column;gap:18px;border-bottom:1px solid #E7E7EC">
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#6D28D9">HAIR · BARBER · NAILS · SPA · BEAUTY</p>
+            <h1 style="font-size:34px;font-weight:600;letter-spacing:-0.03em;line-height:1.04;text-wrap:balance">Book your next appointment.</h1>
+            <button sc-camel-on-click="{{ goSearch }}" style="height:56px;border:1px solid #0A0A0F;background:#fff;display:flex;align-items:center;gap:12px;padding:0 16px;font-size:16px;color:#4A4A5A;cursor:pointer;text-align:left"><svg width="22" height="22" style="color:#0A0A0F;flex:none"><use href="#i-search"></use></svg>Service, business or postcode</button>
+            <div style="display:flex;gap:8px;overflow-x:auto;margin:0 -16px;padding:0 16px;scrollbar-width:none">
+              <button sc-camel-on-click="{{ useLoc }}" style="height:36px;flex:none;padding:0 12px;border:1px solid #7C3AED;background:#F3EEFE;color:#5B21B6;font-size:14px;font-weight:500;display:flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap"><svg width="16" height="16"><use href="#i-locate"></use></svg>Near me</button>
+              <sc-for list="{{ towns }}" as="t" hint-placeholder-count="5"><button sc-camel-on-click="{{ t.go }}" style="height:36px;flex:none;padding:0 12px;border:1px solid #E7E7EC;background:#fff;font-size:14px;cursor:pointer;color:#0A0A0F;white-space:nowrap">{{ t.name }}</button></sc-for>
+            </div>
+            <sc-if value="{{ hasGeoMsg }}" hint-placeholder-val="{{ false }}"><p role="status" style="font-size:14px;color:#4A4A5A">{{ geoMsg }}</p></sc-if>
+          </div>
+          <sc-if value="{{ homeHasNext }}" hint-placeholder-val="{{ false }}">
+            <button sc-camel-on-click="{{ goBookings }}" style="margin:20px 16px 0;width:calc(100% - 32px);border:0;background:#0A0A0F;color:#fff;padding:18px;display:flex;flex-direction:column;gap:6px;text-align:left;cursor:pointer">
+              <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#A78BFA">NEXT APPOINTMENT</span>
+              <span style="font-size:19px;font-weight:600">{{ homeNext.when }}</span>
+              <span style="font-size:14px;color:#E7E7EC">{{ homeNext.svc }} · {{ homeNext.biz }}</span>
+            </button>
+          </sc-if>
+          <div style="padding:24px 16px 8px;display:flex;flex-direction:column;gap:14px">
+            <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">Browse by category</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E7E7EC;border:1px solid #E7E7EC">
+              <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+                <button sc-camel-on-click="{{ c.go }}" style="background:#fff;border:0;padding:0;cursor:pointer;text-align:left;display:flex;flex-direction:column;color:#0A0A0F">
+                  <span style="display:block;height:96px;width:100%;background-color:#F7F7F9;background-image:{{ c.bg }};background-size:cover;background-position:center"></span>
+                  <span style="display:flex;flex-direction:column;gap:2px;padding:10px 12px 12px"><span style="font-size:16px;font-weight:600">{{ c.name }}</span><span style="font-size:12px;color:#4A4A5A">{{ c.countTxt }}</span></span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="padding:20px 16px 8px;display:flex;flex-direction:column">
+            <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;padding-bottom:8px">Popular searches</h2>
+            <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="5">
+              <button sc-camel-on-click="{{ ex.run }}" style="height:52px;border:0;border-bottom:1px solid #E7E7EC;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0;font-size:15px;cursor:pointer;text-align:left;color:#0A0A0F">{{ ex.label }}<svg width="18" height="18" style="flex:none;color:#6D28D9"><use href="#i-arrow"></use></svg></button>
+            </sc-for>
+          </div>
+          <div style="margin:24px 16px 28px;padding:20px;border:1px solid #0A0A0F;display:flex;flex-direction:column;gap:10px">
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#2563EB">FOR BUSINESSES</p>
+            <p style="font-size:17px;font-weight:600;line-height:1.3">Run a salon, barbershop, nail studio or spa?</p>
+            <p style="font-size:14px;line-height:1.55;color:#4A4A5A">Manage bookings, staff and deposits in the NEXCut Business app. No commission on your bookings.</p>
+            <button sc-camel-on-click="{{ openBizInfo }}" style="align-self:flex-start;height:44px;padding:0 16px;border:0;background:#2563EB;color:#fff;font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:10px">Get NEXCut Business<svg width="16" height="16"><use href="#i-arrow"></use></svg></button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSearch }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">What<span style="display:flex;align-items:center;gap:10px;height:52px;border:1px solid #6B6B7B;padding:0 12px"><svg width="20" height="20" style="flex:none"><use href="#i-search"></use></svg><input value="{{ q }}" sc-camel-on-change="{{ onQ }}" sc-camel-on-key-down="{{ onSearchKey }}" placeholder="Haircut, nails, massage or a name" style="border:0;padding:0;height:40px;font-size:16px;width:100%;background:transparent;font-weight:400"></span></label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Where<span style="display:flex;align-items:center;gap:10px;height:52px;border:1px solid #6B6B7B;padding:0 2px 0 12px"><svg width="20" height="20" style="flex:none"><use href="#i-pin"></use></svg><input value="{{ loc }}" sc-camel-on-change="{{ onLoc }}" sc-camel-on-key-down="{{ onSearchKey }}" placeholder="Postcode or town" style="border:0;padding:0;height:40px;font-size:16px;width:100%;background:transparent;font-weight:400"><button sc-camel-on-click="{{ useLoc }}" aria-label="Use my current location" style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;border:0;background:none;cursor:pointer;color:#6D28D9"><svg width="20" height="20"><use href="#i-locate"></use></svg></button></span></label>
+            <sc-if value="{{ hasGeoMsg }}" hint-placeholder-val="{{ false }}"><p role="status" style="font-size:14px;color:#4A4A5A">{{ geoMsg }}</p></sc-if>
+            <button sc-camel-on-click="{{ doSearch }}" style="height:52px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:16px;padding:0 16px;display:flex;align-items:center;justify-content:space-between">Search<svg width="18" height="18"><use href="#i-arrow"></use></svg></button>
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#4A4A5A;padding-top:16px">TRY</p>
+            <div style="display:flex;flex-direction:column;border-top:1px solid #E7E7EC">
+              <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="5"><button sc-camel-on-click="{{ ex.run }}" style="height:48px;border:0;border-bottom:1px solid #E7E7EC;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0;font-size:15px;cursor:pointer;text-align:left;color:#0A0A0F">{{ ex.label }}<svg width="16" height="16" style="color:#6D28D9"><use href="#i-arrow"></use></svg></button></sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isResults }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:14px 16px 12px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;border-bottom:1px solid #E7E7EC">
+            <div style="display:flex;flex-direction:column;gap:3px;min-width:0"><h1 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">{{ resTitle }}</h1><p role="status" style="font-size:12px;line-height:1.4;color:#4A4A5A">{{ resSub }}</p></div>
+            <div role="group" aria-label="View" style="display:flex;border:1px solid #0A0A0F;flex:none">
+              <button sc-camel-on-click="{{ setList }}" aria-pressed="{{ isList }}" aria-label="List view" style="width:40px;height:36px;display:flex;align-items:center;justify-content:center;border:0;cursor:pointer;background:{{ listBg }};color:{{ listFg }}"><svg width="18" height="18"><use href="#i-list"></use></svg></button>
+              <button sc-camel-on-click="{{ setMap }}" aria-pressed="{{ isMap }}" aria-label="Map view" style="width:40px;height:36px;display:flex;align-items:center;justify-content:center;border:0;border-left:1px solid #0A0A0F;cursor:pointer;background:{{ mapBg }};color:{{ mapFg }}"><svg width="18" height="18"><use href="#i-map"></use></svg></button>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;overflow-x:auto;padding:10px 16px;border-bottom:1px solid #E7E7EC;scrollbar-width:none">
+            <sc-for list="{{ catChips }}" as="c" hint-placeholder-count="6"><button sc-camel-on-click="{{ c.pick }}" aria-pressed="{{ c.sel }}" style="height:34px;flex:none;padding:0 12px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }}">{{ c.name }}</button></sc-for>
+          </div>
+          <sc-if value="{{ hasGeoMsg }}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin:12px 16px 0;font-size:14px;line-height:1.5;padding:10px 12px;border:1px solid #0A0A0F;display:flex;gap:8px"><svg width="18" height="18" style="flex:none"><use href="#i-info"></use></svg>{{ geoMsg }}</p></sc-if>
+          <sc-if value="{{ geoBusy }}" hint-placeholder-val="{{ false }}"><p role="status" style="font-size:15px;color:#4A4A5A;padding:24px 16px">Finding {{ loc }}…</p></sc-if>
+          <sc-if value="{{ noRows }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:32px 16px;display:flex;flex-direction:column;gap:12px;align-items:flex-start"><h2 style="font-size:20px;font-weight:600">No places match</h2><p style="font-size:15px;line-height:1.55;color:#4A4A5A">Try a wider distance, another day, or a broader search such as “nails”.</p><button sc-camel-on-click="{{ clearFilters }}" style="height:44px;padding:0 16px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:15px">Clear filters</button></div>
+          </sc-if>
+          <sc-if value="{{ showList }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column">
+              <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
+                <article style="border-bottom:1px solid #E7E7EC;display:flex;flex-direction:column">
+                  <div style="position:relative">
+                    <button sc-camel-on-click="{{ r.open }}" aria-label="{{ r.viewLabel }}" style="display:block;width:100%;height:150px;border:0;padding:0;cursor:pointer;background-color:#F7F7F9;background-image:{{ r.bg }};background-size:cover;background-position:center"></button>
+                    <button sc-camel-on-click="{{ r.toggleFav }}" aria-label="{{ r.favLabel }}" aria-pressed="{{ r.fav }}" style="position:absolute;top:10px;right:10px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;background:#fff;cursor:pointer;color:#6D28D9"><svg width="20" height="20"><use href="{{ r.favIcon }}"></use></svg></button>
+                  </div>
+                  <div style="padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px">
+                    <div style="display:flex;justify-content:space-between;gap:8px;font-size:12px;color:#4A4A5A"><span style="font-weight:600;letter-spacing:0.14em;color:#6D28D9">{{ r.catLabel }}</span><sc-if value="{{ r.hasDist }}" hint-placeholder-val="{{ false }}"><span style="white-space:nowrap">{{ r.distTxt }}</span></sc-if></div>
+                    <button sc-camel-on-click="{{ r.open }}" style="background:none;border:0;padding:0;text-align:left;cursor:pointer;font-size:19px;font-weight:600;letter-spacing:-0.015em;color:#0A0A0F">{{ r.name }}</button>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:13px;align-items:center;color:#4A4A5A">
+                      <sc-if value="{{ r.hasRating }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:4px;font-weight:600;color:#0A0A0F;white-space:nowrap"><svg width="14" height="14" style="color:#7C3AED"><use href="#i-star"></use></svg>{{ r.ratingTxt }}<span style="font-weight:400;color:#4A4A5A">{{ r.reviewsTxt }}</span></span></sc-if>
+                      <sc-if value="{{ r.isNew }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;padding:2px 6px;background:#EAF1FE;color:#1D4ED8">New</span></sc-if>
+                      <span style="white-space:nowrap">{{ r.openTxt }}</span>
+                    </div>
+                    <div style="display:flex;flex-direction:column;border-top:1px solid #E7E7EC">
+                      <sc-for list="{{ r.svcs }}" as="s" hint-placeholder-count="2"><div style="display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid #E7E7EC;font-size:14px"><span>{{ s.name }}<span style="color:#6B6B7B"> · {{ s.durTxt }}</span></span><span style="font-weight:600;white-space:nowrap">{{ s.priceTxt }}</span></div></sc-for>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:4px">
+                      <span style="display:flex;flex-direction:column;font-size:12px;color:#4A4A5A">Next available<strong style="font-size:15px;font-weight:600;color:#0A0A0F">{{ r.nextTxt }}</strong></span>
+                      <button sc-camel-on-click="{{ r.book }}" style="height:44px;padding:0 18px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:15px">Book</button>
+                    </div>
+                  </div>
+                </article>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isMap }}" hint-placeholder-val="{{ false }}">
+            <div ref="{{ mapRef }}" role="region" aria-label="Map of results" style="height:420px;background:#F7F7F9;border-bottom:1px solid #E7E7EC"></div>
+            <div style="display:flex;flex-direction:column">
+              <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
+                <button sc-camel-on-click="{{ r.open }}" style="text-align:left;background:#fff;border:0;border-bottom:1px solid #E7E7EC;padding:14px 16px;cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:center;color:#0A0A0F">
+                  <span style="display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font-size:16px;font-weight:600">{{ r.name }}</span><span style="font-size:13px;color:#4A4A5A">{{ r.fromTxt }} · Next {{ r.nextTxt }}</span></span>
+                  <span style="font-size:13px;color:#4A4A5A;white-space:nowrap">{{ r.distTxt }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </sc-if>
+          <p style="font-size:12px;line-height:1.5;color:#6B6B7B;padding:16px">{{ hiddenNote }}</p>
+        </sc-if>
+
+        <sc-if value="{{ isBiz }}" hint-placeholder-val="{{ false }}">
+          <div style="position:relative;height:240px;background-color:#F7F7F9;background-image:{{ B.bg }};background-size:cover;background-position:center">
+            <button sc-camel-on-click="{{ bizBack }}" aria-label="{{ bizBackLabel }}" style="position:absolute;top:10px;left:10px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;background:#fff;cursor:pointer;color:#0A0A0F"><svg width="22" height="22"><use href="#i-left"></use></svg></button>
+            <button sc-camel-on-click="{{ B.toggleFav }}" aria-label="{{ B.favLabel }}" aria-pressed="{{ B.fav }}" style="position:absolute;top:10px;right:10px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;background:#fff;cursor:pointer;color:#6D28D9"><svg width="20" height="20"><use href="{{ B.favIcon }}"></use></svg></button>
+          </div>
+          <div style="padding:20px 16px 8px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid #E7E7EC">
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#6D28D9">{{ B.catLabel }}</p>
+            <h1 style="font-size:28px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">{{ B.name }}</h1>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:14px;align-items:center;color:#4A4A5A">
+              <sc-if value="{{ B.hasRating }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:4px;font-weight:600;color:#0A0A0F;white-space:nowrap"><svg width="16" height="16" style="color:#7C3AED"><use href="#i-star"></use></svg>{{ B.ratingTxt }}<span style="font-weight:400;color:#4A4A5A">{{ B.reviewsTxt }}</span></span></sc-if>
+              <sc-if value="{{ B.isNew }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;padding:2px 6px;background:#EAF1FE;color:#1D4ED8">New on NEXCut</span></sc-if>
+              <span style="white-space:nowrap">{{ B.openTxt }}</span>
+            </div>
+            <p style="font-size:14px;color:#4A4A5A;display:flex;gap:6px;align-items:center"><svg width="16" height="16" style="flex:none"><use href="#i-pin"></use></svg>{{ B.fullAddr }}</p>
+            <p style="font-size:15px;line-height:1.55;color:#4A4A5A;padding:6px 0 12px">{{ B.desc }}</p>
+            <sc-for list="{{ B.offers }}" as="of" hint-placeholder-count="0"><div style="margin-bottom:12px;padding:12px 14px;background:#F3EEFE;display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#5B21B6">{{ of.kind }}</span><span style="font-size:15px;font-weight:600">{{ of.title }}</span><span style="font-size:14px;line-height:1.5;color:#4A4A5A">{{ of.body }}</span></div></sc-for>
+          </div>
+          <div style="padding:16px 16px 8px;display:flex;flex-direction:column">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">Services</h2><span style="font-size:12px;color:#4A4A5A;text-align:right">{{ B.multiNote }}</span></div>
+            <sc-for list="{{ B.groups }}" as="g" hint-placeholder-count="2">
+              <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#4A4A5A;padding:16px 0 6px">{{ g.name }}</p>
+              <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="3">
+                <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid #E7E7EC">
+                  <div style="display:flex;flex-direction:column;gap:3px;min-width:0;flex:1">
+                    <span style="font-size:16px;font-weight:600">{{ s.name }}</span>
+                    <sc-if value="{{ s.hasDesc }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;line-height:1.45;color:#4A4A5A">{{ s.desc }}</span></sc-if>
+                    <span style="font-size:13px;color:#4A4A5A;display:flex;gap:8px;flex-wrap:wrap"><span>{{ s.durTxt }}</span><span style="font-weight:700;color:#0A0A0F">{{ s.priceTxt }}</span><sc-if value="{{ s.hasPromo }}" hint-placeholder-val="{{ false }}"><span style="text-decoration:line-through">{{ s.wasTxt }}</span></sc-if><sc-if value="{{ s.hasDep }}" hint-placeholder-val="{{ false }}"><span style="color:#1D4ED8">{{ s.depTxt }}</span></sc-if></span>
+                  </div>
+                  <button sc-camel-on-click="{{ s.toggle }}" aria-pressed="{{ s.sel }}" aria-label="{{ s.selLabel }}" style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }}"><svg width="18" height="18"><use href="{{ s.btnIcon }}"></use></svg></button>
+                </div>
+              </sc-for>
+            </sc-for>
+          </div>
+          <div style="padding:20px 16px;display:flex;flex-direction:column;gap:12px;border-top:1px solid #E7E7EC">
+            <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">Team</h2>
+            <div style="display:flex;gap:16px;overflow-x:auto;scrollbar-width:none">
+              <sc-for list="{{ B.staff }}" as="p" hint-placeholder-count="3"><div style="flex:none;width:96px;display:flex;flex-direction:column;gap:6px"><span style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:#F3EEFE;color:#5B21B6;font-size:16px;font-weight:600">{{ p.initials }}</span><span style="font-size:14px;font-weight:600;line-height:1.25">{{ p.name }}</span><span style="font-size:12px;color:#4A4A5A">{{ p.role }}</span></div></sc-for>
+            </div>
+          </div>
+          <div style="padding:20px 16px;display:flex;flex-direction:column;gap:8px;border-top:1px solid #E7E7EC">
+            <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">Reviews</h2><span style="font-size:12px;color:#4A4A5A">Verified bookings only</span></div>
+            <sc-if value="{{ B.hasReviews }}" hint-placeholder-val="{{ true }}"><sc-for list="{{ B.reviews }}" as="rv" hint-placeholder-count="2"><div style="display:flex;flex-direction:column;gap:6px;padding:12px 0;border-bottom:1px solid #E7E7EC"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px"><span style="display:flex;align-items:center;gap:3px;font-weight:600"><svg width="14" height="14" style="color:#7C3AED"><use href="#i-star"></use></svg>{{ rv.rating }}</span><span style="font-weight:600">{{ rv.name }}</span><span style="color:#4A4A5A">{{ rv.svc }} · {{ rv.date }}</span></div><p style="font-size:14px;line-height:1.55">{{ rv.body }}</p></div></sc-for></sc-if>
+            <sc-if value="{{ B.noReviews }}" hint-placeholder-val="{{ false }}"><p style="font-size:14px;color:#4A4A5A">No reviews yet. Reviews appear after completed bookings.</p></sc-if>
+          </div>
+          <div style="padding:20px 16px;display:flex;flex-direction:column;gap:6px;border-top:1px solid #E7E7EC">
+            <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;padding-bottom:6px">Opening hours</h2>
+            <sc-for list="{{ B.hours }}" as="h" hint-placeholder-count="7"><div style="display:flex;justify-content:space-between;font-size:14px;padding:3px 0;font-weight:{{ h.fw }}"><span>{{ h.d }}</span><span>{{ h.h }}</span></div></sc-for>
+          </div>
+          <div style="padding:20px 16px;display:flex;flex-direction:column;gap:10px;border-top:1px solid #E7E7EC">
+            <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em">Policies</h2>
+            <p style="font-size:14px;line-height:1.55"><strong style="font-weight:600">Cancellation.</strong> {{ B.policyCancel }}</p>
+            <p style="font-size:14px;line-height:1.55"><strong style="font-weight:600">Late arrival.</strong> {{ B.policyLate }}</p>
+            <sc-if value="{{ B.hasDepositPolicy }}" hint-placeholder-val="{{ false }}"><p style="font-size:14px;line-height:1.55"><strong style="font-weight:600">Deposits.</strong> {{ B.policyDeposit }}</p></sc-if>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;padding-top:6px"><sc-for list="{{ B.amenities }}" as="a" hint-placeholder-count="3"><span style="font-size:12px;padding:4px 8px;border:1px solid #E7E7EC">{{ a }}</span></sc-for></div>
+            <p style="font-size:14px;padding-top:6px">{{ B.phone }}</p>
+            <p style="font-size:12px;color:#6B6B7B;padding-bottom:12px">NEXCut ID {{ B.publicId }} · nexcut.co.uk/b/{{ B.slug }}</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isBook }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ bkNotDone }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:20px 16px 8px;display:flex;flex-direction:column;gap:6px">
+              <h1 style="font-size:26px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">{{ bkTitle }}</h1>
+              <sc-if value="{{ isRes }}" hint-placeholder-val="{{ false }}"><p style="font-size:13px;color:#2563EB">Rescheduling {{ bkResRef }}</p></sc-if>
+            </div>
+            <sc-if value="{{ hasBkErr }}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin:8px 16px;font-size:14px;padding:10px 12px;border:1px solid #B42318;background:#FEF0EE;color:#912018;display:flex;gap:8px"><svg width="18" height="18" style="flex:none"><use href="#i-info"></use></svg>{{ bkErr }}</p></sc-if>
+            <sc-if value="{{ isS1 }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 16px 16px;display:flex;flex-direction:column">
+                <sc-for list="{{ s1Groups }}" as="g" hint-placeholder-count="2">
+                  <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#4A4A5A;padding:14px 0 8px">{{ g.name }}</p>
+                  <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="3">
+                    <button sc-camel-on-click="{{ s.toggle }}" aria-pressed="{{ s.sel }}" style="display:flex;gap:12px;align-items:center;justify-content:space-between;padding:14px 12px;border:1px solid {{ s.bd }};background:{{ s.rowBg }};margin-top:-1px;text-align:left;cursor:pointer;color:#0A0A0F">
+                      <span style="display:flex;gap:12px;align-items:center;min-width:0"><span style="width:22px;height:22px;flex:none;border:1px solid #0A0A0F;display:flex;align-items:center;justify-content:center;background:{{ s.boxBg }};color:#fff"><svg width="14" height="14"><use href="#i-check"></use></svg></span><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:15px;font-weight:600">{{ s.name }}</span><span style="font-size:13px;color:#4A4A5A">{{ s.durTxt }}<sc-if value="{{ s.hasDep }}" hint-placeholder-val="{{ false }}"> · {{ s.depTxt }}</sc-if></span></span></span>
+                      <span style="font-size:15px;font-weight:700;flex:none">{{ s.priceTxt }}</span>
+                    </button>
+                  </sc-for>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isS2 }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:8px 16px 16px;display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ s2Opts }}" as="o" hint-placeholder-count="3">
+                  <button sc-camel-on-click="{{ o.pick }}" disabled="{{ o.disabled }}" aria-pressed="{{ o.sel }}" style="text-align:left;padding:14px;display:flex;gap:14px;align-items:center;cursor:pointer;border:{{ o.bw }} solid {{ o.bd }};background:{{ o.bg }};opacity:{{ o.op }};color:#0A0A0F">
+                    <span style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;background:#F3EEFE;color:#5B21B6;font-size:13px;font-weight:600">{{ o.initials }}</span>
+                    <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:16px;font-weight:600">{{ o.name }}</span><span style="font-size:13px;color:#4A4A5A">{{ o.sub }}</span></span>
+                  </button>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isS3 }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:6px;overflow-x:auto;padding:8px 16px 12px;scrollbar-width:none">
+                <sc-for list="{{ days }}" as="d" hint-placeholder-count="6">
+                  <button sc-camel-on-click="{{ d.pick }}" disabled="{{ d.closed }}" aria-pressed="{{ d.sel }}" aria-label="{{ d.aria }}" style="flex:none;width:64px;height:80px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:8px;cursor:pointer;border:1px solid {{ d.bd }};background:{{ d.bg }};color:{{ d.fg }};opacity:{{ d.op }}"><span style="font-size:11px;font-weight:600;letter-spacing:0.08em">{{ d.dow }}</span><span style="font-size:22px;font-weight:600;line-height:1">{{ d.dnum }}</span><span style="font-size:10px;white-space:nowrap">{{ d.sub }}</span></button>
+                </sc-for>
+              </div>
+              <sc-if value="{{ hasSlots }}" hint-placeholder-val="{{ true }}">
+                <div style="padding:4px 16px 16px;display:flex;flex-direction:column;gap:16px">
+                  <sc-for list="{{ slotGroups }}" as="sg" hint-placeholder-count="2">
+                    <div style="display:flex;flex-direction:column;gap:8px"><p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#4A4A5A">{{ sg.label }}</p>
+                      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px"><sc-for list="{{ sg.items }}" as="t" hint-placeholder-count="8"><button sc-camel-on-click="{{ t.pick }}" aria-pressed="{{ t.sel }}" style="height:44px;font-size:15px;font-weight:500;cursor:pointer;border:1px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }}">{{ t.label }}</button></sc-for></div>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ noSlots }}" hint-placeholder-val="{{ false }}">
+                <div style="margin:4px 16px 16px;padding:16px;border:1px solid #E7E7EC;display:flex;flex-direction:column;gap:10px;align-items:flex-start">
+                  <p style="font-size:15px;font-weight:600">No times left on this day</p>
+                  <sc-if value="{{ hasNextAvail }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ jumpNext }}" style="height:44px;padding:0 14px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:8px">Next: {{ nextAvailTxt }}<svg width="16" height="16"><use href="#i-arrow"></use></svg></button></sc-if>
+                  <p style="font-size:13px;color:#4A4A5A">Waitlist for full days arrives in Phase 2.</p>
+                </div>
+              </sc-if>
+            </sc-if>
+            <sc-if value="{{ isS4 }}" hint-placeholder-val="{{ false }}">
+              <div style="margin:8px 16px 16px;padding:20px;border:1px solid #0A0A0F;display:flex;flex-direction:column;gap:12px">
+                <h2 style="font-size:19px;font-weight:600">Sign in to book</h2>
+                <p style="font-size:14px;line-height:1.55;color:#4A4A5A">We use your mobile number so the business can reach you about this appointment. New here? You will create a free account in the same step.</p>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isS5 }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:8px 16px 20px;display:flex;flex-direction:column;gap:16px">
+                <div style="border:1px solid #0A0A0F;display:flex;flex-direction:column">
+                  <div style="padding:14px;border-bottom:1px solid #E7E7EC;display:flex;flex-direction:column;gap:2px"><span style="font-size:16px;font-weight:600">{{ bkBizName }}</span><span style="font-size:13px;color:#4A4A5A">{{ bkAddr }}</span></div>
+                  <sc-for list="{{ sumLines }}" as="l" hint-placeholder-count="1"><div style="display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid #E7E7EC;font-size:14px"><span>{{ l.name }} <span style="color:#4A4A5A">· {{ l.durTxt }}</span></span><span style="font-weight:600">{{ l.priceTxt }}</span></div></sc-for>
+                  <div style="padding:10px 14px;border-bottom:1px solid #E7E7EC;display:flex;flex-direction:column;gap:6px;font-size:14px"><span style="display:flex;gap:8px;align-items:center"><svg width="16" height="16"><use href="#i-cal"></use></svg>{{ sumWhen }}</span><span style="display:flex;gap:8px;align-items:center"><svg width="16" height="16"><use href="#i-user"></use></svg>{{ sumStaff }}</span></div>
+                  <div style="padding:12px 14px;display:flex;flex-direction:column;gap:4px"><div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700"><span>Total</span><span>{{ sumTotal }}</span></div><sc-if value="{{ sumHasDep }}" hint-placeholder-val="{{ false }}"><div style="display:flex;justify-content:space-between;font-size:13px;color:#1D4ED8"><span>Deposit due now</span><span>{{ sumDep }}</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:#4A4A5A"><span>Pay at the venue</span><span>{{ sumPayLater }}</span></div></sc-if></div>
+                </div>
+                <p style="font-size:13px;color:#4A4A5A">Booking as <strong style="font-weight:600;color:#0A0A0F">{{ signedInAs }}</strong></p>
+                <div style="display:flex;flex-direction:column;gap:4px"><p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#4A4A5A">CANCELLATION</p><p style="font-size:14px;line-height:1.55">{{ cancelTxt }}</p></div>
+                <div style="display:flex;flex-direction:column;gap:4px"><p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#4A4A5A">LATE ARRIVAL</p><p style="font-size:14px;line-height:1.55">{{ lateTxt }}</p></div>
+                <sc-if value="{{ sumHasDep }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:4px"><p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#4A4A5A">DEPOSIT</p><p style="font-size:14px;line-height:1.55">{{ sumDep }} comes off your bill. Payments are not connected in this prototype, so no card is taken.</p></div></sc-if>
+                <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Note for the business (optional)<textarea value="{{ note }}" sc-camel-on-change="{{ onNote }}" rows="3" maxlength="300" placeholder="Access needs, or a reference photo you will bring" style="border:1px solid #6B6B7B;padding:10px;font-size:15px;resize:none;font-weight:400"></textarea></label>
+                <label style="display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;cursor:pointer"><input type="checkbox" checked="{{ agree }}" sc-camel-on-change="{{ onAgree }}" style="width:22px;height:22px;margin:0;accent-color:#7C3AED;flex:none">I accept {{ bkBizName }}’s cancellation and late-arrival policy.</label>
+              </div>
+            </sc-if>
+          </sc-if>
+          <sc-if value="{{ bkDone }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:32px 16px 24px;display:flex;flex-direction:column;gap:18px">
+              <span style="width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:#7C3AED;color:#fff"><svg width="28" height="28"><use href="#i-check"></use></svg></span>
+              <div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#6D28D9">{{ doneKicker }}</p><h1 style="font-size:30px;font-weight:600;letter-spacing:-0.03em;line-height:1.05">{{ doneTitle }}</h1><p style="font-size:14px;color:#4A4A5A">Reference {{ doneRef }}</p></div>
+              <div style="display:flex;flex-direction:column;border-top:1px solid #0A0A0F;font-size:15px">
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #E7E7EC"><span style="color:#4A4A5A">When</span><span style="text-align:right;font-weight:600">{{ sumWhen }}</span></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #E7E7EC"><span style="color:#4A4A5A">Where</span><span style="text-align:right">{{ bkBizName }}</span></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #E7E7EC"><span style="color:#4A4A5A">What</span><span style="text-align:right">{{ doneSvcTxt }}</span></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #E7E7EC"><span style="color:#4A4A5A">With</span><span style="text-align:right">{{ sumStaff }}</span></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #E7E7EC"><span style="color:#4A4A5A">Total</span><span style="text-align:right;font-weight:600">{{ sumTotal }}</span></div>
+              </div>
+              <p style="font-size:13px;line-height:1.55;color:#4A4A5A;padding:10px 12px;background:#F7F7F9;display:flex;gap:8px"><svg width="16" height="16" style="flex:none;margin-top:2px"><use href="#i-info"></use></svg>SMS and push notifications are not connected in this prototype, so no confirmation has been sent. {{ doneDepNote }}</p>
+              <button sc-camel-on-click="{{ doneIcs }}" style="height:48px;padding:0 16px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:15px;display:flex;align-items:center;gap:10px"><svg width="18" height="18"><use href="#i-dl"></use></svg>Add to calendar</button>
+              <button sc-camel-on-click="{{ goBookings }}" style="height:52px;padding:0 16px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:space-between">View my bookings<svg width="18" height="18"><use href="#i-arrow"></use></svg></button>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <sc-if value="{{ isAcct }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ signedOut }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:28px 16px;display:flex;flex-direction:column;gap:14px">
+              <h1 style="font-size:28px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Your bookings in one place</h1>
+              <p style="font-size:15px;line-height:1.55;color:#4A4A5A">Sign in with your mobile number to see appointments, saved businesses and preferences.</p>
+              <button sc-camel-on-click="{{ openSignIn }}" style="height:52px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:16px;padding:0 16px;text-align:left">Sign in</button>
+              <button sc-camel-on-click="{{ openCreate }}" style="height:52px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:16px;padding:0 16px;text-align:left">Create account</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+            <sc-if value="{{ showBkList }}" hint-placeholder-val="{{ false }}">
+              <div role="tablist" style="display:grid;grid-template-columns:1fr 1fr;margin:12px 16px;border:1px solid #0A0A0F">
+                <sc-for list="{{ bkSeg }}" as="t" hint-placeholder-count="2"><button role="tab" aria-selected="{{ t.sel }}" sc-camel-on-click="{{ t.pick }}" style="height:40px;border:0;font-size:14px;font-weight:500;cursor:pointer;background:{{ t.segBg }};color:{{ t.segFg }}">{{ t.label }}</button></sc-for>
+              </div>
+              <div style="display:flex;flex-direction:column;border-top:1px solid #E7E7EC">
+                <sc-for list="{{ bkList }}" as="k" hint-placeholder-count="2">
+                  <article style="display:flex;border-bottom:1px solid #E7E7EC">
+                    <div style="flex:0 0 76px;padding:14px 12px;border-right:1px solid #E7E7EC;display:flex;flex-direction:column;gap:2px;background:#F7F7F9"><span style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A4A5A">{{ k.dow }}</span><span style="font-size:26px;font-weight:600;line-height:1">{{ k.dnum }}</span><span style="font-size:12px;color:#4A4A5A">{{ k.monShort }}</span><span style="font-size:14px;font-weight:600;margin-top:6px">{{ k.time }}</span></div>
+                    <div style="flex:1;min-width:0;padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+                      <div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;font-weight:600;padding:2px 6px;background:{{ k.sbg }};color:{{ k.sfg }}">{{ k.statusTxt }}</span><span style="font-size:12px;color:#6B6B7B;white-space:nowrap">{{ k.ref }}</span></div>
+                      <button sc-camel-on-click="{{ k.openBiz }}" style="background:none;border:0;padding:0;text-align:left;cursor:pointer;font-size:17px;font-weight:600;color:#0A0A0F">{{ k.bizName }}</button>
+                      <p style="font-size:14px">{{ k.svcTxt }}</p>
+                      <p style="font-size:13px;color:#4A4A5A">{{ k.staffTxt }} · {{ k.durTxt }} · {{ k.totalTxt }}</p>
+                      <sc-if value="{{ k.hasDeadline }}" hint-placeholder-val="{{ false }}"><p style="font-size:13px;line-height:1.45;color:#1D4ED8">{{ k.deadlineTxt }}</p></sc-if>
+                      <sc-if value="{{ k.hasNote }}" hint-placeholder-val="{{ false }}"><p style="font-size:13px;color:#4A4A5A">{{ k.noteTxt }}</p></sc-if>
+                      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px">
+                        <sc-if value="{{ k.canResched }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ k.resched }}" style="height:40px;padding:0 12px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:14px">Reschedule</button></sc-if>
+                        <sc-if value="{{ k.canCancel }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ k.cancel }}" style="height:40px;padding:0 12px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:14px">Cancel</button></sc-if>
+                        <sc-if value="{{ k.canIcs }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ k.ics }}" aria-label="Add to calendar" style="width:40px;height:40px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="18" height="18"><use href="#i-dl"></use></svg></button></sc-if>
+                        <sc-if value="{{ k.canRebook }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ k.rebook }}" style="height:40px;padding:0 12px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:14px">Book again</button></sc-if>
+                        <sc-if value="{{ k.canReview }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ k.review }}" style="height:40px;padding:0 12px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:14px">Review</button></sc-if>
+                        <sc-if value="{{ k.reviewed }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#4A4A5A;display:flex;align-items:center;gap:4px;height:40px"><svg width="14" height="14"><use href="#i-check"></use></svg>Reviewed</span></sc-if>
+                      </div>
+                    </div>
+                  </article>
+                </sc-for>
+              </div>
+              <sc-if value="{{ bkListEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:28px 16px;display:flex;flex-direction:column;gap:10px;align-items:flex-start"><p style="font-size:18px;font-weight:600">{{ emptyTitle }}</p><p style="font-size:14px;line-height:1.55;color:#4A4A5A">{{ emptyBody }}</p><button sc-camel-on-click="{{ goSearch }}" style="height:44px;padding:0 16px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:15px">Find a service</button></div></sc-if>
+            </sc-if>
+            <sc-if value="{{ isFavT }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column">
+                <sc-for list="{{ favList }}" as="fv" hint-placeholder-count="2">
+                  <div style="display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid #E7E7EC;align-items:center">
+                    <button sc-camel-on-click="{{ fv.open }}" aria-label="{{ fv.name }}" style="width:72px;height:72px;flex:none;border:0;padding:0;cursor:pointer;background-color:#F7F7F9;background-image:{{ fv.bg }};background-size:cover;background-position:center"></button>
+                    <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-size:11px;font-weight:600;letter-spacing:0.14em;color:#6D28D9">{{ fv.catLabel }}</span><button sc-camel-on-click="{{ fv.open }}" style="background:none;border:0;padding:0;text-align:left;font-size:16px;font-weight:600;cursor:pointer;color:#0A0A0F">{{ fv.name }}</button><span style="font-size:13px;color:#4A4A5A">{{ fv.town }}</span></div>
+                    <div style="display:flex;flex-direction:column;gap:6px"><button sc-camel-on-click="{{ fv.book }}" style="height:36px;padding:0 12px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:13px">Book</button><button sc-camel-on-click="{{ fv.remove }}" aria-label="Remove from saved" style="height:36px;padding:0 12px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:13px">Remove</button></div>
+                  </div>
+                </sc-for>
+              </div>
+              <sc-if value="{{ noFav }}" hint-placeholder-val="{{ false }}"><p style="font-size:15px;line-height:1.55;color:#4A4A5A;padding:28px 16px">Nothing saved yet. Tap the heart on any business to keep it here.</p></sc-if>
+            </sc-if>
+            <sc-if value="{{ isProf }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:20px 16px;display:flex;gap:14px;align-items:center;border-bottom:1px solid #E7E7EC"><span style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:#0A0A0F;color:#fff;font-size:18px;font-weight:600">{{ userInitials }}</span><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:19px;font-weight:600">{{ pName }}</span><span style="font-size:14px;color:#4A4A5A">{{ pPhone }}</span></span></div>
+              <div style="padding:16px;display:flex;flex-direction:column;gap:14px">
+                <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#4A4A5A">PERSONAL DETAILS</p>
+                <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Full name<input value="{{ pName }}" sc-camel-on-change="{{ onPName }}" autocomplete="name" style="height:48px;border:1px solid #6B6B7B;padding:0 12px;font-size:16px;font-weight:400"></label>
+                <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Mobile number<div style="height:48px;border:1px solid #E7E7EC;background:#F7F7F9;padding:0 12px;font-size:16px;font-weight:400;display:flex;align-items:center;justify-content:space-between">{{ pPhone }}<span style="font-size:11px;font-weight:600;padding:2px 6px;background:#F3EEFE;color:#5B21B6">Verified</span></div></div>
+                <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Email (optional)<input type="email" value="{{ pEmail }}" sc-camel-on-change="{{ onPEmail }}" autocomplete="email" style="height:48px;border:1px solid #6B6B7B;padding:0 12px;font-size:16px;font-weight:400"><span style="font-size:12px;font-weight:400;color:#4A4A5A">{{ pEmailNote }}</span></label>
+                <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Notes for professionals (optional)<textarea value="{{ pNotes }}" sc-camel-on-change="{{ onPNotes }}" rows="3" maxlength="300" placeholder="Access needs or a product allergy" style="border:1px solid #6B6B7B;padding:10px;font-size:15px;font-weight:400;resize:none"></textarea><span style="font-size:12px;font-weight:400;color:#4A4A5A">Shared only with businesses you book with.</span></label>
+                <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#4A4A5A;padding-top:12px">NOTIFICATIONS</p>
+                <sc-for list="{{ prefs }}" as="pf" hint-placeholder-count="4"><label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;padding-bottom:12px;border-bottom:1px solid #E7E7EC"><input type="checkbox" checked="{{ pf.on }}" sc-camel-on-change="{{ pf.toggle }}" style="width:22px;height:22px;margin:0;accent-color:#7C3AED;flex:none"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:500">{{ pf.label }}</span><span style="font-size:12px;color:#4A4A5A">{{ pf.desc }}</span></span></label></sc-for>
+                <button sc-camel-on-click="{{ saveProfile }}" style="height:52px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:16px;padding:0 16px;text-align:left;margin-top:4px">Save changes</button>
+                <button sc-camel-on-click="{{ signOut }}" style="height:52px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:16px;padding:0 16px;text-align:left">Sign out</button>
+                <div style="padding-top:16px;margin-top:8px;border-top:1px solid #E7E7EC;display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+                  <p style="font-size:14px;font-weight:600">Your data</p>
+                  <p style="font-size:13px;line-height:1.55;color:#4A4A5A">Deleting your account removes your profile and saved businesses. Appointment records stay with the business without your name.</p>
+                  <button sc-camel-on-click="{{ askDelete }}" style="height:40px;padding:0 12px;border:1px solid #B42318;background:#fff;color:#B42318;font-size:14px;font-weight:500;cursor:pointer">Delete account</button>
+                </div>
+              </div>
+            </sc-if>
+          </sc-if>
+        </sc-if>
+      </div>
+
+      <sc-if value="{{ isBiz }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:none;border-top:1px solid #0A0A0F;background:#fff;padding:12px 16px 34px;display:flex;gap:12px;align-items:center">
+          <span style="flex:1;min-width:0;display:flex;flex-direction:column;font-size:13px;color:#4A4A5A"><strong style="font-size:16px;font-weight:600;color:#0A0A0F">{{ B.selTotalTxt }}</strong>{{ B.selHint }}</span>
+          <button sc-camel-on-click="{{ B.bookNow }}" style="height:52px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:16px;padding:0 18px;white-space:nowrap">{{ B.bookLabel }}</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ bkBar }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:none;border-top:1px solid #0A0A0F;background:#fff;padding:10px 16px 34px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:#4A4A5A">{{ sumDur }}</span><span style="font-weight:700">{{ sumTotal }}</span></div>
+          <div style="display:flex;gap:8px">
+            <sc-if value="{{ showPrev }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ prev }}" style="height:52px;padding:0 18px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:15px">Back</button></sc-if>
+            <button sc-camel-on-click="{{ next }}" disabled="{{ cantNext }}" style="flex:1;height:52px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:16px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;opacity:{{ nextOp }};white-space:nowrap">{{ nextLabel }}<svg width="18" height="18"><use href="#i-arrow"></use></svg></button>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+        <nav aria-label="Tabs" style="flex:none;height:83px;box-sizing:border-box;padding-bottom:30px;background:#fff;border-top:1px solid #E7E7EC;display:grid;grid-template-columns:repeat(4,1fr)">
+          <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="4"><button sc-camel-on-click="{{ tb.go }}" aria-current="{{ tb.cur }}" style="background:none;border:0;border-top:2px solid {{ tb.bd }};margin-top:-1px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;font-weight:500;cursor:pointer;color:{{ tb.fg }}"><svg width="24" height="24"><use href="{{ tb.icon }}"></use></svg>{{ tb.label }}</button></sc-for>
+        </nav>
+      </sc-if>
+
+      <sc-if value="{{ fOpen }}" hint-placeholder-val="{{ false }}">
+        <div role="dialog" aria-modal="true" aria-labelledby="sheet-title" style="position:absolute;inset:0;z-index:1000;background:rgba(10,10,15,0.5);display:flex;flex-direction:column;justify-content:flex-end">
+          <div style="background:#fff;max-height:88%;overflow-y:auto;display:flex;flex-direction:column;padding-bottom:34px">
+            <div style="display:flex;justify-content:center;padding:10px 0 4px"><span style="width:40px;height:4px;background:#E7E7EC"></span></div>
+            <div style="padding:8px 16px 16px;display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;justify-content:space-between;align-items:center"><h2 id="sheet-title" style="font-size:20px;font-weight:600">Filters</h2><button sc-camel-on-click="{{ clearFilters }}" style="background:none;border:0;font-size:14px;color:#6D28D9;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px 0">Clear all</button></div>
+              <div style="display:flex;flex-direction:column;gap:8px"><p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#4A4A5A">CATEGORY</p><div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ catChips }}" as="c" hint-placeholder-count="6"><button sc-camel-on-click="{{ c.pick }}" aria-pressed="{{ c.sel }}" style="height:36px;padding:0 12px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }}">{{ c.name }}</button></sc-for></div></div>
+              <label style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:15px;padding:6px 0;border-top:1px solid #E7E7EC">Distance<sc-raw-select ref="{{ selRef }}" sc-camel-on-change="{{ onRadius }}" style="height:40px;border:1px solid #6B6B7B;background:#fff;font-size:15px;padding:0 8px;min-width:150px"><sc-for list="{{ optRadius }}" as="o" hint-placeholder-count="3"><option value="{{ o.v }}" data-sel="{{ o.sel }}">{{ o.l }}</option></sc-for></sc-raw-select></label>
+              <label style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:15px;padding:6px 0;border-top:1px solid #E7E7EC">Price<sc-raw-select ref="{{ selRef }}" sc-camel-on-change="{{ onMax }}" style="height:40px;border:1px solid #6B6B7B;background:#fff;font-size:15px;padding:0 8px;min-width:150px"><sc-for list="{{ optMax }}" as="o" hint-placeholder-count="3"><option value="{{ o.v }}" data-sel="{{ o.sel }}">{{ o.l }}</option></sc-for></sc-raw-select></label>
+              <label style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:15px;padding:6px 0;border-top:1px solid #E7E7EC">Rating<sc-raw-select ref="{{ selRef }}" sc-camel-on-change="{{ onRating }}" style="height:40px;border:1px solid #6B6B7B;background:#fff;font-size:15px;padding:0 8px;min-width:150px"><sc-for list="{{ optRating }}" as="o" hint-placeholder-count="3"><option value="{{ o.v }}" data-sel="{{ o.sel }}">{{ o.l }}</option></sc-for></sc-raw-select></label>
+              <label style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:15px;padding:6px 0;border-top:1px solid #E7E7EC">Available<sc-raw-select ref="{{ selRef }}" sc-camel-on-change="{{ onWhen }}" style="height:40px;border:1px solid #6B6B7B;background:#fff;font-size:15px;padding:0 8px;min-width:150px"><sc-for list="{{ optWhen }}" as="o" hint-placeholder-count="3"><option value="{{ o.v }}" data-sel="{{ o.sel }}">{{ o.l }}</option></sc-for></sc-raw-select></label>
+              <label style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:15px;padding:6px 0;border-top:1px solid #E7E7EC">Sort by<sc-raw-select ref="{{ selRef }}" sc-camel-on-change="{{ onSort }}" style="height:40px;border:1px solid #6B6B7B;background:#fff;font-size:15px;padding:0 8px;min-width:150px"><sc-for list="{{ optSort }}" as="o" hint-placeholder-count="3"><option value="{{ o.v }}" data-sel="{{ o.sel }}">{{ o.l }}</option></sc-for></sc-raw-select></label>
+              <button sc-camel-on-click="{{ closeFilters }}" style="height:52px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:16px;padding:0 16px;text-align:left">{{ showResLabel }}</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ authOpen }}" hint-placeholder-val="{{ false }}">
+        <div role="dialog" aria-modal="true" aria-labelledby="auth-title" style="position:absolute;inset:0;z-index:1000;background:rgba(10,10,15,0.5);display:flex;flex-direction:column;justify-content:flex-end">
+          <div style="background:#fff;max-height:88%;overflow-y:auto;display:flex;flex-direction:column;padding-bottom:34px">
+            <div style="display:flex;justify-content:center;padding:10px 0 4px"><span style="width:40px;height:4px;background:#E7E7EC"></span></div>
+            <div style="padding:4px 16px 16px;display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;justify-content:space-between;align-items:center"><span style="display:flex;align-items:center;gap:8px"><img src="img/logo.svg" alt="" style="height:18px"><span style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#4A4A5A">{{ aKicker }}</span></span><button sc-camel-on-click="{{ aClose }}" aria-label="Close" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;background:none;cursor:pointer;margin-right:-10px"><svg width="20" height="20"><use href="#i-x"></use></svg></button></div>
+              <h2 id="auth-title" style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.15">{{ aTitle }}</h2>
+              <sc-if value="{{ aIsPhone }}" hint-placeholder-val="{{ true }}">
+                <p style="font-size:14px;line-height:1.55;color:#4A4A5A">We will text you a 6-digit code. No password needed.</p>
+                <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">UK mobile number<input type="tel" inputmode="tel" autocomplete="tel" value="{{ aPhone }}" sc-camel-on-change="{{ onAPhone }}" sc-camel-on-key-down="{{ aPhoneKey }}" placeholder="07700 900123" style="height:52px;border:1px solid #6B6B7B;padding:0 12px;font-size:18px;font-weight:400"></label>
+                <sc-if value="{{ hasAErr }}" hint-placeholder-val="{{ false }}"><p role="alert" style="font-size:14px;color:#B42318">{{ aErr }}</p></sc-if>
+                <button sc-camel-on-click="{{ aSend }}" style="height:52px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:16px;padding:0 16px;display:flex;align-items:center;justify-content:space-between">Send code<svg width="18" height="18"><use href="#i-arrow"></use></svg></button>
+                <p style="font-size:12px;color:#4A4A5A">Demo customer with history: 07700 900123</p>
+              </sc-if>
+              <sc-if value="{{ aIsCode }}" hint-placeholder-val="{{ false }}">
+                <p style="font-size:14px;line-height:1.55;color:#4A4A5A">Code sent to <strong style="font-weight:600;color:#0A0A0F">{{ aPhoneShow }}</strong>. <button sc-camel-on-click="{{ aBack }}" style="background:none;border:0;padding:0;font-size:14px;color:#6D28D9;text-decoration:underline;text-underline-offset:3px;cursor:pointer">Change</button></p>
+                <p style="font-size:13px;line-height:1.5;padding:10px 12px;background:#EAF1FE;color:#1D4ED8;display:flex;gap:8px"><svg width="16" height="16" style="flex:none;margin-top:1px"><use href="#i-info"></use></svg>SMS is not connected in this prototype. Use code 246810.</p>
+                <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">6-digit code<input inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="{{ aCode }}" sc-camel-on-change="{{ onACode }}" sc-camel-on-key-down="{{ aCodeKey }}" style="height:56px;border:1px solid #6B6B7B;padding:0 12px;font-size:26px;font-weight:500;letter-spacing:0.4em"></label>
+                <sc-if value="{{ hasAErr }}" hint-placeholder-val="{{ false }}"><p role="alert" style="font-size:14px;color:#B42318">{{ aErr }}</p></sc-if>
+                <button sc-camel-on-click="{{ aVerify }}" style="height:52px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:16px;padding:0 16px;display:flex;align-items:center;justify-content:space-between">Verify<svg width="18" height="18"><use href="#i-arrow"></use></svg></button>
+                <sc-if value="{{ aCanResend }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ aResend }}" style="align-self:flex-start;background:none;border:0;padding:8px 0;font-size:14px;color:#6D28D9;text-decoration:underline;text-underline-offset:3px;cursor:pointer">Send a new code</button></sc-if>
+                <sc-if value="{{ aWaitResend }}" hint-placeholder-val="{{ false }}"><p style="font-size:13px;color:#4A4A5A">New code available in {{ aResendIn }}s</p></sc-if>
+              </sc-if>
+              <sc-if value="{{ aIsDetails }}" hint-placeholder-val="{{ false }}">
+                <p style="font-size:14px;line-height:1.55;color:#4A4A5A">{{ aPhoneShow }} is verified. Two more details.</p>
+                <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Full name<input value="{{ aName }}" sc-camel-on-change="{{ onAName }}" autocomplete="name" style="height:48px;border:1px solid #6B6B7B;padding:0 12px;font-size:16px;font-weight:400"></label>
+                <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Email (optional)<input type="email" value="{{ aEmail }}" sc-camel-on-change="{{ onAEmail }}" autocomplete="email" style="height:48px;border:1px solid #6B6B7B;padding:0 12px;font-size:16px;font-weight:400"></label>
+                <label style="display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;cursor:pointer"><input type="checkbox" checked="{{ aConsent }}" sc-camel-on-change="{{ onAConsent }}" style="width:22px;height:22px;margin:0;accent-color:#7C3AED;flex:none">I agree to the NEXCut Terms and have read the Privacy notice.</label>
+                <sc-if value="{{ hasAErr }}" hint-placeholder-val="{{ false }}"><p role="alert" style="font-size:14px;color:#B42318">{{ aErr }}</p></sc-if>
+                <button sc-camel-on-click="{{ aCreate }}" style="height:52px;border:0;background:#7C3AED;color:#fff;font-weight:500;cursor:pointer;font-size:16px;padding:0 16px;display:flex;align-items:center;justify-content:space-between">Create account<svg width="18" height="18"><use href="#i-arrow"></use></svg></button>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ dlgOpen }}" hint-placeholder-val="{{ false }}">
+        <div role="dialog" aria-modal="true" aria-labelledby="dlg-title" style="position:absolute;inset:0;z-index:1000;background:rgba(10,10,15,0.5);display:flex;flex-direction:column;justify-content:flex-end">
+          <div style="background:#fff;max-height:88%;overflow-y:auto;display:flex;flex-direction:column;padding-bottom:34px">
+            <div style="display:flex;justify-content:center;padding:10px 0 4px"><span style="width:40px;height:4px;background:#E7E7EC"></span></div>
+            <div style="padding:8px 16px 16px;display:flex;flex-direction:column;gap:14px">
+              <h2 id="dlg-title" style="font-size:22px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">{{ dTitle }}</h2>
+              <p style="font-size:15px;line-height:1.55;color:#4A4A5A">{{ dBody }}</p>
+              <sc-if value="{{ dIsReview }}" hint-placeholder-val="{{ false }}">
+                <div role="radiogroup" aria-label="Rating" style="display:flex;gap:6px"><sc-for list="{{ rvStars }}" as="sr" hint-placeholder-count="5"><button sc-camel-on-click="{{ sr.pick }}" role="radio" aria-checked="{{ sr.on }}" aria-label="{{ sr.aria }}" style="width:48px;height:48px;border:1px solid #E7E7EC;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:{{ sr.fg }}"><svg width="26" height="26"><use href="#i-star"></use></svg></button></sc-for></div>
+                <textarea value="{{ rvBody }}" sc-camel-on-change="{{ onRvBody }}" rows="4" maxlength="600" aria-label="Your review" placeholder="What went well? What could be better?" style="border:1px solid #6B6B7B;padding:10px;font-size:15px;resize:none"></textarea>
+                <sc-if value="{{ hasRvErr }}" hint-placeholder-val="{{ false }}"><p role="alert" style="font-size:14px;color:#B42318">{{ rvErr }}</p></sc-if>
+              </sc-if>
+              <sc-if value="{{ dHasPrimary }}" hint-placeholder-val="{{ true }}"><button sc-camel-on-click="{{ dPrimary }}" style="height:52px;border:0;font-size:16px;font-weight:500;cursor:pointer;padding:0 16px;text-align:left;background:{{ dPrimaryBg }};color:#fff">{{ dPrimaryLabel }}</button></sc-if>
+              <button sc-camel-on-click="{{ dClose }}" style="height:52px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:16px;padding:0 16px;text-align:left">{{ dCloseLabel }}</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="position:absolute;left:12px;right:12px;bottom:96px;z-index:1100;background:#0A0A0F;color:#fff;padding:14px 16px;font-size:14px;display:flex;gap:10px;align-items:center"><svg width="18" height="18" style="color:#A78BFA;flex:none"><use href="#i-check"></use></svg>{{ toast }}</div>
+      </sc-if>
+    </div>
+  </x-import>
+
+  <aside style="flex:0 1 380px;display:flex;flex-direction:column;gap:24px;padding-top:24px;font-family:'Hanken Grotesk','Helvetica Neue',Arial,sans-serif;color:#0A0A0F">
+    <div style="display:flex;align-items:center;gap:10px"><img src="img/logo.svg" alt="" style="height:30px"><span style="display:flex;align-items:baseline;font-size:28px;font-weight:500;line-height:1;letter-spacing:0.01em"><span>NEXC</span><svg sc-camel-view-box="0 0 104 100" style="width:0.54em;height:0.52em;overflow:visible;margin:0 0.03em 0 0.04em;--c1:#7C3AED;--c2:#2563EB"><use href="#uC"></use></svg><span>t</span></span></div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:#6D28D9">CUSTOMER APP · iOS AND ANDROID</p>
+      <h1 style="font-size:36px;font-weight:600;letter-spacing:-0.03em;line-height:1.05">Search, book and manage appointments.</h1>
+      <p style="font-size:15px;line-height:1.6;color:#4A4A5A">Interactive prototype of the native app. Built in production with React Native (Expo) from one codebase for the App Store and Google Play.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #0A0A0F;font-size:14px;line-height:1.55">
+      <div style="padding:12px 0;border-bottom:1px solid #E7E7EC;display:flex;justify-content:space-between;gap:12px"><span style="color:#4A4A5A">Demo mobile</span><strong style="font-weight:600">07700 900123</strong></div>
+      <div style="padding:12px 0;border-bottom:1px solid #E7E7EC;display:flex;justify-content:space-between;gap:12px"><span style="color:#4A4A5A">Demo code</span><strong style="font-weight:600">246810</strong></div>
+      <div style="padding:12px 0;border-bottom:1px solid #E7E7EC;display:flex;justify-content:space-between;gap:12px"><span style="color:#4A4A5A">Business app</span><span>NEXCut Business, next round</span></div>
+      <div style="padding:12px 0;border-bottom:1px solid #E7E7EC;color:#4A4A5A">Sample businesses. SMS, push notifications and payments are not connected. Postcode and town search is live (postcodes.io).</div>
+    </div>
+    <button sc-camel-on-click="{{ resetDemo }}" style="align-self:flex-start;height:44px;padding:0 16px;border:1px solid #0A0A0F;background:#fff;color:#0A0A0F;font-weight:500;cursor:pointer;font-size:14px">Reset demo data</button>
+  </aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="">
+const LS = 'nexcut-proto-v1';
+const DEMO = '+447700900123';
+const CODE = '246810';
+const IMG = id => id ? "url('https://images.unsplash.com/photo-" + id + "?auto=format&fit=crop&w=1000&q=70')" : 'none';
+const normPhone = s => { let d = (s || '').replace(/[\s()\-.]/g, ''); if (d.startsWith('+44')) d = '0' + d.slice(3); else if (d.startsWith('44')) d = '0' + d.slice(2); return /^07\d{9}$/.test(d) ? '+44' + d.slice(1) : null; };
+const showPhone = e => e ? '0' + e.slice(3, 7) + ' ' + e.slice(7) : '';
+const STOP = new Set(['near', 'the', 'and', 'for', 'with', 'treatment', 'service', 'appointment', 'book', 'salon', 'best', 'cheap', 'top', 'my', 'postcode', 'me', 'in', 'a', 'an', 'of', 'to']);
+const SYN = { haircut: 'cut', haircuts: 'cut', colouring: 'colour', coloring: 'colour', color: 'colour', colours: 'colour', mens: 'men', man: 'men', gents: 'men', gent: 'men', gentlemen: 'men', gentleman: 'men', nails: 'nail', manicures: 'manicure', massages: 'massage', facials: 'facial', extensions: 'extension', lashes: 'lash', brows: 'brow', barbers: 'barber', barbershop: 'barber', hairdresser: 'hair', hairdressers: 'hair', waxing: 'wax', shaves: 'shave', treatments: 'treatment', services: 'service', salons: 'salon' };
+const CATW = { hair: ['hair', 'colour', 'balayage', 'blow', 'highlight', 'cut', 'style', 'styling'], barber: ['barber', 'men', 'fade', 'beard', 'shave', 'cut'], nails: ['nail', 'manicure', 'pedicure', 'gel', 'biab', 'acrylic'], spa: ['spa', 'massage', 'facial', 'wellness', 'reflexology'], beauty: ['beauty', 'brow', 'lash', 'wax', 'facial', 'skin', 'aesthetic'] };
+const GEN = new Set(['hair', 'barber', 'nail', 'spa', 'beauty', 'men', 'skin', 'wellness', 'aesthetic']);
+const words = q => (q || '').toLowerCase().replace(/['’]s\b/g, '').split(/[^a-z0-9]+/).filter(Boolean).map(w => SYN[w] || w).map(w => (w.length > 4 && w.endsWith('s') && !w.endsWith('ss')) ? w.slice(0, -1) : w).map(w => SYN[w] || w).filter(w => w.length > 1 && !STOP.has(w));
+const txt = s => (s.name + ' ' + s.group).toLowerCase();
+function matchBiz(b, ws, raw) {
+  if (!ws.length) return { ok: true, svcs: [] };
+  const disp = b.services.filter(s => ws.some(w => !GEN.has(w) && txt(s).includes(w)));
+  if (raw.length > 2 && b.name.toLowerCase().includes(raw.toLowerCase())) return { ok: true, svcs: [] };
+  const rem = ws.filter(w => !CATW[b.cat].includes(w));
+  const hit = rem.length ? b.services.filter(s => rem.every(w => txt(s).includes(w))) : [];
+  return { ok: rem.length === 0 || hit.length > 0, svcs: hit.length ? hit : disp };
+}
+const initials = n => n.split(/\s+/).map(x => x[0]).slice(0, 2).join('').toUpperCase();
+const sum = (a, f) => a.reduce((x, y) => x + f(y), 0);
+const priceOf = s => s.promo || s.price;
+
+class Component extends DCLogic {
+
+  nxSplashEl() {
+    if (this.state.nxSplashDone) return null;
+    if (!this._nxT) this._nxT = setTimeout(() => this.setState({ nxSplashDone: true }), 2750);
+    const L = 'M9 0V44C9 72 30 88 52 90L63 89', R = 'M95 0V44C95 72 74 88 52 90L41 89';
+    const m = (id, inner) => '<mask id="' + id + '" maskUnits="userSpaceOnUse" x="-60" y="-60" width="230" height="230"><rect x="-60" y="-60" width="230" height="230" fill="#fff"/>' + inner + '<circle cx="52" cy="90" r="4" fill="#000"/></mask>';
+    const g = 'transform-box:view-box;transform-origin:52px 90px;animation:';
+    const ease = 'cubic-bezier(.2,.8,.2,1)';
+    const u = '<svg viewBox="0 0 104 100" style="width:.54em;height:.52em;overflow:visible;margin:0 .03em 0 .04em;flex:none;transform-origin:50% 60%;animation:nxShrink .55s .85s cubic-bezier(.6,0,.2,1) both"><defs>'
+      + m('nxs1', '<path d="M95 0V44C95 72 74 88 52 90L38.5 88.8" fill="none" stroke="#000" stroke-width="23"/><polygon points="0,-2 0,22 18,-2" fill="#000"/>')
+      + m('nxs2', '<polygon points="86,-2 104,-2 104,22" fill="#000"/>') + '</defs>'
+      + '<g style="' + g + 'nxBladeL .7s .05s cubic-bezier(.3,.7,.3,1) both"><path mask="url(#nxs1)" d="' + L + '" fill="none" stroke="#A78BFA" stroke-width="17"/></g>'
+      + '<g style="' + g + 'nxBladeR .7s .05s cubic-bezier(.3,.7,.3,1) both"><path mask="url(#nxs2)" d="' + R + '" fill="none" stroke="#3B82F6" stroke-width="17"/></g>'
+      + '<circle cx="52" cy="90" r="5" fill="#fff" style="' + g + 'nxSpark .45s .55s ease-out both"/></svg>';
+    const html = '<div style="display:flex;align-items:baseline;font-size:46px;font-weight:500;line-height:1;letter-spacing:.01em">'
+      + '<span style="display:flex;justify-content:flex-end;overflow:clip;animation:nxGrow .6s 1.05s ' + ease + ' both"><span style="flex:none">NEXC</span></span>' + u
+      + '<span style="display:flex;overflow:clip;animation:nxGrowT .6s 1.05s ' + ease + ' both"><span style="flex:none">t</span></span></div>'
+      + '';
+    return React.createElement('div', { 'aria-label': 'Loading NEXCut', role: 'status', style: { position: 'absolute', inset: 0, zIndex: 9999, background: '#0A0A0F', color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: "'Hanken Grotesk','Helvetica Neue',Arial,sans-serif", overflow: 'hidden', animation: 'nxSplashOut .45s 2.25s ease forwards' }, dangerouslySetInnerHTML: { __html: html } });
+  }
+  state = { ready: false, store: null, w: window.innerWidth, route: 'home', q: '', loc: '', origin: null, geoBusy: false, geoErr: '', f: { cat: 'all', radius: 10, max: 0, rating: 0, when: 'any', sort: 'rec' }, view: 'list', bizId: null, sel: [], from: 'home', bk: null, auth: null, acct: 'up', dlg: null, toast: null, prof: null, now: Date.now() };
+  mapRef = el => { this.mapEl = el; };
+  scRef = el => { this.scEl = el; };
+  selRef = el => { if (el) { this._sels = (this._sels || []).filter(x => x.isConnected); if (!this._sels.includes(el)) this._sels.push(el); } };
+  syncSels() { (this._sels || []).forEach(el => { const o = [...el.options].find(x => x.getAttribute('data-sel') === 'true'); if (o && el.value !== o.value) el.value = o.value; }); }
+
+  componentDidMount() {
+    this._rs = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._rs);
+    this._st = e => { if (e.key === LS && e.newValue) { try { const s = JSON.parse(e.newValue); if (s && s.v === 1) { this._rk = null; this.setState({ store: s }); } } catch (x) {} } if (e.key === 'nexcut-biz-v1') { this._rk = null; this.forceUpdate(); } };
+    window.addEventListener('storage', this._st);
+    const boot = () => {
+      if (!window.NX) { this._bt = setTimeout(boot, 30); return; }
+      let st = null; try { st = JSON.parse(localStorage.getItem(LS)); } catch (e) {}
+      if (!st || st.v !== 1) st = this.seed();
+      this.setState({ ready: true, store: st }, () => this.save());
+    };
+    boot();
+    this._tk = setInterval(() => { if (this.state.auth) this.setState({ now: Date.now() }); }, 1000);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._rs); clearInterval(this._tk); clearTimeout(this._bt); clearTimeout(this._af); if (this.map) { this.map.remove(); this.map = null; } }
+  afterRender() { clearTimeout(this._af); this._af = setTimeout(() => { const sk = this.state.route + (this.state.bk ? this.state.bk.step + '' + !!this.state.bk.done : '') + this.state.acct; if (this._lr !== sk) { this._lr = sk; if (this.scEl) this.scEl.scrollTop = 0; } this.syncSels(); this.syncMap(); }, 0); }
+
+  seed() {
+    const now = new Date(), today = NX.dkey(now), b1 = NX.BUSINESSES[0];
+    const up = NX.nextSlot(b1, ['s7'], 'st2', NX.addDays(today, 4), [], now, 14) || { date: NX.addDays(today, 5), t: 600, staffId: 'st2' };
+    return {
+      v: 1, session: null,
+      users: { [DEMO]: { id: 'u-demo', name: 'Priya Sharma', phone: DEMO, email: 'priya@example.com', emailVerified: false, notes: '', prefs: { sms: true, email: true, rebook: false, offers: false } } },
+      bookings: [
+        { id: 'BK-48213', bizId: 'b1', svcIds: ['s1'], staffId: 'st1', date: NX.addDays(today, -34), t: 600, dur: 60, total: 4800, deposit: 0, status: 'confirmed', userId: 'u-demo', note: '' },
+        { id: 'BK-49107', bizId: 'b3', svcIds: ['s2'], staffId: 'st1', date: NX.addDays(today, -12), t: 840, dur: 60, total: 4000, deposit: 0, status: 'confirmed', userId: 'u-demo', note: '' },
+        { id: 'BK-49530', bizId: 'b4', svcIds: ['s1'], staffId: 'st2', date: NX.addDays(today, -5), t: 660, dur: 60, total: 7000, deposit: 2000, status: 'cancelled', userId: 'u-demo', note: '', refund: 'refunded' },
+        { id: 'BK-50211', bizId: 'b1', svcIds: ['s7'], staffId: up.staffId, date: up.date, t: up.t, dur: 75, total: 6000, deposit: 1500, depositStatus: 'not_collected', status: 'confirmed', userId: 'u-demo', note: '' }
+      ],
+      favs: { 'u-demo': ['b1', 'b3'] },
+      reviews: [{ bookingId: 'BK-48213', bizId: 'b1', rating: 5, body: 'Lovely cut.', userId: 'u-demo', status: 'published' }]
+    };
+  }
+  save() { try { localStorage.setItem(LS, JSON.stringify(this.state.store)); } catch (e) {} }
+  upd(fn, msg) { this.setState(s => { const st = JSON.parse(JSON.stringify(s.store)); fn(st); return { store: st }; }, () => { this.save(); if (msg) this.flash(msg); }); }
+  flash(m) { this.setState({ toast: m }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: null }), 3200); }
+  user() { const st = this.state.store; if (!st || !st.session) return null; return Object.values(st.users).find(u => u.id === st.session) || null; }
+  biz(id) { return NX.BUSINESSES.find(b => b.id === id); }
+  go(route, extra) { this.setState(Object.assign({ route }, extra || {})); }
+  setBk(p) { this.setState(s => ({ bk: Object.assign({}, s.bk, p) })); }
+  setF(p) { this.setState(s => ({ f: Object.assign({}, s.f, p) })); }
+
+  // ---------- search ----------
+  runSearch(q, loc) {
+    let qq = (q == null ? this.state.q : q).trim(), ll = (loc == null ? this.state.loc : loc).trim();
+    if (!ll) { const m = qq.match(/^(.*?)\s+(?:in|near)\s+(.+)$/i); if (m) { qq = m[1]; ll = m[2]; } }
+    const same = this.state.origin && ll && this.state.origin.query === ll.toLowerCase();
+    this.go('results', { q: qq, loc: ll, geoErr: '', geoBusy: !!ll && !same, origin: ll ? (same ? this.state.origin : null) : null });
+    if (ll && !same) {
+      const tok = this._gq = Date.now();
+      NX.geocode(ll).then(o => {
+        if (this._gq !== tok) return;
+        if (!o) this.setState({ geoBusy: false, origin: null, geoErr: 'We could not find “' + ll + '”. Check the postcode or try a town name. Showing results across the UK.' });
+        else this.setState({ geoBusy: false, origin: Object.assign(o, { query: ll.toLowerCase() }) });
+      });
+    }
+  }
+  useLocation() {
+    if (!navigator.geolocation) { this.setState({ geoErr: 'Location is not available in this browser. Enter a postcode or town instead.' }); return; }
+    this.setState({ geoBusy: true, geoErr: '' });
+    navigator.geolocation.getCurrentPosition(async p => {
+      const label = await NX.reverse(p.coords.latitude, p.coords.longitude);
+      this.setState({ loc: label, geoBusy: false, origin: { lat: p.coords.latitude, lng: p.coords.longitude, label, src: 'device', query: label.toLowerCase() } }, () => this.runSearch(null, label));
+    }, () => this.setState({ geoBusy: false, geoErr: 'Location permission was not given. Enter a postcode or town instead.' }), { timeout: 10000, maximumAge: 300000 });
+  }
+  whenDays(w, today) {
+    if (w === 'today') return [today];
+    if (w === 'tomorrow') return [NX.addDays(today, 1)];
+    const out = []; for (let i = 0; i < 7 && out.length < 2; i++) { const k = NX.addDays(today, i), d = NX.parseD(k).getDay(); if (d === 6 || d === 0) out.push(k); } return out;
+  }
+  results() {
+    const S = this.state, now = new Date(), today = NX.dkey(now), bookings = S.store.bookings;
+    const key = JSON.stringify([S.q, S.origin && [S.origin.lat, S.origin.lng], S.f, bookings.map(b => b.id + b.status + b.date + b.t).join(), today, now.getHours(), Math.floor(now.getMinutes() / 15)]);
+    if (this._rk === key) return this._rv;
+    const ws = words(S.q), f = S.f;
+    let rows = NX.BUSINESSES.filter(NX.isPublic).map(b => {
+      const m = matchBiz(b, ws, S.q.trim()); if (!m.ok) return null;
+      const svcs = m.svcs.length ? m.svcs : b.services;
+      const cheapest = svcs.slice().sort((a, c) => priceOf(a) - priceOf(c))[0];
+      const probe = [cheapest.id];
+      const next = NX.nextSlot(b, probe, 'any', today, bookings, now, 14);
+      const dist = S.origin ? NX.miles([S.origin.lat, S.origin.lng], [b.lat, b.lng]) : null;
+      return { b, svcs, from: priceOf(cheapest), probe, next, dist };
+    }).filter(Boolean);
+    rows = rows.filter(r => (f.cat === 'all' || r.b.cat === f.cat) && (!S.origin || !f.radius || r.dist <= f.radius) && (!f.max || r.from <= f.max * 100) && (!f.rating || (r.b.rating && r.b.rating.avg >= f.rating)));
+    if (f.when !== 'any') { const days = this.whenDays(f.when, today); rows = rows.filter(r => days.some(k => NX.slots(r.b, r.probe, 'any', k, bookings, now).length)); }
+    const until = r => r.next ? (NX.parseD(r.next.date) - NX.parseD(today)) / 864e5 * 1440 + r.next.t : 1e9;
+    const sorters = {
+      rec: (a, c) => ((c.b.rating ? c.b.rating.avg : 4.3) * 10 - (c.dist || 0) * 1.5 - until(c) / 720) - ((a.b.rating ? a.b.rating.avg : 4.3) * 10 - (a.dist || 0) * 1.5 - until(a) / 720),
+      near: (a, c) => (a.dist == null ? 1e9 : a.dist) - (c.dist == null ? 1e9 : c.dist),
+      soon: (a, c) => until(a) - until(c),
+      price: (a, c) => a.from - c.from,
+      rating: (a, c) => (c.b.rating ? c.b.rating.avg : 0) - (a.b.rating ? a.b.rating.avg : 0)
+    };
+    rows.sort(sorters[f.sort] || sorters.rec);
+    this._rk = key; this._rv = rows; return rows;
+  }
+  openStatus(b, now) {
+    const wd = now.getDay(), m = now.getHours() * 60 + now.getMinutes(), h = b.hours[wd];
+    if (h && m >= NX.toMin(h[0]) && m < NX.toMin(h[1])) return { open: true, txt: 'Open · closes ' + h[1] };
+    if (h && m < NX.toMin(h[0])) return { open: false, txt: 'Closed · opens ' + h[0] };
+    for (let i = 1; i <= 7; i++) { const d = (wd + i) % 7, x = b.hours[d]; if (x) return { open: false, txt: 'Closed · opens ' + (i === 1 ? 'tomorrow' : NX.DOW[d]) + ' ' + x[0] }; }
+    return { open: false, txt: 'Closed' };
+  }
+  whenLabel(k, today) { return k === today ? 'Today' : k === NX.addDays(today, 1) ? 'Tomorrow' : NX.fmtD(k); }
+  isFav(id) { const u = this.user(); return !!(u && (this.state.store.favs[u.id] || []).includes(id)); }
+  toggleFav(id) {
+    const u = this.user(); if (!u) { this.openAuth('fav:' + id, 'in'); return; }
+    const on = this.isFav(id);
+    this.upd(st => { const l = st.favs[u.id] = st.favs[u.id] || []; if (on) st.favs[u.id] = l.filter(x => x !== id); else l.push(id); }, on ? 'Removed from favourites' : 'Saved to favourites');
+  }
+  openBiz(id) { this.go('biz', { bizId: id, sel: this.state.bizId === id ? this.state.sel : [], from: this.state.route === 'biz' ? this.state.from : this.state.route }); }
+
+  // ---------- booking ----------
+  startBook(bizId, svc, staff, opts) {
+    const b = this.biz(bizId), o = opts || {}, now = new Date(), today = NX.dkey(now);
+    const st = staff && b.staff.some(x => x.id === staff) && NX.canDo(b.staff.find(x => x.id === staff), svc) ? staff : 'any';
+    const ns = svc.length ? NX.nextSlot(b, svc, st, o.date || today, this.state.store.bookings, now, 30) : null;
+    this.go('book', { bk: { bizId, svc: svc.slice(), staff: st, date: ns ? ns.date : (o.date || today), slot: null, step: o.step || (svc.length ? 2 : 1), note: o.note || '', agree: false, resId: o.resId || null, err: '', done: null } });
+  }
+  bkSlots(k) { const S = this.state, bk = S.bk, b = this.biz(bk.bizId); return NX.slots(b, bk.svc, bk.staff, k, S.store.bookings, new Date(), bk.resId); }
+  bkNext() {
+    const S = this.state, bk = S.bk, b = this.biz(bk.bizId);
+    if (bk.step === 1) { if (!bk.svc.length) return; this.setBk({ step: b.staff.length > 1 ? 2 : 3, staff: b.staff.length > 1 ? bk.staff : 'any', err: '' }); if (b.staff.length <= 1) this.ensureDate(); return; }
+    if (bk.step === 2) { this.setBk({ step: 3, err: '' }); this.ensureDate(); return; }
+    if (bk.step === 3) { if (!bk.slot) return; this.setBk({ step: this.user() ? 5 : 4, err: '' }); return; }
+    if (bk.step === 4) { this.openAuth('book', 'in'); return; }
+    if (bk.step === 5) this.confirm();
+  }
+  ensureDate() {
+    setTimeout(() => { const S = this.state, bk = S.bk; if (!bk) return; if (this.bkSlots(bk.date).length) return; const ns = NX.nextSlot(this.biz(bk.bizId), bk.svc, bk.staff, NX.dkey(new Date()), S.store.bookings, new Date(), 30); if (ns) this.setBk({ date: ns.date }); }, 0);
+  }
+  bkPrev() { const bk = this.state.bk, b = this.biz(bk.bizId); let s = bk.step - 1; if (s === 4) s = 3; if (s === 2 && b.staff.length <= 1) s = 1; if (bk.resId && s < 3) return; this.setBk({ step: Math.max(1, s), err: '' }); }
+  confirm() {
+    const S = this.state, bk = S.bk, b = this.biz(bk.bizId), u = this.user();
+    if (!u) { this.openAuth('book', 'in'); return; }
+    if (!bk.agree) { this.setBk({ err: 'Please accept the booking policy to continue.' }); return; }
+    const avail = NX.slots(b, bk.svc, bk.slot.staffId, bk.date, S.store.bookings, new Date(), bk.resId);
+    if (!avail.some(x => x.t === bk.slot.t)) { this.setBk({ step: 3, slot: null, err: 'That time was just taken. Please choose another.' }); return; }
+    const svcs = bk.svc.map(id => NX.svcOf(b, id));
+    const rec = { bizId: b.id, svcIds: bk.svc.slice(), staffId: bk.slot.staffId, date: bk.date, t: bk.slot.t, dur: sum(svcs, s => s.dur), total: sum(svcs, priceOf), deposit: sum(svcs, s => s.deposit || 0), note: bk.note.trim() };
+    let id = bk.resId;
+    if (id) this.upd(st => { const x = st.bookings.find(y => y.id === id); x.history = (x.history || []).concat([{ date: x.date, t: x.t, staffId: x.staffId, at: Date.now() }]); Object.assign(x, { date: rec.date, t: rec.t, staffId: rec.staffId, note: rec.note || x.note }); });
+    else { id = 'BK-' + (50300 + Math.floor(Math.random() * 49000)); this.upd(st => { st.bookings.push(Object.assign({ id, status: 'confirmed', userId: u.id, depositStatus: rec.deposit ? 'not_collected' : 'none', created: Date.now() }, rec)); }); }
+    this.setBk({ done: id, err: '' });
+  }
+  downloadIcs(bk) {
+    const b = this.biz(bk.bizId); const names = bk.svcIds.map(i => NX.svcOf(b, i).name).join(', ');
+    const blob = new Blob([NX.ics(bk, b, names)], { type: 'text/calendar' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = bk.id + '.ics'; document.body.appendChild(a); a.click(); a.remove();
+  }
+  deadline(bk, b) { const d = NX.parseD(bk.date); d.setHours(0, bk.t, 0, 0); return new Date(d.getTime() - b.policy.cancelHours * 3600000); }
+  fmtDT(d) { return NX.fmtD(NX.dkey(d)) + ', ' + NX.fmtT(d.getHours() * 60 + d.getMinutes()); }
+
+  // ---------- auth ----------
+  openAuth(then, mode) { this.setState({ auth: { step: 'phone', mode: mode || 'in', phone: '', code: '', name: '', email: '', consent: false, err: '', e164: null, attempts: 0, sentAt: 0, sends: [], then: then || null } }); }
+  setA(p) { this.setState(s => ({ auth: Object.assign({}, s.auth, p) })); }
+  aSend(resend) {
+    const a = this.state.auth, e = resend ? a.e164 : normPhone(a.phone);
+    if (!e) { this.setA({ err: 'Enter a UK mobile number starting 07, for example 07700 900123.' }); return; }
+    const now = Date.now(), recent = a.sends.filter(t => now - t < 15 * 60000);
+    if (recent.length >= 3) { this.setA({ err: 'Too many codes requested. Try again in 15 minutes.' }); return; }
+    this.setA({ step: 'code', e164: e, sentAt: now, sends: recent.concat([now]), attempts: 0, code: '', err: '' });
+  }
+  aVerify() {
+    const a = this.state.auth;
+    if (a.attempts >= 5) { this.setA({ err: 'Too many attempts. Request a new code.' }); return; }
+    if (a.code.trim() !== CODE) { const n = a.attempts + 1; this.setA({ attempts: n, err: n >= 5 ? 'Too many attempts. Request a new code.' : 'That code is not right. ' + (5 - n) + ' attempt' + (5 - n === 1 ? '' : 's') + ' left.' }); return; }
+    const u = this.state.store.users[a.e164];
+    if (u) { this.upd(st => { st.session = u.id; }); this.finishAuth(u.name); }
+    else this.setA({ step: 'details', err: '' });
+  }
+  aCreate() {
+    const a = this.state.auth, name = a.name.trim(), email = a.email.trim();
+    if (name.length < 2) { this.setA({ err: 'Enter your full name.' }); return; }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { this.setA({ err: 'Check the email address, or leave it blank.' }); return; }
+    if (!a.consent) { this.setA({ err: 'Please agree to the Terms to create an account.' }); return; }
+    const id = 'u-' + Date.now().toString(36);
+    this.upd(st => { st.users[a.e164] = { id, name, phone: a.e164, email, emailVerified: false, notes: '', prefs: { sms: true, email: !!email, rebook: false, offers: false } }; st.session = id; st.favs[id] = []; });
+    this.finishAuth(name, true);
+  }
+  finishAuth(name, created) {
+    const then = this.state.auth && this.state.auth.then;
+    this.setState({ auth: null, prof: null });
+    this.flash(created ? 'Account created. Welcome, ' + name.split(' ')[0] + '.' : 'Signed in as ' + name);
+    setTimeout(() => {
+      if (then === 'book' && this.state.bk) this.setBk({ step: 5 });
+      else if (then && then.startsWith('fav:')) this.toggleFav(then.slice(4));
+      else if (then === 'acct') this.go('account', { acct: 'up' });
+    }, 0);
+  }
+
+  // ---------- map ----------
+  syncMap() {
+    const S = this.state, want = S.ready && S.route === 'results' && S.view === 'map' && this.mapEl && this.mapEl.isConnected && window.L;
+    if (!want) { if (this.map) { this.map.remove(); this.map = null; } return; }
+    if (!this.map || this.map.getContainer() !== this.mapEl) {
+      if (this.map) this.map.remove();
+      this.map = L.map(this.mapEl, { scrollWheelZoom: false });
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: 'Tiles © Esri — Esri, HERE, Garmin, © OpenStreetMap contributors' }).addTo(this.map);
+      this.layer = L.layerGroup().addTo(this.map); this._mk = null;
+    }
+    const rows = this.results(), k = this._rk + (S.origin ? S.origin.label : '');
+    if (this._mk === k) return; this._mk = k; this.layer.clearLayers(); const pts = [];
+    rows.forEach(r => {
+      const ic = L.divIcon({ className: '', iconSize: [0, 0], html: '<div style="position:absolute;transform:translate(-50%,-100%);background:#7C3AED;color:#fff;font:600 13px \'Hanken Grotesk\',sans-serif;padding:5px 8px;white-space:nowrap;box-shadow:0 2px 6px rgba(10,10,15,.3)">' + NX.money(r.from) + '</div>' });
+      const m = L.marker([r.b.lat, r.b.lng], { icon: ic, title: r.b.name, keyboard: true }).addTo(this.layer);
+      m.bindTooltip(r.b.name, { direction: 'top', offset: [0, -30] }); m.on('click', () => this.openBiz(r.b.id)); pts.push([r.b.lat, r.b.lng]);
+    });
+    if (S.origin) { L.circleMarker([S.origin.lat, S.origin.lng], { radius: 7, color: '#0A0A0F', weight: 2, fillColor: '#fff', fillOpacity: 1 }).bindTooltip(S.origin.label).addTo(this.layer); pts.push([S.origin.lat, S.origin.lng]); }
+    if (pts.length) this.map.fitBounds(pts, { padding: [48, 48], maxZoom: 14 }); else this.map.setView([52.8, -1.6], 6);
+    setTimeout(() => { if (this.map) { this.map.invalidateSize(); if (pts.length) this.map.fitBounds(pts, { padding: [48, 48], maxZoom: 14 }); } }, 120);
+  }
+
+  renderVals() {
+    const S = this.state, v = {};
+    v.nxSplash = this.nxSplashEl();
+    v.narrow = true; v.wide = false; v.scRef = this.scRef; v.mapRef = this.mapRef; v.selRef = this.selRef; v.resetDemo = () => { try { localStorage.removeItem(LS); } catch (e) {} this._rk = null; this.setState({ store: this.seed(), route: 'home', bk: null, auth: null, dlg: null, prof: null, sel: [], fOpen: false }, () => { this.save(); this.flash('Demo data reset'); }); };
+    v.loading = !S.ready;
+    if (!S.ready) { ['isHome', 'isResults', 'isBiz', 'isBook', 'isAcct', 'isSearch', 'authOpen', 'dlgOpen', 'fOpen', 'signedIn', 'hasToast', 'tbSearch', 'tbTitle', 'tbBook', 'bkBar', 'showTabs'].forEach(k => v[k] = false); v.signedOut = true; v.tbHome = true; v.tabs = []; return v; }
+    const now = new Date(), today = NX.dkey(now), st = S.store, u = this.user();
+    v.isHome = S.route === 'home'; v.isResults = S.route === 'results'; v.isBiz = S.route === 'biz'; v.isBook = S.route === 'book'; v.isAcct = S.route === 'account';
+    v.signedIn = !!u; v.signedOut = !u; v.userInitials = u ? initials(u.name) : ''; v.firstName = u ? u.name.split(' ')[0] : '';
+    v.isSearch = S.route === 'search';
+    v.goSearch = () => this.go('search');
+    v.goProfile = () => this.go('account', { acct: 'prof' });
+    v.tbHome = v.isHome; v.tbSearch = v.isSearch || v.isResults; v.tbTitle = v.isAcct; v.tbBook = v.isBook && !!S.bk && !S.bk.done;
+    v.showTabs = !v.isBiz && !v.isBook && !v.isSearch; v.bkBar = v.tbBook;
+    v.acctTitle = S.acct === 'fav' ? 'Saved' : S.acct === 'prof' ? 'Account' : 'Bookings';
+    v.searchPill = (S.q || 'All services') + (S.loc ? ' · ' + S.loc : '');
+    v.fOpen = !!S.fOpen; v.openFilters = () => this.setState({ fOpen: true }); v.closeFilters = () => this.setState({ fOpen: false });
+    const fc = (S.f.cat !== 'all' ? 1 : 0) + (S.f.max ? 1 : 0) + (S.f.rating ? 1 : 0) + (S.f.when !== 'any' ? 1 : 0) + (S.f.radius !== 10 ? 1 : 0); v.fCount = fc; v.hasFCount = fc > 0;
+    const nx = u ? st.bookings.filter(x => x.userId === u.id && x.status === 'confirmed').map(x => { const d = NX.parseD(x.date); d.setHours(0, x.t, 0, 0); return { x, d }; }).filter(o => o.d >= now).sort((a, c) => a.d - c.d)[0] : null;
+    v.homeHasNext = !!nx; v.homeNext = { when: '', svc: '', biz: '' };
+    if (nx) { const nb = this.biz(nx.x.bizId); v.homeNext = { biz: nb.name, when: this.whenLabel(nx.x.date, today) + ', ' + NX.fmtT(nx.x.t), svc: nx.x.svcIds.map(i => NX.svcOf(nb, i).name).join(', ') }; }
+    v.goHome = () => this.go('home');
+    v.goSearchAll = () => this.runSearch('', S.loc);
+    v.goAcct = () => this.go('account', { acct: S.route === 'account' ? S.acct : 'up' });
+    v.goBookings = () => this.go('account', { acct: 'up' });
+    v.openSignIn = () => this.openAuth(S.route === 'account' ? null : null, 'in');
+    v.openCreate = () => this.openAuth(null, 'new');
+    v.openBizInfo = () => this.setState({ dlg: { kind: 'biz' } });
+    v.toast = S.toast; v.hasToast = !!S.toast;
+
+    // search inputs
+    v.q = S.q; v.loc = S.loc;
+    v.onQ = e => this.setState({ q: e.target.value });
+    v.onLoc = e => this.setState({ loc: e.target.value });
+    v.onSearchKey = e => { if (e.key === 'Enter') this.runSearch(); };
+    v.doSearch = () => this.runSearch();
+    v.useLoc = () => this.useLocation();
+    v.geoBusy = S.geoBusy; v.geoMsg = S.geoErr; v.hasGeoMsg = !!S.geoErr;
+    v.examples = [['Haircut', 'SL1'], ["Men's barber", 'Slough'], ['Nail extensions', 'Windsor'], ['Spa treatments', 'London'], ['Hair colouring', 'SL6 1LT']].map(([a, b]) => ({ label: a + (b.match(/^[A-Z]{1,2}\d/) ? ' near ' : ' in ') + b, run: () => this.setState({ q: a, loc: b }, () => this.runSearch(a, b)) }));
+    v.cats = NX.CATS.map(c => ({ name: c.name, bg: IMG(c.img), countTxt: NX.BUSINESSES.filter(b => NX.isPublic(b) && b.cat === c.id).length + ' businesses', go: () => { this.setF({ cat: c.id }); this.runSearch('', S.loc); } }));
+    v.towns = ['Slough', 'Windsor', 'Maidenhead', 'Reading', 'London', 'Eton'].map(t => ({ name: t, go: () => this.setState({ loc: t }, () => this.runSearch('', t)) }));
+
+    // results
+    if (v.isResults) {
+      const rows = S.geoBusy ? [] : this.results(), f = S.f;
+      v.rows = rows.map(r => {
+        const b = r.b, os = this.openStatus(b, now), fav = this.isFav(b.id), cat = NX.CATS.find(c => c.id === b.cat);
+        return {
+          name: b.name, catLabel: cat.label.toUpperCase(), viewLabel: 'View ' + b.name, addrLine: b.addr + ', ' + b.town + ' ' + b.pc,
+          hasDist: r.dist != null, distTxt: r.dist != null ? (r.dist < 0.1 ? 'Under 0.1 mi' : r.dist.toFixed(1) + ' mi') : '',
+          hasRating: !!b.rating, isNew: !b.rating, ratingTxt: b.rating ? b.rating.avg.toFixed(1) : '', reviewsTxt: b.rating ? '(' + b.rating.count + ' reviews)' : '',
+          openTxt: os.txt, openFg: os.open ? '#0A0A0F' : '#4A4A5A', bg: IMG(b.img),
+          svcs: r.svcs.slice(0, 3).map(s => ({ name: s.name, durTxt: NX.dur(s.dur), priceTxt: NX.money(priceOf(s)) })),
+          fromTxt: 'From ' + NX.money(r.from), nextTxt: r.next ? this.whenLabel(r.next.date, today) + ' ' + NX.fmtT(r.next.t) : 'None in 14 days',
+          fav, favIcon: fav ? '#i-heartf' : '#i-heart', favLabel: fav ? 'Remove ' + b.name + ' from favourites' : 'Save ' + b.name + ' to favourites',
+          open: () => this.openBiz(b.id), book: () => this.startBook(b.id, r.svcs.length < b.services.length ? [r.svcs[0].id] : [], null),
+          toggleFav: () => this.toggleFav(b.id)
+        };
+      });
+      v.noRows = !S.geoBusy && rows.length === 0; v.isList = S.view === 'list'; v.isMap = S.view === 'map'; v.showList = v.isList && !v.noRows && !S.geoBusy;
+      const cat = f.cat !== 'all' ? NX.CATS.find(c => c.id === f.cat).name.toLowerCase() : '';
+      const what = S.q ? '“' + S.q + '”' : (cat ? cat : 'All services');
+      v.resTitle = S.geoBusy ? 'Searching…' : rows.length + (rows.length === 1 ? ' place' : ' places') + ' · ' + what;
+      v.resSub = S.origin ? (f.radius ? 'Within ' + f.radius + ' miles of ' + S.origin.label : 'Nearest to ' + S.origin.label) + (S.origin.src === 'postcodes.io' ? ' · location from postcodes.io' : S.origin.src === 'local' ? ' · offline location lookup' : '') : 'Across the UK. Add a postcode or town to sort by distance.';
+      v.listBg = v.isList ? '#0A0A0F' : '#fff'; v.listFg = v.isList ? '#fff' : '#0A0A0F'; v.mapBg = v.isMap ? '#0A0A0F' : '#fff'; v.mapFg = v.isMap ? '#fff' : '#0A0A0F';
+      v.setList = () => this.setState({ view: 'list' }); v.setMap = () => this.setState({ view: 'map' });
+      v.showResLabel = 'Show ' + rows.length + (rows.length === 1 ? ' result' : ' results');
+      v.catChips = [{ id: 'all', name: 'All' }].concat(NX.CATS).map(c => ({ name: c.name, sel: f.cat === c.id, bd: f.cat === c.id ? '#0A0A0F' : '#E7E7EC', bg: f.cat === c.id ? '#0A0A0F' : '#fff', fg: f.cat === c.id ? '#fff' : '#0A0A0F', pick: () => this.setF({ cat: c.id }) }));
+      const opts = (cur, list) => list.map(([val, l]) => ({ v: String(val), l, sel: String(cur) === String(val) }));
+      v.optRadius = opts(f.radius, [[1, '1 mile'], [3, '3 miles'], [5, '5 miles'], [10, '10 miles'], [25, '25 miles'], [0, 'Any distance']]);
+      v.optMax = opts(f.max, [[0, 'Any price'], [20, 'Up to £20'], [40, 'Up to £40'], [60, 'Up to £60'], [100, 'Up to £100']]);
+      v.optRating = opts(f.rating, [[0, 'Any'], [4, '4.0+'], [4.5, '4.5+'], [4.8, '4.8+']]);
+      v.optWhen = opts(f.when, [['any', 'Any time'], ['today', 'Today'], ['tomorrow', 'Tomorrow'], ['weekend', 'This weekend']]);
+      v.optSort = opts(f.sort, [['rec', 'Recommended'], ['near', 'Nearest'], ['soon', 'Soonest available'], ['price', 'Lowest price'], ['rating', 'Highest rated']]);
+      v.onRadius = e => this.setF({ radius: +e.target.value }); v.onMax = e => this.setF({ max: +e.target.value }); v.onRating = e => this.setF({ rating: +e.target.value }); v.onWhen = e => this.setF({ when: e.target.value }); v.onSort = e => this.setF({ sort: e.target.value });
+      v.clearFilters = () => this.setState({ f: { cat: 'all', radius: 25, max: 0, rating: 0, when: 'any', sort: 'rec' } });
+      const hidden = NX.BUSINESSES.filter(b => !NX.isPublic(b)).length;
+      v.hiddenNote = 'Only verified, published businesses appear in search. ' + hidden + ' sample business awaiting review is hidden.';
+    }
+
+    // business profile
+    if (v.isBiz) {
+      const b = this.biz(S.bizId), os = this.openStatus(b, now), fav = this.isFav(b.id), cat = NX.CATS.find(c => c.id === b.cat);
+      const sel = S.sel, toggle = id => this.setState(s => ({ sel: s.sel.includes(id) ? s.sel.filter(x => x !== id) : (b.multi ? s.sel.concat([id]) : [id]) }));
+      const groups = []; b.services.forEach(s => { let g = groups.find(x => x.key === s.group); if (!g) groups.push(g = { name: s.group.toUpperCase(), key: s.group, items: [] }); const on = sel.includes(s.id); g.items.push({ name: s.name, desc: s.desc, hasDesc: !!s.desc, durTxt: NX.dur(s.dur), priceTxt: NX.money(priceOf(s)), hasPromo: !!s.promo, wasTxt: NX.money(s.price), hasDep: !!s.deposit, depTxt: s.deposit ? NX.money(s.deposit) + ' deposit' : '', sel: on, selLabel: (on ? 'Remove ' : 'Add ') + s.name, btnTxt: on ? 'Added' : 'Add', btnIcon: on ? '#i-check' : '#i-arrow', bd: on ? '#7C3AED' : '#0A0A0F', bg: on ? '#7C3AED' : '#fff', fg: on ? '#fff' : '#0A0A0F', toggle: () => toggle(s.id) }); });
+      const ss = sel.map(id => NX.svcOf(b, id)).filter(Boolean);
+      const order = [1, 2, 3, 4, 5, 6, 0];
+      v.B = {
+        name: b.name, catLabel: cat.label.toUpperCase(), bg: IMG(b.img), desc: b.desc,
+        hasRating: !!b.rating, isNew: !b.rating, ratingTxt: b.rating ? b.rating.avg.toFixed(1) : '', reviewsTxt: b.rating ? '(' + b.rating.count + ' verified reviews)' : '',
+        openTxt: os.txt, openFg: os.open ? '#0A0A0F' : '#4A4A5A', addrLine: b.town + ' ' + b.pc + (S.origin ? ' · ' + NX.miles([S.origin.lat, S.origin.lng], [b.lat, b.lng]).toFixed(1) + ' mi' : ''),
+        fullAddr: b.addr + ', ' + b.town + ' ' + b.pc, phone: b.phone, publicId: b.publicId, slug: b.slug,
+        fav, favIcon: fav ? '#i-heartf' : '#i-heart', favLabel: fav ? 'Remove from favourites' : 'Save to favourites', toggleFav: () => this.toggleFav(b.id),
+        offers: (b.liveOffers || []).filter(o => !o.places || o.places.profile).map(o => ({ kind: ({ offer: 'SPECIAL OFFER', notice: 'IMPORTANT NOTICE', closure: 'TEMPORARY CLOSURE', occasion: 'SPECIAL OCCASION', holiday: 'HOLIDAY HOURS' })[o.type] || 'NOTICE', title: o.title, body: o.body })),
+        multiNote: b.multi ? 'Add more than one service to book them together' : 'One treatment per booking',
+        groups, staff: b.staff.map(p => ({ name: p.name, role: p.role, initials: initials(p.name) })),
+        reviews: b.reviews.map(r => ({ name: r.name, rating: r.rating + '.0', svc: r.svc, date: NX.fmtD(r.date), body: r.body })), hasReviews: b.reviews.length > 0, noReviews: b.reviews.length === 0,
+        hours: order.map(d => ({ d: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][d], h: b.hours[d] ? b.hours[d][0] + '–' + b.hours[d][1] : 'Closed', fw: d === now.getDay() ? 600 : 400 })),
+        policyCancel: 'Free cancellation up to ' + b.policy.cancelHours + ' hours before your appointment.', policyLate: b.policy.late, policyDeposit: b.policy.deposit, hasDepositPolicy: !!b.policy.deposit,
+        amenities: b.amenities,
+        hasSel: ss.length > 0, selLines: ss.map(s => ({ name: s.name, priceTxt: NX.money(priceOf(s)) })),
+        selTotalTxt: ss.length ? NX.money(sum(ss, priceOf)) : 'No services selected', selDurTxt: NX.dur(sum(ss, s => s.dur)),
+        selHint: ss.length ? ss.length + ' service' + (ss.length > 1 ? 's' : '') + ' · ' + NX.dur(sum(ss, s => s.dur)) : 'Choose services, then pick a time.',
+        bookLabel: ss.length ? 'Choose a time' : 'Book now',
+        bookNow: () => this.startBook(b.id, sel, null)
+      };
+      v.bizBack = () => S.from === 'results' ? this.go('results') : S.from === 'account' ? this.go('account') : this.go('home');
+      v.bizBackLabel = S.from === 'results' ? 'Back to results' : S.from === 'account' ? 'Back to your account' : 'Back to Discover';
+    }
+
+    // booking
+    if (v.isBook && S.bk) {
+      const bk = S.bk, b = this.biz(bk.bizId), svcs = bk.svc.map(id => NX.svcOf(b, id));
+      v.bkDone = !!bk.done; v.bkNotDone = !bk.done;
+      v.bkBizName = b.name; v.bkAddr = b.addr + ', ' + b.town + ' ' + b.pc;
+      v.bkExit = () => this.go(bk.resId ? 'account' : 'biz', bk.resId ? {} : { bizId: b.id, sel: bk.svc });
+      const labels = ['Services', 'Professional', 'Time', 'Your details', 'Review'];
+      v.steps = labels.map((l, i) => { const n = i + 1, cur = bk.step === n, done = bk.step > n; return { n: '0' + n, label: l, bd: cur ? '#7C3AED' : done ? '#0A0A0F' : '#E7E7EC', fg: cur ? '#6D28D9' : done ? '#0A0A0F' : '#6B6B7B' }; });
+      v.bkStepTxt = 'Step ' + bk.step + ' of 5 · ' + labels[bk.step - 1];
+      v.isRes = !!bk.resId; v.bkResRef = bk.resId || ''; v.bkKicker = bk.resId ? 'RESCHEDULE ' + bk.resId : 'BOOK AT ' + b.name.toUpperCase();
+      v.bkTitle = ['Choose your services', 'Who would you like?', 'Pick a date and time', 'Your details', 'Review and confirm'][bk.step - 1];
+      v.isS1 = bk.step === 1; v.isS2 = bk.step === 2; v.isS3 = bk.step === 3; v.isS4 = bk.step === 4; v.isS5 = bk.step === 5;
+      v.bkErr = bk.err; v.hasBkErr = !!bk.err;
+      const tg = id => { const has = bk.svc.includes(id); this.setBk({ svc: has ? bk.svc.filter(x => x !== id) : (b.multi ? bk.svc.concat([id]) : [id]), slot: null }); };
+      const groups = []; b.services.forEach(s => { let g = groups.find(x => x.key === s.group); if (!g) groups.push(g = { key: s.group, name: s.group.toUpperCase(), items: [] }); const on = bk.svc.includes(s.id); g.items.push({ name: s.name, durTxt: NX.dur(s.dur), priceTxt: NX.money(priceOf(s)), hasDep: !!s.deposit, depTxt: s.deposit ? NX.money(s.deposit) + ' deposit' : '', sel: on, bd: on ? '#7C3AED' : '#E7E7EC', rowBg: on ? '#F3EEFE' : '#fff', boxBg: on ? '#7C3AED' : '#fff', toggle: () => tg(s.id) }); });
+      v.s1Groups = groups;
+      const optFor = (id, name, sub, ok) => { const sel = bk.staff === id; return { name, sub, initials: id === 'any' ? 'ANY' : initials(name), disabled: !ok, sel, bd: sel ? '#7C3AED' : '#E7E7EC', bw: sel ? '2px' : '1px', bg: sel ? '#F3EEFE' : '#fff', op: ok ? 1 : 0.45, pick: () => { if (ok) this.setBk({ staff: id, slot: null }); } }; };
+      v.s2Opts = [optFor('any', 'Any professional', 'Shows the most available times', true)].concat(b.staff.map(p => { const ok = NX.canDo(p, bk.svc); return optFor(p.id, p.name, ok ? p.role : 'Does not offer this selection', ok); }));
+      if (v.isS3) {
+        const k0 = today, ds = [];
+        for (let i = 0; i < 21; i++) { const k = NX.addDays(k0, i), d = NX.parseD(k), n = this.bkSlots(k).length, closed = !b.hours[d.getDay()], sel = bk.date === k; ds.push({ dow: i === 0 ? 'TODAY' : NX.DOW[d.getDay()].toUpperCase(), dnum: d.getDate(), sub: closed ? 'Closed' : n ? n + ' times' : 'Full', closed, sel, aria: NX.fmtDLong(k) + (closed ? ', closed' : ', ' + n + ' times'), bd: sel ? '#7C3AED' : '#E7E7EC', bg: sel ? '#7C3AED' : '#fff', fg: sel ? '#fff' : '#0A0A0F', op: closed ? 0.4 : 1, pick: () => this.setBk({ date: k, slot: null }) }); }
+        v.days = ds;
+        const sl = this.bkSlots(bk.date), grp = [['MORNING', 0, 720], ['AFTERNOON', 720, 1020], ['EVENING', 1020, 1440]];
+        v.slotGroups = grp.map(([label, a, c]) => ({ label, items: sl.filter(x => x.t >= a && x.t < c).map(x => { const sel = bk.slot && bk.slot.t === x.t; return { label: NX.fmtT(x.t), sel, bd: sel ? '#7C3AED' : '#E7E7EC', bg: sel ? '#7C3AED' : '#fff', fg: sel ? '#fff' : '#0A0A0F', pick: () => this.setBk({ slot: { t: x.t, staffId: bk.staff === 'any' ? x.staffId : bk.staff }, err: '' }) }; }) })).filter(g => g.items.length);
+        v.hasSlots = sl.length > 0; v.noSlots = !sl.length;
+        const ns = v.noSlots ? NX.nextSlot(b, bk.svc, bk.staff, NX.addDays(bk.date, 1), st.bookings, now, 30) : null;
+        v.hasNextAvail = !!ns; v.nextAvailTxt = ns ? NX.fmtD(ns.date) + ', ' + NX.fmtT(ns.t) : ''; v.jumpNext = () => ns && this.setBk({ date: ns.date, slot: { t: ns.t, staffId: ns.staffId } });
+      }
+      v.bkSignIn = () => this.openAuth('book', 'in');
+      v.signedInAs = u ? u.name + ' · ' + showPhone(u.phone) : '';
+      v.note = bk.note; v.onNote = e => this.setBk({ note: e.target.value }); v.agree = bk.agree; v.onAgree = e => this.setBk({ agree: e.target.checked, err: '' });
+      v.sumLines = svcs.map(s => ({ name: s.name, durTxt: NX.dur(s.dur), priceTxt: NX.money(priceOf(s)) }));
+      const total = sum(svcs, priceOf), dep = sum(svcs, s => s.deposit || 0);
+      v.sumTotal = NX.money(total); v.sumDur = svcs.length ? NX.dur(sum(svcs, s => s.dur)) : 'No services yet';
+      v.sumHasDep = dep > 0; v.sumDep = NX.money(dep); v.sumPayLater = NX.money(total - dep);
+      const stf = bk.slot ? b.staff.find(p => p.id === bk.slot.staffId) : bk.staff !== 'any' ? b.staff.find(p => p.id === bk.staff) : null;
+      v.sumStaff = stf ? stf.name : 'Any professional';
+      v.sumWhen = bk.slot ? NX.fmtDLong(bk.date) + ', ' + NX.fmtT(bk.slot.t) : 'Time not chosen';
+      if (bk.slot) {
+        const dl = this.deadline({ date: bk.date, t: bk.slot.t }, b);
+        v.cancelTxt = dl > now ? 'Free cancellation until ' + this.fmtDT(dl) + '. After that' + (dep ? ' the deposit is kept by the business.' : ' the business may record a late cancellation.') : 'This time is inside the ' + b.policy.cancelHours + '-hour cancellation window, so cancelling later' + (dep ? ' loses the deposit.' : ' is recorded as late.');
+      } else v.cancelTxt = '';
+      v.lateTxt = b.policy.late;
+      const canNext = bk.step === 1 ? bk.svc.length > 0 : bk.step === 3 ? !!bk.slot : true;
+      v.cantNext = !canNext; v.nextOp = canNext ? 1 : 0.45; v.showNext = true;
+      v.nextLabel = bk.step === 5 ? (bk.resId ? 'Confirm new time' : 'Confirm booking') : bk.step === 4 ? 'Continue with mobile number' : 'Continue';
+      v.showPrev = bk.step > (bk.resId ? 3 : 1); v.next = () => this.bkNext(); v.prev = () => this.bkPrev();
+      if (bk.done) {
+        const rec = st.bookings.find(x => x.id === bk.done);
+        v.doneRef = bk.done; v.doneKicker = bk.resId ? 'RESCHEDULED' : 'BOOKING CONFIRMED'; v.doneTitle = bk.resId ? 'Your new time is booked.' : 'You are booked in.';
+        v.doneSvcTxt = svcs.map(s => s.name).join(', ');
+        v.doneDepNote = dep ? 'The ' + NX.money(dep) + ' deposit was not taken because payments are not connected.' : '';
+        v.doneIcs = () => rec && this.downloadIcs(rec);
+      }
+    }
+
+    // account
+    if (v.isAcct && u) {
+      const tabs = [['up', 'Upcoming'], ['past', 'Past'], ['fav', 'Favourites'], ['prof', 'Profile & preferences']];
+      v.acctTabs = tabs.map(([id, label]) => ({ label, sel: S.acct === id, bd: S.acct === id ? '#7C3AED' : 'transparent', fg: S.acct === id ? '#0A0A0F' : '#4A4A5A', pick: () => this.setState({ acct: id, prof: null }) }));
+      v.bkSeg = v.acctTabs.slice(0, 2).map(t => Object.assign({}, t, { segBg: t.sel ? '#0A0A0F' : '#fff', segFg: t.sel ? '#fff' : '#0A0A0F' })); v.isFavT = S.acct === 'fav'; v.isProf = S.acct === 'prof'; v.showBkList = S.acct === 'up' || S.acct === 'past';
+      const mine = st.bookings.filter(x => x.userId === u.id).map(x => { const d = NX.parseD(x.date); d.setHours(0, x.t, 0, 0); return { x, at: d }; });
+      const isUp = S.acct === 'up';
+      const list = mine.filter(o => isUp ? ((o.x.status === 'confirmed' || o.x.status === 'arrived') && o.at >= now) : (o.x.status === 'cancelled' || o.x.status === 'no_show' || o.at < now)).sort((a, c) => isUp ? a.at - c.at : c.at - a.at);
+      v.bkList = list.map(({ x, at }) => {
+        const b = this.biz(x.bizId), p = b.staff.find(s => s.id === x.staffId), d = NX.parseD(x.date);
+        const done = (x.status === 'confirmed' || x.status === 'arrived' || x.status === 'completed') && at < now, cancelled = x.status === 'cancelled' || x.status === 'no_show';
+        const reviewed = st.reviews.some(r => r.bookingId === x.id);
+        const dl = this.deadline(x, b);
+        return {
+          ref: x.id, bizName: b.name, svcTxt: x.svcIds.map(i => NX.svcOf(b, i).name).join(', '), staffTxt: p ? 'With ' + p.name : 'Any professional', durTxt: NX.dur(x.dur), totalTxt: NX.money(x.total),
+          dow: NX.DOW[d.getDay()].toUpperCase(), dnum: d.getDate(), mon: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][d.getMonth()], time: NX.fmtT(x.t), monShort: NX.fmtD(x.date).split(' ')[2],
+          statusTxt: x.status === 'no_show' ? 'Missed' : cancelled ? 'Cancelled' : done ? 'Completed' : 'Confirmed', sbg: cancelled ? '#FEF0EE' : done ? '#F7F7F9' : '#F3EEFE', sfg: cancelled ? '#912018' : done ? '#4A4A5A' : '#5B21B6',
+          hasDeadline: !done && !cancelled, deadlineTxt: dl > now ? 'Free cancellation until ' + this.fmtDT(dl) + (x.deposit ? ' · ' + NX.money(x.deposit) + ' deposit (not collected in prototype)' : '') : 'Inside the ' + b.policy.cancelHours + '-hour cancellation window',
+          hasNote: cancelled && !!x.refund, noteTxt: x.refund === 'refunded' ? 'Deposit refund due (payments not connected)' : x.refund === 'retained' ? 'Late cancellation · deposit kept by the business' : '',
+          canResched: isUp, canCancel: isUp, canIcs: isUp, canRebook: !isUp, canReview: done && !reviewed, reviewed: done && reviewed,
+          openBiz: () => this.openBiz(b.id),
+          resched: () => this.startBook(b.id, x.svcIds, x.staffId, { step: 3, resId: x.id, date: x.date, note: x.note }),
+          cancel: () => this.setState({ dlg: { kind: 'cancel', id: x.id } }),
+          rebook: () => this.startBook(b.id, x.svcIds, x.staffId, { step: 3 }),
+          review: () => this.setState({ dlg: { kind: 'review', id: x.id, rating: 0, body: '', err: '' } }),
+          ics: () => this.downloadIcs(x)
+        };
+      });
+      v.bkListEmpty = v.bkList.length === 0;
+      v.emptyTitle = isUp ? 'No upcoming appointments' : 'No past appointments';
+      v.emptyBody = isUp ? 'When you book, it appears here with options to reschedule or cancel.' : 'Completed and cancelled appointments appear here.';
+      const favs = (st.favs[u.id] || []).map(id => this.biz(id)).filter(Boolean);
+      v.favList = favs.map(b => ({ name: b.name, town: b.town + ' ' + b.pc, bg: IMG(b.img), catLabel: NX.CATS.find(c => c.id === b.cat).label.toUpperCase(), open: () => this.openBiz(b.id), book: () => this.startBook(b.id, [], null), remove: () => this.toggleFav(b.id) }));
+      v.noFav = favs.length === 0;
+      const P = S.prof || { name: u.name, email: u.email || '', notes: u.notes || '', prefs: Object.assign({}, u.prefs) };
+      const setP = p => this.setState({ prof: Object.assign({}, P, p) });
+      v.pName = P.name; v.pEmail = P.email; v.pNotes = P.notes; v.pPhone = showPhone(u.phone);
+      v.pEmailNote = P.email ? (u.emailVerified && P.email === u.email ? 'Verified' : 'Not verified yet. Email is not connected in this prototype, so no link is sent.') : 'Add an email to receive confirmations by email.';
+      v.onPName = e => setP({ name: e.target.value }); v.onPEmail = e => setP({ email: e.target.value }); v.onPNotes = e => setP({ notes: e.target.value });
+      v.prefs = [['sms', 'SMS reminders', '24 hours before each appointment'], ['email', 'Email confirmations', 'Booking, change and cancellation receipts'], ['rebook', 'Rebook reminders', 'A nudge when your usual interval comes round'], ['offers', 'Offers from businesses I have booked', 'Off by default. Never shared with other businesses.']].map(([k, label, desc]) => ({ label, desc, on: !!P.prefs[k], toggle: e => setP({ prefs: Object.assign({}, P.prefs, { [k]: e.target.checked }) }) }));
+      v.saveProfile = () => {
+        if (P.name.trim().length < 2) { this.flash('Enter your full name'); return; }
+        if (P.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(P.email)) { this.flash('Check the email address'); return; }
+        this.upd(s2 => { const x = s2.users[u.phone]; x.name = P.name.trim(); if (x.email !== P.email.trim()) x.emailVerified = false; x.email = P.email.trim(); x.notes = P.notes; x.prefs = P.prefs; }, 'Changes saved'); this.setState({ prof: null });
+      };
+      v.signOut = () => { this.upd(s2 => { s2.session = null; }, 'Signed out'); this.go('home', { prof: null }); };
+      v.askDelete = () => this.setState({ dlg: { kind: 'delete' } });
+    }
+
+    this.afterRender();
+    // tabs (narrow)
+    const T = [['disc', 'Discover', '#i-search', () => this.go('home'), v.isHome || v.isResults || v.isBiz || v.isBook || v.isSearch], ['up', 'Bookings', '#i-cal', () => this.go('account', { acct: 'up' }), v.isAcct && (S.acct === 'up' || S.acct === 'past')], ['fav', 'Saved', '#i-heart', () => this.go('account', { acct: 'fav' }), v.isAcct && S.acct === 'fav'], ['acct', 'Account', '#i-user', () => this.go('account', { acct: 'prof' }), v.isAcct && S.acct === 'prof']];
+    v.tabs = T.map(([id, label, icon, go, cur]) => ({ label, icon, go, cur: cur ? 'page' : 'false', bd: cur ? '#7C3AED' : 'transparent', fg: cur ? '#6D28D9' : '#4A4A5A' }));
+
+    // auth
+    const A = S.auth; v.authOpen = !!A;
+    if (A) {
+      v.aKicker = A.mode === 'new' ? 'CREATE ACCOUNT' : 'SIGN IN'; v.aTitle = A.step === 'details' ? 'Create your account' : A.mode === 'new' ? 'Create a free account' : 'Sign in or create an account';
+      v.aIsPhone = A.step === 'phone'; v.aIsCode = A.step === 'code'; v.aIsDetails = A.step === 'details';
+      v.aPhone = A.phone; v.onAPhone = e => this.setA({ phone: e.target.value, err: '' }); v.aPhoneKey = e => { if (e.key === 'Enter') this.aSend(); };
+      v.aSend = () => this.aSend(); v.aErr = A.err; v.hasAErr = !!A.err; v.aPhoneShow = showPhone(A.e164);
+      v.aCode = A.code; v.onACode = e => this.setA({ code: e.target.value.replace(/\D/g, '').slice(0, 6), err: A.attempts >= 5 ? A.err : '' }); v.aCodeKey = e => { if (e.key === 'Enter') this.aVerify(); };
+      v.aVerify = () => this.aVerify(); v.aBack = () => this.setA({ step: 'phone', err: '', code: '' });
+      const left = Math.max(0, 30 - Math.floor((S.now - A.sentAt) / 1000)); v.aResendIn = left; v.aCanResend = left === 0; v.aWaitResend = left > 0; v.aResend = () => this.aSend(true);
+      v.aName = A.name; v.onAName = e => this.setA({ name: e.target.value, err: '' }); v.aEmail = A.email; v.onAEmail = e => this.setA({ email: e.target.value, err: '' });
+      v.aConsent = A.consent; v.onAConsent = e => this.setA({ consent: e.target.checked, err: '' }); v.aCreate = () => this.aCreate();
+      v.aClose = () => this.setState({ auth: null });
+    }
+
+    // dialogs
+    const D = S.dlg; v.dlgOpen = !!D; v.dIsReview = false; v.dHasPrimary = true; v.dPrimaryBg = '#7C3AED'; v.dCloseLabel = 'Close';
+    v.dClose = () => this.setState({ dlg: null });
+    if (D && D.kind === 'biz') {
+      v.dTitle = 'NEXCut Business'; v.dBody = 'Owners and staff use a separate app, NEXCut Business, to register, get verified, set up services, staff and hours, and manage bookings. It is designed in the next round. In the live app this opens its App Store or Google Play page.'; v.dHasPrimary = false;
+    }
+    if (D && D.kind === 'cancel') {
+      const x = st.bookings.find(y => y.id === D.id), b = this.biz(x.bizId), dl = this.deadline(x, b), free = dl > now;
+      v.dTitle = 'Cancel ' + b.name + ' on ' + NX.fmtD(x.date) + '?';
+      v.dBody = free ? 'You are inside the free cancellation period.' + (x.deposit ? ' The ' + NX.money(x.deposit) + ' deposit would be refunded.' : '') : 'This is within ' + b.policy.cancelHours + ' hours of the appointment.' + (x.deposit ? ' The ' + NX.money(x.deposit) + ' deposit is kept by the business.' : ' The business may record it as a late cancellation.');
+      v.dPrimaryLabel = 'Cancel appointment'; v.dPrimaryBg = '#B42318'; v.dCloseLabel = 'Keep appointment';
+      v.dPrimary = () => { this.upd(s2 => { const y = s2.bookings.find(z => z.id === D.id); y.status = 'cancelled'; y.cancelledAt = Date.now(); y.refund = y.deposit ? (free ? 'refunded' : 'retained') : null; }, 'Appointment cancelled'); this.setState({ dlg: null }); };
+    }
+    if (D && D.kind === 'review') {
+      const x = st.bookings.find(y => y.id === D.id), b = this.biz(x.bizId);
+      v.dIsReview = true; v.dTitle = 'Review ' + b.name; v.dBody = 'For ' + x.svcIds.map(i => NX.svcOf(b, i).name).join(', ') + ' on ' + NX.fmtD(x.date) + '. Reviews are tied to this booking and checked before they appear.';
+      v.rvStars = [1, 2, 3, 4, 5].map(n => ({ on: D.rating >= n, aria: n + ' star' + (n > 1 ? 's' : ''), fg: D.rating >= n ? '#7C3AED' : '#E7E7EC', pick: () => this.setState({ dlg: Object.assign({}, D, { rating: n, err: '' }) }) }));
+      v.rvBody = D.body; v.onRvBody = e => this.setState({ dlg: Object.assign({}, D, { body: e.target.value }) }); v.rvErr = D.err; v.hasRvErr = !!D.err;
+      v.dPrimaryLabel = 'Submit review'; v.dCloseLabel = 'Not now';
+      v.dPrimary = () => { if (!D.rating) { this.setState({ dlg: Object.assign({}, D, { err: 'Choose a rating from 1 to 5.' }) }); return; } this.upd(s2 => { s2.reviews.push({ bookingId: x.id, bizId: x.bizId, rating: D.rating, body: D.body.trim(), userId: u.id, status: 'pending', at: Date.now() }); }, 'Review submitted. It appears once checked.'); this.setState({ dlg: null }); };
+    }
+    if (D && D.kind === 'delete') {
+      v.dTitle = 'Delete your account?'; v.dBody = 'Your profile, preferences and favourites are removed. Upcoming appointments are cancelled. Past appointment records stay with the business without your name.';
+      v.dPrimaryLabel = 'Delete account'; v.dPrimaryBg = '#B42318'; v.dCloseLabel = 'Keep account';
+      v.dPrimary = () => { const id = u.id; this.upd(s2 => { delete s2.users[u.phone]; delete s2.favs[id]; s2.bookings.forEach(y => { if (y.userId === id) { const d = NX.parseD(y.date); d.setHours(0, y.t); if (y.status === 'confirmed' && d > new Date()) y.status = 'cancelled'; y.userId = 'deleted'; } }); s2.session = null; }, 'Account deleted'); this.setState({ dlg: null, route: 'home' }); };
+    }
+    if (D && D.kind === 'never') {
+    }
+    return v;
+  }
+}
+</script>
+
+
+</body></html>

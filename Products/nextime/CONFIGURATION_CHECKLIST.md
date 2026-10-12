@@ -4,7 +4,7 @@ Tick each item. **Required** = the system won't work correctly in production wit
 
 No real secrets are included anywhere in this package.
 
-## A. Public browser configuration: `public/config/app-config.js` and `public/admin/config/app-config.js`
+## A. Public browser configuration: `public/nextime/config/app-config.js` and `public/nextime/admin/config/app-config.js`
 
 Keep both files identical.
 
@@ -66,7 +66,7 @@ The web pages never connect to Postgres directly.
 
 - [ ] **Required** Products: Starter, Team, Business, each with a monthly and a yearly GBP recurring price (ex VAT), with the Price ids put in `seed.sql`
 - [ ] **Required** Settings → Payment methods: Cards, Apple Pay, Google Pay ON
-- [ ] **Required** Apple Pay → register your domain (Stripe hosts the verification file; or place `/.well-known/apple-developer-merchantid-domain-association` in `public/`)
+- [ ] **Required** Apple Pay → register your domain (Stripe hosts the verification file; or place `/.well-known/apple-developer-merchantid-domain-association` at the domain root)
 - [ ] **Required** Webhook endpoint → `https://<ref>.functions.supabase.co/stripe-webhook` with the events listed in API_DOCUMENTATION.md
 - [ ] **Required** Settings → Billing → Invoices: bank transfer (customer balance) enabled for invoice billing; your company details and VAT number
 - [ ] Optional: Stripe Tax; Customer emails (receipts, failed-payment emails); Smart Retries
@@ -81,8 +81,10 @@ The web pages never connect to Postgres directly.
 ## G. Web server
 
 - [ ] **Required** Domain DNS → host; HTTPS certificate (Let's Encrypt / host-managed)
-- [ ] **Required** Replace `YOUR-PROJECT-REF` in `public/.htaccess` CSP (or the equivalent header on Nginx/Netlify)
-- [ ] **Required** `public/admin/.htaccess` → create the `htpasswd` file; or serve `admin/` from a separate restricted host
+- [ ] **Required** Replace `YOUR-PROJECT-REF` in `public/nextime/.htaccess` CSP (or the equivalent header on Nginx/Netlify)
+- [ ] **Required** `public/nextime/admin/.htaccess` → create the `htpasswd` file and set `AuthUserFile`; or serve `admin/` from a separate restricted host
+- [ ] **Required** `/assets/nav/` and `/assets/js/` present on the web root (already on nexyraconsulting.co.uk; otherwise upload `public/assets/`)
+- [ ] Optional: NEXTime search results — add NEXTime entries to the shared `/assets/nav/nexyra-search-index.js` (it currently has none)
 - [ ] Optional: CDN, `www` → apex redirect, uptime monitoring
 
 ## H. Content and legal
