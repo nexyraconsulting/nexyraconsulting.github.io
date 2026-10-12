@@ -1,0 +1,41 @@
+{
+  "invoice": {
+    "number": "NEX-2026-001",
+    "issueDate": "2026-09-18",
+    "terms": "net7",
+    "dueDate": "2026-09-25",
+    "currency": "GBP",
+    "po": "",
+    "status": "none",
+    "clientName": "TFSS LIMITED",
+    "clientContact": "Utpal Banga",
+    "clientEmail": "firealarmservice@outlook.com",
+    "clientPhone": "+447774820001",
+    "clientVat": "",
+    "clientAddress": "41 Keiths Road\nHertfordshire,\nHemel Hempstead\nHP3 8DR\nUK",
+    "items": [
+      {
+        "id": "4bghtrm",
+        "description": "IT Managed Services",
+        "quantity": 1,
+        "unitPrice": "200",
+        "taxRate": 0
+      }
+    ],
+    "taxEnabled": false,
+    "taxMode": "invoice",
+    "taxRate": 20,
+    "taxLabel": "VAT",
+    "discountMode": "pct",
+    "discountValue": 0,
+    "discountLabel": "",
+    "charges": [],
+    "payLink": "https://pay.tide.co/pay/93e040a1-e411-449f-b1e6-8d0a55ba1e3d",
+    "notes": "Thank you for your business. Please quote the invoice number with your payment.",
+    "lateInterest": true
+  },
+  "totals": {
+    "currency": "GBP",
+    "totalCents": 20000
+  }
+}

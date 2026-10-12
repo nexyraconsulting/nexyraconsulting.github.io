@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<style>#nx-loader{position:fixed;inset:0;z-index:2147483000;background:#FFFFFF;display:flex;align-items:center;justify-content:center;transition:opacity .3s ease}#nx-loader svg{width:100%;height:100%}#nx-loader.nx-done{opacity:0;pointer-events:none}</style>
+<div id="nx-loader" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxct)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxcb)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg></div>
+<script>(function(){var l=document.getElementById('nx-loader'),t0=Date.now();function done(){if(!l)return;l.classList.add('nx-done');setTimeout(function(){l&&l.remove();l=null},350)}(function poll(){var r=document.getElementById('dc-root');if(r&&r.textContent.trim().length>40&&document.readyState!=='loading'){setTimeout(done,Math.max(0,500-(Date.now()-t0)));return}if(Date.now()-t0>6000){done();return}setTimeout(poll,60)})()})();</script>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXTime · Platform console</title>
+  <link rel="icon" href="Assets/brand/icons/nextime-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="_ds/modernist-e5baa163-67bf-4f00-88b8-5494dde303ec/styles.css">
+  <script src="app/nextime-saas.js"></script>
+  <style>
+    @font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('Assets/fonts/hanken-grotesk-latin-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    :root { --font-heading: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; --font-body: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; --color-accent: #7C3AED; }
+    html, body { margin: 0; background: #FFFFFF; color: #0A0A0F; font-family: var(--font-body); font-size: 15px; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #6D28D9; text-decoration: none; }
+    a:hover { color: #5B21B6; }
+    :focus-visible { outline: 2px solid #7C3AED; outline-offset: 2px; }
+    .input { min-height: 42px; padding: 8px 12px; background: #FFFFFF; border: 1px solid #E7E7EC; border-radius: 0; font-family: var(--font-body); font-size: 14px; color: #0A0A0F; }
+    .input:focus { outline: 2px solid #7C3AED; outline-offset: 0; border-color: #7C3AED; }
+    select.input { appearance: none; padding-right: 32px; background-image: linear-gradient(45deg, transparent 50%, #4A4A5A 50%), linear-gradient(135deg, #4A4A5A 50%, transparent 50%); background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+    .nx-b { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border: 1px solid #0A0A0F; background: transparent; color: #0A0A0F; font-family: var(--font-body); font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; text-align: left; }
+    .nx-b:hover { background: #F7F7F9; }
+    .nx-b-p { background: #7C3AED; border-color: #7C3AED; color: #FFFFFF; }
+    .nx-b-p:hover { background: #6D28D9; }
+    .nx-b-d { border-color: #991B1B; color: #991B1B; }
+    .nx-b-d:hover { background: #FEF2F2; }
+    .table th { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: #6B6B7B; border-bottom: 2px solid #0A0A0F; padding: 10px 8px; white-space: nowrap; text-align: left; }
+    .table td { border-bottom: 1px solid #E7E7EC; padding: 12px 8px; }
+    .table tbody tr { cursor: pointer; }
+    .table tbody tr:hover { background: #F7F7F9; }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;font-family:var(--font-body)">
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxTg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxTct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxTcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxTct)"><path fill="url(#nxTg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxTcb)"><path fill="url(#nxTg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg>
+  </template>
+
+  <header style="background:#0A0A0F;color:#FFFFFF;display:flex;align-items:center;gap:16px;padding:12px clamp(16px,3vw,40px);flex-wrap:wrap">
+    <img src="Assets/brand/logos/nextime-logo-dark.svg" alt="NEXTime Rota &amp; Timesheet" style="height:40px;width:auto;display:block">
+    <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#A78BFA;padding-left:16px;border-left:1px solid #2A2A36">Platform console</span>
+    <sc-if value="{{ authed }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ onLogout }}" style="margin-left:auto;background:transparent;border:1px solid #2A2A36;color:#FFFFFF;font-family:var(--font-body);font-size:13px;font-weight:500;padding:8px 12px;cursor:pointer" style-hover="background:#1A1A24">Sign out</button>
+    </sc-if>
+  </header>
+  <div style="height:3px;background:linear-gradient(90deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%)"></div>
+
+  <sc-if value="{{ showAuth }}" hint-placeholder-val="{{ false }}">
+    <main style="flex:1;display:grid;place-items:center;padding:48px 16px">
+      <form onSubmit="{{ onAuth }}" style="width:min(420px,100%);display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6D28D9">NEXTime staff only</span>
+        <h1 style="margin:0;font-size:36px;font-weight:600;letter-spacing:-0.03em;line-height:1.05">{{ authTitle }}</h1>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#4A4A5A">{{ authLead }}</p>
+        <sc-if value="{{ hasErr }}" hint-placeholder-val="{{ false }}"><div role="alert" style="background:#FEE2E2;color:#991B1B;padding:12px 14px;font-size:14px;font-weight:500">{{ err }}</div></sc-if>
+        <div class="field"><label for="pc-email">Email</label><input id="pc-email" class="input" type="email" autocomplete="username" value="{{ email }}" onChange="{{ onEmail }}"></div>
+        <div class="field"><label for="pc-pw">Password</label><input id="pc-pw" class="input" type="password" autocomplete="{{ pwAuto }}" value="{{ pw }}" onChange="{{ onPw }}"></div>
+        <button type="submit" class="nx-b nx-b-p" style="min-height:50px;font-size:15px" disabled="{{ busy }}">{{ authCta }}</button>
+      </form>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ authed }}" hint-placeholder-val="{{ true }}">
+    <main style="flex:1;padding:28px clamp(16px,3vw,40px) 48px;display:flex;flex-direction:column;gap:32px;min-width:0">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:2px solid #0A0A0F;padding-bottom:16px">
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6D28D9">All workspaces</span><h1 style="margin:0;font-size:clamp(28px,3.2vw,40px);font-weight:600;letter-spacing:-0.03em;line-height:1.05">Tenants &amp; subscriptions</h1></div>
+        <span style="font-size:13px;color:#6B6B7B">{{ asOf }}</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));border-top:2px solid #0A0A0F;border-left:1px solid #E7E7EC">
+        <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="6">
+          <div style="padding:16px 18px;border-right:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC;display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#6B6B7B">{{ k.label }}</span>
+            <span style="font-size:30px;font-weight:600;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:{{ k.fg }}">{{ k.value }}</span>
+            <span style="font-size:13px;color:#6B6B7B">{{ k.sub }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:32px;align-items:start">
+        <section style="display:flex;flex-direction:column;gap:14px;min-width:0">
+          <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+            <div role="tablist" aria-label="Status filter" style="display:flex;border:1px solid #E7E7EC;max-width:100%;overflow-x:auto">
+              <sc-for list="{{ filters }}" as="p" hint-placeholder-count="5">
+                <button role="tab" onClick="{{ p.onClick }}" aria-selected="{{ p.pressed }}" style="font-family:var(--font-body);font-size:13px;font-weight:500;padding:0 12px;min-height:38px;border:0;border-left:{{ p.divider }};background:{{ p.bg }};color:{{ p.fg }};cursor:pointer;white-space:nowrap" style-hover="background:{{ p.hoverBg }}">{{ p.label }}</button>
+              </sc-for>
+            </div>
+            <input class="input" type="search" placeholder="Search name or owner" aria-label="Search workspaces" value="{{ q }}" onChange="{{ onQ }}" style="flex:1 1 200px;min-width:0">
+          </div>
+          <sc-if value="{{ noTenants }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:15px;color:#6B6B7B;padding:16px 0">No workspaces match. New sign-ups appear here.</p></sc-if>
+          <div role="region" aria-label="Workspaces" tabindex="0" style="overflow-x:auto;min-width:0">
+            <table class="table" style="width:100%;min-width:760px;border-collapse:collapse;font-size:14px">
+              <thead><tr><th>Workspace</th><th>Plan</th><th>Status</th><th style="text-align:right">Staff</th><th style="text-align:right">Members</th><th style="text-align:right">MRR</th><th>Created</th></tr></thead>
+              <tbody>
+                <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+                  <tr onClick="{{ r.onClick }}" style="background:{{ r.bg }}">
+                    <td><div style="font-weight:600">{{ r.name }}</div><div style="font-size:12px;color:#6B6B7B">{{ r.owner }}</div></td>
+                    <td>{{ r.plan }}</td>
+                    <td><span class="tag" style="font-size:12px;font-weight:500;padding:4px 10px;background:{{ r.stBg }};color:{{ r.stFg }};white-space:nowrap">{{ r.status }}</span></td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums">{{ r.staff }}</td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums">{{ r.members }}</td>
+                    <td style="text-align:right;font-variant-numeric:tabular-nums;font-weight:600">{{ r.mrr }}</td>
+                    <td style="white-space:nowrap;color:#4A4A5A">{{ r.created }}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <aside style="display:flex;flex-direction:column;gap:16px;min-width:0">
+          <sc-if value="{{ noSel }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:20px;background:#F7F7F9;border-left:3px solid #7C3AED;font-size:14px;line-height:1.55;color:#4A4A5A">Select a workspace to see its subscription, payment method and history, and to take action.</div>
+          </sc-if>
+          <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #0A0A0F;padding-bottom:10px">
+              <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6D28D9">{{ sel.id }}</span>
+              <h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-0.02em">{{ sel.name }}</h2>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;border-left:1px solid #E7E7EC">
+              <sc-for list="{{ selRows }}" as="r" hint-placeholder-count="8">
+                <div style="padding:10px 12px;border-right:1px solid #E7E7EC;border-bottom:1px solid #E7E7EC"><div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#6B6B7B">{{ r.label }}</div><div style="font-size:14px;font-weight:500;margin-top:3px;word-break:break-word">{{ r.value }}</div></div>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B7B">Actions</span>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <select class="input" aria-label="Change plan" value="{{ sel.plan }}" onChange="{{ onPlan }}"><sc-for list="{{ planOpts }}" as="o" hint-placeholder-count="4"><option value="{{ o.value }}">{{ o.label }}</option></sc-for></select>
+                <button type="button" class="nx-b" onClick="{{ onExtend }}">Extend trial 14 days</button>
+                <button type="button" class="nx-b {{ suspendClass }}" onClick="{{ onSuspend }}">{{ suspendLabel }}</button>
+              </div>
+              <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B7B;margin-top:6px">Simulate payment webhook (Stripe / GoCardless)</span>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <button type="button" class="nx-b" onClick="{{ onPaid }}" disabled="{{ noMandate }}">Payment succeeded</button>
+                <button type="button" class="nx-b nx-b-d" onClick="{{ onFailed }}" disabled="{{ noMandate }}">Payment failed</button>
+              </div>
+              <sc-if value="{{ noMandate }}" hint-placeholder-val="{{ true }}"><span style="font-size:12px;color:#6B6B7B">No payment method on this workspace.</span></sc-if></sc-if>
+            </div>
+            <div style="display:flex;flex-direction:column">
+              <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B7B;padding-bottom:8px;border-bottom:2px solid #0A0A0F">History</span>
+              <sc-for list="{{ selEvents }}" as="e" hint-placeholder-count="4">
+                <div style="display:grid;grid-template-columns:110px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #E7E7EC;font-size:13px;line-height:1.45"><span style="color:#6B6B7B">{{ e.when }}</span><span><strong style="font-weight:600">{{ e.type }}</strong> · {{ e.summary }}</span></div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </aside>
+      </div>
+    </main>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ST = { trialing: ['Free trial', '#EDE9FE', '#5B21B6'], active: ['Active', '#DCFCE7', '#166534'], past_due: ['Past due', '#FEE2E2', '#991B1B'], expired: ['Trial ended', '#FEF3C7', '#92400E'], cancelled: ['Cancelled', '#E7E7EC', '#0A0A0F'], suspended: ['Suspended', '#FEE2E2', '#991B1B'] };
+const when = (d) => { try { return new Date(d).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); } catch (e) { return '—'; } };
+const day = (d) => { try { return new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) { return '—'; } };
+
+class Component extends DCLogic {
+  state = { ready: false, authed: false, email: '', pw: '', err: '', busy: false, filter: 'all', q: '', sel: '', tick: 0 };
+
+  componentDidMount() {
+    const wait = () => { if (!window.NXSaaS) return setTimeout(wait, 40); this.setState({ ready: true, authed: window.NXSaaS.platformSession() }); };
+    wait();
+    this._t = setInterval(() => this.setState({ tick: this.state.tick + 1 }), 3000);
+  }
+  componentWillUnmount() { clearInterval(this._t); }
+
+  act(fn) { try { fn(window.NXSaaS); this.setState({ err: '', tick: this.state.tick + 1 }); } catch (e) { this.setState({ err: e.message }); } }
+
+  renderVals() {
+    const s = this.state, S = window.NXSaaS;
+    const reg = S && s.authed ? S.read() : null;
+    const hasAdmin = !!(reg ? reg.platform : S && S.read().platform);
+    const base = {
+      demoMode: !!(S && S.demo()),
+      authed: s.ready && s.authed, showAuth: s.ready && !s.authed,
+      authTitle: hasAdmin ? 'Sign in' : 'Create the platform admin', authLead: hasAdmin ? 'Manage every NEXTime workspace, plan and payment.' : 'First run. This account manages every workspace. In production it is a Supabase user with the platform_admin role.',
+      authCta: s.busy ? 'Working…' : hasAdmin ? 'Sign in' : 'Create admin', pwAuto: hasAdmin ? 'current-password' : 'new-password',
+      email: s.email, pw: s.pw, busy: s.busy, hasErr: !!s.err, err: s.err,
+      onEmail: (ev) => this.setState({ email: ev.target.value, err: '' }), onPw: (ev) => this.setState({ pw: ev.target.value, err: '' }),
+      onAuth: async (ev) => { ev.preventDefault(); this.setState({ busy: true, err: '' }); try { if (!hasAdmin) await S.platformSetup(s.email, s.pw); await S.platformLogin(s.email, s.pw); this.setState({ authed: true, pw: '', busy: false }); } catch (e) { this.setState({ err: e.message, busy: false }); } },
+      onLogout: () => { S.platformLogout(); this.setState({ authed: false }); },
+      kpis: [], filters: [], rows: [], noTenants: true, noSel: true, hasSel: false, sel: {}, selRows: [], selEvents: [], planOpts: [], q: s.q, asOf: ''
+    };
+    if (!reg) return base;
+    const monthly = (t) => { const p = S.plan(t.plan); const st = S.tenantStatus(t); if (st !== 'active' || !t.mandate || t.mandate.status !== 'active' || p.monthly == null) return 0; return t.cycle === 'annual' ? p.annual / 12 : p.monthly; };
+    const list = Object.keys(reg.tenants).map((k) => reg.tenants[k]).sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
+    const counts = {}; list.forEach((t) => { const st = S.tenantStatus(t); counts[st] = (counts[st] || 0) + 1; });
+    const mrr = list.reduce((a, t) => a + monthly(t), 0);
+    const staffAll = list.reduce((a, t) => a + S.staffCount(t.id), 0);
+    const ql = s.q.trim().toLowerCase();
+    const shown = list.filter((t) => (s.filter === 'all' || S.tenantStatus(t) === s.filter) && (!ql || t.name.toLowerCase().indexOf(ql) >= 0 || ((reg.users[t.ownerId] || {}).email || '').indexOf(ql) >= 0));
+    const sel = reg.tenants[s.sel];
+    const fdefs = [['all', 'All ' + list.length], ['trialing', 'Trial ' + (counts.trialing || 0)], ['active', 'Active ' + (counts.active || 0)], ['past_due', 'Past due ' + (counts.past_due || 0)], ['expired', 'Ended ' + (counts.expired || 0)], ['cancelled', 'Cancelled ' + (counts.cancelled || 0)], ['suspended', 'Suspended ' + (counts.suspended || 0)]];
+    return Object.assign(base, {
+      asOf: 'Updated ' + when(Date.now()),
+      kpis: [
+        { label: 'Workspaces', value: String(list.length), sub: (counts.trialing || 0) + ' on trial', fg: '#0A0A0F' },
+        { label: 'Paying', value: String(list.filter((t) => monthly(t) > 0).length), sub: 'Payment method on file', fg: '#0A0A0F' },
+        { label: 'MRR', value: '£' + Math.round(mrr).toLocaleString('en-GB'), sub: 'ex VAT · ARR £' + Math.round(mrr * 12).toLocaleString('en-GB'), fg: '#5B21B6' },
+        { label: 'Past due', value: String(counts.past_due || 0), sub: 'Failed payments', fg: counts.past_due ? '#991B1B' : '#0A0A0F' },
+        { label: 'Trials ended', value: String(counts.expired || 0), sub: 'Awaiting payment method', fg: '#0A0A0F' },
+        { label: 'Staff scheduled', value: staffAll.toLocaleString('en-GB'), sub: 'Across all workspaces', fg: '#0A0A0F' }
+      ],
+      filters: fdefs.map((p, i) => { const on = s.filter === p[0]; return { label: p[1], pressed: on ? 'true' : 'false', onClick: () => this.setState({ filter: p[0] }), bg: on ? '#7C3AED' : 'transparent', fg: on ? '#FFFFFF' : '#4A4A5A', hoverBg: on ? '#6D28D9' : '#EDE9FE', divider: i ? '1px solid #E7E7EC' : '0' }; }),
+      onQ: (ev) => this.setState({ q: ev.target.value }),
+      noTenants: shown.length === 0,
+      rows: shown.map((t) => { const st = ST[S.tenantStatus(t)] || ['—', '#E7E7EC', '#0A0A0F']; const m = monthly(t); return {
+        name: t.name, owner: (reg.users[t.ownerId] || {}).email || '—', plan: S.plan(t.plan).name + (t.cycle === 'annual' ? ' · annual' : ''),
+        status: st[0], stBg: st[1], stFg: st[2], staff: String(S.staffCount(t.id)), members: String(reg.members.filter((x) => x.tenantId === t.id).length),
+        mrr: m ? '£' + Math.round(m) : '—', created: day(t.createdAt), bg: t.id === s.sel ? '#F5F3FF' : 'transparent', onClick: () => this.setState({ sel: t.id })
+      }; }),
+      noSel: !sel, hasSel: !!sel,
+      sel: sel ? { id: sel.id, name: sel.name, plan: sel.plan } : {},
+      selRows: sel ? [
+        { label: 'Owner', value: (reg.users[sel.ownerId] || {}).email || '—' },
+        { label: 'Status', value: (ST[S.tenantStatus(sel)] || ['—'])[0] },
+        { label: 'Plan', value: S.plan(sel.plan).name + ' · ' + sel.cycle },
+        { label: 'Trial ends', value: day(sel.trialEnds) },
+        { label: 'Payment', value: sel.mandate ? S.methodSummary(Object.assign({ type: 'direct_debit' }, sel.mandate)) + ' · ' + sel.mandate.status : 'None' },
+        { label: 'Staff / limit', value: S.staffCount(sel.id) + ' / ' + (S.plan(sel.plan).limit || '∞') },
+        { label: 'Region', value: sel.region || '—' },
+        { label: 'Two-factor', value: sel.require2fa ? 'Required' : 'Optional' }
+      ] : [],
+      selEvents: sel ? S.events(sel.id).slice(0, 25).map((e) => ({ when: when(e.at), type: e.type, summary: e.summary })) : [],
+      planOpts: S.PLANS.map((p) => ({ value: p.id, label: 'Plan: ' + p.name })),
+      onPlan: (ev) => { const v = ev.target.value; this.act((S) => S.setPlan(sel.id, v, sel.cycle)); },
+      onExtend: () => this.act((S) => S.updateTenant(sel.id, { trialEnds: Math.max(Date.now(), sel.trialEnds) + 14 * 86400000, status: sel.status === 'trialing' || S.tenantStatus(sel) === 'expired' ? 'trialing' : sel.status }, 'Trial extended 14 days by NEXTime')),
+      suspendLabel: sel && sel.status === 'suspended' ? 'Lift suspension' : 'Suspend workspace', suspendClass: sel && sel.status === 'suspended' ? '' : 'nx-b-d',
+      onSuspend: () => this.act((S) => sel.status === 'suspended' ? S.updateTenant(sel.id, { status: sel.prevStatus || 'active' }, 'Suspension lifted by NEXTime') : S.updateTenant(sel.id, { status: 'suspended', prevStatus: sel.status }, 'Suspended by NEXTime')),
+      noMandate: !(sel && sel.mandate && sel.mandate.status === 'active'),
+      onPaid: () => this.act((S) => S.simulatePayment(sel.id, true)),
+      onFailed: () => this.act((S) => S.simulatePayment(sel.id, false))
+    });
+  }
+}
+</script>
+</body>
+</html>

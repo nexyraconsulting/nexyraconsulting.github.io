@@ -1,0 +1,29 @@
+# Supabase CLI project settings for NEXTime. Run `supabase link --project-ref <ref>` first.
+project_id = "nextime"
+
+[auth]
+site_url = "https://app.example.com"
+additional_redirect_urls = ["https://app.example.com/account.html"]
+minimum_password_length = 10
+enable_signup = true
+
+[auth.email]
+enable_confirmations = true
+double_confirm_changes = true
+
+[auth.mfa]
+max_enrolled_factors = 10
+
+[auth.mfa.totp]
+enroll_enabled = true
+verify_enabled = true
+
+# Webhooks are called by Stripe / GoCardless / pg_cron, not by signed-in users: they verify their own signatures.
+[functions.gocardless-webhook]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.scheduled-tasks]
+verify_jwt = false

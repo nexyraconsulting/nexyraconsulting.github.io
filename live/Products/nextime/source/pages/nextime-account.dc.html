@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<style>#nx-loader{position:fixed;inset:0;z-index:2147483000;background:#FFFFFF;display:flex;align-items:center;justify-content:center;transition:opacity .3s ease}#nx-loader svg{width:100%;height:100%}#nx-loader.nx-done{opacity:0;pointer-events:none}</style>
+<div id="nx-loader" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxct)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxcb)"><path fill="url(#nxg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg></div>
+<script>(function(){var l=document.getElementById('nx-loader'),t0=Date.now();function done(){if(!l)return;l.classList.add('nx-done');setTimeout(function(){l&&l.remove();l=null},350)}(function poll(){var r=document.getElementById('dc-root');if(r&&r.textContent.trim().length>40&&document.readyState!=='loading'){setTimeout(done,Math.max(0,500-(Date.now()-t0)));return}if(Date.now()-t0>6000){done();return}setTimeout(poll,60)})()})();</script>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXTime · Account</title>
+  <link rel="icon" href="Assets/brand/icons/nextime-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="_ds/modernist-e5baa163-67bf-4f00-88b8-5494dde303ec/styles.css">
+  <script src="app/nextime-saas.js"></script>
+  <style>
+    @font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('Assets/fonts/hanken-grotesk-latin-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('Assets/fonts/hanken-grotesk-latin-ext-normal.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+    :root { --font-heading: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; --font-body: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; --color-accent: #7C3AED; --color-text: #0A0A0F; --color-divider: #E7E7EC; }
+    html, body { margin: 0; background: #FFFFFF; color: #0A0A0F; font-family: var(--font-body); font-size: 15px; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #6D28D9; text-decoration: none; }
+    a:hover { color: #5B21B6; }
+    ::selection { background: #EDE9FE; }
+    :focus-visible { outline: 2px solid #7C3AED; outline-offset: 2px; }
+    .input { width: 100%; min-height: 48px; padding: 10px 14px; background: #FFFFFF; border: 1px solid #E7E7EC; border-radius: 0; font-family: var(--font-body); font-size: 15px; color: #0A0A0F; }
+    .input:hover { border-color: #6B6B7B; }
+    .input:focus, .input:focus-visible { outline: 2px solid #7C3AED; outline-offset: 0; border-color: #7C3AED; }
+    select.input { appearance: none; padding-right: 32px; background-image: linear-gradient(45deg, transparent 50%, #4A4A5A 50%), linear-gradient(135deg, #4A4A5A 50%, transparent 50%); background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+    .nx-btn { display: inline-flex; align-items: center; justify-content: flex-start; gap: 10px; min-height: 52px; padding: 0 20px; border: 0; border-radius: 0; font-family: var(--font-body); font-size: 15px; font-weight: 500; cursor: pointer; text-align: left; white-space: nowrap; transition: background .15s ease; }
+    .nx-btn-primary { background: #7C3AED; color: #FFFFFF; }
+    .nx-btn-primary:hover { background: #6D28D9; }
+    .nx-btn-primary:active { background: #5B21B6; }
+    .nx-btn-primary:disabled { opacity: .55; cursor: progress; }
+    .nx-btn-secondary { background: transparent; color: #0A0A0F; border: 1px solid #0A0A0F; }
+    .nx-btn-secondary:hover { background: #F7F7F9; }
+    .nx-link { background: none; border: 0; padding: 0; font-family: var(--font-body); font-size: 14px; font-weight: 500; color: #6D28D9; cursor: pointer; text-align: left; white-space: nowrap; }
+    .nx-link:hover { color: #5B21B6; text-decoration: underline; }
+    .nx-shell { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+    @media (max-width: 899px) { .nx-side { display: none !important; } .nx-shell { grid-template-columns: minmax(0,1fr); } }
+  </style>
+</helmet>
+
+<div class="nx-shell" style="min-height:100vh;display:grid;font-family:var(--font-body)">
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.nxt{animation:nxa 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxb{animation:nxb 1.8s cubic-bezier(.65,0,.35,1) infinite}.nxl{opacity:0;animation:nxl 1.8s ease infinite}@keyframes nxa{0%{opacity:0;transform:translate(22px,-11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxb{0%{opacity:0;transform:translate(-22px,11px)}45%,78%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(0,0)}}@keyframes nxl{0%,42%{opacity:0}55%,78%{opacity:1}100%{opacity:0}}@media (prefers-reduced-motion: reduce){.nxt,.nxb,.nxl{animation:none;opacity:1}}</style><defs><linearGradient id="nxTg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="130"><stop offset="0" stop-color="#A78BFA"></stop><stop offset="0.39" stop-color="#7C3AED"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient><clipPath id="nxTct"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath><clipPath id="nxTcb"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath></defs><g transform="translate(440,430)"><g class="nxt"><g clip-path="url(#nxTct)"><path fill="url(#nxTg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><g class="nxb"><g clip-path="url(#nxTcb)"><path fill="url(#nxTg)" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g></g><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line><line class="nxl" stroke="#9333EA" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line></g></svg>
+  </template>
+
+  <main style="min-width:0;display:flex;flex-direction:column;min-height:100vh;padding:28px clamp(20px,5vw,72px)">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <a href="{{ siteUrl }}" aria-label="NEXTime home" style="display:block;line-height:0"><img src="Assets/brand/logos/nextime-logo-reverse.svg" alt="NEXTime Rota &amp; Timesheet" style="width:176px;height:auto;display:block;margin-left:-7px"></a>
+      <a href="{{ siteUrl }}" style="font-size:14px;font-weight:500;color:#4A4A5A">Back to website</a>
+    </div>
+
+    <div style="flex:1;display:flex;align-items:center;padding:48px 0">
+      <div style="width:100%;max-width:440px;display:flex;flex-direction:column;gap:28px">
+
+        <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:0;font-size:14px;color:#6B6B7B">Loading…</p>
+        </sc-if>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6D28D9">{{ eyebrow }}</span>
+          <h1 style="margin:0;font-size:clamp(32px,4vw,44px);font-weight:600;letter-spacing:-0.03em;line-height:1.02;text-wrap:balance">{{ title }}</h1>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#4A4A5A;text-wrap:pretty">{{ lead }}</p>
+        </div>
+
+        <sc-if value="{{ hasErr }}" hint-placeholder-val="{{ false }}">
+          <div role="alert" style="background:#FEE2E2;color:#991B1B;padding:12px 14px;font-size:14px;font-weight:500;line-height:1.5">{{ err }}</div>
+        </sc-if>
+        <sc-if value="{{ hasInfo }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="background:#EDE9FE;color:#2E1065;padding:12px 14px;font-size:14px;line-height:1.5">{{ info }}</div>
+        </sc-if>
+
+        <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onLogin }}" style="display:flex;flex-direction:column;gap:18px" novalidate="{{ true }}">
+            <div class="field"><label for="ac-email">Work email</label><input id="ac-email" class="input" type="email" autocomplete="username" value="{{ f.email }}" onChange="{{ set.email }}"></div>
+            <div class="field">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px"><label for="ac-pw" style="margin:0">Password</label><button type="button" class="nx-link" onClick="{{ toForgot }}" style="font-size:13px">Forgot password?</button></div>
+              <input id="ac-pw" class="input" type="password" autocomplete="current-password" value="{{ f.password }}" onChange="{{ set.password }}">
+            </div>
+            <button type="submit" class="nx-btn nx-btn-primary" disabled="{{ busy }}">{{ loginLabel }}</button>
+          </form>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;font-size:14px;color:#4A4A5A;border-top:1px solid #E7E7EC;padding-top:20px">New to NEXTime?<button type="button" class="nx-link" onClick="{{ toSignup }}">Start a 14-day free trial</button></div>
+        </sc-if>
+
+        <sc-if value="{{ isMfa }}" hint-placeholder-val="{{ false }}">
+          <form onSubmit="{{ onMfa }}" style="display:flex;flex-direction:column;gap:18px">
+            <div class="field"><label for="ac-otp">6-digit code from your authenticator app</label><input id="ac-otp" class="input" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="{{ f.otp }}" onChange="{{ set.otp }}" style="font-size:24px;letter-spacing:0.4em;min-height:56px" autoFocus="{{ true }}"></div>
+            <button type="submit" class="nx-btn nx-btn-primary" disabled="{{ busy }}">Verify and continue</button>
+            <button type="button" class="nx-link" onClick="{{ toLogin }}">Use a different account</button>
+          </form>
+        </sc-if>
+
+        <sc-if value="{{ isPick }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;border-top:2px solid #0A0A0F">
+            <sc-for list="{{ workspaces }}" as="w" hint-placeholder-count="2">
+              <button type="button" onClick="{{ w.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border:0;border-bottom:1px solid #E7E7EC;background:none;cursor:pointer;text-align:left;font-family:var(--font-body)" style-hover="background:#F7F7F9">
+                <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:17px;font-weight:600;color:#0A0A0F">{{ w.name }}</span><span style="font-size:13px;color:#6B6B7B">{{ w.role }}</span></span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSignup1 }}" hint-placeholder-val="{{ false }}">
+          <form onSubmit="{{ onSignup1 }}" style="display:flex;flex-direction:column;gap:18px">
+            <div class="field"><label for="su-co">Company name</label><input id="su-co" class="input" autocomplete="organization" value="{{ f.company }}" onChange="{{ set.company }}"></div>
+            <div class="field"><label for="su-size">How many staff will you schedule?</label>
+              <select id="su-size" class="input" value="{{ f.size }}" onChange="{{ onSize }}">
+                <sc-for list="{{ sizeOptions }}" as="o" hint-placeholder-count="4"><option value="{{ o.value }}">{{ o.label }}</option></sc-for>
+              </select>
+            </div>
+            <div class="field"><label>Plan for after your trial</label>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));border-top:2px solid #0A0A0F">
+                <sc-for list="{{ planOptions }}" as="p" hint-placeholder-count="3">
+                  <button type="button" onClick="{{ p.onClick }}" aria-pressed="{{ p.pressed }}" style="display:flex;flex-direction:column;gap:2px;padding:12px;border:1px solid #E7E7EC;border-top:0;margin-left:-1px;background:{{ p.bg }};color:{{ p.fg }};cursor:pointer;text-align:left;font-family:var(--font-body)">
+                    <span style="font-size:14px;font-weight:600">{{ p.name }}</span>
+                    <span style="font-size:12px;opacity:.85">{{ p.meta }}</span>
+                  </button>
+                </sc-for>
+              </div>
+              <span style="font-size:12px;color:#6B6B7B;margin-top:8px">Every plan includes every feature. Change any time.</span>
+            </div>
+            <div class="field"><label for="su-region">Where is your business based?</label>
+              <select id="su-region" class="input" value="{{ f.region }}" onChange="{{ set.region }}">
+                <sc-for list="{{ regionOptions }}" as="o" hint-placeholder-count="4"><option value="{{ o }}">{{ o }}</option></sc-for>
+              </select>
+            </div>
+            <button type="submit" class="nx-btn nx-btn-primary">Continue</button>
+          </form>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;font-size:14px;color:#4A4A5A;border-top:1px solid #E7E7EC;padding-top:20px">Already have an account?<button type="button" class="nx-link" onClick="{{ toLogin }}">Sign in</button></div>
+        </sc-if>
+
+        <sc-if value="{{ isSignup2 }}" hint-placeholder-val="{{ false }}">
+          <form onSubmit="{{ onSignup2 }}" style="display:flex;flex-direction:column;gap:18px">
+            <div class="field"><label for="su-name">Your full name</label><input id="su-name" class="input" autocomplete="name" value="{{ f.name }}" onChange="{{ set.name }}"></div>
+            <div class="field"><label for="su-email">Work email</label><input id="su-email" class="input" type="email" autocomplete="email" value="{{ f.email }}" onChange="{{ set.email }}"></div>
+            <div class="field"><label for="su-pw">Password</label><input id="su-pw" class="input" type="password" autocomplete="new-password" value="{{ f.password }}" onChange="{{ set.password }}"><span style="font-size:12px;color:{{ pwHintFg }};margin-top:6px">{{ pwHint }}</span></div>
+            <sc-if value="{{ hasLegacy }}" hint-placeholder-val="{{ false }}">
+              <label style="display:flex;gap:12px;align-items:flex-start;padding:14px;background:#F7F7F9;border-left:3px solid #7C3AED;cursor:pointer;font-size:14px;line-height:1.5">
+                <input type="checkbox" checked="{{ f.importLegacy }}" onChange="{{ onImport }}" style="width:18px;height:18px;margin-top:2px;accent-color:#7C3AED;flex:none">
+                <span><strong style="font-weight:600">Bring my existing data across.</strong> {{ legacyText }}</span>
+              </label>
+            </sc-if>
+            <label style="display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:#4A4A5A;cursor:pointer">
+              <input type="checkbox" checked="{{ f.terms }}" onChange="{{ onTerms }}" style="width:18px;height:18px;margin-top:2px;accent-color:#7C3AED;flex:none">
+              <span>I agree to the NEXTime Terms of Service and Data Processing Agreement, and have read the Privacy Policy.</span>
+            </label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button type="button" class="nx-btn nx-btn-secondary" onClick="{{ toSignup }}">Back</button>
+              <button type="submit" class="nx-btn nx-btn-primary" disabled="{{ busy }}" style="flex:1">{{ createLabel }}</button>
+            </div>
+          </form>
+        </sc-if>
+
+        <sc-if value="{{ isVerify }}" hint-placeholder-val="{{ false }}">
+          <form onSubmit="{{ onVerify }}" style="display:flex;flex-direction:column;gap:18px">
+            <div class="field"><label for="ac-code">Verification code</label><input id="ac-code" class="input" inputmode="numeric" maxlength="6" autocomplete="one-time-code" value="{{ f.code }}" onChange="{{ set.code }}" style="font-size:24px;letter-spacing:0.4em;min-height:56px" autoFocus="{{ true }}"></div>
+            <button type="submit" class="nx-btn nx-btn-primary" disabled="{{ busy }}">Verify email</button>
+            <button type="button" class="nx-link" onClick="{{ onResend }}">Send a new code</button>
+          </form>
+        </sc-if>
+
+        <sc-if value="{{ isSetup2fa }}" hint-placeholder-val="{{ false }}">
+          <form onSubmit="{{ onEnable2fa }}" style="display:flex;flex-direction:column;gap:20px">
+            <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;border-top:2px solid #0A0A0F">
+              <li style="display:grid;grid-template-columns:32px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #E7E7EC"><span style="font-size:13px;font-weight:600;color:#7C3AED">01</span><span style="font-size:14px;line-height:1.55;color:#4A4A5A">Open an authenticator app such as Google Authenticator, Microsoft Authenticator or 1Password, and add an account.</span></li>
+              <li style="display:grid;grid-template-columns:32px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #E7E7EC"><span style="font-size:13px;font-weight:600;color:#7C3AED">02</span>
+                <span style="display:flex;flex-direction:column;gap:10px"><span style="font-size:14px;line-height:1.55;color:#4A4A5A">Choose “Enter a setup key” and type this key. Time-based, 6 digits.</span>
+                  <span style="display:flex;align-items:stretch;gap:0"><code style="flex:1;min-width:0;padding:12px 14px;background:#F7F7F9;border:1px solid #E7E7EC;font-family:ui-monospace,Menlo,monospace;font-size:15px;letter-spacing:0.08em;word-break:break-all">{{ secretGrouped }}</code><button type="button" onClick="{{ onCopySecret }}" style="padding:0 14px;border:1px solid #E7E7EC;border-left:0;background:#FFFFFF;font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer" style-hover="background:#EDE9FE">{{ copyLabel }}</button></span>
+                  <a href="{{ otpUri }}" style="font-size:13px;font-weight:500">On this phone? Open in authenticator app</a>
+                </span></li>
+              <li style="display:grid;grid-template-columns:32px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #E7E7EC"><span style="font-size:13px;font-weight:600;color:#7C3AED">03</span>
+                <span style="display:flex;flex-direction:column;gap:8px"><label for="ac-otp2" style="font-size:14px;color:#4A4A5A">Enter the 6-digit code the app shows</label><input id="ac-otp2" class="input" inputmode="numeric" maxlength="6" autocomplete="one-time-code" value="{{ f.otp }}" onChange="{{ set.otp }}" style="font-size:22px;letter-spacing:0.4em"></span></li>
+            </ol>
+            <button type="submit" class="nx-btn nx-btn-primary" disabled="{{ busy }}">Turn on two-factor</button>
+            <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+              <sc-if value="{{ canSkip2fa }}" hint-placeholder-val="{{ true }}"><button type="button" class="nx-link" onClick="{{ onSkip2fa }}">Skip for now</button></sc-if>
+              <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}"><button type="button" class="nx-link" onClick="{{ onPeekCode }}" style="color:#6B6B7B">{{ peekLabel }}</button></sc-if>
+            </div>
+          </form>
+        </sc-if>
+
+        <sc-if value="{{ isForgot }}" hint-placeholder-val="{{ false }}">
+          <form onSubmit="{{ onForgot }}" style="display:flex;flex-direction:column;gap:18px">
+            <div class="field"><label for="fg-email">Work email</label><input id="fg-email" class="input" type="email" autocomplete="username" value="{{ f.email }}" onChange="{{ set.email }}"></div>
+            <button type="submit" class="nx-btn nx-btn-primary" disabled="{{ busy }}">Email me a reset link</button>
+            <button type="button" class="nx-link" onClick="{{ toLogin }}">Back to sign in</button>
+          </form>
+        </sc-if>
+
+        <sc-if value="{{ isReset }}" hint-placeholder-val="{{ false }}">
+          <form onSubmit="{{ onReset }}" style="display:flex;flex-direction:column;gap:18px">
+            <div class="field"><label for="rs-pw">New password</label><input id="rs-pw" class="input" type="password" autocomplete="new-password" value="{{ f.password }}" onChange="{{ set.password }}"><span style="font-size:12px;color:{{ pwHintFg }};margin-top:6px">{{ pwHint }}</span></div>
+            <button type="submit" class="nx-btn nx-btn-primary" disabled="{{ busy }}">Save new password</button>
+          </form>
+        </sc-if>
+
+        <sc-if value="{{ isInvite }}" hint-placeholder-val="{{ false }}">
+          <form onSubmit="{{ onAccept }}" style="display:flex;flex-direction:column;gap:18px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;border-top:2px solid #0A0A0F;border-bottom:1px solid #E7E7EC">
+              <div style="padding:14px 14px 14px 0;border-right:1px solid #E7E7EC"><div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#6B6B7B">Workspace</div><div style="font-size:16px;font-weight:600;margin-top:4px">{{ inv.tenant }}</div></div>
+              <div style="padding:14px"><div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#6B6B7B">Role</div><div style="font-size:16px;font-weight:600;margin-top:4px">{{ inv.role }}</div></div>
+            </div>
+            <div class="field"><label>Email</label><input class="input" value="{{ inv.email }}" disabled="{{ true }}" style="background:#F7F7F9"></div>
+            <sc-if value="{{ inv.isNew }}" hint-placeholder-val="{{ true }}">
+              <div class="field"><label for="iv-name">Your full name</label><input id="iv-name" class="input" autocomplete="name" value="{{ f.name }}" onChange="{{ set.name }}"></div>
+            </sc-if>
+            <div class="field"><label for="iv-pw">{{ inv.pwLabel }}</label><input id="iv-pw" class="input" type="password" autocomplete="{{ inv.pwAuto }}" value="{{ f.password }}" onChange="{{ set.password }}"></div>
+            <button type="submit" class="nx-btn nx-btn-primary" disabled="{{ busy }}">Join {{ inv.tenant }}</button>
+          </form>
+        </sc-if>
+
+        <sc-if value="{{ isPay }}" hint-placeholder-val="{{ false }}">
+          <form onSubmit="{{ onSavePay }}" style="display:flex;flex-direction:column;gap:18px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <button type="button" onClick="{{ onApplePay }}" aria-label="Add Apple Pay" style="display:flex;align-items:center;justify-content:center;min-height:52px;border:0;background:#0A0A0F;cursor:pointer" style-hover="background:#2A2A36"><img src="https://cdn.simpleicons.org/applepay/FFFFFF" alt="" style="height:42px;width:auto;display:block"></button>
+              <button type="button" onClick="{{ onGooglePay }}" aria-label="Add Google Pay" style="display:flex;align-items:center;justify-content:center;min-height:52px;border:1px solid #0A0A0F;background:#FFFFFF;cursor:pointer" style-hover="background:#F7F7F9"><img src="https://cdn.simpleicons.org/googlepay" alt="" style="height:42px;width:auto;display:block"></button>
+            </div>
+            <div role="tablist" aria-label="Payment method" style="display:grid;grid-template-columns:1fr 1fr;border:1px solid #E7E7EC">
+              <sc-for list="{{ payTabs }}" as="p" hint-placeholder-count="2">
+                <button type="button" role="tab" onClick="{{ p.onClick }}" aria-selected="{{ p.pressed }}" style="font-family:var(--font-body);font-size:14px;font-weight:500;padding:0 14px;min-height:46px;border:0;border-left:{{ p.divider }};background:{{ p.bg }};color:{{ p.fg }};cursor:pointer;text-align:left;white-space:nowrap">{{ p.label }}</button>
+              </sc-for>
+            </div>
+            <sc-if value="{{ payCard }}" hint-placeholder-val="{{ true }}">
+              <div class="field"><label for="py-name">Name on card</label><input id="py-name" class="input" autocomplete="cc-name" value="{{ pay.holder }}" onChange="{{ paySet.holder }}"></div>
+              <div class="field"><label for="py-num">Card number</label>
+                <div style="position:relative"><input id="py-num" class="input" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" value="{{ pay.number }}" onChange="{{ paySet.number }}" style="padding-right:150px;font-variant-numeric:tabular-nums">
+                  <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);display:flex;gap:5px;align-items:center"><img src="https://cdn.simpleicons.org/visa" alt="Visa" style="height:11px;width:auto;display:block"><img src="https://cdn.simpleicons.org/mastercard" alt="Mastercard" style="height:17px;width:auto;display:block"><img src="https://cdn.simpleicons.org/americanexpress" alt="American Express" style="height:17px;width:auto;display:block"></span>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+                <div class="field"><label for="py-exp">Expiry</label><input id="py-exp" class="input" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5" value="{{ pay.exp }}" onChange="{{ paySet.exp }}"></div>
+                <div class="field"><label for="py-cvc">CVC</label><input id="py-cvc" class="input" inputmode="numeric" autocomplete="cc-csc" maxlength="4" value="{{ pay.cvc }}" onChange="{{ paySet.cvc }}"></div>
+                <div class="field"><label for="py-pc">Postcode</label><input id="py-pc" class="input" autocomplete="postal-code" value="{{ pay.postcode }}" onChange="{{ paySet.postcode }}"></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ payDd }}" hint-placeholder-val="{{ false }}">
+              <div class="field"><label for="py-holder">Account holder name</label><input id="py-holder" class="input" autocomplete="name" value="{{ pay.holder }}" onChange="{{ paySet.holder }}"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="field"><label for="py-sort">Sort code</label><input id="py-sort" class="input" inputmode="numeric" value="{{ pay.code }}" onChange="{{ paySet.code }}"></div>
+                <div class="field"><label for="py-acc">Account number</label><input id="py-acc" class="input" inputmode="numeric" value="{{ pay.account }}" onChange="{{ paySet.account }}"></div>
+              </div>
+              <label style="display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.5;color:#4A4A5A;cursor:pointer"><input type="checkbox" checked="{{ pay.auth }}" onChange="{{ onPayAuth }}" style="width:18px;height:18px;margin-top:1px;accent-color:#7C3AED;flex:none"><span>I am the account holder and can authorise debits. UK Bacs here; other countries and annual invoices are in Workspace → Plan &amp; billing.</span></label>
+            </sc-if>
+            <span style="font-size:12px;line-height:1.5;color:#6B6B7B">{{ payNote }}</span>
+            <button type="submit" class="nx-btn nx-btn-primary" disabled="{{ busy }}">{{ payCta }}</button>
+            <button type="button" class="nx-link" onClick="{{ onSkipPay }}">Skip for now · add it later</button>
+          </form>
+        </sc-if>
+
+        <sc-if value="{{ isDead }}" hint-placeholder-val="{{ false }}">
+          <button type="button" class="nx-btn nx-btn-secondary" onClick="{{ toLogin }}">Go to sign in</button>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px 24px;font-size:12px;color:#6B6B7B;border-top:1px solid #E7E7EC;padding-top:16px">
+      <span>© NEXTime by Nexyra Consulting</span>
+      <span>Protected by two-factor authentication</span>
+      <span>Card, Apple Pay, Google Pay or Direct Debit</span>
+    </div>
+  </main>
+
+  <aside class="nx-side" style="grid-column:2;position:sticky;top:0;height:100vh;background:linear-gradient(135deg,#A78BFA 0%,#7C3AED 39%,#3B82F6 100%);color:#FFFFFF;display:flex;flex-direction:column;justify-content:space-between;padding:40px clamp(28px,4vw,64px)">
+    <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase">NEXTime Rota &amp; Timesheet</span>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p style="margin:0;font-size:clamp(34px,3.6vw,56px);font-weight:600;line-height:1.02;letter-spacing:-0.03em;text-wrap:balance">Rotas, timesheets and payroll hours. One workspace for the whole team.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid #FFFFFF">
+        <div style="padding:16px 16px 0 0;border-right:1px solid rgba(255,255,255,0.4)"><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em">14 days</div><div style="font-size:13px;line-height:1.4">Free trial, card optional</div></div>
+        <div style="padding:16px 16px 0;border-right:1px solid rgba(255,255,255,0.4)"><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em">All</div><div style="font-size:13px;line-height:1.4">Features in every plan</div></div>
+        <div style="padding:16px 0 0 16px"><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em">2FA</div><div style="font-size:13px;line-height:1.4">On every account</div></div>
+      </div>
+    </div>
+    <span style="font-size:13px">Pay by card, Apple Pay, Google Pay or Direct Debit · Cancel any time</span>
+  </aside>
+
+  <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;right:16px;bottom:16px;z-index:50;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+    <sc-if value="{{ inboxOpen }}" hint-placeholder-val="{{ false }}">
+      <div role="dialog" aria-label="Demo inbox" style="width:min(420px,calc(100vw - 32px));max-height:min(70vh,560px);overflow-y:auto;background:#FFFFFF;border-top:3px solid #7C3AED;box-shadow:0 18px 40px rgba(10,10,15,0.18)">
+        <div style="padding:16px 18px;border-bottom:1px solid #E7E7EC;display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#6D28D9">Prototype only</span>
+          <span style="font-size:13px;line-height:1.5;color:#4A4A5A">Emails NEXTime would send. In production these arrive in the recipient's real inbox.</span>
+        </div>
+        <sc-if value="{{ inboxEmpty }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:18px;font-size:14px;color:#6B6B7B">No emails yet.</p></sc-if>
+        <sc-for list="{{ inbox }}" as="m" hint-placeholder-count="2">
+          <div style="padding:14px 18px;border-bottom:1px solid #E7E7EC;display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;gap:8px;font-size:12px;color:#6B6B7B"><span>To {{ m.to }}</span><span>{{ m.when }}</span></div>
+            <div style="font-size:14px;font-weight:600">{{ m.subject }}</div>
+            <div style="font-size:13px;line-height:1.5;color:#4A4A5A">{{ m.body }}</div>
+            <sc-if value="{{ m.hasCode }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ m.onUseCode }}" style="align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:20px;letter-spacing:0.3em;padding:8px 12px;background:#EDE9FE;color:#2E1065;border:0;cursor:pointer" title="Use this code">{{ m.code }}</button></sc-if>
+            <sc-if value="{{ m.hasLink }}" hint-placeholder-val="{{ false }}"><a href="{{ m.link }}" style="align-self:flex-start;font-size:14px;font-weight:500">{{ m.linkLabel }} →</a></sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+    <button type="button" onClick="{{ onToggleInbox }}" style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:#0A0A0F;color:#FFFFFF;border:0;cursor:pointer;font-family:var(--font-body);font-size:13px;font-weight:500;white-space:nowrap" style-hover="background:#2E1065">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+      Demo inbox · {{ inboxCount }}
+    </button>
+  </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SIZES = [['1-10', '1–10 staff', 'starter'], ['11-50', '11–50 staff', 'team'], ['51-200', '51–200 staff', 'business'], ['200+', 'More than 200 staff', 'enterprise']];
+const REGIONS = ['United Kingdom', 'Ireland', 'European Union', 'United States', 'Canada', 'Australia', 'New Zealand', 'Other'];
+const TITLES = {
+  login: ['Sign in', 'Welcome back', 'Sign in to your NEXTime workspace.'],
+  mfa: ['Two-factor', 'Enter your code', 'Open your authenticator app and enter the current 6-digit code.'],
+  pick: ['Workspaces', 'Choose a workspace', 'Your account belongs to more than one organisation.'],
+  signup1: ['Step 1 of 2 · Your company', 'Start your free trial', '14 days with every feature. A card is optional: add one now or any time during the trial.'],
+  signup2: ['Step 2 of 2 · Your account', 'Create your login', 'You will be the Owner of the workspace and can invite your team next.'],
+  verify: ['Verify email', 'Check your inbox', ''],
+  setup2fa: ['Security', 'Turn on two-factor', 'A code from your phone is needed each time you sign in. It stops anyone who learns your password.'],
+  forgot: ['Password', 'Reset your password', 'We will email you a link to choose a new password.'],
+  reset: ['Password', 'Choose a new password', 'At least 10 characters with letters and numbers.'],
+  invite: ['Invitation', 'Join your team', 'Set up your login to see the rota and your hours.'],
+  pay: ['Optional · Payment method', 'Add a payment method', ''],
+  dead: ['Invitation', 'This link has expired', 'Ask your manager to send a new invitation.']
+};
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const q = new URLSearchParams(location.search);
+    const planQ = q.get('plan') || '';
+    const sizeFor = (p) => (SIZES.filter((x) => x[2] === p)[0] || SIZES[0])[0];
+    this.state = {
+      ready: false, busy: false, err: '', info: '', inboxOpen: false, copied: false, peek: '',
+      view: q.get('invite') ? 'invite' : q.get('reset') ? 'reset' : q.get('view') === 'signup' || planQ ? 'signup1' : q.get('view') === 'forgot' ? 'forgot' : 'login',
+      signout: q.get('signout') === '1',
+      token: q.get('invite') || q.get('reset') || '',
+      f: { email: q.get('email') || '', password: '', otp: '', code: '', company: '', size: sizeFor(planQ), plan: planQ && planQ !== 'enterprise' ? planQ : 'starter', region: 'United Kingdom', name: '', terms: false, importLegacy: true },
+      pending: null, secret: '', tick: 0
+    };
+  }
+
+  componentDidMount() {
+    const wait = () => {
+      if (!window.NXSaaS) return setTimeout(wait, 40);
+      const S = window.NXSaaS;
+      const st = { ready: true };
+      if (this.state.signout) { S.endSession(); history.replaceState(null, '', S.url('account')); }
+      if (this.state.view === 'invite') {
+        const inf = S.inviteInfo(this.state.token);
+        if (!inf || inf.expired) st.view = 'dead';
+        else st.f = Object.assign({}, this.state.f, { email: inf.invite.email });
+      }
+      if (this.state.view === 'login' && S.context()) { S.go('app'); return; }
+      this.setState(st);
+    };
+    wait();
+    this._poll = setInterval(() => this.setState({ tick: this.state.tick + 1 }), 2000);
+  }
+  componentWillUnmount() { clearInterval(this._poll); }
+
+  to(view, extra) { this.setState(Object.assign({ view: view, err: '', info: '', busy: false, peek: '' }, extra || {})); }
+  setF(k, v) { this.setState((x) => ({ f: Object.assign({}, x.f, { [k]: v }), err: '' })); }
+  async run(fn) {
+    if (this.state.busy) return;
+    this.setState({ busy: true, err: '' });
+    try { await fn(window.NXSaaS); } catch (e) { this.setState({ err: e.message || String(e) }); }
+    this.setState({ busy: false });
+  }
+
+  afterAuth(user, memberships, verifiedTotp) {
+    const S = window.NXSaaS;
+    if (!memberships.length) throw new Error('This account is not part of any workspace. Ask your manager for an invitation.');
+    if (!user.emailVerified) { S.resendVerify(user.id); return this.to('verify', { pending: { user: user, memberships: memberships } }); }
+    if (user.totpOn && !verifiedTotp) return this.to('mfa', { pending: { user: user, memberships: memberships } });
+    const needs = memberships.some((m) => m.require2fa);
+    if (!user.totpOn && needs) return this.to('setup2fa', { pending: { user: user, memberships: memberships, required: true }, secret: S.b32secret() });
+    if (this._fresh && !this._payDone) { this._payDone = true; return this.to('pay', { pending: { user: user, memberships: memberships }, pay: { method: 'card', holder: user.name, number: '', exp: '', cvc: '', postcode: '', code: '', account: '', auth: false } }); }
+    if (memberships.length > 1) return this.to('pick', { pending: { user: user, memberships: memberships } });
+    S.startSession(user.id, memberships[0].tenantId);
+    S.go('app');
+  }
+
+  renderVals() {
+    const s = this.state, f = s.f, S = window.NXSaaS;
+    const t = TITLES[s.view] || TITLES.login;
+    const set = {};
+    ['email', 'password', 'otp', 'code', 'company', 'region', 'name'].forEach((k) => {
+      set[k] = (ev) => this.setF(k, k === 'otp' || k === 'code' ? String(ev.target.value).replace(/\D/g, '').slice(0, 6) : ev.target.value);
+    });
+    const pwIss = S && f.password ? S.pwIssues(f.password) : [];
+    const plans = S ? S.PLANS.filter((p) => p.id !== 'enterprise') : [];
+    const legacy = S && s.view === 'signup2' ? S.legacyData() : null;
+    const mails = S ? S.outbox().slice(0, 20) : [];
+    const pend = s.pending;
+    const inf = S && s.view === 'invite' ? S.inviteInfo(s.token) : null;
+    let lead = t[2];
+    if (s.view === 'verify') lead = 'We sent a 6-digit code to ' + (pend ? pend.user.email : 'your email') + '. Enter it below to confirm the address.';
+    if (s.view === 'pay' && pend && S) { const tt = S.read().tenants[pend.memberships[0].tenantId]; lead = 'Nothing is charged until your trial ends' + (tt ? ' on ' + new Date(tt.trialEnds).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '') + '. You can skip this and add it later in Workspace → Plan & billing.'; }
+    if (s.view === 'setup2fa' && pend && pend.required) lead = 'Your workspace requires two-factor authentication. Set it up once to continue.';
+
+    return {
+      loading: !s.ready, siteUrl: S ? S.url('site') : '#',
+      mainCol: '1', eyebrow: t[0], title: t[1], lead: lead,
+      hasErr: !!s.err, err: s.err, hasInfo: !!s.info, info: s.info, busy: s.busy,
+      f: f, set: set,
+      isLogin: s.view === 'login', isMfa: s.view === 'mfa', isPick: s.view === 'pick', isSignup1: s.view === 'signup1', isSignup2: s.view === 'signup2',
+      isVerify: s.view === 'verify', isSetup2fa: s.view === 'setup2fa', isForgot: s.view === 'forgot', isReset: s.view === 'reset', isInvite: s.view === 'invite', isDead: s.view === 'dead', isPay: s.view === 'pay',
+      pay: s.pay || {}, paySet: ['holder', 'number', 'exp', 'cvc', 'postcode', 'code', 'account'].reduce((o, k) => { o[k] = (ev) => { const v = ev.target.value; this.setState((x) => ({ pay: Object.assign({}, x.pay, { [k]: v }), err: '' })); }; return o; }, {}),
+      onPayAuth: (ev) => { const v = ev.target.checked; this.setState((x) => ({ pay: Object.assign({}, x.pay, { auth: v }) })); },
+      payTabs: [['card', 'Card'], ['direct_debit', 'Direct Debit']].map((p, i) => { const on = ((s.pay || {}).method || 'card') === p[0]; return { label: p[1], pressed: on ? 'true' : 'false', divider: i ? '1px solid #E7E7EC' : '0', bg: on ? '#7C3AED' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0A0A0F', onClick: () => this.setState((x) => ({ pay: Object.assign({}, x.pay, { method: p[0] }), err: '' })) }; }),
+      payCard: ((s.pay || {}).method || 'card') === 'card', payDd: (s.pay || {}).method === 'direct_debit',
+      payCta: s.busy ? 'Saving…' : ((s.pay || {}).method || 'card') === 'card' ? 'Save card and continue' : 'Set up Direct Debit and continue',
+      payNote: ((s.pay || {}).method || 'card') === 'card' ? 'Card details go straight to Stripe and never touch NEXTime.' : 'Collected by GoCardless and protected by the Direct Debit Guarantee.',
+      onApplePay: () => this.run(async (S) => { S.setupPayment(pend.memberships[0].tenantId, { type: 'card', wallet: 'Apple Pay', email: pend.user.email }); this.afterAuth(pend.user, pend.memberships, true); }),
+      onGooglePay: () => this.run(async (S) => { S.setupPayment(pend.memberships[0].tenantId, { type: 'card', wallet: 'Google Pay', email: pend.user.email }); this.afterAuth(pend.user, pend.memberships, true); }),
+      onSavePay: (ev) => { ev.preventDefault(); this.run(async (S) => { const p = s.pay || {}; S.setupPayment(pend.memberships[0].tenantId, Object.assign({}, p, { type: p.method || 'card', scheme: 'bacs', email: pend.user.email })); this.afterAuth(pend.user, pend.memberships, true); }); },
+      onSkipPay: () => this.run(async () => { this.afterAuth(pend.user, pend.memberships, true); }),
+      toLogin: () => this.to('login', { pending: null }), toSignup: () => this.to('signup1'), toForgot: () => this.to('forgot'),
+      loginLabel: s.busy ? 'Signing in…' : 'Sign in', createLabel: s.busy ? 'Creating workspace…' : 'Create workspace',
+
+      onLogin: (ev) => { ev.preventDefault(); this.run(async (S) => { const r = await S.login(f.email, f.password); this.afterAuth(r.user, r.memberships, false); }); },
+      onMfa: (ev) => { ev.preventDefault(); this.run(async (S) => { if (!(await S.totpOk(pend.user.totpSecret, f.otp))) throw new Error('That code is not valid. Codes change every 30 seconds.'); this.setF('otp', ''); this.afterAuth(pend.user, pend.memberships, true); }); },
+      workspaces: pend && s.view === 'pick' ? pend.memberships.map((m) => ({ name: m.name, role: m.role, onClick: () => { S.startSession(pend.user.id, m.tenantId); S.go('app'); } })) : [],
+
+      sizeOptions: SIZES.map((x) => ({ value: x[0], label: x[1] })),
+      onSize: (ev) => { const v = ev.target.value; const p = (SIZES.filter((x) => x[0] === v)[0] || SIZES[0])[2]; this.setState((x) => ({ f: Object.assign({}, x.f, { size: v, plan: p === 'enterprise' ? 'business' : p }) })); },
+      planOptions: plans.map((p) => { const on = f.plan === p.id; return { name: p.name, meta: 'Up to ' + p.limit + ' · £' + p.monthly + '/mo', pressed: on ? 'true' : 'false', bg: on ? '#7C3AED' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0A0A0F', onClick: () => this.setF('plan', p.id) }; }),
+      regionOptions: REGIONS,
+      onSignup1: (ev) => { ev.preventDefault(); if (!String(f.company).trim()) return this.setState({ err: 'Enter your company name.' }); this.to('signup2'); },
+      hasLegacy: !!legacy, legacyText: legacy ? 'This browser has an existing NEXTime organisation with ' + legacy.employees.length + ' staff and ' + (legacy.shifts || []).length + ' shifts. Copy it into the new workspace.' : '',
+      onImport: (ev) => this.setF('importLegacy', ev.target.checked), onTerms: (ev) => this.setF('terms', ev.target.checked),
+      pwHint: !f.password ? 'At least 10 characters, with letters and numbers.' : pwIss.length ? 'Needs ' + pwIss.join(' and ') + '.' : 'Strong enough.',
+      pwHintFg: !f.password ? '#6B6B7B' : pwIss.length ? '#991B1B' : '#15803D',
+      onSignup2: (ev) => { ev.preventDefault(); if (!f.terms) return this.setState({ err: 'Please accept the terms to continue.' }); this.run(async (S) => {
+        const r = await S.signup({ company: f.company, name: f.name, email: f.email, password: f.password, plan: f.plan, size: f.size, region: f.region, importLegacy: !!(legacy && f.importLegacy) });
+        const reg = S.read();
+        this._fresh = true;
+        this.to('verify', { pending: { user: reg.users[r.userId], memberships: [{ tenantId: r.tenantId, role: 'Owner', name: f.company, require2fa: false }], fresh: true } });
+      }); },
+
+      onVerify: (ev) => { ev.preventDefault(); this.run(async (S) => { S.verifyEmail(pend.user.id, f.code); const u = S.read().users[pend.user.id]; this.setF('code', ''); this.to('setup2fa', { pending: Object.assign({}, pend, { user: u }), secret: S.b32secret(), info: 'Email verified.' }); }); },
+      onResend: () => { S.resendVerify(pend.user.id); this.setState({ info: 'A new code is on its way.', err: '' }); },
+
+      secretGrouped: (s.secret || '').replace(/(.{4})/g, '$1 ').trim(), otpUri: S && s.secret && pend ? S.otpauth(s.secret, pend.user.email) : '#',
+      copyLabel: s.copied ? 'Copied' : 'Copy',
+      onCopySecret: () => { try { navigator.clipboard.writeText(s.secret); } catch (e) { /* clipboard blocked */ } this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 1500); },
+      canSkip2fa: !(pend && pend.required),
+      peekLabel: s.peek ? 'Current code: ' + s.peek + ' (prototype only)' : 'No authenticator to hand? Show current code (prototype only)',
+      onPeekCode: async () => { if (s.secret) this.setState({ peek: await S.totp(s.secret) }); },
+      onEnable2fa: (ev) => { ev.preventDefault(); this.run(async (S) => { if (!(await S.totpOk(s.secret, f.otp))) throw new Error('That code is not valid. Check the key and try the newest code.'); S.setTotp(pend.user.id, s.secret, true); const u = S.read().users[pend.user.id]; this.setF('otp', ''); this.afterAuth(u, pend.memberships, true); }); },
+      onSkip2fa: () => this.run(async () => { this.afterAuth(pend.user, pend.memberships, true); }),
+
+      onForgot: (ev) => { ev.preventDefault(); if (!S.emailOk(f.email)) return this.setState({ err: 'Enter the email you sign in with.' }); S.requestReset(f.email); this.setState({ info: 'If an account exists for ' + f.email + ', a reset link is on its way. It expires in 1 hour.' }); },
+      onReset: (ev) => { ev.preventDefault(); this.run(async (S) => { const email = await S.resetPassword(s.token, f.password); history.replaceState(null, '', S.url('account')); this.to('login', { f: Object.assign({}, f, { email: email, password: '' }), info: 'Password updated. Sign in with your new password.' }); }); },
+
+      inv: inf ? { tenant: inf.tenant ? inf.tenant.name : '—', role: inf.invite.role, email: inf.invite.email, isNew: !inf.existingUser, pwLabel: inf.existingUser ? 'Your existing NEXTime password' : 'Choose a password', pwAuto: inf.existingUser ? 'current-password' : 'new-password' } : { tenant: '', role: '', email: '', isNew: true, pwLabel: 'Password', pwAuto: 'new-password' },
+      onAccept: (ev) => { ev.preventDefault(); this.run(async (S) => {
+        const r = await S.acceptInvite(s.token, f.name, f.password);
+        const u = S.read().users[r.userId];
+        const ms = [{ tenantId: r.tenantId, role: inf.invite.role, name: inf.tenant.name, require2fa: r.require2fa }];
+        if (!u.totpOn) return this.to('setup2fa', { pending: { user: u, memberships: ms, required: r.require2fa }, secret: S.b32secret() });
+        this.to('mfa', { pending: { user: u, memberships: ms } });
+      }); },
+
+      demoMode: !!(S && S.demo()),
+      inboxOpen: s.inboxOpen, onToggleInbox: () => this.setState({ inboxOpen: !s.inboxOpen }),
+      inboxCount: mails.length, inboxEmpty: mails.length === 0,
+      inbox: mails.map((m) => ({
+        to: m.to, subject: m.subject, body: m.body, when: new Date(m.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        hasCode: !!m.code, code: m.code, onUseCode: () => this.setF('code', m.code),
+        hasLink: !!m.link, link: m.link, linkLabel: /invite=/.test(m.link) ? 'Accept invitation' : /reset=/.test(m.link) ? 'Reset password' : 'Open'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
